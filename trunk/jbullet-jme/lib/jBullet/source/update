@@ -1,0 +1,3 @@
+#!/bin/bash
+mtn pull
+mtn update
