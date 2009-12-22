@@ -11,6 +11,18 @@
     <description>Builds, tests, and runs the project jbullet-jme.</description>
     <import file="nbproject/build-impl.xml"/>
 
+    <target depends="init" name="-javadoc-build">
+        <mkdir dir="${dist.javadoc.dir}"/>
+        <javadoc access="public" additionalparam="${javadoc.additionalparam}" author="${javadoc.author}" charset="UTF-8" destdir="${dist.javadoc.dir}" docencoding="UTF-8" encoding="${javadoc.encoding.used}" failonerror="true" noindex="${javadoc.noindex}" nonavbar="${javadoc.nonavbar}" notree="${javadoc.notree}" private="${javadoc.private}" source="${javac.source}" splitindex="${javadoc.splitindex}" use="${javadoc.use}" useexternalfile="true" version="${javadoc.version}" windowtitle="${javadoc.windowtitle}">
+            <classpath>
+                <path path="${javac.classpath}"/>
+            </classpath>
+            <fileset dir="${src.dir}" excludes="${excludes}" includes="${includes}">
+                <filename name="**/*.java"/>
+            </fileset>
+        </javadoc>
+    </target>
+
     <target name="javadoc" depends="-javadoc-build">
         <exec dir="./javadoc" executable="find">
             <arg line=". -name '*html' -exec svn propset svn:mime-type text/html {} ;">
