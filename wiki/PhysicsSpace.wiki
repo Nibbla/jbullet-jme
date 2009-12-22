@@ -16,3 +16,6 @@ pSpace.syncPhysics();
 pSpace.update(float time);
 }}}
 Bullet internally works with 60 frames/s... TODO: extend
+
+==JavaDocs==
+http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/PhysicsSpace.html
