@@ -60,20 +60,14 @@ import java.util.List;
  * jbullet-jme is a wrapper of jBullet for jme2. It aims at simplifying the use
  * of the jbullet/bullet physics library in jme2 projects.<br>
  * It does so by integrating jbullet features into a set of simple to use phyiscs objects
- * that play nicely with jme2.<br>
- * Other than jmephysics2, which aims at integrating different physics engines
- * in one wrapper library, jbullet-jme is more or less tailored to bullet.
- * This allows using some of the special functions of bullet (like vehicles)
- * but makes the wrapper more difficult to port to other physics implementations.
- * Still, wrapping jbullet like its done here keeps the possibility of developing a
- * native bullet implementation of jbullet-jme in the future, supporting SPU use etc.
- * <br>Project Status: <b>pre-alpha</b>
+ * that play nicely with jme2.
  * </i>
  * </p>
  * <p>PhysicsSpace - The central jbullet-jme physics space</p>
  * <p>
  * USAGE:<br>
- * The PhysicsSpace needs to be started by creating a <code>PhysicsSpace</code> Object
+ * The PhysicsSpace needs to be started by getting a <code>PhysicsSpace</code> Object
+ * by calling <code>PhysicsSpace physics=PhysicsSpace.getPhysicsSpace();<code>
  * and updated by calling the update(float time) method. The syncPhysics() method
  * synchronizes the physics and jme objects and is called seperately to allow multithreading
  * and/or different decoupling techniques between the OpenGL and Physics engine.<br>
@@ -115,6 +109,16 @@ public class PhysicsSpace {
 
     private List<PhysicsNode> physicsNodes=new LinkedList<PhysicsNode>();
     private List<PhysicsJoint> physicsJoints=new LinkedList<PhysicsJoint>();
+
+    private static PhysicsSpace pSpace;
+    
+    public static PhysicsSpace getPhysicsSpace(){
+        if(pSpace!=null){
+            return pSpace;
+        }
+        pSpace=new PhysicsSpace();
+        return pSpace;
+    }
 
     public PhysicsSpace(){
         //TODO: better multithreading/updating support via queues

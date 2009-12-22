@@ -63,7 +63,7 @@ public class TestSimplePhysics {
 
     public static void setupGame(){
         // creates and initializes the PhysicsSpace
-        final PhysicsSpace pSpace=new PhysicsSpace();
+        final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 
         // add some keybindings to control the vehicle
         KeyBindingManager.getKeyBindingManager().set("key_accelerate",
