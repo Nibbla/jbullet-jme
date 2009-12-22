@@ -6,3 +6,6 @@ When adding a wheel you have to specify the jme spatial that acts as the wheel, 
 physicsVehicleNode.addWheel(Spatial wheel, Vector3f wheelLocalTranslation, wheelDirection, wheelAxle,
                              suspensionRestLength, wheelRadius, boolean frontWheel);
 }}}
+
+==JavaDoc==
+http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/node/PhysicsVehicleNode.html
