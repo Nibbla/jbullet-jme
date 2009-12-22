@@ -14,4 +14,4 @@ and add it to your jme2 scenegraph.
 
 The given spatial will be the added as child node or geometry of the PhysicsNode and will thus move with the PhysicsNode.
 
-The shapeType is one of PhyiscsNode.Shapes.XXX and defines what kind of shape the PhysicsNode has in the physics space, the size of the shape is dependent on the BoundingVolume of this PhysicsNode.
+The shapeType is one of PhysicsNode.Shapes.XXX and defines what kind of shape the PhysicsNode has in the physics space, the size of the shape is dependent on the BoundingVolume of this PhysicsNode.
