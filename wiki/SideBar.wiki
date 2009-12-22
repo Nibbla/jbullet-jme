@@ -4,6 +4,7 @@
  * Objects
   * [PhysicsSpace]
   * [PhysicsNode]
+  * [PhysicsVehicleNode]
   * [PhysicsJoint]
  * Examples
   * [Basic_Example]
