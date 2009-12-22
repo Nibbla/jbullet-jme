@@ -75,6 +75,7 @@ import java.io.IOException;
  * </p>
  * <p>
  * ISSUES:<br>
+ * - It is not recommended to have PhysicsNodes as child nodes of other PhysicsNodes<br>
  * - getLocalTranslation().set() does not set the physics object location,
  *   use setLocalTranslation(), same applies for getLocalRotation()<br>
  * </p>
