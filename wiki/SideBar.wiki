@@ -1,4 +1,5 @@
 #summary The sidebar
+=Menu=
  * Introduction
  * Objects
   * PhysicsNode
