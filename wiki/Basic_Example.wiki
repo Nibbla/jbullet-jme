@@ -33,7 +33,7 @@ getRootNode().attachChild(floor);
 floor.updateRenderState();
 }}}
 = Update call =
-In your jme2 Gamestate, update and sync phyiscs like this:
+In your jme2 Gamestate, update and sync physics like this:
 {{{
 public void update(float tpf) {
     pSpace.syncPhysics();
