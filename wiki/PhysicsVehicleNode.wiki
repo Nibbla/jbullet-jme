@@ -4,7 +4,7 @@ This special PhysicsNode represents a vehicle in the physics space and can have 
 When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and its axes/radius etc.
 {{{
 physicsVehicleNode.addWheel(Spatial wheel, Vector3f wheelLocalTranslation, Vector3f wheelDirection,
-                             Vector3f wheelAxle, suspensionRestLength, wheelRadius, boolean frontWheel);
+                             Vector3f wheelAxle, float suspensionRestLength, float wheelRadius, boolean frontWheel);
 }}}
 
 ==JavaDoc==
