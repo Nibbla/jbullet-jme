@@ -1,6 +1,6 @@
 #summary The sidebar
 *Navigation*
- * Introduction
+ * [Introduction]
  * Objects
-  * PhysicsNode
-  * PhysicsJoint
+  * [PhysicsNode]
+  * [PhysicsJoint]
