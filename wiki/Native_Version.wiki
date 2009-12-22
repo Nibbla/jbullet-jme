@@ -1,0 +1,5 @@
+#summary How a future native version would be implemented
+
+There is no Interface system to wrap the jbullet-jme classes and so a native version would probably just be the same classes in a different package. 
+
+I did not implement such a system because of multiple things. First, I do not think that jbullet will be developed with the same pace as bullet is. Things such as softbodys will probably never be implemented if not somebody helps the developer whos porting it to java. So when a native version is started, keeping it compatible to the restrictions of jbullet will probably not be a good idea.  
