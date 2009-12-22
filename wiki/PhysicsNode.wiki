@@ -16,3 +16,6 @@ The shapeType is one of PhysicsNode.Shapes.XXX and defines what kind of shape th
 
 ==Notes==
 Currently, mesh objects do not collide with other mesh objects, so mesh objects are mostly to be used for static objects (floor/world) while box/sphere etc. shapes should be used for mobile objects.
+
+==JavaDoc==
+http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/node/PhysicsNode.html
