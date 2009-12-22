@@ -22,6 +22,6 @@ It has all normal functions of a jme Node and its location and rotation is updat
 
 A PhysicsJoint represents a Constraint in jbullet that connects two physics objects.
 
-== JavaDocs ==
-The JavaDocs for jbullet-jme can be found here:
+== JavaDoc ==
+The JavaDoc for jbullet-jme can be found here:
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/index.html
