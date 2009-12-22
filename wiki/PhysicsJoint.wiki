@@ -1,3 +1,3 @@
 #summary Basic jbullet-jme Phyiscs Joint
 
-This is the basic way of connecting PhysicsNodes. Although bullet calls these "constraints" in this implementation I call them "joints" because some bullet constraints are used via special PhysicsNodes directly, not via "joints" (e.g. PhysicsVehicleNode).
+This is the basic way of connecting [PhysicsNode]s. Although bullet calls these "constraints" in this implementation I call them "joints" because some bullet constraints are used via special [PhysicsNode]s directly, not via "joints" (e.g. [PhysicsVehicleNode]).
