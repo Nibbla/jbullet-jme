@@ -1,0 +1,6 @@
+#summary Special PhysicsNode that represents a vehicle
+This special PhysicsNode represents a vehicle in the physics space and can have wheels and be controlled via acceleration, steering etc.
+==Adding a wheel==
+{{{
+physicsCar.addWheel(Spatial wheel, Vector3f wheelLocalTranslation, wheelDirection, wheelAxle, suspensionRestLength, wheelRadius, boolean frontWheel);
+}}}
