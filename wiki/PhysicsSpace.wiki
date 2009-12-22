@@ -1,10 +1,5 @@
 #summary Basic jbullet-jme physics space
 
-=PhysicsSpace - Basic jbullet-jme physics space=
-
-A PhysicsNode represents an object in the physics space and in the jme scenegraph. It is derived from com.jme.scene.Node to integrate nicely with the jme2 scenegraph.
-For bullet, it stores a RigidBody and its CollisionShape including their options (friction, mass etc.)
-
 ==Usage==
 The PhysicsSpace needs to be started by creating a PhysicsSpace Object like this
 {{{
