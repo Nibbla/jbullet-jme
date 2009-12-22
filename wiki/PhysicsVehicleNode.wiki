@@ -1,7 +1,7 @@
 #summary Special PhysicsNode that represents a vehicle
 This special PhysicsNode represents a vehicle in the physics space and can have wheels and be controlled via acceleration, steering etc.
 ==Adding a wheel==
-When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and its axes/radius etc.
+When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and its axes/radius etc. are set from the physics engine then.
 {{{
 physicsVehicleNode.addWheel(Spatial wheel, Vector3f wheelLocalTranslation, wheelDirection, wheelAxle,
                              suspensionRestLength, wheelRadius, boolean frontWheel);
