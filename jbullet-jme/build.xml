@@ -11,6 +11,12 @@
     <description>Builds, tests, and runs the project jbullet-jme.</description>
     <import file="nbproject/build-impl.xml"/>
 
+    <target name="javadoc" depends="-javadoc-build">
+        <exec dir="./javadoc" executable="find">
+            <arg line=". -name '*html' -exec svn propset svn:mime-type text/html {} ;">
+            </arg>
+        </exec>
+    </target>
     <!--target name="-post-jar" depends="javadoc">
 
     </target-->
