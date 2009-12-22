@@ -5,14 +5,13 @@
 
 jbullet-jme is similar to jmephysics2 in that it completely wraps a phyisics engine into its own set of objects. These objects integrate into the scenegraph of jme2 and are updated by the phyiscs engine to move according to the phyiscs.
 
+This wiki basically mirrors the Information from the javadocs, so you might be interested in integrating the javadocs to your IDE project rather than searching through this wiki.
+
 = Details =
-== PhysicsSpace ==
 The PhysicsSpace Object stores the basic physics space information and starts the jbullet physics space upon construction.
 
-== PhysicsNode ==
 A PhysicsNode represents a Node in jme and a RigidBody in jbullet.
 
 It has all normal functions of a jme Node and its location and rotation is updated by the RigidBody in the physics space. If the location or rotation is set from the jme side, it is updated on the physics side.
 
-==PhysicsJoint==
 A PhysicsJoint represents a Constraint in jbullet that connects two physics objects.
