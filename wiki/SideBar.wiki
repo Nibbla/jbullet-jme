@@ -1,4 +1,4 @@
-#summary The sidebar
+#summary The wiki sidebar
 *Navigation*
  * [Introduction]
  * Objects
