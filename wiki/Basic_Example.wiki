@@ -8,7 +8,7 @@ PhyiscsSpace pSpace=new PhysicsSpace();
 = Add physics objects =
 Now you can add physics objects to the world like this:
 
-Add a physics sphere to the world
+Create a jme sphere and add it as a physics sphere to the physics space
 {{{
 Sphere sphere=new Sphere("physicssphere",16,16,1f);
 PhysicsNode physicsSphere=new PhysicsNode(pSpace,sphere,PhysicsNode.Shapes.SPHERE);
