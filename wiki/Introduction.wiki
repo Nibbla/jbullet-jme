@@ -7,7 +7,7 @@ jbullet-jme is similar to jmephysics2 in that it completely wraps a phyisics eng
 
 = Details =
 == PhysicsSpace ==
-The PhysicsSpace Object stores the basic physics space information and starts the jbullet phyiscs space upon construction.
+The PhysicsSpace Object stores the basic physics space information and starts the jbullet physics space upon construction.
 
 == PhysicsNode ==
 A PhysicsNode represents a Node in jme and a RigidBody in jbullet.
