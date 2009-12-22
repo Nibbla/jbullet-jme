@@ -5,7 +5,7 @@
 
 The aim of jbullet-jme is to simplify the use of jbullet and adapt it to jme2. 
 
-jbullet-jme is similar to jmephysics2 (http://wiki.jmephysics.irrisor.net/tiki-index.php) in that it completely wraps a phyisics engine into its own set of objects. These objects integrate into the scenegraph of jme2 and are updated by the phyiscs engine to move according to the phyiscs.
+jbullet-jme is similar to jmephysics2 (http://wiki.jmephysics.irrisor.net/tiki-index.php) in that it completely wraps a physics engine into its own set of objects. These objects integrate into the scenegraph of jme2 and are updated by the phyiscs engine to move according to the phyiscs.
 
 Other than jmephysics2, which aims at integrating different physics engines in one wrapper library, jbullet-jme is more or less tailored to bullet. This allows using some of the special functions of bullet (like vehicles) but makes the wrapper more difficult to port to other physics implementations.
 Still, wrapping jbullet like its done here keeps the possibility of developing a native bullet implementation of jbullet-jme in the future, supporting SPU/GPU use etc. 
