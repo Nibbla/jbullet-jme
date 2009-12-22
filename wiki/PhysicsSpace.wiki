@@ -8,7 +8,11 @@ For bullet, it stores a RigidBody and its CollisionShape including their options
 ==Usage==
 The PhysicsSpace needs to be started by creating a PhysicsSpace Object like this
 {{{
-new PhysicsSpace();
+PhysicsSpace pSpace=new PhysicsSpace();
 }}}
 and updated by calling the update(float time) method. The syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine.
+{{{
+pSpace.syncPhysics();
+pSpace.update(float time);
+}}}
 Bullet internally works with 60 frames/s... TODO: extend
