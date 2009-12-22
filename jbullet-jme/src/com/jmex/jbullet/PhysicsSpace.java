@@ -67,7 +67,7 @@ import java.util.List;
  * <p>
  * USAGE:<br>
  * The PhysicsSpace needs to be started by getting a <code>PhysicsSpace</code> Object
- * by calling <code>PhysicsSpace physics=PhysicsSpace.getPhysicsSpace();<code>
+ * by calling <code>PhysicsSpace physics=PhysicsSpace.getPhysicsSpace();</code>
  * and updated by calling the update(float time) method. The syncPhysics() method
  * synchronizes the physics and jme objects and is called seperately to allow multithreading
  * and/or different decoupling techniques between the OpenGL and Physics engine.<br>
