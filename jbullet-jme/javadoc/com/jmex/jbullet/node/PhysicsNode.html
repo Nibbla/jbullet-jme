@@ -134,7 +134,7 @@ java.lang.Object
  - init translation?<br>
  - separate addToPhyiscsSpace() method?<br>
  - inertia/mass update strangeness..(probably have to reconstruct RigidBody)<br>
- - separate update/rebuild<br>
+ - separate update/rebuild of RigidBody<br>
  - better CollisionShape support (via ModelBound or own Object?)<br>
  - reuse collision shapes<br>
  - BoundingVolume update<br>
@@ -265,8 +265,16 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, float)">applyImpulse</A></B>(com.jme.math.Vector3f&nbsp;vec,
-             float&nbsp;force)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A></B>(com.jme.math.Vector3f&nbsp;vec,
+             com.jme.math.Vector3f&nbsp;vec2)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyTorqueImpulse(com.jme.math.Vector3f)">applyTorqueImpulse</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -314,6 +322,14 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousForce()">getContinuousForce</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousForce(com.jme.math.Vector3f)">getContinuousForce</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
 
 <BR>
@@ -323,6 +339,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousTorque()">getContinuousTorque</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousTorque(com.jme.math.Vector3f)">getContinuousTorque</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -418,6 +442,15 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setDamping(float, float)">setDamping</A></B>(float&nbsp;linearDamping,
+           float&nbsp;angularDamping)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setFriction(float)">setFriction</A></B>(float&nbsp;friction)</CODE>
 
 <BR>
@@ -437,7 +470,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A></B>(com.jme.math.Matrix3f&nbsp;arg0)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local rotation of this node.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -445,17 +478,17 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A></B>(com.jme.math.Quaternion&nbsp;arg0)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local rotation of this node.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A></B>(float&nbsp;arg0,
-                    float&nbsp;arg1,
-                    float&nbsp;arg2)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A></B>(float&nbsp;x,
+                    float&nbsp;y,
+                    float&nbsp;z)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local translation of this node.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -463,7 +496,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A></B>(com.jme.math.Vector3f&nbsp;arg0)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local translation of this node.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -471,7 +504,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setMass(float)">setMass</A></B>(float&nbsp;mass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the mass of this PhysicsNode, objects with mass=0 are static.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -513,8 +546,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#syncPhysics()">syncPhysics</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called from the main loop to sync jme object with jbullet object
- TODO: optimize /w list</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called from the main loop to sync jme object with jbullet object<br>
+ TODO: optimize /w queue</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -660,11 +693,14 @@ setLocalTranslation</H3>
 <PRE>
 public void <B>setLocalTranslation</B>(com.jme.math.Vector3f&nbsp;arg0)</PRE>
 <DL>
+<DD>Sets the local translation of this node. The physics object will be updated accordingly
+ in the next global physics update tick.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -672,10 +708,13 @@ public void <B>setLocalTranslation</B>(com.jme.math.Vector3f&nbsp;arg0)</PRE>
 <A NAME="setLocalTranslation(float, float, float)"><!-- --></A><H3>
 setLocalTranslation</H3>
 <PRE>
-public void <B>setLocalTranslation</B>(float&nbsp;arg0,
-                                float&nbsp;arg1,
-                                float&nbsp;arg2)</PRE>
+public void <B>setLocalTranslation</B>(float&nbsp;x,
+                                float&nbsp;y,
+                                float&nbsp;z)</PRE>
 <DL>
+<DD>Sets the local translation of this node. The physics object will be updated accordingly
+ in the next global physics update tick.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
 </DD>
@@ -707,11 +746,14 @@ setLocalRotation</H3>
 <PRE>
 public void <B>setLocalRotation</B>(com.jme.math.Matrix3f&nbsp;arg0)</PRE>
 <DL>
+<DD>Sets the local rotation of this node. The physics object will be updated accordingly
+ in the next global physics update tick.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -721,11 +763,14 @@ setLocalRotation</H3>
 <PRE>
 public void <B>setLocalRotation</B>(com.jme.math.Quaternion&nbsp;arg0)</PRE>
 <DL>
+<DD>Sets the local rotation of this node. The physics object will be updated accordingly
+ in the next global physics update tick.
+<P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
 </DD>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -778,8 +823,10 @@ setMass</H3>
 <PRE>
 public void <B>setMass</B>(float&nbsp;mass)</PRE>
 <DL>
+<DD>Sets the mass of this PhysicsNode, objects with mass=0 are static.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>mass</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -804,6 +851,18 @@ public void <B>setFriction</B>(float&nbsp;friction)</PRE>
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>friction</CODE> - the friction of this physics object</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDamping(float, float)"><!-- --></A><H3>
+setDamping</H3>
+<PRE>
+public void <B>setDamping</B>(float&nbsp;linearDamping,
+                       float&nbsp;angularDamping)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -911,6 +970,17 @@ public com.jme.math.Vector3f <B>getContinuousForce</B>(com.jme.math.Vector3f&nbs
 </DL>
 <HR>
 
+<A NAME="getContinuousForce()"><!-- --></A><H3>
+getContinuousForce</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousForce</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="applyContinuousForce(boolean, com.jme.math.Vector3f)"><!-- --></A><H3>
 applyContinuousForce</H3>
 <PRE>
@@ -927,11 +997,22 @@ public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
 </DL>
 <HR>
 
-<A NAME="applyImpulse(com.jme.math.Vector3f, float)"><!-- --></A><H3>
+<A NAME="applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
 applyImpulse</H3>
 <PRE>
 public void <B>applyImpulse</B>(com.jme.math.Vector3f&nbsp;vec,
-                         float&nbsp;force)</PRE>
+                         com.jme.math.Vector3f&nbsp;vec2)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyTorqueImpulse(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyTorqueImpulse</H3>
+<PRE>
+public void <B>applyTorqueImpulse</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -943,6 +1024,17 @@ public void <B>applyImpulse</B>(com.jme.math.Vector3f&nbsp;vec,
 getContinuousTorque</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getContinuousTorque</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContinuousTorque(com.jme.math.Vector3f)"><!-- --></A><H3>
+getContinuousTorque</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousTorque</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -1033,8 +1125,8 @@ syncPhysics</H3>
 <PRE>
 public void <B>syncPhysics</B>()</PRE>
 <DL>
-<DD>called from the main loop to sync jme object with jbullet object
- TODO: optimize /w list
+<DD>called from the main loop to sync jme object with jbullet object<br>
+ TODO: optimize /w queue
 <P>
 <DD><DL>
 </DL>

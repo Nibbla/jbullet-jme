@@ -84,7 +84,7 @@ import java.io.IOException;
  * - init translation?<br>
  * - separate addToPhyiscsSpace() method?<br>
  * - inertia/mass update strangeness..(probably have to reconstruct RigidBody)<br>
- * - separate update/rebuild<br>
+ * - separate update/rebuild of RigidBody<br>
  * - better CollisionShape support (via ModelBound or own Object?)<br>
  * - reuse collision shapes<br>
  * - BoundingVolume update<br>
@@ -131,14 +131,20 @@ public class PhysicsNode extends Node{
 
     private Vector3f continuousForce=new Vector3f();
 
+    private Vector3f continuousTorque=new Vector3f();
+
     private Vector3f impulseVector=new Vector3f();
-    private float impulseForce=0.0f;
+    private Vector3f impulseVector2=new Vector3f();
+
+    private Vector3f torqueImpulse=new Vector3f();
 
     private boolean applyTranslation=true;
     private boolean applyRotation=true;
     private boolean applyVelocity=true;
-    private boolean applyContinuous=false;
+    private boolean applyForce=false;
+    private boolean applyTorque=false;
     private boolean applyImpulse=false;
+    private boolean applyTorqueImpulse=false;
 
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
@@ -182,8 +188,6 @@ public class PhysicsNode extends Node{
 
     /**
      * builds/rebuilds the phyiscs body when parameters have changed
-     * TODO:<br>
-     * - rebuild mass<br>
      */
     protected void updateRigidBody(){
         if(cShape==null){
@@ -239,15 +243,24 @@ public class PhysicsNode extends Node{
         return super.getLocalTranslation();
     }
 
+    /**
+     * Sets the local translation of this node. The physics object will be updated accordingly
+     * in the next global physics update tick.
+     * @param arg0
+     */
     @Override
     public void setLocalTranslation(Vector3f arg0) {
         super.setLocalTranslation(arg0);
         applyTranslation=true;
     }
 
+    /**
+     * Sets the local translation of this node. The physics object will be updated accordingly
+     * in the next global physics update tick.
+     */
     @Override
-    public void setLocalTranslation(float arg0, float arg1, float arg2) {
-        super.setLocalTranslation(arg0, arg1, arg2);
+    public void setLocalTranslation(float x, float y, float z) {
+        super.setLocalTranslation(x, y, z);
         applyTranslation=true;
     }
 
@@ -260,12 +273,22 @@ public class PhysicsNode extends Node{
         return super.getLocalRotation();
     }
 
+    /**
+     * Sets the local rotation of this node. The physics object will be updated accordingly
+     * in the next global physics update tick.
+     * @param arg0
+     */
     @Override
     public void setLocalRotation(Matrix3f arg0) {
         super.setLocalRotation(arg0);
         applyRotation=true;
     }
 
+    /**
+     * Sets the local rotation of this node. The physics object will be updated accordingly
+     * in the next global physics update tick.
+     * @param arg0
+     */
     @Override
     public void setLocalRotation(Quaternion arg0) {
         super.setLocalRotation(arg0);
@@ -314,6 +337,10 @@ public class PhysicsNode extends Node{
         return mass;
     }
 
+    /**
+     * Sets the mass of this PhysicsNode, objects with mass=0 are static.
+     * @param mass
+     */
     public void setMass(float mass){
         this.mass=mass;
         rebuild=true;
@@ -329,6 +356,12 @@ public class PhysicsNode extends Node{
      */
     public void setFriction(float friction){
         this.friction=friction;
+        rebuild=true;
+    }
+
+    public void setDamping(float linearDamping,float angularDamping){
+        this.linearDamping = linearDamping;
+        this.angularDamping = angularDamping;
         rebuild=true;
     }
 
@@ -377,7 +410,14 @@ public class PhysicsNode extends Node{
     }
 
     public Vector3f getContinuousForce(Vector3f vec){
-        if(applyContinuous)
+        if(applyForce)
+            return vec.set(continuousForce);
+        else
+            return null;
+    }
+
+    public Vector3f getContinuousForce(){
+        if(applyForce)
             return continuousForce;
         else
             return null;
@@ -392,17 +432,26 @@ public class PhysicsNode extends Node{
      */
     public void applyContinuousForce(boolean apply, Vector3f vec){
         if(vec!=null) continuousForce.set(vec);
-        applyContinuous=apply;
+        applyForce=apply;
     }
 
-    public void applyImpulse(Vector3f vec, float force){
-        //TODO: implement
-        throw (new UnsupportedOperationException("Not implemented yet."));
+    public void applyImpulse(Vector3f vec, Vector3f vec2){
+        if(vec!=null) impulseVector.set(vec);
+        if(vec2!=null) impulseVector2.set(vec);
+        applyImpulse=true;
+    }
+
+    public void applyTorqueImpulse(Vector3f vec){
+        if(vec!=null) torqueImpulse.set(vec);
+        applyTorqueImpulse=true;
     }
 
     public Vector3f getContinuousTorque(){
-        //TODO: implement
-        throw(new UnsupportedOperationException("Not implemented yet."));
+        return continuousTorque;
+    }
+
+    public Vector3f getContinuousTorque(Vector3f vec){
+        return vec.set(continuousTorque);
     }
 
     /**
@@ -413,8 +462,8 @@ public class PhysicsNode extends Node{
      * @param vec the vector of the force to apply
      */
     public void applyContinuousTorque(boolean apply, Vector3f vec){
-        //TODO: implement
-        throw (new UnsupportedOperationException("Not implemented yet."));
+        if(vec!=null) continuousTorque.set(vec);
+        applyTorque=apply;
     }
 
     public void clearForces(){
@@ -539,8 +588,8 @@ public class PhysicsNode extends Node{
     }
   
     /**
-     * called from the main loop to sync jme object with jbullet object
-     * TODO: optimize /w list
+     * called from the main loop to sync jme object with jbullet object<br>
+     * TODO: optimize /w queue
      */
     public void syncPhysics(){
         if(rebuild) updateRigidBody();
@@ -580,9 +629,23 @@ public class PhysicsNode extends Node{
         else{
             Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
         }
-        if(applyContinuous){
+        if(applyForce){
             //TODO: reuse vector
             rBody.applyCentralForce(Converter.convert(continuousForce));
+        }
+        if(applyTorque){
+            //TODO: reuse vector
+            rBody.applyTorque(Converter.convert(continuousTorque));
+        }
+        if(applyImpulse){
+            //TODO: reuse vector
+            rBody.applyImpulse(Converter.convert(impulseVector), Converter.convert(impulseVector2));
+            applyImpulse=false;
+        }
+        if(applyTorqueImpulse){
+            //TODO: reuse vector
+            rBody.applyTorqueImpulse(Converter.convert(torqueImpulse));
+            applyTorqueImpulse=false;
         }
     }
 
