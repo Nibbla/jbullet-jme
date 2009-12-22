@@ -6,4 +6,4 @@ I did not implement such a system because of multiple things. First, I do not th
 
 The idea is, however, to have the native bullet implementation be api-compatible to the jbullet implementation. This way programs built with jbullet-jme just need to change the package names in the source to get access to the extended possibilities of a native implementation.
 
-There is no need to be able to "hot swap" the different implementations like in jmephyiscs. If you want the simple phyiscs, you use the jbullet version. If you need extended physics, you use the native version. If you find out in between you just change the package name.
+There is no need to be able to "hot swap" the different implementations like in jmephysics. If you want the simple, platform-independent phyiscs, you use the jbullet version. If you need extended physics, you use the native version. If you find out in between you just change the package name.
