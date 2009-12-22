@@ -13,6 +13,9 @@ Still, wrapping jbullet like its done here keeps the possibility of developing a
 == JME integration ==
 [PhysicsNode]s are normal JME nodes that are updated by the physics thread. So to have some phyiscs object in your world, you first create the jme geometry you'd like to move. Then you create a PhysicsNode with that object as a child. The PhysicsNode now contains all information about the location, rotation etc. of your physics object. The created geometry moves with it in the jme scenegraph, creating... visible physics :)
 
+see the JavaDocs here:
+http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/index.html
+
 == Details ==
 The PhysicsSpace Object stores the basic physics space information and starts the jbullet physics space upon construction.
 
