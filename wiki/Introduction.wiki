@@ -11,7 +11,7 @@ Other than jmephysics2, which aims at integrating different physics engines in o
 Still, wrapping jbullet like its done here keeps the possibility of developing a native bullet implementation of jbullet-jme in the future, supporting SPU/GPU use etc. 
 
 == JME integration ==
-[PhysicsNode]s are normal JME nodes that are updated by the physics thread. So to have some phyiscs object in your world, you first create the jme geometry you'd like to move. Then you create a PhyiscsNode with that object as a child. The PhysicsNode now contains all information about the location, rotation etc. of your physics object. The created geometry moves with it in the jme scenegraph, creating... visible physics :)
+[PhysicsNode]s are normal JME nodes that are updated by the physics thread. So to have some phyiscs object in your world, you first create the jme geometry you'd like to move. Then you create a PhysicsNode with that object as a child. The PhysicsNode now contains all information about the location, rotation etc. of your physics object. The created geometry moves with it in the jme scenegraph, creating... visible physics :)
 
 == Details ==
 The PhysicsSpace Object stores the basic physics space information and starts the jbullet physics space upon construction.
