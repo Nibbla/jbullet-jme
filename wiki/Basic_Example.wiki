@@ -7,21 +7,28 @@ PhyiscsSpace pSpace=new PhysicsSpace();
 }}}
 = Add physics objects =
 Now you can add physics objects to the world like this:
+
+Add a physics sphere to the world
 {{{
-// Add a physics sphere to the world
 Sphere sphere=new Sphere("physicssphere",16,16,1f);
 PhysicsNode physicsSphere=new PhysicsNode(pSpace,sphere,PhysicsNode.Shapes.SPHERE);
 physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
-//Add sphere to scenegraph
+}}}
+Add sphere to jme scenegraph
+{{{
 getRootNode().attachChild(physicsSphere);
 physicsSphere.updateRenderState();
 
-// Add a physics box as floor to the world
+}}}
+Add a physics box as floor to the world
+{{{
 PhysicsNode floor=new PhysicsNode(pSpace,
                        new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),PhysicsNode.Shapes.MESH);
 floor.setMass(0);
 floor.setLocalTranslation(new Vector3f(0f,-6,0f));
-//Add floor to scenegraph
+}}}
+Add floor to jme scenegraph
+{{{
 getRootNode().attachChild(floor);
 floor.updateRenderState();
 }}}
