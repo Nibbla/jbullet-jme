@@ -1,5 +1,5 @@
 #summary Basic jbullet-jme physics space
-The PhysicsSpace defines the basic physics world in jbullet-jme. Things such as global gravity etc. are set here and all PhysicsNodes are added here.
+The PhysicsSpace defines the basic physics world in jbullet-jme. Things such as global gravity etc. are set here and all [PhysicsNode]s are added here.
 
 The PhysicsSpace needs to be started by getting a PhysicsSpace Object and updated by calling the update(float time) method on that Object. A syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine. (May change until release version)
 
