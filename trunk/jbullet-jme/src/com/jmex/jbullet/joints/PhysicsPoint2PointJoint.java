@@ -48,17 +48,15 @@ public class PhysicsPoint2PointJoint extends PhysicsJoint{
 
     /**
      *
-     * @param pSpace
      * @param nodeA
      * @param nodeB
      * @param pivotA local translation of the joint connection point in node A
      * @param pivotB local translation of the joint connection point in node A
      */
-    public PhysicsPoint2PointJoint(PhysicsSpace pSpace, PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
-        super(pSpace, nodeA, nodeB, pivotA, pivotB);
+    public PhysicsPoint2PointJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
+        super(nodeA, nodeB, pivotA, pivotB);
         constraint=new Point2PointConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), Converter.convert(pivotA), Converter.convert(pivotB));
-        pSpace.addJoint(this);
-//        ((Point2PointConstraint)constraint).
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
 }

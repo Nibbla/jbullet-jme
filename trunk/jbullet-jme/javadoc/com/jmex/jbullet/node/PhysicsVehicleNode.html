@@ -52,7 +52,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/node/PhysicsVehicleNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -73,7 +73,7 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jmex.jbullet.node.PhysicsNode">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
@@ -146,17 +146,7 @@ java.lang.Object
 <B>Nested Class Summary</B></FONT></TH>
 </TR>
 </TABLE>
-&nbsp;<A NAME="nested_classes_inherited_from_class_com.jmex.jbullet.node.PhysicsNode"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Nested classes/interfaces inherited from class com.jmex.jbullet.node.<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A></B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node">PhysicsNode.Shapes</A></CODE></TD>
-</TR>
-</TABLE>
-&nbsp;
-<A NAME="nested_classes_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+&nbsp;<A NAME="nested_classes_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TH ALIGN="left"><B>Nested classes/interfaces inherited from class com.jme.scene.Spatial</B></TH>
@@ -194,23 +184,35 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial)">PhysicsVehicleNode</A></B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                   com.jme.scene.Spatial&nbsp;child)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial)">PhysicsVehicleNode</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int)">PhysicsVehicleNode</A></B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                   com.jme.scene.Spatial&nbsp;child,
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape)">PhysicsVehicleNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+                   <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape, float)">PhysicsVehicleNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+                   <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape,
+                   float&nbsp;mass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial, int)">PhysicsVehicleNode</A></B>(com.jme.scene.Spatial&nbsp;child,
                    int&nbsp;collisionShapeType)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int, float)">PhysicsVehicleNode</A></B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                   com.jme.scene.Spatial&nbsp;child,
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial, int, float)">PhysicsVehicleNode</A></B>(com.jme.scene.Spatial&nbsp;child,
                    int&nbsp;collisionShapeType,
                    float&nbsp;mass)</CODE>
 
@@ -389,7 +391,7 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called from the main loop to sync jme object with jbullet object<br>
- TODO: optimize /w queue</TD>
+ TODO: replace /w queue</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.node.PhysicsNode"><!-- --></A>
@@ -398,7 +400,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.node.<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)">applyContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyContinuousTorque(boolean, com.jme.math.Vector3f)">applyContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyTorqueImpulse(com.jme.math.Vector3f)">applyTorqueImpulse</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#clearForces()">clearForces</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape()">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getAngularDamping()">getAngularDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousForce()">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousForce(com.jme.math.Vector3f)">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousTorque()">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousTorque(com.jme.math.Vector3f)">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getFriction()">getFriction</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getLinearDamping()">getLinearDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getLocalRotation()">getLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getLocalTranslation()">getLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getMass()">getMass</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getPhysicsSpace()">getPhysicsSpace</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getRestitution()">getRestitution</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getRigidBody()">getRigidBody</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#read(com.jme.util.export.JMEImporter)">read</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setAngularDamping(float)">setAngularDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setAngularVelocity(com.jme.math.Vector3f)">setAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setDamping(float, float)">setDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setFriction(float)">setFriction</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLinearDamping(float)">setLinearDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setMass(float)">setMass</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setModelBound(com.jme.bounding.BoundingVolume)">setModelBound</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setRestitution(float)">setRestitution</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#updateGeometricState(float, boolean)">updateGeometricState</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#write(com.jme.util.export.JMEExporter)">write</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)">applyContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyContinuousTorque(boolean, com.jme.math.Vector3f)">applyContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#applyTorqueImpulse(com.jme.math.Vector3f)">applyTorqueImpulse</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#clearForces()">clearForces</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getAngularDamping()">getAngularDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getCollisionShape()">getCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousForce()">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousForce(com.jme.math.Vector3f)">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousTorque()">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getContinuousTorque(com.jme.math.Vector3f)">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getFriction()">getFriction</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getLinearDamping()">getLinearDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getLocalRotation()">getLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getLocalTranslation()">getLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getMass()">getMass</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getRestitution()">getRestitution</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getRigidBody()">getRigidBody</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#read(com.jme.util.export.JMEImporter)">read</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setAngularDamping(float)">setAngularDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setAngularVelocity(com.jme.math.Vector3f)">setAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.CollisionShape)">setCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setDamping(float, float)">setDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setFriction(float)">setFriction</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLinearDamping(float)">setLinearDamping</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setMass(float)">setMass</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setModelBound(com.jme.bounding.BoundingVolume)">setModelBound</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setRestitution(float)">setRestitution</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#updateGeometricState(float, boolean)">updateGeometricState</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#write(com.jme.util.export.JMEExporter)">write</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Node"><!-- --></A>
@@ -450,31 +452,47 @@ java.lang.Object
 </TR>
 </TABLE>
 
-<A NAME="PhysicsVehicleNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial)"><!-- --></A><H3>
+<A NAME="PhysicsVehicleNode(com.jme.scene.Spatial)"><!-- --></A><H3>
 PhysicsVehicleNode</H3>
 <PRE>
-public <B>PhysicsVehicleNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                          com.jme.scene.Spatial&nbsp;child)</PRE>
+public <B>PhysicsVehicleNode</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
 <DL>
 </DL>
 <HR>
 
-<A NAME="PhysicsVehicleNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int)"><!-- --></A><H3>
+<A NAME="PhysicsVehicleNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
 PhysicsVehicleNode</H3>
 <PRE>
-public <B>PhysicsVehicleNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                          com.jme.scene.Spatial&nbsp;child,
+public <B>PhysicsVehicleNode</B>(com.jme.scene.Spatial&nbsp;child,
                           int&nbsp;collisionShapeType)</PRE>
 <DL>
 </DL>
 <HR>
 
-<A NAME="PhysicsVehicleNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
+<A NAME="PhysicsVehicleNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
 PhysicsVehicleNode</H3>
 <PRE>
-public <B>PhysicsVehicleNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                          com.jme.scene.Spatial&nbsp;child,
+public <B>PhysicsVehicleNode</B>(com.jme.scene.Spatial&nbsp;child,
                           int&nbsp;collisionShapeType,
+                          float&nbsp;mass)</PRE>
+<DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsVehicleNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape)"><!-- --></A><H3>
+PhysicsVehicleNode</H3>
+<PRE>
+public <B>PhysicsVehicleNode</B>(com.jme.scene.Spatial&nbsp;child,
+                          <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape)</PRE>
+<DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsVehicleNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape, float)"><!-- --></A><H3>
+PhysicsVehicleNode</H3>
+<PRE>
+public <B>PhysicsVehicleNode</B>(com.jme.scene.Spatial&nbsp;child,
+                          <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape,
                           float&nbsp;mass)</PRE>
 <DL>
 </DL>
@@ -724,7 +742,7 @@ public void <B>syncPhysics</B>()</PRE>
 <DL>
 <DD><B>Description copied from class: <CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#syncPhysics()">PhysicsNode</A></CODE></B></DD>
 <DD>called from the main loop to sync jme object with jbullet object<br>
- TODO: optimize /w queue
+ TODO: replace /w queue
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#syncPhysics()">syncPhysics</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A></CODE></DL>
@@ -764,7 +782,7 @@ public void <B>syncPhysics</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/node/PhysicsVehicleNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -785,7 +803,7 @@ public void <B>syncPhysics</B>()</PRE>
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jmex.jbullet.node.PhysicsNode">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>

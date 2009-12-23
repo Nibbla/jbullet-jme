@@ -62,7 +62,6 @@ public class PhysicsHingeJoint extends PhysicsJoint{
 
     /**
      * Creates a new HingeJoint
-     * @param pSpace
      * @param nodeA
      * @param nodeB
      * @param pivotA
@@ -70,14 +69,14 @@ public class PhysicsHingeJoint extends PhysicsJoint{
      * @param axisA
      * @param axisB
      */
-    public PhysicsHingeJoint(PhysicsSpace pSpace, PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Vector3f axisA, Vector3f axisB) {
-        super(pSpace, nodeA, nodeB, pivotA, pivotB);
+    public PhysicsHingeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Vector3f axisA, Vector3f axisB) {
+        super(nodeA, nodeB, pivotA, pivotB);
         this.axisA=axisA;
         this.axisB=axisB;
         constraint=new HingeConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(),
                 Converter.convert(pivotA), Converter.convert(pivotB),
                 Converter.convert(axisA), Converter.convert(axisB));
-        pSpace.addJoint(this);
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     public void enableMotor(boolean enable, float targetVelocity, float maxMotorImpulse){

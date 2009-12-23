@@ -31,27 +31,22 @@
  */
 package com.jmex.jbullet.node;
 
-import com.bulletphysics.collision.shapes.BoxShape;
-import com.bulletphysics.collision.shapes.BvhTriangleMeshShape;
-import com.bulletphysics.collision.shapes.CollisionShape;
-import com.bulletphysics.collision.shapes.SphereShape;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
 import com.bulletphysics.linearmath.DefaultMotionState;
 import com.bulletphysics.linearmath.MotionState;
 import com.bulletphysics.linearmath.Transform;
-import com.jme.bounding.BoundingBox;
-import com.jme.bounding.BoundingSphere;
 import com.jme.bounding.BoundingVolume;
 import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
-import com.jme.scene.TriMesh;
 import com.jme.util.export.JMEExporter;
 import com.jme.util.export.JMEImporter;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.CollisionShape;
+import com.jmex.jbullet.collision.CollisionShape.Shapes;
 import com.jmex.jbullet.util.Converter;
 import java.io.IOException;
 
@@ -65,11 +60,11 @@ import java.io.IOException;
  * <p>
  * USAGE:<br>
  * To create a PhysicsNode, just create a new PhysicsNode Object like this
- * <p><code>new PhysicsNode(physicsSpace,spatial,shapeType);</code></p>
+ * <p><code>new PhysicsNode(spatial,shapeType);</code></p>
  * and add it to your jme2 scenegraph.<br>
  * The given spatial will be the added as child node or geometry of the PhysicsNode and
  * will thus move with the PhysicsNode.<br>
- * The shapeType is one of <code>PhyiscsNode.Shapes.XXX</code>
+ * The shapeType is one of <code>CollisionShape.Shapes.XXX</code>
  * and defines what kind of shape the PhysicsNode has in the physics space,
  * the size of the shape is dependent on the BoundingVolume of this PhysicsNode.
  * </p>
@@ -97,12 +92,10 @@ import java.io.IOException;
  * @author normenhansen
  */
 public class PhysicsNode extends Node{
-    protected PhysicsSpace pSpace;
     protected RigidBody rBody;
     private RigidBodyConstructionInfo constructionInfo;
     private MotionState motionState=new DefaultMotionState();
-    private CollisionShape cShape;
-    private int shapeType;
+    private CollisionShape collisionShape;
     private float mass=1f;
     private float friction=.4f;
     private float angularDamping=.1f;
@@ -149,72 +142,92 @@ public class PhysicsNode extends Node{
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
      * creates the standard sphere collision shape for that PhysicsNode<br>
-     * @param pSpace
      * @param child
      */
-    public PhysicsNode(PhysicsSpace pSpace, Spatial child){
-        this(pSpace,child,Shapes.SPHERE);
+    public PhysicsNode(Spatial child){
+        this(child,Shapes.SPHERE);
     }
 
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
      * also creates a collision shape of the given type for that PhysicsNode
-     * @param pSpace
      * @param child
      * @param collisionShapeType
      */
-    public PhysicsNode(PhysicsSpace pSpace, Spatial child, int collisionShapeType){
-        this(pSpace,child,collisionShapeType,1.0f);
+    public PhysicsNode(Spatial child, int collisionShapeType){
+        this(child,collisionShapeType,1.0f);
     }
 
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
      * also creates a collision shape of the given type for that PhysicsNode and
      * assigns the given mass.
-     * @param pSpace
      * @param child
      * @param collisionShapeType
      * @param mass
      */
-    public PhysicsNode(PhysicsSpace pSpace, Spatial child, int collisionShapeType, float mass){
-        this.pSpace=pSpace;
+    public PhysicsNode(Spatial child, int collisionShapeType, float mass){
         this.attachChild(child);
-        this.shapeType=collisionShapeType;
         this.mass=mass;
-        _createCollisionShape();
+        createCollisionShape(collisionShapeType);
         updateRigidBody();
-        pSpace.addNode(this);
+        PhysicsSpace.getPhysicsSpace().addNode(this);
+    }
+
+    /**
+     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * uses the supplied collision shape for that PhysicsNode<br>
+     * @param child
+     * @param shape
+     */
+    public PhysicsNode(Spatial child, CollisionShape shape){
+        this(child,shape,1.0f);
+    }
+
+    /**
+     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * uses the supplied collision shape for that PhysicsNode<br>
+     * @param child
+     * @param shape
+     */
+    public PhysicsNode(Spatial child, CollisionShape shape, float mass){
+        this.attachChild(child);
+        this.mass=mass;
+        this.collisionShape=shape;
+        updateRigidBody();
+        PhysicsSpace.getPhysicsSpace().addNode(this);
     }
 
     /**
      * builds/rebuilds the phyiscs body when parameters have changed
      */
     protected void updateRigidBody(){
-        if(cShape==null){
-            createCollisionSphere();
+        if(collisionShape==null){
+            System.out.println("error-shape is null");
+            createCollisionShape(Shapes.SPHERE);
         }
-//        createCollisionShape(shapeType);
-		if (mass!=0f) {
-            cShape.calculateLocalInertia(mass, localInertia);
+
+        if (mass!=0f) {
+            collisionShape.calculateLocalInertia(mass, localInertia);
 		}
 
         if(rBody!=null){
             //TODO: check if only have to set in constructionInfo
-            constructionInfo.collisionShape=cShape;
+            constructionInfo.collisionShape=collisionShape.getCShape();
             constructionInfo.mass=mass;
             constructionInfo.friction=friction;
             constructionInfo.angularDamping=angularDamping;
             constructionInfo.linearDamping=linearDamping;
             constructionInfo.restitution=restitution;
 
-            rBody.setCollisionShape(cShape);
+            rBody.setCollisionShape(collisionShape.getCShape());
             rBody.setMassProps(mass, localInertia);
             rBody.setFriction(friction);
             rBody.setDamping(angularDamping, linearDamping);
             rBody.setRestitution(restitution);
         }
         else{
-            constructionInfo=new RigidBodyConstructionInfo(mass, motionState, cShape, localInertia);
+            constructionInfo=new RigidBodyConstructionInfo(mass, motionState, collisionShape.getCShape(), localInertia);
             constructionInfo.friction=friction;
             constructionInfo.angularDamping=angularDamping;
             constructionInfo.linearDamping=linearDamping;
@@ -223,14 +236,6 @@ public class PhysicsNode extends Node{
             rBody=new RigidBody(constructionInfo);
         }
 
-        switch(shapeType){
-            case Shapes.SPHERE:
-
-            break;
-            case Shapes.BOX:
-
-            break;
-        }
         rebuild=false;
     }
 
@@ -455,7 +460,7 @@ public class PhysicsNode extends Node{
     }
 
     /**
-     * Apply a continuous torque to this PhysicsNode. The torqu is updated automatically each
+     * Apply a continuous torque to this PhysicsNode. The torque is updated automatically each
      * tick so you only need to set it once and then set it to false to stop applying
      * the torque.
      * @param apply true if the force should be applied each physics tick
@@ -482,114 +487,30 @@ public class PhysicsNode extends Node{
         super.setModelBound(modelBound);
     }
 
-    public void createCollisionShape(){
-        _createCollisionShape();
-    }
-
     public void createCollisionShape(int type){
-        shapeType=type;
-        _createCollisionShape();
-    }
-
-    private void _createCollisionShape(){
-        switch(shapeType){
-            case Shapes.SPHERE:
-                createCollisionSphere();
-            break;
-            case Shapes.BOX:
-                createCollisionBox();
-            break;
-            case Shapes.CAPSULE:
-                createCollisionCapsule();
-            break;
-            case Shapes.CYLINDER:
-                createCollisionCylinder();
-            break;
-            case Shapes.MESH:
-                createCollisionMesh();
-            break;
-        }
-    }
-
-    /**
-     * Creates a box in the physics space that represents this Node and all
-     * children. The extents are computed from the world bound of this Node.
-     */
-    private void createCollisionBox() {
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision box"));
-        }
-        this.setModelBound(new BoundingBox());
-        this.updateModelBound();
-        this.updateWorldBound();
-        BoundingBox volume=(BoundingBox)this.getWorldBound();
-        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
-        BoxShape sphere=new BoxShape(halfExtents);
-        cShape=sphere;
-		if (mass!=0f) {
-			cShape.calculateLocalInertia(mass, localInertia);
-		}
+        collisionShape=new CollisionShape(type, this);
         rebuild=true;
-    }
-
-    /**
-     * Creates a sphere in the physics space that represents this Node and all
-     * children. The radius is computed from the world bound of this Node.
-     */
-    private void createCollisionSphere() {
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision sphere"));
-        }
-        this.setModelBound(new BoundingSphere());
-        this.updateModelBound();
-        this.updateWorldBound();
-        BoundingSphere volume=(BoundingSphere)this.getWorldBound();
-        SphereShape sphere=new SphereShape(volume.getRadius());
-        cShape=sphere;
-		if (mass!=0f) {
-			cShape.calculateLocalInertia(mass, localInertia);
-		}
-        rebuild=true;
-    }
-
-    private void createCollisionCapsule() {
-        //TODO: implement
-        throw(new UnsupportedOperationException("Not implemented yet."));
-    }
-
-    private void createCollisionCylinder(){
-        //TODO: implement
-        throw(new UnsupportedOperationException("Not implemented yet."));
-    }
-
-    /**
-     * Creates a mesh that represents this node in the physics space. Can only be
-     * used if this Node has one (and only one) TriMesh as a child.<br>
-     * TODO: mechanism to reuse collision meshes
-     */
-    private void createCollisionMesh(){
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision sphere"));
-        }
-        else if(children.size()>1){
-            throw (new UnsupportedOperationException("Can only create mesh from one single trimesh as leaf in this node."));
-        }
-        if(getChild(0) instanceof TriMesh){
-            TriMesh child=(TriMesh)getChild(0);
-            cShape=new BvhTriangleMeshShape(Converter.convert(child),true);
-            rebuild=true;
-        }
-        else{
-            throw (new UnsupportedOperationException("No usable trimesh attached to this node!"));
-        }
-		if (mass!=0f) {
-			cShape.calculateLocalInertia(mass, localInertia);
-		}
     }
   
     /**
+     * @return the CollisionShape of this PhysicsNode, to be able to reuse it with
+     * other physics nodes (increases performance)
+     */
+    public CollisionShape getCollisionShape() {
+        return collisionShape;
+    }
+
+    /**
+     * @param collisionShape the CollisionShape to set
+     */
+    public void setCollisionShape(CollisionShape collisionShape) {
+        this.collisionShape = collisionShape;
+        rebuild=true;
+    }
+
+    /**
      * called from the main loop to sync jme object with jbullet object<br>
-     * TODO: optimize /w queue
+     * TODO: replace /w queue
      */
     public void syncPhysics(){
         if(rebuild) updateRigidBody();
@@ -650,13 +571,6 @@ public class PhysicsNode extends Node{
     }
 
     /**
-     * @return the PhysicsSpace
-     */
-    public PhysicsSpace getPhysicsSpace() {
-        return pSpace;
-    }
-
-    /**
      * @return the JBullet RigidBody
      */
     public RigidBody getRigidBody() {
@@ -675,14 +589,4 @@ public class PhysicsNode extends Node{
         throw (new UnsupportedOperationException("Not implemented yet."));
     }
 
-    /**
-     * Interface that contains all jbullet-jme collision shape types.
-     */
-    public interface Shapes{
-        public static final int SPHERE=0;
-        public static final int BOX=1;
-        public static final int CAPSULE=2;
-        public static final int CYLINDER=3;
-        public static final int MESH=4;
-    }
 }

@@ -53,7 +53,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsKinematicCharacterNode.html" title="class in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.node"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/node/PhysicsNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="PhysicsNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -73,7 +73,7 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_class_summary">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
@@ -115,11 +115,11 @@ java.lang.Object
  <p>
  USAGE:<br>
  To create a PhysicsNode, just create a new PhysicsNode Object like this
- <p><code>new PhysicsNode(physicsSpace,spatial,shapeType);</code></p>
+ <p><code>new PhysicsNode(spatial,shapeType);</code></p>
  and add it to your jme2 scenegraph.<br>
  The given spatial will be the added as child node or geometry of the PhysicsNode and
  will thus move with the PhysicsNode.<br>
- The shapeType is one of <code>PhyiscsNode.Shapes.XXX</code>
+ The shapeType is one of <code>CollisionShape.Shapes.XXX</code>
  and defines what kind of shape the PhysicsNode has in the physics space,
  the size of the shape is dependent on the BoundingVolume of this PhysicsNode.
  </p>
@@ -160,14 +160,6 @@ java.lang.Object
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Nested Class Summary</B></FONT></TH>
 </TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;interface</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node">PhysicsNode.Shapes</A></B></CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interface that contains all jbullet-jme collision shape types.</TD>
-</TR>
 </TABLE>
 &nbsp;<A NAME="nested_classes_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -207,16 +199,31 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial)">PhysicsNode</A></B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-            com.jme.scene.Spatial&nbsp;child)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
  creates the standard sphere collision shape for that PhysicsNode<br></TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int)">PhysicsNode</A></B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-            com.jme.scene.Spatial&nbsp;child,
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+            <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape, float)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+            <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape,
+            float&nbsp;mass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
             int&nbsp;collisionShapeType)</CODE>
 
 <BR>
@@ -224,8 +231,7 @@ java.lang.Object
  also creates a collision shape of the given type for that PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int, float)">PhysicsNode</A></B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-            com.jme.scene.Spatial&nbsp;child,
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int, float)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
             int&nbsp;collisionShapeType,
             float&nbsp;mass)</CODE>
 
@@ -290,14 +296,6 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape()">createCollisionShape</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A></B>(int&nbsp;type)</CODE>
 
 <BR>
@@ -315,6 +313,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getCollisionShape()">getCollisionShape</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -393,14 +399,6 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A></CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getPhysicsSpace()">getPhysicsSpace</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;float</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#getRestitution()">getRestitution</A></B>()</CODE>
 
@@ -438,6 +436,14 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the angular velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.CollisionShape)">setCollisionShape</A></B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;collisionShape)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -547,7 +553,7 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called from the main loop to sync jme object with jbullet object<br>
- TODO: optimize /w queue</TD>
+ TODO: replace /w queue</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -616,40 +622,37 @@ java.lang.Object
 </TR>
 </TABLE>
 
-<A NAME="PhysicsNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial)"><!-- --></A><H3>
+<A NAME="PhysicsNode(com.jme.scene.Spatial)"><!-- --></A><H3>
 PhysicsNode</H3>
 <PRE>
-public <B>PhysicsNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                   com.jme.scene.Spatial&nbsp;child)</PRE>
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
 <DL>
 <DD>Creates a new PhysicsNode with the supplied child node or geometry and
  creates the standard sphere collision shape for that PhysicsNode<br>
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>pSpace</CODE> - <DD><CODE>child</CODE> - </DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - </DL>
 </DL>
 <HR>
 
-<A NAME="PhysicsNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int)"><!-- --></A><H3>
+<A NAME="PhysicsNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
 PhysicsNode</H3>
 <PRE>
-public <B>PhysicsNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                   com.jme.scene.Spatial&nbsp;child,
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
                    int&nbsp;collisionShapeType)</PRE>
 <DL>
 <DD>Creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>pSpace</CODE> - <DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - </DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - </DL>
 </DL>
 <HR>
 
-<A NAME="PhysicsNode(com.jmex.jbullet.PhysicsSpace, com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
+<A NAME="PhysicsNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
 PhysicsNode</H3>
 <PRE>
-public <B>PhysicsNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>&nbsp;pSpace,
-                   com.jme.scene.Spatial&nbsp;child,
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
                    int&nbsp;collisionShapeType,
                    float&nbsp;mass)</PRE>
 <DL>
@@ -658,7 +661,36 @@ public <B>PhysicsNode</B>(<A HREF="../../../../com/jmex/jbullet/PhysicsSpace.htm
  assigns the given mass.
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>pSpace</CODE> - <DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - <DD><CODE>mass</CODE> - </DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - <DD><CODE>mass</CODE> - </DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                   <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape)</PRE>
+<DL>
+<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br>
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>shape</CODE> - </DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape, float)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                   <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape,
+                   float&nbsp;mass)</PRE>
+<DL>
+<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br>
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>shape</CODE> - </DL>
 </DL>
 
 <!-- ============ METHOD DETAIL ========== -->
@@ -1048,7 +1080,7 @@ applyContinuousTorque</H3>
 public void <B>applyContinuousTorque</B>(boolean&nbsp;apply,
                                   com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
-<DD>Apply a continuous torque to this PhysicsNode. The torqu is updated automatically each
+<DD>Apply a continuous torque to this PhysicsNode. The torque is updated automatically each
  tick so you only need to set it once and then set it to false to stop applying
  the torque.
 <P>
@@ -1098,17 +1130,6 @@ public void <B>setModelBound</B>(com.jme.bounding.BoundingVolume&nbsp;modelBound
 </DL>
 <HR>
 
-<A NAME="createCollisionShape()"><!-- --></A><H3>
-createCollisionShape</H3>
-<PRE>
-public void <B>createCollisionShape</B>()</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="createCollisionShape(int)"><!-- --></A><H3>
 createCollisionShape</H3>
 <PRE>
@@ -1120,28 +1141,40 @@ public void <B>createCollisionShape</B>(int&nbsp;type)</PRE>
 </DL>
 <HR>
 
+<A NAME="getCollisionShape()"><!-- --></A><H3>
+getCollisionShape</H3>
+<PRE>
+public <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A> <B>getCollisionShape</B>()</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the CollisionShape of this PhysicsNode, to be able to reuse it with
+ other physics nodes (increases performance)</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setCollisionShape(com.jmex.jbullet.collision.CollisionShape)"><!-- --></A><H3>
+setCollisionShape</H3>
+<PRE>
+public void <B>setCollisionShape</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;collisionShape)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>collisionShape</CODE> - the CollisionShape to set</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="syncPhysics()"><!-- --></A><H3>
 syncPhysics</H3>
 <PRE>
 public void <B>syncPhysics</B>()</PRE>
 <DL>
 <DD>called from the main loop to sync jme object with jbullet object<br>
- TODO: optimize /w queue
+ TODO: replace /w queue
 <P>
 <DD><DL>
 </DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getPhysicsSpace()"><!-- --></A><H3>
-getPhysicsSpace</H3>
-<PRE>
-public <A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A> <B>getPhysicsSpace</B>()</PRE>
-<DL>
-<DD><DL>
-
-<DT><B>Returns:</B><DD>the PhysicsSpace</DL>
 </DD>
 </DL>
 <HR>
@@ -1222,7 +1255,7 @@ public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;e)
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsKinematicCharacterNode.html" title="class in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.node"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/node/PhysicsNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="PhysicsNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -1242,7 +1275,7 @@ public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;e)
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_class_summary">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>

@@ -33,7 +33,6 @@ package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.TypedConstraint;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.node.PhysicsNode;
 
 /**
@@ -54,7 +53,6 @@ import com.jmex.jbullet.node.PhysicsNode;
  * @author normenhansen
  */
 public class PhysicsJoint {
-    private PhysicsSpace pSpace;
     protected TypedConstraint constraint;
     protected PhysicsNode nodeA;
     protected PhysicsNode nodeB;
@@ -64,8 +62,7 @@ public class PhysicsJoint {
     private boolean update=false;
     private boolean rebuild=false;
 
-    public PhysicsJoint(PhysicsSpace pSpace, PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
-        this.pSpace = pSpace;
+    public PhysicsJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
         this.nodeA = nodeA;
         this.nodeB = nodeB;
         this.pivotA = pivotA;
@@ -82,13 +79,6 @@ public class PhysicsJoint {
      */
     public TypedConstraint getConstraint() {
         return constraint;
-    }
-
-    /**
-     * @return the pSpace
-     */
-    public PhysicsSpace getPSpace() {
-        return pSpace;
     }
 
     /**

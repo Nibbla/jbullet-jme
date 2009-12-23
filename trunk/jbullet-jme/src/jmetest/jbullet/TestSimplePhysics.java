@@ -45,8 +45,8 @@ import com.jmex.game.StandardGame;
 import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.CollisionShape;
 import com.jmex.jbullet.joints.PhysicsHingeJoint;
-import com.jmex.jbullet.joints.PhysicsPoint2PointJoint;
 import com.jmex.jbullet.node.PhysicsVehicleNode;
 import com.jmex.jbullet.node.PhysicsNode;
 
@@ -112,14 +112,21 @@ public class TestSimplePhysics {
 
         // Add a physics sphere to the world
         Sphere sphere=new Sphere("physicssphere",16,16,1f);
-        PhysicsNode physicsSphere=new PhysicsNode(pSpace,sphere,PhysicsNode.Shapes.SPHERE);
+        PhysicsNode physicsSphere=new PhysicsNode(sphere,CollisionShape.Shapes.SPHERE);
         physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
         state.getRootNode().attachChild(physicsSphere);
         physicsSphere.updateRenderState();
 
+        // Add a physics sphere to the world using the collision shape from sphere one
+        Sphere sphere2=new Sphere("physicssphere",16,16,1f);
+        PhysicsNode physicsSphere2=new PhysicsNode(sphere2,physicsSphere.getCollisionShape());
+        physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
+        state.getRootNode().attachChild(physicsSphere2);
+        physicsSphere2.updateRenderState();
+
         // Add a physics box to the world
         Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
-        PhysicsNode physicsBox=new PhysicsNode(pSpace,boxGeom,PhysicsNode.Shapes.BOX);
+        PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.Shapes.BOX);
         physicsBox.setFriction(0.01f);
         physicsBox.setLocalTranslation(new Vector3f(0,4,0));
         state.getRootNode().attachChild(physicsBox);
@@ -127,11 +134,11 @@ public class TestSimplePhysics {
 
         // Join the physics objects with a Point2Point joint
 //        PhysicsPoint2PointJoint joint=new PhysicsPoint2PointJoint(pSpace, physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0));
-        PhysicsHingeJoint joint=new PhysicsHingeJoint(pSpace, physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0), Vector3f.UNIT_Z,Vector3f.UNIT_Z);
+        PhysicsHingeJoint joint=new PhysicsHingeJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0), Vector3f.UNIT_Z,Vector3f.UNIT_Z);
         
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
-        physicsCar=new PhysicsVehicleNode(pSpace,box1,PhysicsNode.Shapes.BOX);
+        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.Shapes.BOX);
 
         // Create four wheels and add them at their locations
         Sphere wheel=new Sphere("wheel",8,8,0.5f);
@@ -154,7 +161,7 @@ public class TestSimplePhysics {
 //        pSpace.addNode(physicsCar);
 
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(pSpace,new Sphere("physicsobstaclemesh",16,16,1.2f),PhysicsNode.Shapes.MESH);
+        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH);
         node2.setMass(0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
@@ -162,7 +169,7 @@ public class TestSimplePhysics {
 //        pSpace.addNode(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(pSpace,new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),PhysicsNode.Shapes.MESH);
+        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
         node3.setMass(0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);

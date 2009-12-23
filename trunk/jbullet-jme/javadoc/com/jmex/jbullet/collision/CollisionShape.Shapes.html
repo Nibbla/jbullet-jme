@@ -4,17 +4,17 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-CollisionListener
+CollisionShape.Shapes
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.collision.CollisionListener interface">
+<META NAME="keywords" CONTENT="com.jmex.jbullet.collision.CollisionShape.Shapes interface">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="CollisionListener";
+    parent.document.title="CollisionShape.Shapes";
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -37,7 +37,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CollisionListener.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CollisionShape.Shapes.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -52,11 +52,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/collision/CollisionListener.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="CollisionListener.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/collision/CollisionShape.Shapes.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CollisionShape.Shapes.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -73,9 +73,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;METHOD</FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -87,29 +87,67 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHO
 <FONT SIZE="-1">
 com.jmex.jbullet.collision</FONT>
 <BR>
-Interface CollisionListener</H2>
+Interface CollisionShape.Shapes</H2>
+<DL>
+<DT><B>Enclosing class:</B><DD><A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A></DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public interface <B>CollisionListener</B></DL>
+<DT><PRE>public static interface <B>CollisionShape.Shapes</B></DL>
 </PRE>
 
 <P>
+Interface that contains all jbullet-jme collision shape types.
+<P>
+
+<P>
 <HR>
 
 <P>
+<!-- =========== FIELD SUMMARY =========== -->
 
-<!-- ========== METHOD SUMMARY =========== -->
-
-<A NAME="method_summary"><!-- --></A>
+<A NAME="field_summary"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-<B>Method Summary</B></FONT></TH>
+<B>Field Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionListener.html#collision(com.jmex.jbullet.collision.CollisionEvent)">collision</A></B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision">CollisionEvent</A>&nbsp;event)</CODE>
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.Shapes.html#BOX">BOX</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.Shapes.html#CAPSULE">CAPSULE</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.Shapes.html#CYLINDER">CYLINDER</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.Shapes.html#MESH">MESH</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.Shapes.html#SPHERE">SPHERE</A></B></CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -118,24 +156,63 @@ Interface CollisionListener</H2>
 &nbsp;
 <P>
 
-<!-- ============ METHOD DETAIL ========== -->
+<!-- ============ FIELD DETAIL =========== -->
 
-<A NAME="method_detail"><!-- --></A>
+<A NAME="field_detail"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
-<B>Method Detail</B></FONT></TH>
+<B>Field Detail</B></FONT></TH>
 </TR>
 </TABLE>
 
-<A NAME="collision(com.jmex.jbullet.collision.CollisionEvent)"><!-- --></A><H3>
-collision</H3>
+<A NAME="SPHERE"><!-- --></A><H3>
+SPHERE</H3>
 <PRE>
-void <B>collision</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision">CollisionEvent</A>&nbsp;event)</PRE>
+static final int <B>SPHERE</B></PRE>
 <DL>
-<DD><DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.jmex.jbullet.collision.CollisionShape.Shapes.SPHERE">Constant Field Values</A></DL>
 </DL>
-</DD>
+<HR>
+
+<A NAME="BOX"><!-- --></A><H3>
+BOX</H3>
+<PRE>
+static final int <B>BOX</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.jmex.jbullet.collision.CollisionShape.Shapes.BOX">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="CAPSULE"><!-- --></A><H3>
+CAPSULE</H3>
+<PRE>
+static final int <B>CAPSULE</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.jmex.jbullet.collision.CollisionShape.Shapes.CAPSULE">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="CYLINDER"><!-- --></A><H3>
+CYLINDER</H3>
+<PRE>
+static final int <B>CYLINDER</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.jmex.jbullet.collision.CollisionShape.Shapes.CYLINDER">Constant Field Values</A></DL>
+</DL>
+<HR>
+
+<A NAME="MESH"><!-- --></A><H3>
+MESH</H3>
+<PRE>
+static final int <B>MESH</B></PRE>
+<DL>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../constant-values.html#com.jmex.jbullet.collision.CollisionShape.Shapes.MESH">Constant Field Values</A></DL>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
@@ -153,7 +230,7 @@ void <B>collision</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionE
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CollisionListener.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CollisionShape.Shapes.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -168,11 +245,11 @@ void <B>collision</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionE
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/collision/CollisionListener.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="CollisionListener.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/collision/CollisionShape.Shapes.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CollisionShape.Shapes.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -189,9 +266,9 @@ void <B>collision</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionE
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;METHOD</FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>
