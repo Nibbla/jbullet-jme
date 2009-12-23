@@ -5,7 +5,7 @@ The PhysicsSpace needs to be started by creating a PhysicsSpace Object like this
 {{{
 PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 }}}
-and updated by calling the update(float time) method. The syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine.
+and updated by calling the update(float time) method. The syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine. (May change until release version)
 {{{
 pSpace.update(float time);
 pSpace.syncPhysics();
