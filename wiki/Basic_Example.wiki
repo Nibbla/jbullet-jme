@@ -20,7 +20,7 @@ getRootNode().attachChild(physicsSphere);
 physicsSphere.updateRenderState();
 
 }}}
-Add a physics mesh as floor to the world
+Add a physics mesh as floor to the world, note that objects with mass=0 are static
 {{{
 PhysicsNode floor=new PhysicsNode(pSpace,
                        new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),PhysicsNode.Shapes.MESH);
