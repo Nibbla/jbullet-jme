@@ -8,7 +8,8 @@ The PhysicsSpace needs to be started by getting a PhysicsSpace Object and update
    * physics update run
   * syncPhysics()
    * collision events get dispatched
-   * physics/external input gets applied
+   * external input gets applied to physics
+   * physics state gets applied to jme2 nodes
 
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/PhysicsSpace.html
