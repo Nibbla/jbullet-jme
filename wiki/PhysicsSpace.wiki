@@ -7,8 +7,8 @@ PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 }}}
 and updated by calling the update(float time) method. The syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine.
 {{{
-pSpace.syncPhysics();
 pSpace.update(float time);
+pSpace.syncPhysics();
 }}}
 
 ==JavaDoc==
