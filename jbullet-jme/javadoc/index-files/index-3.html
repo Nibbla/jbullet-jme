@@ -78,8 +78,11 @@ function windowTitle()
 <A NAME="_C_"><!-- --></A><H2>
 <B>C</B></H2>
 <DL>
-<DT><A HREF="../com/jmex/jbullet/node/PhysicsNode.Shapes.html#CAPSULE"><B>CAPSULE</B></A> - 
-Static variable in interface com.jmex.jbullet.node.<A HREF="../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node">PhysicsNode.Shapes</A>
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionShape.html#calculateLocalInertia(float, javax.vecmath.Vector3f)"><B>calculateLocalInertia(float, Vector3f)</B></A> - 
+Method in class com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>
+<DD>used internally, not safe
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionShape.Shapes.html#CAPSULE"><B>CAPSULE</B></A> - 
+Static variable in interface com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionShape.Shapes.html" title="interface in com.jmex.jbullet.collision">CollisionShape.Shapes</A>
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/node/PhysicsNode.html#clearForces()"><B>clearForces()</B></A> - 
 Method in class com.jmex.jbullet.node.<A HREF="../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>
@@ -93,7 +96,11 @@ Constructor for class com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/co
 <DT><A HREF="../com/jmex/jbullet/collision/CollisionEvent.html#CollisionEvent(int, com.jmex.jbullet.node.PhysicsNode, com.jmex.jbullet.node.PhysicsNode, com.bulletphysics.collision.narrowphase.ManifoldPoint)"><B>CollisionEvent(int, PhysicsNode, PhysicsNode, ManifoldPoint)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision">CollisionEvent</A>
 <DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision"><B>CollisionListener</B></A> - Interface in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/package-summary.html"><B>com.jmex.jbullet</B></A> - package com.jmex.jbullet<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/collision/package-summary.html"><B>com.jmex.jbullet.collision</B></A> - package com.jmex.jbullet.collision<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/joints/package-summary.html"><B>com.jmex.jbullet.joints</B></A> - package com.jmex.jbullet.joints<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/node/package-summary.html"><B>com.jmex.jbullet.node</B></A> - package com.jmex.jbullet.node<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/util/package-summary.html"><B>com.jmex.jbullet.util</B></A> - package com.jmex.jbullet.util<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/util/Converter.html#convert(javax.vecmath.Vector3f)"><B>convert(Vector3f)</B></A> - 
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision"><B>CollisionListener</B></A> - Interface in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>CollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>This Object holds information about a jbullet CollisionShape to be able to reuse
+ CollisionShapes (as suggested in bullet manuals)<DT><A HREF="../com/jmex/jbullet/collision/CollisionShape.html#CollisionShape(int, com.jme.scene.Node)"><B>CollisionShape(int, Node)</B></A> - 
+Constructor for class com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>
+<DD>&nbsp;
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionShape.Shapes.html" title="interface in com.jmex.jbullet.collision"><B>CollisionShape.Shapes</B></A> - Interface in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>Interface that contains all jbullet-jme collision shape types.<DT><A HREF="../com/jmex/jbullet/package-summary.html"><B>com.jmex.jbullet</B></A> - package com.jmex.jbullet<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/collision/package-summary.html"><B>com.jmex.jbullet.collision</B></A> - package com.jmex.jbullet.collision<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/joints/package-summary.html"><B>com.jmex.jbullet.joints</B></A> - package com.jmex.jbullet.joints<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/node/package-summary.html"><B>com.jmex.jbullet.node</B></A> - package com.jmex.jbullet.node<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/util/package-summary.html"><B>com.jmex.jbullet.util</B></A> - package com.jmex.jbullet.util<DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/util/Converter.html#convert(javax.vecmath.Vector3f)"><B>convert(Vector3f)</B></A> - 
 Static method in class com.jmex.jbullet.util.<A HREF="../com/jmex/jbullet/util/Converter.html" title="class in com.jmex.jbullet.util">Converter</A>
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/util/Converter.html#convert(javax.vecmath.Vector3f, com.jme.math.Vector3f)"><B>convert(Vector3f, Vector3f)</B></A> - 
@@ -133,14 +140,11 @@ Static method in class com.jmex.jbullet.util.<A HREF="../com/jmex/jbullet/util/C
 Static method in class com.jmex.jbullet.util.<A HREF="../com/jmex/jbullet/util/Converter.html" title="class in com.jmex.jbullet.util">Converter</A>
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/util/Converter.html" title="class in com.jmex.jbullet.util"><B>Converter</B></A> - Class in <A HREF="../com/jmex/jbullet/util/package-summary.html">com.jmex.jbullet.util</A><DD>Nice convenience methods for conversion between javax.vecmath and com.jme.math
- Objects, also some jme to jbullet mesh conversion.<DT><A HREF="../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape()"><B>createCollisionShape()</B></A> - 
+ Objects, also some jme to jbullet mesh conversion.<DT><A HREF="../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape(int)"><B>createCollisionShape(int)</B></A> - 
 Method in class com.jmex.jbullet.node.<A HREF="../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>
 <DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/node/PhysicsNode.html#createCollisionShape(int)"><B>createCollisionShape(int)</B></A> - 
-Method in class com.jmex.jbullet.node.<A HREF="../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>
-<DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/node/PhysicsNode.Shapes.html#CYLINDER"><B>CYLINDER</B></A> - 
-Static variable in interface com.jmex.jbullet.node.<A HREF="../com/jmex/jbullet/node/PhysicsNode.Shapes.html" title="interface in com.jmex.jbullet.node">PhysicsNode.Shapes</A>
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionShape.Shapes.html#CYLINDER"><B>CYLINDER</B></A> - 
+Static variable in interface com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionShape.Shapes.html" title="interface in com.jmex.jbullet.collision">CollisionShape.Shapes</A>
 <DD>&nbsp;
 </DL>
 <HR>

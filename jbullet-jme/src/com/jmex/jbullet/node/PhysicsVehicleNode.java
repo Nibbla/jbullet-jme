@@ -41,6 +41,8 @@ import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.CollisionShape;
+import com.jmex.jbullet.collision.CollisionShape.Shapes;
 import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
 import java.util.List;
@@ -101,16 +103,24 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private float steerValue=0.0f;
     private boolean applySteer=false;
 
-    public PhysicsVehicleNode(PhysicsSpace pSpace, Spatial child){
-        super(pSpace, child, Shapes.BOX);
+    public PhysicsVehicleNode(Spatial child){
+        super(child, Shapes.BOX);
     }
 
-    public PhysicsVehicleNode(PhysicsSpace pSpace, Spatial child, int collisionShapeType){
-        super(pSpace, child, collisionShapeType);
+    public PhysicsVehicleNode(Spatial child, int collisionShapeType){
+        super(child, collisionShapeType);
     }
 
-    public PhysicsVehicleNode(PhysicsSpace pSpace, Spatial child, int collisionShapeType, float mass){
-        super(pSpace, child, collisionShapeType, mass);
+    public PhysicsVehicleNode(Spatial child, int collisionShapeType, float mass){
+        super(child, collisionShapeType, mass);
+    }
+
+    public PhysicsVehicleNode(Spatial child, CollisionShape shape){
+        super(child, shape);
+    }
+
+    public PhysicsVehicleNode(Spatial child, CollisionShape shape, float mass){
+        super(child, shape, mass);
     }
 
     /**
@@ -132,7 +142,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
         tuning=new VehicleTuning();
         updateVehicleConstraint();
-        rayCaster=new DefaultVehicleRaycaster(pSpace.getDynamicsWorld());
+        rayCaster=new DefaultVehicleRaycaster(PhysicsSpace.getPhysicsSpace().getDynamicsWorld());
         vehicle=new RaycastVehicle(tuning, rBody, rayCaster);
 
     }
