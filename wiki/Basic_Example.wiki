@@ -11,7 +11,7 @@ Now you can add physics objects to the world like this:
 Create a jme sphere and add it as a physics sphere to the physics space
 {{{
 Sphere sphere=new Sphere("physicssphere",16,16,1f);
-PhysicsNode physicsSphere=new PhysicsNode(pSpace,sphere,PhysicsNode.Shapes.SPHERE);
+PhysicsNode physicsSphere=new PhysicsNode(sphere,PhysicsNode.Shapes.SPHERE);
 physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
 }}}
 Add sphere to jme scenegraph
@@ -22,7 +22,7 @@ physicsSphere.updateRenderState();
 }}}
 Add a physics mesh as floor to the world, note that objects with mass=0 are static
 {{{
-PhysicsNode floor=new PhysicsNode(pSpace,
+PhysicsNode floor=new PhysicsNode(
                        new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),PhysicsNode.Shapes.MESH);
 floor.setMass(0);
 floor.setLocalTranslation(new Vector3f(0f,-6,0f));
