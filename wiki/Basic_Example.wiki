@@ -1,5 +1,5 @@
 #summary A Basic jbullet-jme example
-
+*api may change until release*
 = Create physics space =
 Create a PhysicsSpace like this:
 {{{
