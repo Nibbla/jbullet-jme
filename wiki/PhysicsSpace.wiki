@@ -1,15 +1,7 @@
 #summary Basic jbullet-jme physics space
 
 ==Usage==
-The PhysicsSpace needs to be started by creating a PhysicsSpace Object like this
-{{{
-PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
-}}}
-and updated by calling the update(float time) method. The syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine. (May change until release version)
-{{{
-pSpace.update(float time);
-pSpace.syncPhysics();
-}}}
+The PhysicsSpace needs to be started by getting a PhysicsSpace Object and updated by calling the update(float time) method on that Object. A syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine. (May change until release version)
 
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/PhysicsSpace.html
