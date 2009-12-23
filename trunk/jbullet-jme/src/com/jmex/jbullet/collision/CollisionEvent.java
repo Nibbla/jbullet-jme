@@ -105,6 +105,14 @@ public class CollisionEvent extends EventObject{
         this.userPersistentData=cp.userPersistentData;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public PhysicsNode getNodeA() {
         return nodeA;
     }
