@@ -80,8 +80,6 @@ import java.io.IOException;
  * - separate addToPhyiscsSpace() method?<br>
  * - inertia/mass update strangeness..(probably have to reconstruct RigidBody)<br>
  * - separate update/rebuild of RigidBody<br>
- * - better CollisionShape support (via ModelBound or own Object?)<br>
- * - reuse collision shapes<br>
  * - BoundingVolume update<br>
  * - implement all shapes<br>
  * - update system via MotionStates<br>
