@@ -8,7 +8,7 @@ The PhysicsSpace needs to be started by getting a PhysicsSpace Object and update
    * physics update run
   * syncPhysics()
    * collision events get dispatched
-   * external input gets applied to physics
+   * jme2 node input gets applied to physics
    * physics state gets applied to jme2 nodes
 
 ==JavaDoc==
