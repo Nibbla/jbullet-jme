@@ -43,15 +43,20 @@ import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
 import com.bulletphysics.collision.narrowphase.ManifoldPoint;
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.DynamicsWorld;
+import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.jme.math.Vector3f;
 import com.jme.util.GameTaskQueue;
+import com.jmex.jbullet.collision.CollisionEvent;
+import com.jmex.jbullet.collision.CollisionListener;
 import com.jmex.jbullet.joints.PhysicsJoint;
 import com.jmex.jbullet.node.PhysicsVehicleNode;
 import com.jmex.jbullet.node.PhysicsNode;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -107,8 +112,11 @@ public class PhysicsSpace {
     private ConstraintSolver solver;
     private DefaultCollisionConfiguration collisionConfiguration;
 
-    private List<PhysicsNode> physicsNodes=new LinkedList<PhysicsNode>();
+    private Map<RigidBody,PhysicsNode> physicsNodes=new HashMap<RigidBody,PhysicsNode>();
     private List<PhysicsJoint> physicsJoints=new LinkedList<PhysicsJoint>();
+
+    private List<CollisionListener> collisionListeners=new LinkedList<CollisionListener>();
+    private List<CollisionEvent> collisionEvents=new LinkedList<CollisionEvent>();
 
     private static PhysicsSpace pSpace;
     
@@ -150,7 +158,9 @@ public class PhysicsSpace {
     }
 
     public void syncPhysics(){
-        for ( PhysicsNode node : physicsNodes ){
+        distributeEvents();
+        //sync nodes+joints
+        for ( PhysicsNode node : physicsNodes.values() ){
             node.syncPhysics();
         }
         for (PhysicsJoint joint : physicsJoints){
@@ -158,11 +168,20 @@ public class PhysicsSpace {
         }
     }
 
+    private void distributeEvents() {
+        //add collision callbacks
+        for(CollisionListener listener:collisionListeners){
+            for(CollisionEvent event:collisionEvents)
+                listener.collision(event);
+        }
+        collisionEvents.clear();
+    }
+
     /**
      * used from the constructor of physics objects, no need to call manually
      */
     public void addNode(PhysicsNode node){
-        physicsNodes.add(node);
+        physicsNodes.put(node.getRigidBody(),node);
         getDynamicsWorld().addRigidBody(node.getRigidBody());
         if(node instanceof PhysicsVehicleNode)
             dynamicsWorld.addVehicle(((PhysicsVehicleNode)node).getVehicle());
@@ -172,13 +191,18 @@ public class PhysicsSpace {
      * used from the destroy() method of physics objects, no need to call manually
      */
     public void removeNode(PhysicsNode node){
-        physicsNodes.remove(node);
+        physicsNodes.remove(node.getRigidBody());
         getDynamicsWorld().removeRigidBody(node.getRigidBody());
     }
 
     public void addJoint(PhysicsJoint joint){
         physicsJoints.add(joint);
         getDynamicsWorld().addConstraint(joint.getConstraint());
+    }
+
+    public void removeJoint(PhysicsJoint joint){
+        physicsJoints.remove(joint);
+        getDynamicsWorld().removeConstraint(joint.getConstraint());
     }
 
     public void setGravity(Vector3f gravity){
@@ -197,11 +221,19 @@ public class PhysicsSpace {
 
         BulletGlobals.setContactProcessedCallback(new ContactProcessedCallback(){
         	public boolean contactProcessed(ManifoldPoint cp, Object body0, Object body1){
-        		if(cp.userPersistentData==null){
-//                    System.out.println("contact processed, no perdata: "+body0+"/"+body1);
-        			return true;
+                if(body0 instanceof RigidBody && body1 instanceof RigidBody){
+                    RigidBody rBody=(RigidBody)body0;
+                    RigidBody rBody1=(RigidBody)body1;
+                    PhysicsNode node=physicsNodes.get(rBody);
+                    PhysicsNode node1=physicsNodes.get(rBody1);
+                    if(node!=null&&node1!=null)
+                        collisionEvents.add(new CollisionEvent(CollisionEvent.TYPE_PROCESSED,node,node1,cp));
+                    else
+                        System.out.println("Error finding node..");
                 }
-                System.out.println("contact processed");
+                else{
+                    System.out.println("These are no RigidBodys..");
+                }
         		return true;
         	}
     	});
