@@ -7,7 +7,7 @@ svn checkout http://jbullet-jme.googlecode.com/svn/trunk/ jbullet-jme-read-only
 }}}
 
 = Building =
-Build, create JavaDoc and run the example like this:
+To build jbullet-jme you have to have at least Java JDK 1.5 and Apache ANT installed. Build, create JavaDoc and run the example like this:
 {{{
 cd jbullet-jme-read-only
 cd jbullet-jme
