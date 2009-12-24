@@ -66,7 +66,8 @@ import java.io.IOException;
  * will thus move with the PhysicsNode.<br>
  * The shapeType is one of <code>CollisionShape.Shapes.XXX</code>
  * and defines what kind of shape the PhysicsNode has in the physics space,
- * the size of the shape is dependent on the BoundingVolume of this PhysicsNode.
+ * the size of the shape is dependent on the BoundingVolume of this PhysicsNode.<br>
+ * PhysicsNodes with mass=0 are static and do not move.
  * </p>
  * <p>
  * ISSUES:<br>
