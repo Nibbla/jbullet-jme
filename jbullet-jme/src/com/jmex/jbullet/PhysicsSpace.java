@@ -195,8 +195,12 @@ public class PhysicsSpace {
         getDynamicsWorld().removeConstraint(joint.getConstraint());
     }
 
+    /**
+     * not safe
+     * @param gravity
+     */
     public void setGravity(Vector3f gravity){
-        throw (new UnsupportedOperationException("Not implemented yet."));
+        pSpace.setGravity(gravity);
     }
 
     public void addCollisionListener(CollisionListener listener){
