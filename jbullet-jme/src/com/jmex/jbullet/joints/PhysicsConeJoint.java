@@ -31,6 +31,14 @@
  */
 package com.jmex.jbullet.joints;
 
+import com.bulletphysics.dynamics.constraintsolver.ConeTwistConstraint;
+import com.bulletphysics.linearmath.Transform;
+import com.jme.math.Matrix3f;
+import com.jme.math.Vector3f;
+import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.util.Converter;
+
 /**
  * <i>From bullet manual:</i><br>
  * To create ragdolls, the conve twist constraint is very useful for limbs like the upper arm.
@@ -38,6 +46,57 @@ package com.jmex.jbullet.joints;
  * The x-axis serves as twist axis.
  * @author normenhansen
  */
-public class PhysicsConeJoint{
+public class PhysicsConeJoint extends PhysicsJoint{
+    private Matrix3f rotA, rotB;
+    private float swingSpan1=1e30f, swingSpan2=1e30f, twistSpan=1e30f;
+    //TODO: softness
+    private float softness, biasFactor=0.3f, relaxationFactor=1.0f;
+
+    private boolean applyLimit=false;
+
+    public PhysicsConeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
+        super(nodeA, nodeB, pivotA, pivotB);
+        this.rotA=new Matrix3f();
+        this.rotB=new Matrix3f();
+        
+        Transform transA=new Transform();
+        Converter.convert(pivotA,transA.origin);
+        Transform transB=new Transform();
+        Converter.convert(pivotB,transB.origin);
+        constraint=new ConeTwistConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB);
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
+    }
+
+    public PhysicsConeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB) {
+        super(nodeA, nodeB, pivotA, pivotB);
+        this.rotA=rotA;
+        this.rotB=rotB;
+
+        Transform transA=new Transform(Converter.convert(rotA));
+        Converter.convert(pivotA,transA.origin);
+        Converter.convert(rotA,transA.basis);
+
+        Transform transB=new Transform(Converter.convert(rotB));
+        Converter.convert(pivotB,transB.origin);
+        Converter.convert(rotB,transB.basis);
+        
+        constraint=new ConeTwistConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB);
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
+    }
+
+    public void setLimit(float swingSpan1, float swingSpan2, float twistSpan) {
+        this.swingSpan1=swingSpan1;
+        this.swingSpan2=swingSpan2;
+        this.twistSpan=twistSpan;
+        applyLimit=true;
+    }
+
+    @Override
+    public void syncPhysics() {
+        if(applyLimit){
+            ((ConeTwistConstraint)constraint).setLimit(swingSpan1, swingSpan2, twistSpan);
+        }
+        super.syncPhysics();
+    }
 
 }

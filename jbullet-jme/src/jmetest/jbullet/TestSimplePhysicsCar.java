@@ -32,11 +32,12 @@
 package jmetest.jbullet;
 
 
+import com.jme.input.KeyBindingManager;
+import com.jme.input.KeyInput;
 import java.util.concurrent.Callable;
 
 import com.jme.math.Vector3f;
 import com.jme.scene.shape.Box;
-import com.jme.scene.shape.Capsule;
 import com.jme.scene.shape.Sphere;
 import com.jme.util.GameTaskQueueManager;
 import com.jmex.editors.swing.settings.GameSettingsPanel;
@@ -45,19 +46,33 @@ import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionShape;
-import com.jmex.jbullet.joints.PhysicsHingeJoint;
+import com.jmex.jbullet.node.PhysicsVehicleNode;
 import com.jmex.jbullet.node.PhysicsNode;
 
 /**
- * This is a basic Test of jbullet-jme functions
+ * This is a basic Test of jbullet-jme vehicles
  *
  * @author normenhansen
  */
-public class TestSimplePhysics {
+public class TestSimplePhysicsCar {
+    private static Vector3f wheelDirection=new Vector3f(0,-1,0);
+    private static Vector3f wheelAxle=new Vector3f(-1,0,0);
+
+    private static PhysicsVehicleNode physicsCar;
 
     public static void setupGame(){
         // creates and initializes the PhysicsSpace
         final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+
+        // add some keybindings to control the vehicle
+        KeyBindingManager.getKeyBindingManager().set("key_accelerate",
+                KeyInput.KEY_U);
+        KeyBindingManager.getKeyBindingManager().set("key_brake",
+                KeyInput.KEY_J);
+        KeyBindingManager.getKeyBindingManager().set("key_steer_left",
+                KeyInput.KEY_H);
+        KeyBindingManager.getKeyBindingManager().set("key_steer_right",
+                KeyInput.KEY_K);
 
         // Create a DebugGameState
         // - override the update method to update/sync physics space
@@ -68,50 +83,55 @@ public class TestSimplePhysics {
                 pSpace.syncPhysics();
                 pSpace.update(tpf);
                 super.update(tpf);
+
+                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_accelerate", false)) {
+                    physicsCar.accelerate(1, true);
+                }
+                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_brake", false)) {
+                    physicsCar.accelerate(0, false);
+                    physicsCar.brake(.1f);
+                }
+                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_steer_left", true)) {
+                    physicsCar.steer(.5f);
+                }
+                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_steer_right", true)) {
+                    physicsCar.steer(-.5f);
+                }
+                else{
+                    physicsCar.steer(0);
+                }
+
             }
             
         };
 
-        // Add a physics sphere to the world
-        Sphere sphere=new Sphere("physicssphere",16,16,1f);
-        PhysicsNode physicsSphere=new PhysicsNode(sphere,CollisionShape.Shapes.SPHERE);
-        physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
-        state.getRootNode().attachChild(physicsSphere);
-        physicsSphere.updateRenderState();
+        // Add a physics vehicle to the world
+        Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
+        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.Shapes.BOX);
 
-        // Add a physics sphere to the world using the collision shape from sphere one
-        Sphere sphere2=new Sphere("physicssphere",16,16,1f);
-        PhysicsNode physicsSphere2=new PhysicsNode(sphere2,physicsSphere.getCollisionShape());
-        physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
-        state.getRootNode().attachChild(physicsSphere2);
-        physicsSphere2.updateRenderState();
+        // Create four wheels and add them at their locations
+        Sphere wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,2f), wheelDirection, wheelAxle, 0.2f, 0.5f, true);
 
-        // Add a physics box to the world
-        Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
-        PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.Shapes.BOX);
-        physicsBox.setFriction(0.01f);
-        physicsBox.setLocalTranslation(new Vector3f(0,4,0));
-        state.getRootNode().attachChild(physicsBox);
-        physicsBox.updateRenderState();
+        wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,2f), wheelDirection, wheelAxle, 0.2f, 0.5f, true);
 
-//        Cylinder cylGeom=new Cylinder("physicscyliner",16,16,0.5f,6f);
-//        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.Shapes.CYLINDER);
-//        physicsCylinder.setFriction(0.01f);
-//        physicsCylinder.setLocalTranslation(new Vector3f(-5,4,0));
-//        state.getRootNode().attachChild(physicsCylinder);
-//        physicsCylinder.updateRenderState();
+        wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,-2f), wheelDirection, wheelAxle, 0.2f, 0.5f, false);
 
-        Capsule capGeom=new Capsule("physicscapsule",16,16,16,0.5f,2f);
-        PhysicsNode physicsCapsule=new PhysicsNode(capGeom, CollisionShape.Shapes.CAPSULE);
-        physicsCapsule.setFriction(0.01f);
-        physicsCapsule.setLocalTranslation(new Vector3f(-8,4,0));
-        state.getRootNode().attachChild(physicsCapsule);
-        physicsCapsule.updateRenderState();
-
-        // Join the physics objects with a Point2Point joint
-//        PhysicsPoint2PointJoint joint=new PhysicsPoint2PointJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0));
-        PhysicsHingeJoint joint=new PhysicsHingeJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0), Vector3f.UNIT_Z,Vector3f.UNIT_Z);
+        wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,-2f), wheelDirection, wheelAxle, 0.2f, 0.5f, false);
         
+//        physicsCar.setMass(100);
+//        physicsCar.createCollisionShape(PhysicsNode.Shapes.BOX);
+        physicsCar.setLocalTranslation(new Vector3f(10,-2,0));
+        state.getRootNode().attachChild(physicsCar);
+        physicsCar.updateRenderState();
+
         // an obstacle mesh, does not move (mass=0)
         PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH);
         node2.setMass(0);

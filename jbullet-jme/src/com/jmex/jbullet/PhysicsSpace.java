@@ -187,7 +187,7 @@ public class PhysicsSpace {
 
     public void addJoint(PhysicsJoint joint){
         physicsJoints.add(joint);
-        getDynamicsWorld().addConstraint(joint.getConstraint());
+        getDynamicsWorld().addConstraint(joint.getConstraint(), !joint.isCollisionBetweenLinkedBodys());
     }
 
     public void removeJoint(PhysicsJoint joint){
