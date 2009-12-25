@@ -199,6 +199,14 @@ public class PhysicsSpace {
         throw (new UnsupportedOperationException("Not implemented yet."));
     }
 
+    public void addCollisionListener(CollisionListener listener){
+        collisionListeners.add(listener);
+    }
+
+    public void removeCollisionListener(CollisionListener listener){
+        collisionListeners.remove(listener);
+    }
+
     private void setContactCallbacks() {
         BulletGlobals.setContactAddedCallback(new ContactAddedCallback(){
         	public boolean contactAdded(ManifoldPoint cp, CollisionObject colObj0,
