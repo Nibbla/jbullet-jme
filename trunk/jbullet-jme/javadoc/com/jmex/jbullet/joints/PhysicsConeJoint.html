@@ -73,9 +73,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_java.lang.Object">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -90,11 +90,12 @@ com.jmex.jbullet.joints</FONT>
 Class PhysicsConeJoint</H2>
 <PRE>
 java.lang.Object
-  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.PhysicsConeJoint</B>
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">com.jmex.jbullet.joints.PhysicsJoint</A>
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.PhysicsConeJoint</B>
 </PRE>
 <HR>
 <DL>
-<DT><PRE>public class <B>PhysicsConeJoint</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>PhysicsConeJoint</B><DT>extends <A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></DL>
 </PRE>
 
 <P>
@@ -118,7 +119,21 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsConeJoint.html#PhysicsConeJoint()">PhysicsConeJoint</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsConeJoint.html#PhysicsConeJoint(com.jmex.jbullet.node.PhysicsNode, com.jmex.jbullet.node.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f)">PhysicsConeJoint</A></B>(<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeA,
+                 <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeB,
+                 com.jme.math.Vector3f&nbsp;pivotA,
+                 com.jme.math.Vector3f&nbsp;pivotB)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsConeJoint.html#PhysicsConeJoint(com.jmex.jbullet.node.PhysicsNode, com.jmex.jbullet.node.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Matrix3f, com.jme.math.Matrix3f)">PhysicsConeJoint</A></B>(<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeA,
+                 <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeB,
+                 com.jme.math.Vector3f&nbsp;pivotA,
+                 com.jme.math.Vector3f&nbsp;pivotB,
+                 com.jme.math.Matrix3f&nbsp;rotA,
+                 com.jme.math.Matrix3f&nbsp;rotB)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -132,6 +147,33 @@ java.lang.Object
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsConeJoint.html#setLimit(float, float, float)">setLimit</A></B>(float&nbsp;swingSpan1,
+         float&nbsp;swingSpan2,
+         float&nbsp;twistSpan)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsConeJoint.html#syncPhysics()">syncPhysics</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.joints.PhysicsJoint"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.joints.<A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#getConstraint()">getConstraint</A>, <A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#isCollisionBetweenLinkedBodys()">isCollisionBetweenLinkedBodys</A>, <A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#setCollisionBetweenLinkedBodys(boolean)">setCollisionBetweenLinkedBodys</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -156,11 +198,63 @@ java.lang.Object
 </TR>
 </TABLE>
 
-<A NAME="PhysicsConeJoint()"><!-- --></A><H3>
+<A NAME="PhysicsConeJoint(com.jmex.jbullet.node.PhysicsNode, com.jmex.jbullet.node.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
 PhysicsConeJoint</H3>
 <PRE>
-public <B>PhysicsConeJoint</B>()</PRE>
+public <B>PhysicsConeJoint</B>(<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeA,
+                        <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeB,
+                        com.jme.math.Vector3f&nbsp;pivotA,
+                        com.jme.math.Vector3f&nbsp;pivotB)</PRE>
 <DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsConeJoint(com.jmex.jbullet.node.PhysicsNode, com.jmex.jbullet.node.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Matrix3f, com.jme.math.Matrix3f)"><!-- --></A><H3>
+PhysicsConeJoint</H3>
+<PRE>
+public <B>PhysicsConeJoint</B>(<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeA,
+                        <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A>&nbsp;nodeB,
+                        com.jme.math.Vector3f&nbsp;pivotA,
+                        com.jme.math.Vector3f&nbsp;pivotB,
+                        com.jme.math.Matrix3f&nbsp;rotA,
+                        com.jme.math.Matrix3f&nbsp;rotB)</PRE>
+<DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="setLimit(float, float, float)"><!-- --></A><H3>
+setLimit</H3>
+<PRE>
+public void <B>setLimit</B>(float&nbsp;swingSpan1,
+                     float&nbsp;swingSpan2,
+                     float&nbsp;twistSpan)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="syncPhysics()"><!-- --></A><H3>
+syncPhysics</H3>
+<PRE>
+public void <B>syncPhysics</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#syncPhysics()">syncPhysics</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
@@ -214,9 +308,9 @@ public <B>PhysicsConeJoint</B>()</PRE>
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_java.lang.Object">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

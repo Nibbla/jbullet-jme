@@ -33,9 +33,13 @@ package com.jmex.jbullet.collision;
 
 import com.bulletphysics.collision.shapes.BoxShape;
 import com.bulletphysics.collision.shapes.BvhTriangleMeshShape;
+import com.bulletphysics.collision.shapes.CapsuleShape;
+import com.bulletphysics.collision.shapes.CylinderShape;
 import com.bulletphysics.collision.shapes.SphereShape;
 import com.jme.bounding.BoundingBox;
+import com.jme.bounding.BoundingCapsule;
 import com.jme.bounding.BoundingSphere;
+import com.jme.math.FastMath;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.scene.TriMesh;
@@ -125,13 +129,39 @@ public class CollisionShape {
     }
 
     private void createCollisionCapsule(Node node) {
-        //TODO: implement
-        throw(new UnsupportedOperationException("Not implemented yet."));
+        List<Spatial> children=node.getChildren();
+        if(children.size()==0){
+            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision capsule"));
+        }
+        node.setModelBound(new BoundingCapsule());
+        node.updateModelBound();
+        node.updateWorldBound();
+        BoundingCapsule capsule=(BoundingCapsule)node.getWorldBound();
+
+        float radius=capsule.getRadius();
+        float volume=capsule.getVolume();
+        volume-= ( ((4.0f/3.0f) * FastMath.PI ) * FastMath.pow(radius,3) );
+        float height=(volume/(FastMath.PI*FastMath.pow(radius,2)));
+        height+=(radius*2);
+        CapsuleShape capShape=new CapsuleShape(capsule.getRadius(),height);
+        cShape=capShape;
     }
 
     private void createCollisionCylinder(Node node){
-        //TODO: implement
-        throw(new UnsupportedOperationException("Not implemented yet."));
+        if(5==5)
+            throw (new UnsupportedOperationException("Not implemented yet."));
+        
+        List<Spatial> children=node.getChildren();
+        if(children.size()==0){
+            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision cylinder"));
+        }
+        node.setModelBound(new BoundingBox());
+        node.updateModelBound();
+        node.updateWorldBound();
+        BoundingBox volume=(BoundingBox)node.getWorldBound();
+        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
+        CylinderShape capShape=new CylinderShape(halfExtents);
+        cShape=capShape;
     }
 
     /**

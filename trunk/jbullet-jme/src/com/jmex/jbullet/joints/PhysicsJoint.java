@@ -33,6 +33,7 @@ package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.TypedConstraint;
 import com.jme.math.Vector3f;
+import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.node.PhysicsNode;
 
 /**
@@ -58,7 +59,7 @@ public class PhysicsJoint {
     protected PhysicsNode nodeB;
     protected Vector3f pivotA;
     protected Vector3f pivotB;
-    private boolean collisionBetweenLinkedBodys=true;
+    protected boolean collisionBetweenLinkedBodys=true;
     private boolean update=false;
     private boolean rebuild=false;
 
@@ -71,6 +72,12 @@ public class PhysicsJoint {
 
 
     public void syncPhysics() {
+        if(update){
+//            constraint.
+//            PhysicsSpace.getPhysicsSpace().removeJoint(this);
+//            PhysicsSpace.getPhysicsSpace().addJoint(this);
+            update=false;
+        }
         
     }
 
@@ -89,10 +96,13 @@ public class PhysicsJoint {
     }
 
     /**
+     * NOT SAFE
      * @param collisionBetweenLinkedBodys the collisionBetweenLinkedBodys to set
      */
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
         this.collisionBetweenLinkedBodys = collisionBetweenLinkedBodys;
+        PhysicsSpace.getPhysicsSpace().removeJoint(this);
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
         update=true;
     }
 }
