@@ -60,8 +60,8 @@ public class PhysicsJoint {
     protected Vector3f pivotA;
     protected Vector3f pivotB;
     protected boolean collisionBetweenLinkedBodys=true;
-    private boolean update=false;
-    private boolean rebuild=false;
+    protected boolean update=false;
+    protected boolean rebuild=false;
 
     public PhysicsJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
         this.nodeA = nodeA;
