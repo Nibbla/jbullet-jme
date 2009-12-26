@@ -29,33 +29,14 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.jmex.jbullet.node;
+package com.jmex.jbullet.collision;
 
-import com.bulletphysics.collision.shapes.ConvexShape;
-import com.bulletphysics.dynamics.character.KinematicCharacterController;
-import com.jme.scene.Spatial;
-import com.jmex.jbullet.collision.CollisionShape;
+import com.jme.scene.Node;
 
 /**
- *
+ * Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)
  * @author normenhansen
  */
-public class PhysicsKinematicCharacterNode extends PhysicsGhostNode{
-	protected KinematicCharacterController character;
-
-    private float fallSpeed;
-    private float jumpSpeed;
-
-    
-    public PhysicsKinematicCharacterNode(Spatial spat, int shapeType, float stepHeight) {
-        super(spat, shapeType);
-        if(shapeType==CollisionShape.Shapes.MESH)
-            throw (new UnsupportedOperationException("Kinematic character nodes cannot have meshes as collision shape"));
-        character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
-    }
-
-    private void todo() {
-//        character.
-    }
+public class CollisionObject extends Node{
 
 }

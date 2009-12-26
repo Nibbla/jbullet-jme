@@ -46,8 +46,8 @@ public class CollisionEvent extends EventObject{
     public static final int TYPE_PROCESSED=1;
     public static final int TYPE_DESTROYED=1;
     private int type;
-    private PhysicsNode nodeA;
-    private PhysicsNode nodeB;
+    private CollisionObject nodeA;
+    private CollisionObject nodeB;
 
     private float appliedImpulse;
     private float appliedImpulseLateral1;
@@ -71,14 +71,14 @@ public class CollisionEvent extends EventObject{
     private Object userPersistentData;
     
 
-    public CollisionEvent(int type, PhysicsNode source, PhysicsNode nodeB) {
+    public CollisionEvent(int type, CollisionObject source, CollisionObject nodeB) {
         super(source);
         this.type=type;
         this.nodeA=source;
         this.nodeB=nodeB;
     }
 
-    public CollisionEvent(int type, PhysicsNode source, PhysicsNode nodeB, ManifoldPoint cp) {
+    public CollisionEvent(int type, CollisionObject source, CollisionObject nodeB, ManifoldPoint cp) {
         super(source);
         this.type=type;
         this.nodeA=source;
@@ -113,7 +113,7 @@ public class CollisionEvent extends EventObject{
         this.type = type;
     }
 
-    public PhysicsNode getNodeA() {
+    public CollisionObject getNodeA() {
         return nodeA;
     }
 
@@ -121,7 +121,7 @@ public class CollisionEvent extends EventObject{
         this.nodeA = nodeA;
     }
 
-    public PhysicsNode getNodeB() {
+    public CollisionObject getNodeB() {
         return nodeB;
     }
 

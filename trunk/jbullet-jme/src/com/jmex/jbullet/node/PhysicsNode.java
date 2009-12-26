@@ -40,11 +40,11 @@ import com.jme.bounding.BoundingVolume;
 import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
-import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.util.export.JMEExporter;
 import com.jme.util.export.JMEImporter;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.CollisionShape;
 import com.jmex.jbullet.collision.CollisionShape.Shapes;
 import com.jmex.jbullet.util.Converter;
@@ -90,7 +90,7 @@ import java.io.IOException;
  * @see com.jmex.jbullet.PhysicsSpace
  * @author normenhansen
  */
-public class PhysicsNode extends Node{
+public class PhysicsNode extends CollisionObject{
     protected RigidBody rBody;
     private RigidBodyConstructionInfo constructionInfo;
     private MotionState motionState=new DefaultMotionState();
