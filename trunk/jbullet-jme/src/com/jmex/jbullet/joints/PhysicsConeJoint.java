@@ -95,6 +95,7 @@ public class PhysicsConeJoint extends PhysicsJoint{
     public void syncPhysics() {
         if(applyLimit){
             ((ConeTwistConstraint)constraint).setLimit(swingSpan1, swingSpan2, twistSpan);
+            applyLimit=false;
         }
         super.syncPhysics();
     }
