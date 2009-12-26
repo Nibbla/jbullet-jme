@@ -31,6 +31,14 @@
  */
 package com.jmex.jbullet.joints;
 
+import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
+import com.bulletphysics.linearmath.Transform;
+import com.jme.math.Matrix3f;
+import com.jme.math.Vector3f;
+import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.util.Converter;
+
 /**
  * <i>From bullet manual:</i><br>
  * This generic constraint can emulate a variety of standard constraints,
@@ -42,6 +50,94 @@ package com.jmex.jbullet.joints;
  * include free and/or limited angular degrees of freedom are undefined.
  * @author normenhansen
  */
-public class Physics6DofJoint {
+public class Physics6DofJoint extends PhysicsJoint{
+    private Matrix3f rotA;
+    private Matrix3f rotB;
+	// use frameA fo define limits, if true
+	private boolean useLinearReferenceFrameA;
+
+    private Vector3f linearUpperLimit=new Vector3f();
+    private Vector3f linearLowerLimit=new Vector3f();
+    private Vector3f angularUpperLimit=new Vector3f();
+    private Vector3f angularLowerLimit=new Vector3f();
+
+    private boolean updateLimits=false;
+
+    public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
+        super(nodeA, nodeB, pivotA, pivotB);
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
+        this.rotA=rotA;
+        this.rotB=rotB;
+
+//        setDefaults();
+
+        Transform transA=new Transform(Converter.convert(rotA));
+        Converter.convert(pivotA,transA.origin);
+        Converter.convert(rotA,transA.basis);
+
+        Transform transB=new Transform(Converter.convert(rotB));
+        Converter.convert(pivotB,transB.origin);
+        Converter.convert(rotB,transB.basis);
+
+        constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
+//        updateJoint();
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
+//        ((Generic6DofConstraint)constraint).
+    }
+
+    public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
+        super(nodeA, nodeB, pivotA, pivotB);
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
+        this.rotA=new Matrix3f();
+        this.rotB=new Matrix3f();
+
+//        setDefaults();
+
+        Transform transA=new Transform(Converter.convert(rotA));
+        Converter.convert(pivotA,transA.origin);
+
+        Transform transB=new Transform(Converter.convert(rotB));
+        Converter.convert(pivotB,transB.origin);
+
+        constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
+//        updateJoint();
+        PhysicsSpace.getPhysicsSpace().addJoint(this);
+    }
+
+    public void setLinearUpperLimit(Vector3f vector){
+        this.linearUpperLimit.set(vector);
+        updateLimits=true;
+    }
+
+    public void setLinearLowerLimit(Vector3f vector){
+        this.linearUpperLimit.set(vector);
+        updateLimits=true;
+    }
+
+    public void setAngularUpperLimit(Vector3f vector){
+        this.angularUpperLimit.set(vector);
+        updateLimits=true;
+    }
+
+    public void setAngularLowerLimit(Vector3f vector){
+        this.angularUpperLimit.set(vector);
+        updateLimits=true;
+    }
+    
+    private void updateLimits(){
+        ((Generic6DofConstraint)constraint).setLinearUpperLimit(Converter.convert(linearUpperLimit));
+        ((Generic6DofConstraint)constraint).setLinearLowerLimit(Converter.convert(linearLowerLimit));
+        ((Generic6DofConstraint)constraint).setAngularLowerLimit(Converter.convert(angularUpperLimit));
+        ((Generic6DofConstraint)constraint).setAngularUpperLimit(Converter.convert(angularLowerLimit));
+    }
+
+    @Override
+    public void syncPhysics() {
+        if(updateLimits){
+            updateLimits();
+            updateLimits=false;
+        }
+        super.syncPhysics();
+    }
 
 }
