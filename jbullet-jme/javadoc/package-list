@@ -1,6 +1,7 @@
 com.jmex.jbullet
 com.jmex.jbullet.collision
 com.jmex.jbullet.joints
+com.jmex.jbullet.joints.motors
 com.jmex.jbullet.node
 com.jmex.jbullet.util
 jmetest.jbullet
