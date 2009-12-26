@@ -38,8 +38,8 @@ import com.bulletphysics.ContactProcessedCallback;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
 import com.bulletphysics.collision.broadphase.DbvtBroadphase;
 import com.bulletphysics.collision.dispatch.CollisionDispatcher;
-import com.bulletphysics.collision.dispatch.CollisionObject;
 import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
+import com.bulletphysics.collision.dispatch.GhostObject;
 import com.bulletphysics.collision.narrowphase.ManifoldPoint;
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.DynamicsWorld;
@@ -50,7 +50,9 @@ import com.jme.math.Vector3f;
 import com.jme.util.GameTaskQueue;
 import com.jmex.jbullet.collision.CollisionEvent;
 import com.jmex.jbullet.collision.CollisionListener;
+import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.joints.PhysicsJoint;
+import com.jmex.jbullet.node.PhysicsGhostNode;
 import com.jmex.jbullet.node.PhysicsVehicleNode;
 import com.jmex.jbullet.node.PhysicsNode;
 import java.util.HashMap;
@@ -102,6 +104,7 @@ public class PhysicsSpace {
     private ConstraintSolver solver;
     private DefaultCollisionConfiguration collisionConfiguration;
 
+    private Map<GhostObject,PhysicsGhostNode> physicsGhostNodes=new HashMap<GhostObject,PhysicsGhostNode>();
     private Map<RigidBody,PhysicsNode> physicsNodes=new HashMap<RigidBody,PhysicsNode>();
     private List<PhysicsJoint> physicsJoints=new LinkedList<PhysicsJoint>();
 
@@ -150,6 +153,9 @@ public class PhysicsSpace {
     public void syncPhysics(){
         distributeEvents();
         //sync nodes+joints
+        for ( PhysicsGhostNode node : physicsGhostNodes.values() ){
+            node.syncPhysics();
+        }
         for ( PhysicsNode node : physicsNodes.values() ){
             node.syncPhysics();
         }
@@ -165,6 +171,16 @@ public class PhysicsSpace {
                 listener.collision(event);
         }
         collisionEvents.clear();
+    }
+
+    public void addGhostNode(PhysicsGhostNode node){
+        physicsGhostNodes.put(node.getGhostObject(),node);
+        getDynamicsWorld().addCollisionObject(node.getGhostObject());
+    }
+
+    public void removeGhostNode(PhysicsGhostNode node){
+        physicsGhostNodes.remove(node.getGhostObject());
+        getDynamicsWorld().removeCollisionObject(node.getGhostObject());
     }
 
     /**
@@ -213,8 +229,8 @@ public class PhysicsSpace {
 
     private void setContactCallbacks() {
         BulletGlobals.setContactAddedCallback(new ContactAddedCallback(){
-        	public boolean contactAdded(ManifoldPoint cp, CollisionObject colObj0,
-        			int partId0, int index0, CollisionObject colObj1, int partId1,
+        	public boolean contactAdded(ManifoldPoint cp, com.bulletphysics.collision.dispatch.CollisionObject colObj0,
+        			int partId0, int index0, com.bulletphysics.collision.dispatch.CollisionObject colObj1, int partId1,
         			int index1){
                 System.out.println("contact added");
         		return true;
@@ -223,19 +239,27 @@ public class PhysicsSpace {
 
         BulletGlobals.setContactProcessedCallback(new ContactProcessedCallback(){
         	public boolean contactProcessed(ManifoldPoint cp, Object body0, Object body1){
-                if(body0 instanceof RigidBody && body1 instanceof RigidBody){
+                CollisionObject node=null,node1=null;
+                if(body0 instanceof RigidBody){
                     RigidBody rBody=(RigidBody)body0;
-                    RigidBody rBody1=(RigidBody)body1;
-                    PhysicsNode node=physicsNodes.get(rBody);
-                    PhysicsNode node1=physicsNodes.get(rBody1);
-                    if(node!=null&&node1!=null)
-                        collisionEvents.add(new CollisionEvent(CollisionEvent.TYPE_PROCESSED,node,node1,cp));
-                    else
-                        System.out.println("Error finding node..");
+                    node=physicsNodes.get(rBody);
                 }
-                else{
-                    System.out.println("These are no RigidBodys..");
+                else if(body0 instanceof GhostObject){
+                    GhostObject rBody=(GhostObject)body0;
+                    node=physicsGhostNodes.get(rBody);
                 }
+                if(body1 instanceof RigidBody){
+                    RigidBody rBody=(RigidBody)body1;
+                    node1=physicsNodes.get(rBody);
+                }
+                else if(body1 instanceof GhostObject){
+                    GhostObject rBody=(GhostObject)body1;
+                    node1=physicsGhostNodes.get(rBody);
+                }
+                if(node!=null&&node1!=null)
+                    collisionEvents.add(new CollisionEvent(CollisionEvent.TYPE_PROCESSED,node,node1,cp));
+                else
+                    System.out.println("error finding node during collision");
         		return true;
         	}
     	});
