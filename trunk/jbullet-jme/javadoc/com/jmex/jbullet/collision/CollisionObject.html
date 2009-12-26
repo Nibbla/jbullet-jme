@@ -4,17 +4,17 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-PhysicsKinematicCharacterNode
+CollisionObject
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.node.PhysicsKinematicCharacterNode class">
+<META NAME="keywords" CONTENT="com.jmex.jbullet.collision.CollisionObject class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="PhysicsKinematicCharacterNode";
+    parent.document.title="CollisionObject";
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -37,7 +37,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsKinematicCharacterNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CollisionObject.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -52,11 +52,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html" title="class in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/node/PhysicsKinematicCharacterNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="PhysicsKinematicCharacterNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/collision/CollisionObject.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CollisionObject.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -73,7 +73,7 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.jmex.jbullet.node.PhysicsGhostNode">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.jme.scene.Node">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
@@ -85,28 +85,33 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <!-- ======== START OF CLASS DATA ======== -->
 <H2>
 <FONT SIZE="-1">
-com.jmex.jbullet.node</FONT>
+com.jmex.jbullet.collision</FONT>
 <BR>
-Class PhysicsKinematicCharacterNode</H2>
+Class CollisionObject</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Spatial
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Node
-          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">com.jmex.jbullet.collision.CollisionObject</A>
-              <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html" title="class in com.jmex.jbullet.node">com.jmex.jbullet.node.PhysicsGhostNode</A>
-                  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.node.PhysicsKinematicCharacterNode</B>
+          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.collision.CollisionObject</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable, java.io.Serializable</DD>
 </DL>
+<DL>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html" title="class in com.jmex.jbullet.node">PhysicsGhostNode</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node">PhysicsNode</A></DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>PhysicsKinematicCharacterNode</B><DT>extends <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html" title="class in com.jmex.jbullet.node">PhysicsGhostNode</A></DL>
+<DT><PRE>public class <B>CollisionObject</B><DT>extends com.jme.scene.Node</DL>
 </PRE>
 
 <P>
+Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)
+<P>
+
+<P>
 <DL>
-<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.jmex.jbullet.node.PhysicsKinematicCharacterNode">Serialized Form</A></DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.jmex.jbullet.collision.CollisionObject">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -157,9 +162,7 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/node/PhysicsKinematicCharacterNode.html#PhysicsKinematicCharacterNode(com.jme.scene.Spatial, int, float)">PhysicsKinematicCharacterNode</A></B>(com.jme.scene.Spatial&nbsp;spat,
-                              int&nbsp;shapeType,
-                              float&nbsp;stepHeight)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionObject.html#CollisionObject()">CollisionObject</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -173,15 +176,6 @@ java.lang.Object
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.node.PhysicsGhostNode"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.node.<A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html" title="class in com.jmex.jbullet.node">PhysicsGhostNode</A></B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#getGhostObject()">getGhostObject</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#getLocalRotation()">getLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#getLocalTranslation()">getLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A>, <A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html#syncPhysics()">syncPhysics</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Node"><!-- --></A>
@@ -199,7 +193,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocalScale, setLocalScale, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalRotation, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocalTranslation, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocalRotation, setLocalRotation, setLocalScale, setLocalScale, setLocalTranslation, setLocalTranslation, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -233,12 +227,10 @@ java.lang.Object
 </TR>
 </TABLE>
 
-<A NAME="PhysicsKinematicCharacterNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
-PhysicsKinematicCharacterNode</H3>
+<A NAME="CollisionObject()"><!-- --></A><H3>
+CollisionObject</H3>
 <PRE>
-public <B>PhysicsKinematicCharacterNode</B>(com.jme.scene.Spatial&nbsp;spat,
-                                     int&nbsp;shapeType,
-                                     float&nbsp;stepHeight)</PRE>
+public <B>CollisionObject</B>()</PRE>
 <DL>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -257,7 +249,7 @@ public <B>PhysicsKinematicCharacterNode</B>(com.jme.scene.Spatial&nbsp;spat,
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsKinematicCharacterNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/CollisionObject.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -272,11 +264,11 @@ public <B>PhysicsKinematicCharacterNode</B>(com.jme.scene.Spatial&nbsp;spat,
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsGhostNode.html" title="class in com.jmex.jbullet.node"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/node/PhysicsNode.html" title="class in com.jmex.jbullet.node"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/node/PhysicsKinematicCharacterNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="PhysicsKinematicCharacterNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/collision/CollisionObject.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="CollisionObject.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -293,7 +285,7 @@ public <B>PhysicsKinematicCharacterNode</B>(com.jme.scene.Spatial&nbsp;spat,
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.jmex.jbullet.node.PhysicsGhostNode">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.jme.scene.Node">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
 </TR>
