@@ -76,7 +76,7 @@ import java.util.Map;
  * - RigidBodys (via PhysicsNode)<br>
  * - Applying forces to PhysicsNodes<br>
  * - Vehicles using bullet RaycastVehicle (via PhysicsVehicleNode)<br>
- * - Joints: Point2Point, Hinge<br>
+ * - Joints: Point2Point, Hinge, Cone, Slider<br>
  * </p>
  * <p>
  * ISSUES:<br>
@@ -85,7 +85,7 @@ import java.util.Map;
  * <p>
  * TODO:<br>
  * - Characters using bullet KinematicCharacterController (via PhysicsCharacterNode)<br>
- * - Joints: Cone, Slider, 6Dof<br>
+ * - Joints: 6Dof<br>
  * - Performance settings (world size, used Solver/Dispatcher etc.)<br>
  * - JGN integration<br>
  * - Dynamic updates: Updates each physics tick, not world tick.. how to wrap?<br>
