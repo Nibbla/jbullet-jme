@@ -74,6 +74,7 @@ public class TestSimpleRagdoll {
         };
 
 
+        //create limb nodes
         Capsule shoulders=new Capsule("capsule",8,8,8,0.2f,2f);
         PhysicsNode shouldersNode=new PhysicsNode(shoulders,CollisionShape.Shapes.CAPSULE);
         shouldersNode.setLocalTranslation(0, 0, 0);
@@ -114,65 +115,98 @@ public class TestSimpleRagdoll {
         PhysicsNode rLegUpperNode=new PhysicsNode(rLegUpper,CollisionShape.Shapes.CAPSULE);
         rLegUpperNode.setLocalTranslation(0.5f, -3, 0);
 
-        PhysicsConeJoint lShoulderJoint=new PhysicsConeJoint(shouldersNode, lArmUpperNode, new Vector3f(0,-1,0), new Vector3f(0,0.5f,0));
-        lShoulderJoint.setCollisionBetweenLinkedBodys(false);
-        PhysicsConeJoint lArmJoint=new PhysicsConeJoint(lArmUpperNode, lArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
-        lArmJoint.setCollisionBetweenLinkedBodys(false);
-
-        PhysicsConeJoint rShoulderJoint=new PhysicsConeJoint(shouldersNode, rArmUpperNode, new Vector3f(0,1,0), new Vector3f(0,0.5f,0));
-        rShoulderJoint.setCollisionBetweenLinkedBodys(false);
-        PhysicsConeJoint rArmJoint=new PhysicsConeJoint(rArmUpperNode, rArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
-        rArmJoint.setCollisionBetweenLinkedBodys(false);
-
-        PhysicsConeJoint bodyJoint=new PhysicsConeJoint(shouldersNode, bodyNode, new Vector3f(0,0,0), new Vector3f(0,1f,0));
-        bodyJoint.setCollisionBetweenLinkedBodys(false);
-
-        PhysicsConeJoint hipJoint=new PhysicsConeJoint(bodyNode, hipsNode, new Vector3f(0,-1,0), new Vector3f(0,0,0));
-        hipJoint.setCollisionBetweenLinkedBodys(false);
-
-        PhysicsConeJoint lLeg=new PhysicsConeJoint(hipsNode, lLegUpperNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
-        lLeg.setCollisionBetweenLinkedBodys(false);
-        PhysicsConeJoint lLegLow=new PhysicsConeJoint(lLegUpperNode, lLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
-        lLegLow.setCollisionBetweenLinkedBodys(false);
-
-        PhysicsConeJoint rLeg=new PhysicsConeJoint(hipsNode, rLegUpperNode, new Vector3f(0,0.5f,0), new Vector3f(0,0.5f,0));
-        rLeg.setCollisionBetweenLinkedBodys(false);
-        PhysicsConeJoint rLegLow=new PhysicsConeJoint(rLegUpperNode, rLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
-        rLegLow.setCollisionBetweenLinkedBodys(false);
-
-        //
+        //add nodes to scenegraph & physics space
         state.getRootNode().attachChild(shouldersNode);
         shouldersNode.updateRenderState();
+        pSpace.add(shouldersNode);
         state.getRootNode().attachChild(lArmLowerNode);
         lArmLowerNode.updateRenderState();
+        pSpace.add(lArmLowerNode);
         state.getRootNode().attachChild(lArmUpperNode);
         lArmUpperNode.updateRenderState();
+        pSpace.add(lArmUpperNode);
         state.getRootNode().attachChild(rArmLowerNode);
         rArmLowerNode.updateRenderState();
+        pSpace.add(rArmLowerNode);
         state.getRootNode().attachChild(rArmUpperNode);
         rArmUpperNode.updateRenderState();
+        pSpace.add(rArmUpperNode);
 
         state.getRootNode().attachChild(bodyNode);
         bodyNode.updateRenderState();
+        pSpace.add(bodyNode);
 
         state.getRootNode().attachChild(hipsNode);
         hipsNode.updateRenderState();
+        pSpace.add(hipsNode);
 
         state.getRootNode().attachChild(lLegLowerNode);
         lLegLowerNode.updateRenderState();
+        pSpace.add(lLegLowerNode);
         state.getRootNode().attachChild(lLegUpperNode);
         lLegUpperNode.updateRenderState();
+        pSpace.add(lLegUpperNode);
         state.getRootNode().attachChild(rLegLowerNode);
         rLegLowerNode.updateRenderState();
+        pSpace.add(rLegLowerNode);
         state.getRootNode().attachChild(rLegUpperNode);
         rLegUpperNode.updateRenderState();
+        pSpace.add(rLegUpperNode);
+
+        //create/add joints. TODO: limits
+        PhysicsConeJoint lShoulderJoint=new PhysicsConeJoint(shouldersNode, lArmUpperNode, new Vector3f(0,-1,0), new Vector3f(0,0.5f,0));
+        lShoulderJoint.setCollisionBetweenLinkedBodys(false);
+        lShoulderJoint.setLimit(0f, 0f, 0f);
+        pSpace.add(lShoulderJoint);
+        PhysicsConeJoint lArmJoint=new PhysicsConeJoint(lArmUpperNode, lArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        lArmJoint.setCollisionBetweenLinkedBodys(false);
+        lArmJoint.setLimit(0f, 0f, 0f);
+        pSpace.add(lArmJoint);
+
+        PhysicsConeJoint rShoulderJoint=new PhysicsConeJoint(shouldersNode, rArmUpperNode, new Vector3f(0,1,0), new Vector3f(0,0.5f,0));
+        rShoulderJoint.setCollisionBetweenLinkedBodys(false);
+        rShoulderJoint.setLimit(0f, 0f, 0f);
+        pSpace.add(rShoulderJoint);
+        PhysicsConeJoint rArmJoint=new PhysicsConeJoint(rArmUpperNode, rArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        rArmJoint.setCollisionBetweenLinkedBodys(false);
+        rArmJoint.setLimit(0f, 0f, 0f);
+        pSpace.add(rArmJoint);
+
+        PhysicsConeJoint bodyJoint=new PhysicsConeJoint(shouldersNode, bodyNode, new Vector3f(0,0,0), new Vector3f(0,1f,0));
+        bodyJoint.setCollisionBetweenLinkedBodys(false);
+        bodyJoint.setLimit(0f, 0f, 0f);
+        pSpace.add(bodyJoint);
+
+        PhysicsConeJoint hipJoint=new PhysicsConeJoint(bodyNode, hipsNode, new Vector3f(0,-1,0), new Vector3f(0,0,0));
+        hipJoint.setCollisionBetweenLinkedBodys(false);
+        hipJoint.setLimit(0f, 0f, 0f);
+        pSpace.add(hipJoint);
+
+        PhysicsConeJoint lLeg=new PhysicsConeJoint(hipsNode, lLegUpperNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        lLeg.setCollisionBetweenLinkedBodys(false);
+        lLeg.setLimit(0f, 0f, 0f);
+        pSpace.add(lLeg);
+        PhysicsConeJoint lLegLow=new PhysicsConeJoint(lLegUpperNode, lLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        lLegLow.setCollisionBetweenLinkedBodys(false);
+        lLegLow.setLimit(0f, 0f, 0f);
+        pSpace.add(lLegLow);
+
+        PhysicsConeJoint rLeg=new PhysicsConeJoint(hipsNode, rLegUpperNode, new Vector3f(0,0.5f,0), new Vector3f(0,0.5f,0));
+        rLeg.setCollisionBetweenLinkedBodys(false);
+        rLeg.setLimit(0f, 0f, 0f);
+        pSpace.add(rLeg);
+        PhysicsConeJoint rLegLow=new PhysicsConeJoint(rLegUpperNode, rLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        rLegLow.setCollisionBetweenLinkedBodys(false);
+        rLegLow.setLimit(0f, 0f, 0f);
+        pSpace.add(rLegLow);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
-        node3.setMass(0);
-        node3.setLocalTranslation(new Vector3f(0f,-6,0f));
-        state.getRootNode().attachChild(node3);
-        node3.updateRenderState();
+        PhysicsNode physicsFloor=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
+        physicsFloor.setMass(0);
+        physicsFloor.setLocalTranslation(new Vector3f(0f,-6,0f));
+        state.getRootNode().attachChild(physicsFloor);
+        physicsFloor.updateRenderState();
+        pSpace.add(physicsFloor);
 
         
         // Add the gamestate to the manager
