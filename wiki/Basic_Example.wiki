@@ -20,6 +20,10 @@ getRootNode().attachChild(physicsSphere);
 physicsSphere.updateRenderState();
 
 }}}
+Add sphere to physics space
+{{{
+pSpace.add(physicsSphere);
+}}}
 Add a physics mesh as floor to the world, note that objects with mass=0 are static
 {{{
 Box box=new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f);
@@ -31,6 +35,10 @@ Add floor to jme scenegraph
 {{{
 getRootNode().attachChild(floor);
 floor.updateRenderState();
+}}}
+Add floor to physics space
+{{{
+pSpace.add(floor);
 }}}
 = Update call =
 In your jme2 Gamestate, update and sync physics like this:
