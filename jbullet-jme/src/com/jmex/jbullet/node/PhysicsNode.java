@@ -122,6 +122,8 @@ public class PhysicsNode extends CollisionObject{
 
     private Vector3f angularVelocity=new Vector3f();
 
+    private Vector3f gravity=new Vector3f();
+
     private Vector3f continuousForce=new Vector3f();
 
     private Vector3f continuousTorque=new Vector3f();
@@ -138,6 +140,7 @@ public class PhysicsNode extends CollisionObject{
     private boolean applyTorque=false;
     private boolean applyImpulse=false;
     private boolean applyTorqueImpulse=false;
+    private boolean applyGravity=false;
 
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
@@ -353,6 +356,15 @@ public class PhysicsNode extends CollisionObject{
         return friction;
     }
 
+    public void setGravity(Vector3f gravity){
+        this.gravity.set(gravity);
+        applyGravity=true;
+    }
+
+    public void getGravity(Vector3f gravity){
+        gravity.set(this.gravity);
+    }
+
     /**
      * sets the friction of this physics object
      * @param friction the friction of this physics object
@@ -401,6 +413,10 @@ public class PhysicsNode extends CollisionObject{
 
     public Vector3f getAngularVelocity(){
         return angularVelocity;
+    }
+
+    public void getAngularVelocity(Vector3f vec){
+        vec.set(angularVelocity);
     }
 
     /**
@@ -516,6 +532,10 @@ public class PhysicsNode extends CollisionObject{
 
         rBody.getWorldTransform(tempTrans);
 
+        if(applyGravity){
+            //TODO: reuse vector
+            rBody.setGravity(Converter.convert(gravity));
+        }
         if(applyTranslation){
             tempLocation.set(getWorldTranslation());
             Converter.convert(tempLocation,tempTrans.origin);
