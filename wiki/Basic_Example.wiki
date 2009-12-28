@@ -44,8 +44,8 @@ pSpace.add(floor);
 In your jme2 Gamestate, update and sync physics like this:
 {{{
 public void update(float tpf) {
-    pSpace.syncPhysics();
-    pSpace.update(tpf);
     super.update(tpf);
+    pSpace.update(tpf);
+    pSpace.syncPhysics();
 }
 }}}
