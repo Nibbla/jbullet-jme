@@ -76,7 +76,6 @@ public class PhysicsHingeJoint extends PhysicsJoint{
         constraint=new HingeConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(),
                 Converter.convert(pivotA), Converter.convert(pivotB),
                 Converter.convert(axisA), Converter.convert(axisB));
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     public void enableMotor(boolean enable, float targetVelocity, float maxMotorImpulse){

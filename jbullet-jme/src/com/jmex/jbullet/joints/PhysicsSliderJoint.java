@@ -110,7 +110,6 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
         constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
         updateJoint();
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
@@ -129,7 +128,6 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
         constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
         updateJoint();
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     private void setDefaults() {

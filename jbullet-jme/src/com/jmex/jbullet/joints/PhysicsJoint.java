@@ -101,8 +101,8 @@ public class PhysicsJoint {
      */
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
         this.collisionBetweenLinkedBodys = collisionBetweenLinkedBodys;
-        PhysicsSpace.getPhysicsSpace().removeJoint(this);
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
+//        PhysicsSpace.getPhysicsSpace().removeJoint(this);
+//        PhysicsSpace.getPhysicsSpace().addJoint(this);
         update=true;
     }
 }

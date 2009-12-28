@@ -81,14 +81,12 @@ public class PhysicsGhostNode extends CollisionObject{
         this.attachChild(child);
         buildCollisionShape(shapeType);
         buildObject();
-        PhysicsSpace.getPhysicsSpace().addGhostNode(this);
     }
 
     public PhysicsGhostNode(Spatial child, CollisionShape shape){
         this.attachChild(child);
         cShape=shape;
         buildObject();
-        PhysicsSpace.getPhysicsSpace().addGhostNode(this);
     }
 
     protected void buildObject() {
