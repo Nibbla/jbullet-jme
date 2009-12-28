@@ -173,40 +173,75 @@ public class PhysicsSpace {
         collisionEvents.clear();
     }
 
-    public void addGhostNode(PhysicsGhostNode node){
+    /**
+     * adds an object to the physics space
+     * @param obj
+     */
+    public void add(Object obj){
+        if(obj instanceof PhysicsGhostNode){
+            addGhostNode((PhysicsGhostNode)obj);
+        }
+        else if(obj instanceof PhysicsNode){
+            addNode((PhysicsNode)obj);
+        }
+        else if(obj instanceof PhysicsJoint){
+            addJoint((PhysicsJoint)obj);
+        }
+        else{
+            throw (new UnsupportedOperationException("Cannot add this kind of object to the physics space."));
+        }
+    }
+
+    /**
+     * adds an object to the physics space
+     * @param obj
+     */
+    public void remove(Object obj){
+        if(obj instanceof PhysicsGhostNode){
+            removeGhostNode((PhysicsGhostNode)obj);
+        }
+        else if(obj instanceof PhysicsNode){
+            removeNode((PhysicsNode)obj);
+        }
+        else if(obj instanceof PhysicsJoint){
+            removeJoint((PhysicsJoint)obj);
+        }
+        else{
+            throw (new UnsupportedOperationException("Cannot remove this kind of object to the physics space."));
+        }
+    }
+
+    private void addGhostNode(PhysicsGhostNode node){
+        node.syncPhysics();
         physicsGhostNodes.put(node.getGhostObject(),node);
         getDynamicsWorld().addCollisionObject(node.getGhostObject());
     }
 
-    public void removeGhostNode(PhysicsGhostNode node){
+    private void removeGhostNode(PhysicsGhostNode node){
         physicsGhostNodes.remove(node.getGhostObject());
         getDynamicsWorld().removeCollisionObject(node.getGhostObject());
     }
 
-    /**
-     * used from the constructor of physics objects, no need to call manually
-     */
-    public void addNode(PhysicsNode node){
+    private void addNode(PhysicsNode node){
+        node.syncPhysics();
         physicsNodes.put(node.getRigidBody(),node);
         getDynamicsWorld().addRigidBody(node.getRigidBody());
         if(node instanceof PhysicsVehicleNode)
             dynamicsWorld.addVehicle(((PhysicsVehicleNode)node).getVehicle());
     }
 
-    /**
-     * used from the destroy() method of physics objects, no need to call manually
-     */
-    public void removeNode(PhysicsNode node){
+    private void removeNode(PhysicsNode node){
         physicsNodes.remove(node.getRigidBody());
         getDynamicsWorld().removeRigidBody(node.getRigidBody());
     }
 
-    public void addJoint(PhysicsJoint joint){
+    private void addJoint(PhysicsJoint joint){
+        joint.syncPhysics();
         physicsJoints.add(joint);
         getDynamicsWorld().addConstraint(joint.getConstraint(), !joint.isCollisionBetweenLinkedBodys());
     }
 
-    public void removeJoint(PhysicsJoint joint){
+    private void removeJoint(PhysicsJoint joint){
         physicsJoints.remove(joint);
         getDynamicsWorld().removeConstraint(joint.getConstraint());
     }

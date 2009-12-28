@@ -81,7 +81,6 @@ public class Physics6DofJoint extends PhysicsJoint{
 
         constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
 //        updateJoint();
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
 //        ((Generic6DofConstraint)constraint).
     }
 
@@ -101,7 +100,6 @@ public class Physics6DofJoint extends PhysicsJoint{
 
         constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
 //        updateJoint();
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     public void setLinearUpperLimit(Vector3f vector){

@@ -56,7 +56,6 @@ public class PhysicsPoint2PointJoint extends PhysicsJoint{
     public PhysicsPoint2PointJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
         super(nodeA, nodeB, pivotA, pivotB);
         constraint=new Point2PointConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), Converter.convert(pivotA), Converter.convert(pivotB));
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
 }

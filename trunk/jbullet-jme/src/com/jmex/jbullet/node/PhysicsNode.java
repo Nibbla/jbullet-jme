@@ -62,6 +62,7 @@ import java.io.IOException;
  * To create a PhysicsNode, just create a new PhysicsNode Object like this
  * <p><code>new PhysicsNode(spatial,shapeType);</code></p>
  * and add it to your jme2 scenegraph.<br>
+ * Then add the PhyiscsNode to the PhysicsSpace by calling <code>physicsSpace.add(node);</code>
  * The given spatial will be the added as child node or geometry of the PhysicsNode and
  * will thus move with the PhysicsNode.<br>
  * The shapeType is one of <code>CollisionShape.Shapes.XXX</code>
@@ -170,7 +171,6 @@ public class PhysicsNode extends CollisionObject{
         this.mass=mass;
         createCollisionShape(collisionShapeType);
         updateRigidBody();
-        PhysicsSpace.getPhysicsSpace().addNode(this);
     }
 
     /**
@@ -194,7 +194,6 @@ public class PhysicsNode extends CollisionObject{
         this.mass=mass;
         this.collisionShape=shape;
         updateRigidBody();
-        PhysicsSpace.getPhysicsSpace().addNode(this);
     }
 
     /**

@@ -78,6 +78,7 @@ public class TestSimplePhysics {
         physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
         state.getRootNode().attachChild(physicsSphere);
         physicsSphere.updateRenderState();
+        pSpace.add(physicsSphere);
 
         // Add a physics sphere to the world using the collision shape from sphere one
         Sphere sphere2=new Sphere("physicssphere",16,16,1f);
@@ -85,6 +86,7 @@ public class TestSimplePhysics {
         physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
         state.getRootNode().attachChild(physicsSphere2);
         physicsSphere2.updateRenderState();
+        pSpace.add(physicsSphere2);
 
         // Add a physics box to the world
         Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
@@ -93,6 +95,7 @@ public class TestSimplePhysics {
         physicsBox.setLocalTranslation(new Vector3f(0,4,0));
         state.getRootNode().attachChild(physicsBox);
         physicsBox.updateRenderState();
+        pSpace.add(physicsBox);
 
 //        Cylinder cylGeom=new Cylinder("physicscyliner",16,16,0.5f,6f);
 //        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.Shapes.CYLINDER);
@@ -107,10 +110,12 @@ public class TestSimplePhysics {
         physicsCapsule.setLocalTranslation(new Vector3f(-8,4,0));
         state.getRootNode().attachChild(physicsCapsule);
         physicsCapsule.updateRenderState();
+        pSpace.add(physicsCapsule);
 
         // Join the physics objects with a Point2Point joint
 //        PhysicsPoint2PointJoint joint=new PhysicsPoint2PointJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0));
         PhysicsHingeJoint joint=new PhysicsHingeJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0), Vector3f.UNIT_Z,Vector3f.UNIT_Z);
+        pSpace.add(joint);
         
         // an obstacle mesh, does not move (mass=0)
         PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH);
@@ -118,6 +123,7 @@ public class TestSimplePhysics {
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
+        pSpace.add(node2);
 
         // the floor, does not move (mass=0)
         PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
@@ -125,6 +131,7 @@ public class TestSimplePhysics {
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();
+        pSpace.add(node3);
 
         
         // Add the gamestate to the manager

@@ -33,8 +33,10 @@ package com.jmex.jbullet.node;
 
 import com.bulletphysics.collision.shapes.ConvexShape;
 import com.bulletphysics.dynamics.character.KinematicCharacterController;
+import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.collision.CollisionShape;
+import com.jmex.jbullet.util.Converter;
 
 /**
  *
@@ -46,7 +48,17 @@ public class PhysicsKinematicCharacterNode extends PhysicsGhostNode{
     private float fallSpeed;
     private float jumpSpeed;
 
-    
+    private Vector3f walkDirection=new Vector3f();
+
+    private int upAxis=0;
+    private float maxJumpHeight=1.0f;
+
+    private boolean applySpeeds=false;
+    private boolean applyJump=false;
+    private boolean applyJumpHeight=false;
+    private boolean applyDirection=false;
+    private boolean applyAxis=false;
+
     public PhysicsKinematicCharacterNode(Spatial spat, int shapeType, float stepHeight) {
         super(spat, shapeType);
         if(shapeType==CollisionShape.Shapes.MESH)
@@ -54,8 +66,49 @@ public class PhysicsKinematicCharacterNode extends PhysicsGhostNode{
         character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
     }
 
-    private void todo() {
-//        character.
+    public void setWalkDirection(Vector3f vec){
+        walkDirection.set(vec);
+        applyDirection=true;
+    }
+
+    public void setUpAxis(int axis){
+        upAxis=axis;
+        applyAxis=true;
+    }
+
+
+    public void setMaxJumpHeight(float height){
+        maxJumpHeight=height;
+        applyJumpHeight=true;
+    }
+
+    public void jump() {
+        applyJump=true;
+    }
+
+    @Override
+    public void syncPhysics() {
+        super.syncPhysics();
+        if(applySpeeds){
+            character.setFallSpeed(fallSpeed);
+            character.setJumpSpeed(jumpSpeed);
+        }
+        if(applyJumpHeight){
+            character.setMaxJumpHeight(maxJumpHeight);
+        }
+        if(applyAxis){
+            character.setUpAxis(upAxis);
+            applyAxis=false;
+        }
+        if(applyJump){
+            character.jump();
+            applyJump=false;
+        }
+        if(applyDirection){
+            //TODO: reuse vector?
+            character.setWalkDirection(Converter.convert(walkDirection));
+            applyDirection=false;
+        }
     }
 
 }

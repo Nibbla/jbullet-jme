@@ -64,7 +64,6 @@ public class PhysicsConeJoint extends PhysicsJoint{
         Transform transB=new Transform();
         Converter.convert(pivotB,transB.origin);
         constraint=new ConeTwistConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB);
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     public PhysicsConeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB) {
@@ -81,7 +80,6 @@ public class PhysicsConeJoint extends PhysicsJoint{
         Converter.convert(rotB,transB.basis);
         
         constraint=new ConeTwistConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB);
-        PhysicsSpace.getPhysicsSpace().addJoint(this);
     }
 
     public void setLimit(float swingSpan1, float swingSpan2, float twistSpan) {

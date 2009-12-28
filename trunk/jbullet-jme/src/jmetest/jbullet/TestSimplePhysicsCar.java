@@ -131,6 +131,7 @@ public class TestSimplePhysicsCar {
         physicsCar.setLocalTranslation(new Vector3f(10,-2,0));
         state.getRootNode().attachChild(physicsCar);
         physicsCar.updateRenderState();
+        pSpace.add(physicsCar);
 
         // an obstacle mesh, does not move (mass=0)
         PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH);
@@ -138,6 +139,7 @@ public class TestSimplePhysicsCar {
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
+        pSpace.add(node2);
 
         // the floor, does not move (mass=0)
         PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
@@ -145,6 +147,7 @@ public class TestSimplePhysicsCar {
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();
+        pSpace.add(node3);
 
         
         // Add the gamestate to the manager
