@@ -46,8 +46,8 @@ import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionShape;
-import com.jmex.jbullet.node.PhysicsVehicleNode;
-import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.nodes.PhysicsVehicleNode;
+import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
  * This is a basic Test of jbullet-jme vehicles

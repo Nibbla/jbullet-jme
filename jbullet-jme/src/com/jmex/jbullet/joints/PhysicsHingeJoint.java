@@ -34,7 +34,7 @@ package com.jmex.jbullet.joints;
 import com.bulletphysics.dynamics.constraintsolver.HingeConstraint;
 import com.jme.math.Vector3f;
 import com.jmex.jbullet.PhysicsSpace;
-import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
 /**

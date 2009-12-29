@@ -33,7 +33,7 @@ package com.jmex.jbullet.collision;
 
 import com.bulletphysics.collision.narrowphase.ManifoldPoint;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 import java.util.EventObject;
 

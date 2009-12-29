@@ -47,7 +47,7 @@ import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionShape;
 import com.jmex.jbullet.joints.PhysicsConeJoint;
-import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
  * This is a basic jbullet-jme RagDoll test (TODO)

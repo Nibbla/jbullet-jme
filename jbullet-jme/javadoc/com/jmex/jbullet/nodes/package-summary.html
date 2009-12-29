@@ -4,16 +4,17 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-Uses of Package com.jmex.jbullet.collision
+com.jmex.jbullet.nodes
 </TITLE>
 
+<META NAME="keywords" CONTENT="com.jmex.jbullet.nodes package">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="Uses of Package com.jmex.jbullet.collision";
+    parent.document.title="com.jmex.jbullet.nodes";
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -34,9 +35,9 @@ function windowTitle()
 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
   <TR ALIGN="center" VALIGN="top">
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Package</B></FONT>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
-  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Use</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-use.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -51,11 +52,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;PREV&nbsp;
-&nbsp;NEXT</FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/joints/motors/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/util/package-summary.html"><B>NEXT PACKAGE</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/collision/package-use.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="package-use.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="package-summary.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -75,89 +76,44 @@ function windowTitle()
 <!-- ========= END OF TOP NAVBAR ========= -->
 
 <HR>
-<CENTER>
 <H2>
-<B>Uses of Package<br>com.jmex.jbullet.collision</B></H2>
-</CENTER>
+Package com.jmex.jbullet.nodes
+</H2>
 
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Packages that use <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A></FONT></TH>
+<B>Class Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#com.jmex.jbullet"><B>com.jmex.jbullet</B></A></TD>
-<TD>&nbsp;&nbsp;</TD>
+<TD WIDTH="15%"><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A></B></TD>
+<TD><i>From Bullet manual:</i><br>
+ GhostObject can keep track of all objects that are overlapping.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#com.jmex.jbullet.collision"><B>com.jmex.jbullet.collision</B></A></TD>
-<TD>&nbsp;&nbsp;</TD>
+<TD WIDTH="15%"><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsKinematicCharacterNode.html" title="class in com.jmex.jbullet.nodes">PhysicsKinematicCharacterNode</A></B></TD>
+<TD>&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><A HREF="#com.jmex.jbullet.nodes"><B>com.jmex.jbullet.nodes</B></A></TD>
-<TD>&nbsp;&nbsp;</TD>
+<TD WIDTH="15%"><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A></B></TD>
+<TD>PhysicsNode - Basic jbullet-jme physics object
+ 
+ A PhysicsNode represents an object in the physics space and in the jme scenegraph.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD WIDTH="15%"><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A></B></TD>
+<TD>PhysicsVehicleNode - Special PhysicsNode that implements vehicle functions
+ 
+ <i>From bullet manual:</i><br>
+ For most vehicle simulations, it is recommended to use the simplified Bullet
+ vehicle model as provided in btRaycastVehicle.</TD>
 </TR>
 </TABLE>
 &nbsp;
+
 <P>
-<A NAME="com.jmex.jbullet"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Classes in <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A> used by <A HREF="../../../../com/jmex/jbullet/package-summary.html">com.jmex.jbullet</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../../com/jmex/jbullet/collision/class-use/CollisionListener.html#com.jmex.jbullet"><B>CollisionListener</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-</TABLE>
-&nbsp;
-<P>
-<A NAME="com.jmex.jbullet.collision"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Classes in <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A> used by <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../../com/jmex/jbullet/collision/class-use/CollisionEvent.html#com.jmex.jbullet.collision"><B>CollisionEvent</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A CollisionEvent stores all information about a collision in the phyiscs world</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../../com/jmex/jbullet/collision/class-use/CollisionObject.html#com.jmex.jbullet.collision"><B>CollisionObject</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)</TD>
-</TR>
-</TABLE>
-&nbsp;
-<P>
-<A NAME="com.jmex.jbullet.nodes"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-Classes in <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A> used by <A HREF="../../../../com/jmex/jbullet/nodes/package-summary.html">com.jmex.jbullet.nodes</A></FONT></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../../com/jmex/jbullet/collision/class-use/CollisionObject.html#com.jmex.jbullet.nodes"><B>CollisionObject</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><B><A HREF="../../../../com/jmex/jbullet/collision/class-use/CollisionShape.html#com.jmex.jbullet.nodes"><B>CollisionShape</B></A></B>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This Object holds information about a jbullet CollisionShape to be able to reuse
- CollisionShapes (as suggested in bullet manuals)</TD>
-</TR>
-</TABLE>
-&nbsp;
-<P>
+<DL>
+</DL>
 <HR>
 
 
@@ -171,9 +127,9 @@ Classes in <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html"
 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
   <TR ALIGN="center" VALIGN="top">
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Package</B></FONT>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <FONT CLASS="NavBarFont1">Class</FONT>&nbsp;</TD>
-  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Use</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-use.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -188,11 +144,11 @@ Classes in <A HREF="../../../../com/jmex/jbullet/collision/package-summary.html"
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;PREV&nbsp;
-&nbsp;NEXT</FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/joints/motors/package-summary.html"><B>PREV PACKAGE</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/util/package-summary.html"><B>NEXT PACKAGE</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/collision/package-use.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="package-use.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/package-summary.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="package-summary.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {

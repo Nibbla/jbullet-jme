@@ -36,7 +36,7 @@ import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
 import com.jmex.jbullet.PhysicsSpace;
-import com.jmex.jbullet.node.PhysicsNode;
+import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
 /**
