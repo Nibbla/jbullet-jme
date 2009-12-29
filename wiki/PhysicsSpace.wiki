@@ -4,9 +4,9 @@ The PhysicsSpace defines the basic physics world in jbullet-jme. Things such as 
 The PhysicsSpace needs to be started by getting a PhysicsSpace Object and updated by calling the update(float time) method on that Object. A syncPhysics() method synchronizes the physics and jme objects and is called seperately to allow multithreading and/or different decoupling techniques between the OpenGL and Physics engine. (May change until release version)
 
 ==Updating sequence==
-  * update(float time)
+  * update(float time) - can be run in parallel to anything else, data is capsuled
    * physics update run
-  * syncPhysics()
+  * syncPhysics() - should be run when update() is done / not running
    * collision events get dispatched
    * jme2 node input gets applied to physics
    * physics state gets applied to jme2 nodes
