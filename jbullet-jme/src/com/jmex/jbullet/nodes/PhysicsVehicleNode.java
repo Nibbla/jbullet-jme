@@ -46,6 +46,7 @@ import com.jmex.jbullet.nodes.infos.WheelInfo;
 import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 
 /**
@@ -150,6 +151,13 @@ public class PhysicsVehicleNode extends PhysicsNode{
         }
     }
 
+    private Callable doUpdateVehicleConstraint=new Callable(){
+        public Object call() throws Exception {
+            updateVehicleConstraint();
+            return null;
+        }
+    };
+
     private void updateVehicleConstraint() {
         tuning.frictionSlip=frictionSlip;
         tuning.maxSuspensionTravelCm=maxSuspensionTravelCm;
@@ -205,7 +213,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void setFrictionSlip(float frictionSlip) {
         this.frictionSlip = frictionSlip;
-        updateVehicle=true;
+        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -223,7 +231,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void setRollInfluence(float rollInfluence) {
         this.rollInfluence = rollInfluence;
-        updateVehicle=true;
+        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -240,7 +248,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void setMaxSuspensionTravelCm(float maxSuspensionTravelCm) {
         this.maxSuspensionTravelCm = maxSuspensionTravelCm;
-        updateVehicle=true;
+        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -255,7 +263,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void setSuspensionCompression(float suspensionCompression) {
         this.suspensionCompression = suspensionCompression;
-        updateVehicle=true;
+        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -270,7 +278,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void setSuspensionDamping(float suspensionDamping) {
         this.suspensionDamping = suspensionDamping;
-        updateVehicle=true;
+        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -285,7 +293,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void setSuspensionStiffness(float suspensionStiffness) {
         this.suspensionStiffness = suspensionStiffness;
-        updateVehicle=true;
+        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -297,7 +305,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
         this.engineForce=force;
         //TODO: applyEngineForce always true..
         applyEngineForce=apply;
-        applyBrake=false;
+        pQueue.enqueue(doApplyBrake);
     }
 
     /**
@@ -306,8 +314,19 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void steer(float value){
         steerValue=value;
-        applySteer=true;
+        pQueue.enqueue(doApplySteer);
     }
+
+    private Callable doApplySteer=new Callable(){
+        public Object call() throws Exception {
+            for (int i = 0; i < wheels.size(); i++) {
+                WheelInfo wheelInfo = wheels.get(i);
+                if(wheelInfo.isFrontWheel())
+                    vehicle.setSteeringValue(steerValue, i);
+            }
+            return null;
+        }
+    };
 
     public void brake(float value){
         brake(value,true);
@@ -318,6 +337,19 @@ public class PhysicsVehicleNode extends PhysicsNode{
         applyBrake=apply;
     }
 
+    private Callable doApplyBrake=new Callable(){
+        public Object call() throws Exception {
+            for (int i = 0; i < wheels.size(); i++) {
+                WheelInfo wheelInfo = wheels.get(i);
+                if(!wheelInfo.isFrontWheel()){
+                    vehicle.applyEngineForce(0.0f, i);
+                }
+                vehicle.setBrake(brakeValue, i);
+            }
+            return null;
+        }
+    };
+
     /**
      * @return the vehicle
      */
@@ -327,9 +359,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     @Override
     public void syncPhysics() {
-        if(updateVehicle){
-            updateVehicleConstraint();
-        }
         if(applyEngineForce){
             for (int i = 0; i < wheels.size(); i++) {
                 WheelInfo wheelInfo = wheels.get(i);
@@ -338,23 +367,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
                 }
                 vehicle.setBrake(0.0f, i);
             }
-        }
-        if(applyBrake){
-            for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheelInfo = wheels.get(i);
-                if(!wheelInfo.isFrontWheel()){
-                    vehicle.applyEngineForce(0.0f, i);
-                }
-                vehicle.setBrake(brakeValue, i);
-            }
-        }
-        if(applySteer){
-            for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheelInfo = wheels.get(i);
-                if(wheelInfo.isFrontWheel())
-                    vehicle.setSteeringValue(steerValue, i);
-            }
-            applySteer=false;
         }
         super.syncPhysics();
 

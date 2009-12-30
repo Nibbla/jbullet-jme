@@ -40,10 +40,12 @@ import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
-import com.jmex.jbullet.PhysicsSpace;
+import com.jme.util.GameTaskQueue;
+import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.CollisionShape;
 import com.jmex.jbullet.util.Converter;
+import java.util.concurrent.Callable;
 
 /**
  * <i>From Bullet manual:</i><br>
@@ -74,6 +76,7 @@ public class PhysicsGhostNode extends CollisionObject{
     protected com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
     protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
 
+    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
     private boolean applyTranslation=true;
     private boolean applyRotation=true;
 
@@ -116,7 +119,7 @@ public class PhysicsGhostNode extends CollisionObject{
     @Override
     public void setLocalTranslation(Vector3f arg0) {
         super.setLocalTranslation(arg0);
-        applyTranslation=true;
+        pQueue.enqueue(doApplyTranslation);
     }
 
     /**
@@ -126,8 +129,18 @@ public class PhysicsGhostNode extends CollisionObject{
     @Override
     public void setLocalTranslation(float x, float y, float z) {
         super.setLocalTranslation(x, y, z);
-        applyTranslation=true;
+        pQueue.enqueue(doApplyTranslation);
     }
+
+    private Callable doApplyTranslation=new Callable(){
+        public Object call() throws Exception {
+            tempLocation.set(getWorldTranslation());
+            Converter.convert(tempLocation,tempTrans.origin);
+            gObject.setWorldTransform(tempTrans);
+            motionState.setWorldTransform(tempTrans);
+            return null;
+        }
+    };
 
     /**
      * Note that getLocalRotation().set() will not update the physics object position.
@@ -146,7 +159,7 @@ public class PhysicsGhostNode extends CollisionObject{
     @Override
     public void setLocalRotation(Matrix3f arg0) {
         super.setLocalRotation(arg0);
-        applyRotation=true;
+        pQueue.enqueue(doApplyRotation);
     }
 
     /**
@@ -157,8 +170,19 @@ public class PhysicsGhostNode extends CollisionObject{
     @Override
     public void setLocalRotation(Quaternion arg0) {
         super.setLocalRotation(arg0);
-        applyRotation=true;
+        pQueue.enqueue(doApplyRotation);
     }
+
+    private Callable doApplyRotation=new Callable(){
+        public Object call() throws Exception {
+            tempRotation=getWorldRotation();
+            Converter.convert(tempRotation, tempRot);
+            tempTrans.setRotation(tempRot);
+            gObject.setWorldTransform(tempTrans);
+            motionState.setWorldTransform(tempTrans);
+            return null;
+        }
+    };
 
     /**
      * Computes the local translation from the parameter translation and sets it as new

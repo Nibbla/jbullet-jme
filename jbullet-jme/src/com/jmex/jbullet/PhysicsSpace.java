@@ -48,6 +48,7 @@ import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.jme.math.Vector3f;
 import com.jme.util.GameTaskQueue;
+import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.collision.CollisionEvent;
 import com.jmex.jbullet.collision.CollisionListener;
 import com.jmex.jbullet.collision.CollisionObject;
@@ -123,9 +124,9 @@ public class PhysicsSpace {
 
     public PhysicsSpace(){
         //TODO: better multithreading/updating support via queues
-//        GameTaskQueueManager.getManager().addQueue("jbullet_update", new GameTaskQueue());
-//        pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
-//        pQueue.setExecuteAll(true);
+        GameTaskQueueManager.getManager().addQueue("jbullet_sync", new GameTaskQueue());
+        pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
+        pQueue.setExecuteAll(true);
 
         collisionConfiguration = new DefaultCollisionConfiguration();
         dispatcher = new CollisionDispatcher( collisionConfiguration );
@@ -153,6 +154,7 @@ public class PhysicsSpace {
     public void syncPhysics(){
         distributeEvents();
         //sync nodes+joints
+        pQueue.execute();
         for ( PhysicsGhostNode node : physicsGhostNodes.values() ){
             node.syncPhysics();
         }
