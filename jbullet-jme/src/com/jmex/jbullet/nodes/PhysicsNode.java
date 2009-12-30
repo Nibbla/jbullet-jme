@@ -306,12 +306,16 @@ public class PhysicsNode extends CollisionObject{
         pQueue.enqueue(doApplyTranslation);
     }
 
+    private void applyTranslation() {
+        tempLocation.set(getWorldTranslation());
+        Converter.convert(tempLocation,tempTrans.origin);
+        rBody.setWorldTransform(tempTrans);
+        motionState.setWorldTransform(tempTrans);
+    }
+
     private Callable doApplyTranslation=new Callable(){
         public Object call() throws Exception {
-            tempLocation.set(getWorldTranslation());
-            Converter.convert(tempLocation,tempTrans.origin);
-            rBody.setWorldTransform(tempTrans);
-            motionState.setWorldTransform(tempTrans);
+            applyTranslation();
             return null;
         }
     };
@@ -347,13 +351,17 @@ public class PhysicsNode extends CollisionObject{
         pQueue.enqueue(doApplyRotation);
     }
 
+    private void applyRotation() {
+        tempRotation=getWorldRotation();
+        Converter.convert(tempRotation, tempRot);
+        tempTrans.setRotation(tempRot);
+        rBody.setWorldTransform(tempTrans);
+        motionState.setWorldTransform(tempTrans);
+    }
+
     private Callable doApplyRotation=new Callable(){
         public Object call() throws Exception {
-            tempRotation=getWorldRotation();
-            Converter.convert(tempRotation, tempRot);
-            tempTrans.setRotation(tempRot);
-            rBody.setWorldTransform(tempTrans);
-            motionState.setWorldTransform(tempTrans);
+            applyRotation();
             return null;
         }
     };
@@ -655,11 +663,8 @@ public class PhysicsNode extends CollisionObject{
         //if body is not in world, apply all jme infos
         if(!rBody.isInWorld()){
             updateRigidBody();
-            try {
-                doApplyTranslation.call();
-                doApplyRotation.call();
-            } catch (Exception e) {
-            }
+            applyTranslation();
+            applyRotation();
         }
 
         rBody.getWorldTransform(tempTrans);
