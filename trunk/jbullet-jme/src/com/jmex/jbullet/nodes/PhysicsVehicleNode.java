@@ -82,7 +82,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private VehicleTuning tuning;
     private VehicleRaycaster rayCaster;
     private List<WheelInfo> wheels=new LinkedList<WheelInfo>();
-    private boolean updateVehicle=false;
     private float rollInfluence=1.0f;
     private float frictionSlip=10.5f;
     //standards:
@@ -99,10 +98,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private float engineForce=0.0f;
     private boolean applyEngineForce=false;
     private float brakeValue=0.0f;
-    private boolean applyBrake=false;
-
     private float steerValue=0.0f;
-    private boolean applySteer=false;
 
     public PhysicsVehicleNode(Spatial child){
         super(child, Shapes.BOX);
@@ -305,7 +301,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
         this.engineForce=force;
         //TODO: applyEngineForce always true..
         applyEngineForce=apply;
-        pQueue.enqueue(doApplyBrake);
     }
 
     /**
@@ -330,11 +325,12 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     public void brake(float value){
         brake(value,true);
+        pQueue.enqueue(doApplyBrake);
     }
 
     public void brake(float value, boolean apply){
         brakeValue=value;
-        applyBrake=apply;
+        pQueue.enqueue(doApplyBrake);
     }
 
     private Callable doApplyBrake=new Callable(){
