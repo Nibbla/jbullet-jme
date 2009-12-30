@@ -7,5 +7,6 @@
   * [PhysicsNode]
   * [PhysicsVehicleNode]
   * [PhysicsJoint]
+ * CollisionShapes
  * Examples
   * [Basic_Example]
