@@ -70,29 +70,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * and updated by calling the update(float time) method. The syncPhysics() method
  * synchronizes the physics and jme objects and is called seperately to allow multithreading
  * and/or different decoupling techniques between the OpenGL and Physics engine.<br>
- * Bullet internally works with 60 frames/s...
+ * Bullet internally works with 60 frames/s...<br>
  * TODO: extend
- *
- * </p>
- * <p>
- * Currently Implemented: (but all TODO)<br>
- * - RigidBodys (via PhysicsNode)<br>
- * - Applying forces to PhysicsNodes<br>
- * - Vehicles using bullet RaycastVehicle (via PhysicsVehicleNode)<br>
- * - Joints: Point2Point, Hinge, Cone, Slider<br>
- * </p>
- * <p>
- * ISSUES:<br>
- * - Currently, mesh objects DO NOT collide with other mesh objects<br>
- * </p>
- * <p>
- * TODO:<br>
- * - Characters using bullet KinematicCharacterController (via PhysicsCharacterNode)<br>
- * - Joints: 6Dof<br>
- * - Performance settings (world size, used Solver/Dispatcher etc.)<br>
- * - JGN integration<br>
- * - Dynamic updates: Updates each physics tick, not world tick.. how to wrap?<br>
- * - check JNI/native compatibility of API (pointers to pSpace/rBody in java, these will be native..)<br>
  * </p>
  * @see com.jmex.jbullet.node.PhysicsNode
  * @author normenhansen

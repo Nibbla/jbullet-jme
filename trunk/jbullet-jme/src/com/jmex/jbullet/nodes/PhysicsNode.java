@@ -74,17 +74,10 @@ import java.util.concurrent.Callable;
  * PhysicsNodes with mass=0 are static and do not move.
  * </p>
  * <p>
- * ISSUES:<br>
+ * HINTS:<br>
  * - It is not recommended to have PhysicsNodes as child nodes of other PhysicsNodes<br>
  * - getLocalTranslation().set() does not set the physics object location,
  *   use setLocalTranslation(), same applies for getLocalRotation()<br>
- * </p>
- * <p>
- * TODO:<br>
- * - BoundingVolume update<br>
- * - implement all shapes<br>
- * - update system via MotionStates<br>
- * - jme write/read<br>
  * </p>
  * @see com.jmex.jbullet.PhysicsSpace
  * @author normenhansen
