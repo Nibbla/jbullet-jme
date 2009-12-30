@@ -33,6 +33,7 @@ package jmetest.jbullet;
 
 
 import com.jme.math.FastMath;
+import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import java.util.concurrent.Callable;
 
@@ -47,6 +48,8 @@ import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionShape;
 import com.jmex.jbullet.joints.PhysicsConeJoint;
+import com.jmex.jbullet.joints.PhysicsHingeJoint;
+import com.jmex.jbullet.joints.PhysicsSliderJoint;
 import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
@@ -156,48 +159,56 @@ public class TestSimpleRagdoll {
         //create/add joints. TODO: limits
         PhysicsConeJoint lShoulderJoint=new PhysicsConeJoint(shouldersNode, lArmUpperNode, new Vector3f(0,-1,0), new Vector3f(0,0.5f,0));
         lShoulderJoint.setCollisionBetweenLinkedBodys(false);
-        lShoulderJoint.setLimit(0f, 0f, 0f);
+        lShoulderJoint.setLimit(.1f, .1f, .1f);
         pSpace.add(lShoulderJoint);
-        PhysicsConeJoint lArmJoint=new PhysicsConeJoint(lArmUpperNode, lArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        PhysicsHingeJoint lArmJoint=new PhysicsHingeJoint(lArmUpperNode, lArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0), Vector3f.UNIT_X, Vector3f.UNIT_X);
         lArmJoint.setCollisionBetweenLinkedBodys(false);
-        lArmJoint.setLimit(0f, 0f, 0f);
+//        lArmJoint.setLimit(.1f, .1f);
         pSpace.add(lArmJoint);
 
         PhysicsConeJoint rShoulderJoint=new PhysicsConeJoint(shouldersNode, rArmUpperNode, new Vector3f(0,1,0), new Vector3f(0,0.5f,0));
         rShoulderJoint.setCollisionBetweenLinkedBodys(false);
-        rShoulderJoint.setLimit(0f, 0f, 0f);
+        rShoulderJoint.setLimit(.1f, .1f, .1f);
         pSpace.add(rShoulderJoint);
-        PhysicsConeJoint rArmJoint=new PhysicsConeJoint(rArmUpperNode, rArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        PhysicsHingeJoint rArmJoint=new PhysicsHingeJoint(rArmUpperNode, rArmLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0), Vector3f.UNIT_X, Vector3f.UNIT_X);
         rArmJoint.setCollisionBetweenLinkedBodys(false);
-        rArmJoint.setLimit(0f, 0f, 0f);
+//        rArmJoint.setLimit(.1f, .1f, .1f);
         pSpace.add(rArmJoint);
 
-        PhysicsConeJoint bodyJoint=new PhysicsConeJoint(shouldersNode, bodyNode, new Vector3f(0,0,0), new Vector3f(0,1f,0));
+        PhysicsSliderJoint bodyJoint=new PhysicsSliderJoint(shouldersNode, bodyNode, new Vector3f(0,0,0), new Vector3f(0,1f,0), true);
         bodyJoint.setCollisionBetweenLinkedBodys(false);
-        bodyJoint.setLimit(0f, 0f, 0f);
+        bodyJoint.setLowerLinLimit(0);
+        bodyJoint.setUpperLinLimit(0);
+        bodyJoint.setLowerAngLimit(.9f);
+        bodyJoint.setUpperAngLimit(.6f);
+//        bodyJoint.setLimit(.1f, .1f, .1f);
         pSpace.add(bodyJoint);
 
-        PhysicsConeJoint hipJoint=new PhysicsConeJoint(bodyNode, hipsNode, new Vector3f(0,-1,0), new Vector3f(0,0,0));
+        PhysicsSliderJoint hipJoint=new PhysicsSliderJoint(bodyNode, hipsNode, new Vector3f(0,-1,0), new Vector3f(0,0,0), true);
         hipJoint.setCollisionBetweenLinkedBodys(false);
-        hipJoint.setLimit(0f, 0f, 0f);
+        hipJoint.setLowerLinLimit(0);
+        hipJoint.setUpperLinLimit(0);
+        hipJoint.setLowerAngLimit(.9f);
+        hipJoint.setUpperAngLimit(.6f);
+//        hipJoint.setLimit(.1f, .1f, .1f);
         pSpace.add(hipJoint);
 
         PhysicsConeJoint lLeg=new PhysicsConeJoint(hipsNode, lLegUpperNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
         lLeg.setCollisionBetweenLinkedBodys(false);
-        lLeg.setLimit(0f, 0f, 0f);
+        lLeg.setLimit(.1f, .1f, .1f);
         pSpace.add(lLeg);
-        PhysicsConeJoint lLegLow=new PhysicsConeJoint(lLegUpperNode, lLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        PhysicsHingeJoint lLegLow=new PhysicsHingeJoint(lLegUpperNode, lLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0), Vector3f.UNIT_X, Vector3f.UNIT_X);
         lLegLow.setCollisionBetweenLinkedBodys(false);
-        lLegLow.setLimit(0f, 0f, 0f);
+//        lLegLow.setLimit(.1f, .1f, .1f);
         pSpace.add(lLegLow);
 
         PhysicsConeJoint rLeg=new PhysicsConeJoint(hipsNode, rLegUpperNode, new Vector3f(0,0.5f,0), new Vector3f(0,0.5f,0));
         rLeg.setCollisionBetweenLinkedBodys(false);
-        rLeg.setLimit(0f, 0f, 0f);
+        rLeg.setLimit(.1f, .1f, .1f);
         pSpace.add(rLeg);
-        PhysicsConeJoint rLegLow=new PhysicsConeJoint(rLegUpperNode, rLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0));
+        PhysicsHingeJoint rLegLow=new PhysicsHingeJoint(rLegUpperNode, rLegLowerNode, new Vector3f(0,-0.5f,0), new Vector3f(0,0.5f,0), Vector3f.UNIT_X, Vector3f.UNIT_X);
         rLegLow.setCollisionBetweenLinkedBodys(false);
-        rLegLow.setLimit(0f, 0f, 0f);
+//        rLegLow.setLimit(.1f, .1f, .1f);
         pSpace.add(rLegLow);
 
         // the floor, does not move (mass=0)

@@ -55,7 +55,6 @@ import com.jmex.jbullet.joints.PhysicsJoint;
 import com.jmex.jbullet.nodes.PhysicsGhostNode;
 import com.jmex.jbullet.nodes.PhysicsVehicleNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
