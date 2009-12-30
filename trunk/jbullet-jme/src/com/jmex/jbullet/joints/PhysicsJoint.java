@@ -77,10 +77,9 @@ public class PhysicsJoint {
 
     public void syncPhysics() {
         if(update){
-//            constraint.
-//            PhysicsSpace.getPhysicsSpace().removeJoint(this);
-//            PhysicsSpace.getPhysicsSpace().addJoint(this);
             update=false;
+            PhysicsSpace.getPhysicsSpace().remove(this);
+            PhysicsSpace.getPhysicsSpace().add(this);
         }
         
     }
@@ -105,8 +104,6 @@ public class PhysicsJoint {
      */
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
         this.collisionBetweenLinkedBodys = collisionBetweenLinkedBodys;
-//        PhysicsSpace.getPhysicsSpace().removeJoint(this);
-//        PhysicsSpace.getPhysicsSpace().addJoint(this);
         update=true;
     }
 }
