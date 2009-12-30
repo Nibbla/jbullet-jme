@@ -97,12 +97,13 @@ public class PhysicsNode extends CollisionObject{
     private MotionState motionState=new DefaultMotionState();
     private CollisionShape collisionShape;
     private float mass=1f;
-    private float friction=.4f;
+    private float friction=1f;//.4f;
     private float angularDamping=.1f;
     private float linearDamping=.1f;
     private float restitution=0f;
 
-    private boolean rebuild=true;
+    private boolean rebuild=false;
+    private boolean update=false;
 
     private boolean physicsEnabled=true;
 
@@ -141,6 +142,7 @@ public class PhysicsNode extends CollisionObject{
     private boolean applyImpulse=false;
     private boolean applyTorqueImpulse=false;
     private boolean applyGravity=false;
+    private boolean applyClear=false;
 
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
@@ -173,7 +175,7 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         createCollisionShape(collisionShapeType);
-        updateRigidBody();
+        rebuildRigidBody();
     }
 
     /**
@@ -196,48 +198,81 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         this.collisionShape=shape;
-        updateRigidBody();
+        rebuildRigidBody();
     }
 
     /**
-     * builds/rebuilds the phyiscs body when parameters have changed
+     * updates the phyiscs body when parameters have changed
      */
     protected void updateRigidBody(){
-        if(collisionShape==null){
-            System.out.println("error-shape is null");
-            createCollisionShape(Shapes.SPHERE);
-        }
-
-        if (mass!=0f) {
-            collisionShape.calculateLocalInertia(mass, localInertia);
-		}
-
         if(rBody!=null){
             //TODO: check if only have to set in constructionInfo
-            constructionInfo.collisionShape=collisionShape.getCShape();
-            constructionInfo.mass=mass;
-            constructionInfo.friction=friction;
-            constructionInfo.angularDamping=angularDamping;
-            constructionInfo.linearDamping=linearDamping;
-            constructionInfo.restitution=restitution;
+            updateConstructionInfo();
 
-            rBody.setCollisionShape(collisionShape.getCShape());
-            rBody.setMassProps(mass, localInertia);
+//            rBody.setCollisionShape(collisionShape.getCShape());
+//            rBody.setMassProps(mass, localInertia);
             rBody.setFriction(friction);
             rBody.setDamping(angularDamping, linearDamping);
             rBody.setRestitution(restitution);
         }
         else{
-            constructionInfo=new RigidBodyConstructionInfo(mass, motionState, collisionShape.getCShape(), localInertia);
-            constructionInfo.friction=friction;
-            constructionInfo.angularDamping=angularDamping;
-            constructionInfo.linearDamping=linearDamping;
-            constructionInfo.restitution=restitution;
-
-            rBody=new RigidBody(constructionInfo);
+            System.out.println("Error - RigidBody is null!");
         }
+        update=false;
+    }
+
+    /**
+     * builds/rebuilds the phyiscs body when parameters have changed
+     */
+    protected void rebuildRigidBody(){
+        boolean removed=false;
+
+        Transform trans=new Transform();
+        javax.vecmath.Vector3f vec=new javax.vecmath.Vector3f();
+
+        if(rBody!=null){
+            rBody.getWorldTransform(trans);
+            rBody.getAngularVelocity(vec);
+            PhysicsSpace.getPhysicsSpace().remove(this);
+            removed=true;
+        }
+        
+        createCollisionShape(collisionShape.getType());
+        
+        preRebuild();
+        rBody=new RigidBody(constructionInfo);
+        postRebuild();
 
         rebuild=false;
+
+        if(removed){
+            rBody.setWorldTransform(trans);
+            rBody.setAngularVelocity(vec);
+            PhysicsSpace.getPhysicsSpace().add(this);
+        }
+    }
+
+    protected void preRebuild(){
+        if(rBody!=null){
+            rBody.destroy();
+            System.out.println("rebuild");
+        }
+        collisionShape.calculateLocalInertia(mass, localInertia);
+        constructionInfo=new RigidBodyConstructionInfo(mass, motionState, collisionShape.getCShape(), localInertia);
+        updateConstructionInfo();
+    }
+
+    protected void postRebuild(){
+
+    }
+
+    private void updateConstructionInfo(){
+        constructionInfo.collisionShape=collisionShape.getCShape();
+        constructionInfo.mass=mass;
+        constructionInfo.friction=friction;
+        constructionInfo.angularDamping=angularDamping;
+        constructionInfo.linearDamping=linearDamping;
+        constructionInfo.restitution=restitution;
     }
 
     /**
@@ -371,13 +406,13 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setFriction(float friction){
         this.friction=friction;
-        rebuild=true;
+        update=true;
     }
 
     public void setDamping(float linearDamping,float angularDamping){
         this.linearDamping = linearDamping;
         this.angularDamping = angularDamping;
-        rebuild=true;
+        update=true;
     }
 
     public float getAngularDamping() {
@@ -386,7 +421,7 @@ public class PhysicsNode extends CollisionObject{
 
     public void setAngularDamping(float angularDamping) {
         this.angularDamping = angularDamping;
-        rebuild=true;
+        update=true;
     }
 
     public float getLinearDamping() {
@@ -395,7 +430,7 @@ public class PhysicsNode extends CollisionObject{
 
     public void setLinearDamping(float linearDamping) {
         this.linearDamping = linearDamping;
-        rebuild=true;
+        update=true;
     }
 
     public float getRestitution() {
@@ -408,7 +443,7 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setRestitution(float restitution) {
         this.restitution = restitution;
-        rebuild=true;
+        update=true;
     }
 
     public Vector3f getAngularVelocity(){
@@ -486,8 +521,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     public void clearForces(){
-        //TODO: implement
-        throw (new UnsupportedOperationException("Not implemented yet."));
+        applyClear=true;
     }
 
     @Override
@@ -527,11 +561,16 @@ public class PhysicsNode extends CollisionObject{
      * TODO: replace /w queue
      */
     public void syncPhysics(){
-        if(rebuild) updateRigidBody();
+        if(rebuild) rebuildRigidBody();
+        if(update) updateRigidBody();
         if(rBody==null) return;
 
         rBody.getWorldTransform(tempTrans);
 
+        if(applyClear){
+            rBody.clearForces();
+            applyClear=false;
+        }
         if(applyGravity){
             //TODO: reuse vector
             rBody.setGravity(Converter.convert(gravity));

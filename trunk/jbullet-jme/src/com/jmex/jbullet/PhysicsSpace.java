@@ -59,6 +59,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <p>PhysicsSpace - The central jbullet-jme physics space</p>
@@ -104,8 +105,8 @@ public class PhysicsSpace {
     private ConstraintSolver solver;
     private DefaultCollisionConfiguration collisionConfiguration;
 
-    private Map<GhostObject,PhysicsGhostNode> physicsGhostNodes=new HashMap<GhostObject,PhysicsGhostNode>();
-    private Map<RigidBody,PhysicsNode> physicsNodes=new HashMap<RigidBody,PhysicsNode>();
+    private Map<GhostObject,PhysicsGhostNode> physicsGhostNodes=new ConcurrentHashMap<GhostObject,PhysicsGhostNode>();
+    private Map<RigidBody,PhysicsNode> physicsNodes=new ConcurrentHashMap<RigidBody,PhysicsNode>();
     private List<PhysicsJoint> physicsJoints=new LinkedList<PhysicsJoint>();
 
     private List<CollisionListener> collisionListeners=new LinkedList<CollisionListener>();
@@ -175,7 +176,7 @@ public class PhysicsSpace {
 
     /**
      * adds an object to the physics space
-     * @param obj
+     * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to add
      */
     public void add(Object obj){
         if(obj instanceof PhysicsGhostNode){
@@ -194,7 +195,7 @@ public class PhysicsSpace {
 
     /**
      * adds an object to the physics space
-     * @param obj
+     * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to remove
      */
     public void remove(Object obj){
         if(obj instanceof PhysicsGhostNode){
@@ -233,6 +234,8 @@ public class PhysicsSpace {
     private void removeNode(PhysicsNode node){
         physicsNodes.remove(node.getRigidBody());
         getDynamicsWorld().removeRigidBody(node.getRigidBody());
+        if(node instanceof PhysicsVehicleNode)
+            dynamicsWorld.removeVehicle(((PhysicsVehicleNode)node).getVehicle());
     }
 
     private void addJoint(PhysicsJoint joint){

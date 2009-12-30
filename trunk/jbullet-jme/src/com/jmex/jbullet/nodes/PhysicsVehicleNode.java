@@ -123,28 +123,18 @@ public class PhysicsVehicleNode extends PhysicsNode{
         super(child, shape, mass);
     }
 
-    /**
-     * TODO:<br>
-     * - rebuild vehicle<br>
-     */
     @Override
-    protected void updateRigidBody() {
-        super.updateRigidBody();
+    protected void postRebuild(){
+        super.postRebuild();
+        createVehicleConstraint();
         rBody.setActivationState(CollisionObject.DISABLE_DEACTIVATION);
-        if(tuning==null)
-            createVehicleConstraint();
-        else{
-            updateVehicleConstraint();
-        }
     }
 
     private void createVehicleConstraint() {
-
         tuning=new VehicleTuning();
         updateVehicleConstraint();
         rayCaster=new DefaultVehicleRaycaster(PhysicsSpace.getPhysicsSpace().getDynamicsWorld());
         vehicle=new RaycastVehicle(tuning, rBody, rayCaster);
-
     }
 
     private void updateVehicleConstraint() {
@@ -363,8 +353,10 @@ public class PhysicsVehicleNode extends PhysicsNode{
         }
         super.syncPhysics();
 
-
+        if(wheels!=null)
         for (int i = 0; i < wheels.size(); i++) {
+            if(vehicle.wheelInfo.size()<=i)
+                continue;
             Spatial spatial=wheels.get(i);
             Converter.convert(vehicle.wheelInfo.get(i).worldTransform.origin,tempLocation);
 
