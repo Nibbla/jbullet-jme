@@ -535,11 +535,27 @@ public class PhysicsNode extends CollisionObject{
         super.setModelBound(modelBound);
     }
 
+    /**
+     * creates a collisionShape from the BoundingVolume of this node.
+     * If no BoundingVolume of the give type exists yet, it will be created.
+     * Otherwise a new BoundingVolume will be created.
+     * @param type
+     */
     public void createCollisionShape(int type){
         collisionShape=new CollisionShape(type, this);
         rebuild=true;
     }
   
+    /**
+     * creates a collisionShape from the current BoundingVolume of this node.
+     * If no BoundingVolume of a proper type (box, sphere, cyliner, capsule) exists,
+     * a sphere will be created.
+     */
+    public void createCollisionShape(){
+        collisionShape=new CollisionShape(this);
+        rebuild=true;
+    }
+
     /**
      * @return the CollisionShape of this PhysicsNode, to be able to reuse it with
      * other physics nodes (increases performance)
@@ -549,6 +565,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
+     * sets a CollisionShape to be used for this PhysicsNode for reusing CollisionShapes
      * @param collisionShape the CollisionShape to set
      */
     public void setCollisionShape(CollisionShape collisionShape) {

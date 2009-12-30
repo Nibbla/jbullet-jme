@@ -60,6 +60,10 @@ public class CollisionShape {
         createCollisionShape(shapeType, node);
     }
 
+    public CollisionShape(Node node) {
+        createCollisionShape(node);
+    }
+
     public int getType() {
         return type;
     }
@@ -70,6 +74,21 @@ public class CollisionShape {
     public void calculateLocalInertia(float mass, Vector3f vector){
         if(cShape==null) return;
         cShape.calculateLocalInertia(mass, vector);
+    }
+
+    private void createCollisionShape(Node node){
+        if(node.getWorldBound() instanceof BoundingSphere){
+            createCollisionSphere(node);
+        }
+        else if(node.getWorldBound() instanceof BoundingBox){
+            createCollisionBox(node);
+        }
+        else if(node.getWorldBound() instanceof BoundingCapsule){
+            createCollisionCapsule(node);
+        }
+        else{
+            createCollisionSphere(node);
+        }
     }
 
     private void createCollisionShape(int shapeType, Node node){
