@@ -337,7 +337,10 @@ public class PhysicsNode extends CollisionObject{
     @Override
     public void setLocalRotation(Matrix3f arg0) {
         super.setLocalRotation(arg0);
-        pQueue.enqueue(doApplyRotation);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyRotation);
+        else
+            applyRotation();
     }
 
     /**
@@ -426,12 +429,19 @@ public class PhysicsNode extends CollisionObject{
 
     public void setGravity(Vector3f gravity){
         this.gravity.set(gravity);
-        pQueue.enqueue(doApplyGravity);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyGravity);
+        else
+            applyGravity();
+    }
+
+    private void applyGravity() {
+        rBody.setGravity(Converter.convert(gravity));
     }
 
     private Callable doApplyGravity=new Callable(){
         public Object call() throws Exception {
-            rBody.setGravity(Converter.convert(gravity));
+            applyGravity();
             return null;
         }
     };
@@ -446,13 +456,19 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setFriction(float friction){
         this.friction=friction;
-        pQueue.enqueue(doUpdate);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doUpdate);
+        else
+            updateRigidBody();
     }
 
     public void setDamping(float linearDamping,float angularDamping){
         this.linearDamping = linearDamping;
         this.angularDamping = angularDamping;
-        pQueue.enqueue(doUpdate);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doUpdate);
+        else
+            updateRigidBody();
     }
 
     public float getAngularDamping() {
@@ -461,7 +477,10 @@ public class PhysicsNode extends CollisionObject{
 
     public void setAngularDamping(float angularDamping) {
         this.angularDamping = angularDamping;
-        pQueue.enqueue(doUpdate);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doUpdate);
+        else
+            updateRigidBody();
     }
 
     public float getLinearDamping() {
@@ -470,7 +489,10 @@ public class PhysicsNode extends CollisionObject{
 
     public void setLinearDamping(float linearDamping) {
         this.linearDamping = linearDamping;
-        pQueue.enqueue(doUpdate);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doUpdate);
+        else
+            updateRigidBody();
     }
 
     public float getRestitution() {
@@ -483,7 +505,10 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setRestitution(float restitution) {
         this.restitution = restitution;
-        pQueue.enqueue(doUpdate);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doUpdate);
+        else
+            updateRigidBody();
     }
 
     public Vector3f getAngularVelocity(){
@@ -500,13 +525,20 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setAngularVelocity(Vector3f vec){
         angularVelocity.set(vec);
-        pQueue.enqueue(doApplyVelocity);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyVelocity);
+        else
+            applyVelocity();
+    }
+
+    private void applyVelocity() {
+        Converter.convert(angularVelocity,tempVel);
+        rBody.setAngularVelocity(tempVel);
     }
 
     private Callable doApplyVelocity=new Callable(){
         public Object call() throws Exception {
-            Converter.convert(angularVelocity,tempVel);
-            rBody.setAngularVelocity(tempVel);
+            applyVelocity();
             return null;
         }
     };
@@ -540,13 +572,20 @@ public class PhysicsNode extends CollisionObject{
     public void applyImpulse(Vector3f vec, Vector3f vec2){
         if(vec!=null) impulseVector.set(vec);
         if(vec2!=null) impulseVector2.set(vec);
-        pQueue.enqueue(doApplyImpulse);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyImpulse);
+        else
+            applyImpulse();
+    }
+
+    private void applyImpulse() {
+        //TODO: reuse vector
+        rBody.applyImpulse(Converter.convert(impulseVector), Converter.convert(impulseVector2));
     }
 
     private Callable doApplyImpulse=new Callable(){
         public Object call() throws Exception {
-            //TODO: reuse vector
-            rBody.applyImpulse(Converter.convert(impulseVector), Converter.convert(impulseVector2));
+            applyImpulse();
             return null;
         }
     };
@@ -556,10 +595,14 @@ public class PhysicsNode extends CollisionObject{
         pQueue.enqueue(doApplyTorqueImpulse);
     }
 
+    private void applyTorqueImpulse() {
+        //TODO: reuse vector
+        rBody.applyTorqueImpulse(Converter.convert(torqueImpulse));
+    }
+
     private Callable doApplyTorqueImpulse=new Callable(){
         public Object call() throws Exception {
-            //TODO: reuse vector
-            rBody.applyTorqueImpulse(Converter.convert(torqueImpulse));
+            applyTorqueImpulse();
             return null;
         }
     };
@@ -585,7 +628,10 @@ public class PhysicsNode extends CollisionObject{
     }
 
     public void clearForces(){
-        pQueue.enqueue(doClearForces);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doClearForces);
+        else
+            rBody.clearForces();
     }
 
     private Callable doClearForces=new Callable(){
