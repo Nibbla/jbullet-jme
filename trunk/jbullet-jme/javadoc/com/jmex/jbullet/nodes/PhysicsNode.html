@@ -297,10 +297,18 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape()">createCollisionShape</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the current BoundingVolume of this node.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A></B>(int&nbsp;type)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the BoundingVolume of this node.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -460,7 +468,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.CollisionShape)">setCollisionShape</A></B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;collisionShape)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets a CollisionShape to be used for this PhysicsNode for reusing CollisionShapes</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -1193,6 +1201,25 @@ createCollisionShape</H3>
 <PRE>
 public void <B>createCollisionShape</B>(int&nbsp;type)</PRE>
 <DL>
+<DD>creates a collisionShape from the BoundingVolume of this node.
+ If no BoundingVolume of the give type exists yet, it will be created.
+ Otherwise a new BoundingVolume will be created.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>type</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="createCollisionShape()"><!-- --></A><H3>
+createCollisionShape</H3>
+<PRE>
+public void <B>createCollisionShape</B>()</PRE>
+<DL>
+<DD>creates a collisionShape from the current BoundingVolume of this node.
+ If no BoundingVolume of a proper type (box, sphere, cyliner, capsule) exists,
+ a sphere will be created.
+<P>
 <DD><DL>
 </DL>
 </DD>
@@ -1217,6 +1244,8 @@ setCollisionShape</H3>
 <PRE>
 public void <B>setCollisionShape</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;collisionShape)</PRE>
 <DL>
+<DD>sets a CollisionShape to be used for this PhysicsNode for reusing CollisionShapes
+<P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>collisionShape</CODE> - the CollisionShape to set</DL>
 </DD>
