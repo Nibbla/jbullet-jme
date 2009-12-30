@@ -477,6 +477,15 @@ com.jme.math.Matrix3f <B>tempMatrix</B></PRE>
 </DL>
 <HR>
 <H3>
+pQueue</H3>
+<PRE>
+com.jme.util.GameTaskQueue <B>pQueue</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
 applyTranslation</H3>
 <PRE>
 boolean <B>applyTranslation</B></PRE>
@@ -489,6 +498,24 @@ boolean <B>applyTranslation</B></PRE>
 applyRotation</H3>
 <PRE>
 boolean <B>applyRotation</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyTranslation</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyTranslation</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyRotation</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyRotation</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -711,24 +738,6 @@ float <B>restitution</B></PRE>
 </DL>
 <HR>
 <H3>
-rebuild</H3>
-<PRE>
-boolean <B>rebuild</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-update</H3>
-<PRE>
-boolean <B>update</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
 physicsEnabled</H3>
 <PRE>
 boolean <B>physicsEnabled</B></PRE>
@@ -873,27 +882,9 @@ com.jme.math.Vector3f <B>torqueImpulse</B></PRE>
 </DL>
 <HR>
 <H3>
-applyTranslation</H3>
+pQueue</H3>
 <PRE>
-boolean <B>applyTranslation</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-applyRotation</H3>
-<PRE>
-boolean <B>applyRotation</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-applyVelocity</H3>
-<PRE>
-boolean <B>applyVelocity</B></PRE>
+com.jme.util.GameTaskQueue <B>pQueue</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -918,36 +909,81 @@ boolean <B>applyTorque</B></PRE>
 </DL>
 <HR>
 <H3>
-applyImpulse</H3>
+doUpdate</H3>
 <PRE>
-boolean <B>applyImpulse</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doUpdate</B></PRE>
 <DL>
 <DL>
 </DL>
 </DL>
 <HR>
 <H3>
-applyTorqueImpulse</H3>
+doRebuild</H3>
 <PRE>
-boolean <B>applyTorqueImpulse</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doRebuild</B></PRE>
 <DL>
 <DL>
 </DL>
 </DL>
 <HR>
 <H3>
-applyGravity</H3>
+doApplyTranslation</H3>
 <PRE>
-boolean <B>applyGravity</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyTranslation</B></PRE>
 <DL>
 <DL>
 </DL>
 </DL>
 <HR>
 <H3>
-applyClear</H3>
+doApplyRotation</H3>
 <PRE>
-boolean <B>applyClear</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyRotation</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyGravity</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyGravity</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyVelocity</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyVelocity</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyImpulse</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyImpulse</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyTorqueImpulse</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyTorqueImpulse</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doClearForces</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doClearForces</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -1002,15 +1038,6 @@ com.bulletphysics.dynamics.vehicle.VehicleRaycaster <B>rayCaster</B></PRE>
 wheels</H3>
 <PRE>
 java.util.List&lt;E&gt; <B>wheels</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-updateVehicle</H3>
-<PRE>
-boolean <B>updateVehicle</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -1098,15 +1125,6 @@ float <B>brakeValue</B></PRE>
 </DL>
 <HR>
 <H3>
-applyBrake</H3>
-<PRE>
-boolean <B>applyBrake</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
 steerValue</H3>
 <PRE>
 float <B>steerValue</B></PRE>
@@ -1116,9 +1134,27 @@ float <B>steerValue</B></PRE>
 </DL>
 <HR>
 <H3>
-applySteer</H3>
+doUpdateVehicleConstraint</H3>
 <PRE>
-boolean <B>applySteer</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doUpdateVehicleConstraint</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplySteer</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplySteer</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyBrake</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyBrake</B></PRE>
 <DL>
 <DL>
 </DL>
