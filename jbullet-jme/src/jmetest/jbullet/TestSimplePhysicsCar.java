@@ -111,7 +111,7 @@ public class TestSimplePhysicsCar {
 
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
-        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.Shapes.BOX,100);
+        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.Shapes.BOX);
 
         // Create four wheels and add them at their locations
         Sphere wheel=new Sphere("wheel",8,8,0.5f);
