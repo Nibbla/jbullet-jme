@@ -102,9 +102,11 @@ public class CollisionShape {
         if(children.size()==0){
             throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision box"));
         }
-        node.setModelBound(new BoundingBox());
-        node.updateModelBound();
-        node.updateWorldBound();
+        if(!(node.getWorldBound() instanceof BoundingBox)){
+            node.setModelBound(new BoundingBox());
+            node.updateModelBound();
+            node.updateWorldBound();
+        }
         BoundingBox volume=(BoundingBox)node.getWorldBound();
         javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
         BoxShape sphere=new BoxShape(halfExtents);
@@ -120,9 +122,11 @@ public class CollisionShape {
         if(children.size()==0){
             throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision sphere"));
         }
-        node.setModelBound(new BoundingSphere());
-        node.updateModelBound();
-        node.updateWorldBound();
+        if(!(node.getWorldBound() instanceof BoundingSphere)){
+            node.setModelBound(new BoundingSphere());
+            node.updateModelBound();
+            node.updateWorldBound();
+        }
         BoundingSphere volume=(BoundingSphere)node.getWorldBound();
         SphereShape sphere=new SphereShape(volume.getRadius());
         cShape=sphere;
@@ -133,11 +137,12 @@ public class CollisionShape {
         if(children.size()==0){
             throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision capsule"));
         }
-        node.setModelBound(new BoundingCapsule());
-        node.updateModelBound();
-        node.updateWorldBound();
+        if(!(node.getWorldBound() instanceof BoundingCapsule)){
+            node.setModelBound(new BoundingCapsule());
+            node.updateModelBound();
+            node.updateWorldBound();
+        }
         BoundingCapsule capsule=(BoundingCapsule)node.getWorldBound();
-
         float radius=capsule.getRadius();
         float volume=capsule.getVolume();
         volume-= ( ((4.0f/3.0f) * FastMath.PI ) * FastMath.pow(radius,3) );
