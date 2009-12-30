@@ -5,7 +5,9 @@ jbullet-jme has been developed in a way that makes it easy to integrate it into 
 
 == Details ==
 The synchronization of jme and the physics happens when PhyiscsSpace.syncPhysics() is called. The actual physics update() call is separated and can be called synchronously to other tasks.
+
 TODO: extend
+== Queues ==
 {{{
 GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
 }}}
