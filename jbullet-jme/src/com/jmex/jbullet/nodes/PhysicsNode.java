@@ -110,13 +110,13 @@ public class PhysicsNode extends CollisionObject{
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
     private Transform tempTrans=new Transform();
-    private javax.vecmath.Vector3f tempLoc=new javax.vecmath.Vector3f();
+//    private javax.vecmath.Vector3f tempLoc=new javax.vecmath.Vector3f();
     private javax.vecmath.Vector3f tempVel=new javax.vecmath.Vector3f();
     private javax.vecmath.Quat4f tempRot=new javax.vecmath.Quat4f();
-    protected com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
-    protected com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
-    protected com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
-    protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
+    private com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
+    private com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
+//    private com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
+    private com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
 
     //TODO: needed here?
     private javax.vecmath.Vector3f localInertia=new javax.vecmath.Vector3f();

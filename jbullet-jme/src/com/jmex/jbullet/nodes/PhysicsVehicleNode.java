@@ -36,13 +36,13 @@ import com.bulletphysics.dynamics.vehicle.DefaultVehicleRaycaster;
 import com.bulletphysics.dynamics.vehicle.RaycastVehicle;
 import com.bulletphysics.dynamics.vehicle.VehicleRaycaster;
 import com.bulletphysics.dynamics.vehicle.VehicleTuning;
-import com.bulletphysics.dynamics.vehicle.WheelInfo;
-import com.jme.math.Quaternion;
+//import com.bulletphysics.dynamics.vehicle.WheelInfo;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionShape;
 import com.jmex.jbullet.collision.CollisionShape.Shapes;
+import com.jmex.jbullet.nodes.infos.WheelInfo;
 import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,7 +80,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private RaycastVehicle vehicle;
     private VehicleTuning tuning;
     private VehicleRaycaster rayCaster;
-    private List<Spatial> wheels=new LinkedList<Spatial>();
+    private List<WheelInfo> wheels=new LinkedList<WheelInfo>();
     private boolean updateVehicle=false;
     private float rollInfluence=1.0f;
     private float frictionSlip=10.5f;
@@ -135,6 +135,19 @@ public class PhysicsVehicleNode extends PhysicsNode{
         updateVehicleConstraint();
         rayCaster=new DefaultVehicleRaycaster(PhysicsSpace.getPhysicsSpace().getDynamicsWorld());
         vehicle=new RaycastVehicle(tuning, rBody, rayCaster);
+        if(wheels!=null)
+        for(WheelInfo wheel:wheels){
+            wheel.setWheelInfo(vehicle.addWheel(Converter.convert(wheel.getLocation()), Converter.convert(wheel.getDirection()), Converter.convert(wheel.getAxle()),
+                    wheel.getRestLength(), wheel.getRadius(), tuning, wheel.isFrontWheel()));
+            wheel.setSuspensionStiffness(suspensionStiffness);
+            wheel.setWheelsDampingRelaxation(suspensionDamping);
+            wheel.setWheelsDampingCompression(suspensionCompression);
+            wheel.setFrictionSlip(frictionSlip);
+            wheel.setRollInfluence(rollInfluence);
+            wheel.setMaxSuspensionTravelCm(maxSuspensionTravelCm);
+            wheel.applyInfo();
+            wheel.syncPhysics();
+        }
     }
 
     private void updateVehicleConstraint() {
@@ -143,14 +156,16 @@ public class PhysicsVehicleNode extends PhysicsNode{
         tuning.suspensionCompression=suspensionCompression;
         tuning.suspensionDamping=suspensionDamping;
         tuning.suspensionStiffness=suspensionStiffness;
-        if(vehicle!=null&&vehicle.wheelInfo!=null)
-        for(WheelInfo wheel:vehicle.wheelInfo){
-            wheel.suspensionStiffness = suspensionStiffness;
-            wheel.wheelsDampingRelaxation = suspensionDamping;
-            wheel.wheelsDampingCompression = suspensionCompression;
-            wheel.frictionSlip = frictionSlip;
-            wheel.rollInfluence = rollInfluence;
-            wheel.maxSuspensionTravelCm = maxSuspensionTravelCm;
+        //TODO: update wheels
+        if(vehicle!=null&&wheels!=null)
+        for(WheelInfo wheel:wheels){
+            wheel.setSuspensionStiffness(suspensionStiffness);
+            wheel.setWheelsDampingRelaxation(suspensionDamping);
+            wheel.setWheelsDampingCompression(suspensionCompression);
+            wheel.setFrictionSlip(frictionSlip);
+            wheel.setRollInfluence(rollInfluence);
+            wheel.setMaxSuspensionTravelCm(maxSuspensionTravelCm);
+            wheel.applyInfo();
         }
     }
 
@@ -165,25 +180,15 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @param isFrontWheel sets if this wheel is a front wheel (steering)
      */
     public void addWheel(Spatial spat, Vector3f connectionPoint, Vector3f direction, Vector3f axle, float suspensionRestLength, float wheelRadius, boolean isFrontWheel){
-        wheels.add(spat);
         this.attachChild(spat);
-        vehicle.addWheel(Converter.convert(connectionPoint), Converter.convert(direction), Converter.convert(axle), suspensionRestLength, wheelRadius, tuning, isFrontWheel);
+        WheelInfo info=new WheelInfo(this,spat,connectionPoint,direction,axle,suspensionRestLength,wheelRadius,isFrontWheel);
+        info.setWheelInfo(
+                vehicle.addWheel(Converter.convert(connectionPoint), Converter.convert(direction), Converter.convert(axle), suspensionRestLength, wheelRadius, tuning, isFrontWheel)
+                );
+        wheels.add(info);
         updateVehicleConstraint();
         for (int i = 0; i < wheels.size(); i++) {
-            Spatial spatial=wheels.get(i);
-            Converter.convert(vehicle.wheelInfo.get(i).worldTransform.origin,tempLocation);
-            Converter.convert(vehicle.wheelInfo.get(i).worldTransform.basis,tempMatrix);
-
-            //SET LOCATION
-            spatial.getLocalTranslation().set( tempLocation ).subtractLocal( getWorldTranslation() );
-            spatial.getLocalTranslation().divideLocal( getWorldScale() );
-            tempRotation.set( getWorldRotation()).inverseLocal().multLocal( spatial.getLocalTranslation() );
-
-            //SET ROTATION
-            tempRotation2.fromRotationMatrix(tempMatrix);
-            Quaternion myRot=spatial.getLocalRotation();
-            tempRotation.set(getWorldRotation()).inverseLocal().mult(tempRotation2,myRot);
-
+            wheels.get(i).syncPhysics();
         }
     }
 
@@ -326,27 +331,27 @@ public class PhysicsVehicleNode extends PhysicsNode{
             updateVehicleConstraint();
         }
         if(applyEngineForce){
-            for (int i = 0; i < vehicle.wheelInfo.size(); i++) {
-                WheelInfo wheelInfo = vehicle.wheelInfo.get(i);
-                if(!wheelInfo.bIsFrontWheel){
+            for (int i = 0; i < wheels.size(); i++) {
+                WheelInfo wheelInfo = wheels.get(i);
+                if(!wheelInfo.isFrontWheel()){
                     vehicle.applyEngineForce(engineForce, i);
                 }
                 vehicle.setBrake(0.0f, i);
             }
         }
         if(applyBrake){
-            for (int i = 0; i < vehicle.wheelInfo.size(); i++) {
-                WheelInfo wheelInfo = vehicle.wheelInfo.get(i);
-                if(!wheelInfo.bIsFrontWheel){
+            for (int i = 0; i < wheels.size(); i++) {
+                WheelInfo wheelInfo = wheels.get(i);
+                if(!wheelInfo.isFrontWheel()){
                     vehicle.applyEngineForce(0.0f, i);
                 }
                 vehicle.setBrake(brakeValue, i);
             }
         }
         if(applySteer){
-            for (int i = 0; i < vehicle.wheelInfo.size(); i++) {
-                WheelInfo wheelInfo = vehicle.wheelInfo.get(i);
-                if(wheelInfo.bIsFrontWheel)
+            for (int i = 0; i < wheels.size(); i++) {
+                WheelInfo wheelInfo = wheels.get(i);
+                if(wheelInfo.isFrontWheel())
                     vehicle.setSteeringValue(steerValue, i);
             }
             applySteer=false;
@@ -355,21 +360,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
         if(wheels!=null)
         for (int i = 0; i < wheels.size(); i++) {
-            if(vehicle.wheelInfo.size()<=i)
-                continue;
-            Spatial spatial=wheels.get(i);
-            Converter.convert(vehicle.wheelInfo.get(i).worldTransform.origin,tempLocation);
-
-            //SET LOCATION
-            spatial.getLocalTranslation().set( tempLocation ).subtractLocal( getWorldTranslation() );
-            spatial.getLocalTranslation().divideLocal( getWorldScale() );
-            tempRotation.set(getWorldRotation()).inverseLocal().multLocal( spatial.getLocalTranslation() );
-
-            Converter.convert(vehicle.wheelInfo.get(i).worldTransform.basis,tempMatrix);
-            //SET ROTATION
-            tempRotation2.fromRotationMatrix(tempMatrix);
-            tempRotation.set(getWorldRotation()).inverseLocal().mult(tempRotation2,spatial.getLocalRotation());
-
+            wheels.get(i).syncPhysics();
         }
     }
 
