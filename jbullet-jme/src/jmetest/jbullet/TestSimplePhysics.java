@@ -106,11 +106,12 @@ public class TestSimplePhysics {
 
         Capsule capGeom=new Capsule("physicscapsule",16,16,16,0.5f,2f);
         PhysicsNode physicsCapsule=new PhysicsNode(capGeom, CollisionShape.Shapes.CAPSULE);
-        physicsCapsule.setFriction(0.01f);
+        physicsCapsule.setFriction(0.001f);
         physicsCapsule.setLocalTranslation(new Vector3f(-8,4,0));
         state.getRootNode().attachChild(physicsCapsule);
         physicsCapsule.updateRenderState();
         pSpace.add(physicsCapsule);
+        physicsCapsule.setMass(100f);
 
         // Join the physics objects with a Point2Point joint
 //        PhysicsPoint2PointJoint joint=new PhysicsPoint2PointJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0));
@@ -118,16 +119,14 @@ public class TestSimplePhysics {
         pSpace.add(joint);
         
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH);
-        node2.setMass(0);
+        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH,0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
-        node3.setMass(0);
+        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();
