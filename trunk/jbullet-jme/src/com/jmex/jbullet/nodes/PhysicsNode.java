@@ -33,7 +33,6 @@ package com.jmex.jbullet.nodes;
 
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
-import com.bulletphysics.linearmath.DefaultMotionState;
 import com.bulletphysics.linearmath.MotionState;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.bounding.BoundingVolume;
@@ -85,7 +84,7 @@ import java.util.concurrent.Callable;
 public class PhysicsNode extends CollisionObject{
     protected RigidBody rBody;
     private RigidBodyConstructionInfo constructionInfo;
-    private MotionState motionState=new DefaultMotionState();
+    private MotionState motionState;//=new DefaultMotionState();
     private CollisionShape collisionShape;
     private float mass=1f;
     private float friction=1f;//.4f;
@@ -154,8 +153,8 @@ public class PhysicsNode extends CollisionObject{
     public PhysicsNode(Spatial child, int collisionShapeType, float mass){
         this.attachChild(child);
         this.mass=mass;
+        motionState=createMotionState();
         createCollisionShape(collisionShapeType);
-//        rebuildRigidBody();
     }
 
     /**
@@ -178,7 +177,47 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         this.collisionShape=shape;
+        motionState=createMotionState();
         rebuildRigidBody();
+    }
+
+    protected MotionState createMotionState(){
+        return new MotionState(){
+
+            public Transform getWorldTransform(Transform out) {
+                if(out==null)
+                    out=new Transform();
+
+                tempRotation.set(getWorldRotation());
+                Converter.convert(tempRotation, tempRot);
+
+                out.basis.set(tempRot);
+                out.origin.set(Converter.convert(getWorldTranslation()));
+                return out;
+            }
+
+            public void setWorldTransform(Transform worldTrans) {
+                //TODO: reuse transform
+                final Transform trans=new Transform(worldTrans);
+
+                pQueue.enqueue(new Callable(){
+
+                    public Object call() throws Exception {
+
+                        Converter.convert(trans.origin,tempLocation);
+                        setWorldTranslation(tempLocation);
+
+                        Converter.convert(trans.basis,tempMatrix);
+                        tempRotation.fromRotationMatrix(tempMatrix);
+                        setWorldRotation(tempRotation);
+
+                        Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
+                        return null;
+                    }
+                });
+            }
+
+        };
     }
 
     /**
@@ -298,7 +337,6 @@ public class PhysicsNode extends CollisionObject{
         tempLocation.set(getWorldTranslation());
         Converter.convert(tempLocation,tempTrans.origin);
         rBody.setWorldTransform(tempTrans);
-        motionState.setWorldTransform(tempTrans);
     }
 
     private Callable doApplyTranslation=new Callable(){
@@ -343,11 +381,10 @@ public class PhysicsNode extends CollisionObject{
     }
 
     private void applyRotation() {
-        tempRotation=getWorldRotation();
+        tempRotation.set(getWorldRotation());
         Converter.convert(tempRotation, tempRot);
         tempTrans.setRotation(tempRot);
         rBody.setWorldTransform(tempTrans);
-        motionState.setWorldTransform(tempTrans);
     }
 
     private Callable doApplyRotation=new Callable(){
@@ -700,17 +737,6 @@ public class PhysicsNode extends CollisionObject{
             applyTranslation();
             applyRotation();
         }
-
-        rBody.getWorldTransform(tempTrans);
-
-        Converter.convert(tempTrans.origin,tempLocation);
-        setWorldTranslation(tempLocation);
-
-        Converter.convert(tempTrans.basis,tempMatrix);
-        tempRotation.fromRotationMatrix(tempMatrix);
-        setWorldRotation(tempRotation);
-
-        Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
 
         if(applyForce){
             //TODO: reuse vector
