@@ -78,8 +78,8 @@ public class PhysicsJoint {
     public void syncPhysics() {
         if(update){
             update=false;
-            PhysicsSpace.getPhysicsSpace().remove(this);
-            PhysicsSpace.getPhysicsSpace().add(this);
+//            PhysicsSpace.getPhysicsSpace().remove(this);
+//            PhysicsSpace.getPhysicsSpace().add(this);
         }
         
     }
@@ -99,7 +99,7 @@ public class PhysicsJoint {
     }
 
     /**
-     * NOT SAFE
+     * Joint has to be removed from and added to PhyiscsSpace to apply this.
      * @param collisionBetweenLinkedBodys the collisionBetweenLinkedBodys to set
      */
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
