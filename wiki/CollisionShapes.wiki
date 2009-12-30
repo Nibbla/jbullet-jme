@@ -1,0 +1,8 @@
+#summary How collision shapes work in jbullet-jme
+
+== Introduction ==
+In jbullet-jme, CollisionShapes get drived from the jme BoundingVolume of a Spatial.
+When you create a PhysicsNode with a spatial and shape type, the corresponding BoundingVolume is created on the PhysicsNode and a CollisionShape is automatically derived from that.
+If you want the shape to be different than the auto-generated one, you can set a BoundingVolume to the PhysicsNode and call createCollisionShape(int type) to recreate the corresponding CollisionShape.
+
+to be extended..
