@@ -1,0 +1,11 @@
+#summary Multithreading in jbullet-jme
+
+== Introduction ==
+jbullet-jme has been developed in a way that makes it easy to integrate it into multithreaded applications.
+
+== Details ==
+The synchronization of jme and the physics happens when PhyiscsSpace.syncPhysics() is called. The actual physics update() call is separated and can be called synchronously to other tasks.
+TODO: extend
+{{{
+GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
+}}}
