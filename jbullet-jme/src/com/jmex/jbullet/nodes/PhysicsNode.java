@@ -81,14 +81,9 @@ import java.util.concurrent.Callable;
  * </p>
  * <p>
  * TODO:<br>
- * - init translation?<br>
- * - separate addToPhyiscsSpace() method?<br>
- * - inertia/mass update strangeness..(probably have to reconstruct RigidBody)<br>
- * - separate update/rebuild of RigidBody<br>
  * - BoundingVolume update<br>
  * - implement all shapes<br>
  * - update system via MotionStates<br>
- * - phyiscs object update via queue, not syncPhysics() each tick<br>
  * - jme write/read<br>
  * </p>
  * @see com.jmex.jbullet.PhysicsSpace

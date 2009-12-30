@@ -134,14 +134,9 @@ java.lang.Object
  </p>
  <p>
  TODO:<br>
- - init translation?<br>
- - separate addToPhyiscsSpace() method?<br>
- - inertia/mass update strangeness..(probably have to reconstruct RigidBody)<br>
- - separate update/rebuild of RigidBody<br>
  - BoundingVolume update<br>
  - implement all shapes<br>
  - update system via MotionStates<br>
- - phyiscs object update via queue, not syncPhysics() each tick<br>
  - jme write/read<br>
  </p>
 <P>
@@ -896,10 +891,10 @@ public void <B>setMass</B>(float&nbsp;mass)</PRE>
 </DL>
 <HR>
 
-<A NAME="getFriction()"><!-- --></A><H3>
-getFriction</H3>
+<A NAME="getGravity(com.jme.math.Vector3f)"><!-- --></A><H3>
+getGravity</H3>
 <PRE>
-public float <B>getFriction</B>()</PRE>
+public void <B>getGravity</B>(com.jme.math.Vector3f&nbsp;gravity)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -918,10 +913,10 @@ public void <B>setGravity</B>(com.jme.math.Vector3f&nbsp;gravity)</PRE>
 </DL>
 <HR>
 
-<A NAME="getGravity(com.jme.math.Vector3f)"><!-- --></A><H3>
-getGravity</H3>
+<A NAME="getFriction()"><!-- --></A><H3>
+getFriction</H3>
 <PRE>
-public void <B>getGravity</B>(com.jme.math.Vector3f&nbsp;gravity)</PRE>
+public float <B>getFriction</B>()</PRE>
 <DL>
 <DD><DL>
 </DL>
