@@ -635,7 +635,7 @@ public class PhysicsNode extends CollisionObject{
         public Object call() throws Exception {
             //TODO: reuse vector
             rBody.applyTorque(Converter.convert(continuousTorque));
-            if(applyForce){
+            if(applyTorque){
                 PhysicsSpace.getPhysicsSpace().reQueue(doApplyContinuousTorque);
             }
             return null;
