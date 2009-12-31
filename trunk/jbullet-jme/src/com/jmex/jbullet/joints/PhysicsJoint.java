@@ -33,7 +33,8 @@ package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.TypedConstraint;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.PhysicsSpace;
+import com.jme.util.GameTaskQueue;
+import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
@@ -60,8 +61,7 @@ public class PhysicsJoint {
     protected Vector3f pivotA;
     protected Vector3f pivotB;
     protected boolean collisionBetweenLinkedBodys=true;
-    protected boolean update=false;
-    protected boolean rebuild=false;
+    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
 
     /**
      * @param pivotA local translation of the joint connection point in node A
@@ -76,11 +76,6 @@ public class PhysicsJoint {
 
 
     public void syncPhysics() {
-        if(update){
-            update=false;
-//            PhysicsSpace.getPhysicsSpace().remove(this);
-//            PhysicsSpace.getPhysicsSpace().add(this);
-        }
         
     }
 
@@ -104,6 +99,5 @@ public class PhysicsJoint {
      */
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
         this.collisionBetweenLinkedBodys = collisionBetweenLinkedBodys;
-        update=true;
     }
 }

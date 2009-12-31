@@ -37,6 +37,8 @@ import com.bulletphysics.dynamics.vehicle.RaycastVehicle;
 import com.bulletphysics.dynamics.vehicle.VehicleRaycaster;
 import com.bulletphysics.dynamics.vehicle.VehicleTuning;
 //import com.bulletphysics.dynamics.vehicle.WheelInfo;
+import com.bulletphysics.linearmath.MotionState;
+import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.PhysicsSpace;
@@ -97,6 +99,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     private float engineForce=0.0f;
     private boolean applyEngineForce=false;
+    private boolean applyBrake=false;
     private float brakeValue=0.0f;
     private float steerValue=0.0f;
 
@@ -118,6 +121,47 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     public PhysicsVehicleNode(Spatial child, CollisionShape shape, float mass){
         super(child, shape, mass);
+    }
+
+    @Override
+    protected MotionState createMotionState(){
+        return new MotionState(){
+
+            public Transform getWorldTransform(Transform out) {
+                if(out==null)
+                    out=new Transform();
+
+                tempRotation.set(getWorldRotation());
+                Converter.convert(tempRotation, tempRot);
+
+                out.basis.set(tempRot);
+                out.origin.set(Converter.convert(getWorldTranslation()));
+                return out;
+            }
+
+            public void setWorldTransform(Transform worldTrans) {
+                motionStateTrans.set(worldTrans);
+
+                pQueue.enqueue(new Callable(){
+
+                    public Object call() throws Exception {
+
+                        Converter.convert(motionStateTrans.origin,tempLocation);
+                        setWorldTranslation(tempLocation);
+
+                        Converter.convert(motionStateTrans.basis,tempMatrix);
+                        tempRotation.fromRotationMatrix(tempMatrix);
+                        setWorldRotation(tempRotation);
+
+                        Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
+                        //to set wheel locations
+                        syncWheels();
+                        return null;
+                    }
+                });
+            }
+
+        };
     }
 
     @Override
@@ -299,9 +343,21 @@ public class PhysicsVehicleNode extends PhysicsNode{
      */
     public void accelerate(float force, boolean apply){
         this.engineForce=force;
-        //TODO: applyEngineForce always true..
         applyEngineForce=apply;
+        if(applyEngineForce)
+            pQueue.enqueue(doApplyEngineForce);
     }
+
+    private Callable doApplyEngineForce=new Callable(){
+        public Object call() throws Exception {
+            for (int i = 0; i < wheels.size(); i++) {
+                vehicle.applyEngineForce(engineForce, i);
+            }
+            if(applyEngineForce)
+                PhysicsSpace.getPhysicsSpace().reQueue(doApplyEngineForce);
+            return null;
+        }
+    };
 
     /**
      * set the given steering value (0 = forward)
@@ -323,25 +379,20 @@ public class PhysicsVehicleNode extends PhysicsNode{
         }
     };
 
-    public void brake(float value){
-        brake(value,true);
-        pQueue.enqueue(doApplyBrake);
-    }
-
     public void brake(float value, boolean apply){
         brakeValue=value;
-        pQueue.enqueue(doApplyBrake);
+        applyBrake=apply;
+        if(applyBrake)
+            pQueue.enqueue(doApplyBrake);
     }
 
     private Callable doApplyBrake=new Callable(){
         public Object call() throws Exception {
             for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheelInfo = wheels.get(i);
-                if(!wheelInfo.isFrontWheel()){
-                    vehicle.applyEngineForce(0.0f, i);
-                }
                 vehicle.setBrake(brakeValue, i);
             }
+            if(applyBrake)
+                PhysicsSpace.getPhysicsSpace().reQueue(doApplyBrake);
             return null;
         }
     };
@@ -353,19 +404,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
         return vehicle;
     }
 
-    @Override
-    public void syncPhysics() {
-        if(applyEngineForce){
-            for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheelInfo = wheels.get(i);
-                if(!wheelInfo.isFrontWheel()){
-                    vehicle.applyEngineForce(engineForce, i);
-                }
-                vehicle.setBrake(0.0f, i);
-            }
-        }
-        super.syncPhysics();
-
+    public void syncWheels() {
         if(wheels!=null)
         for (int i = 0; i < wheels.size(); i++) {
             wheels.get(i).syncPhysics();

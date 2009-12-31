@@ -59,6 +59,7 @@ import com.jmex.jbullet.nodes.PhysicsNode;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -77,6 +78,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author normenhansen
  */
 public class PhysicsSpace {
+    private GameTaskQueue rQueue;
     private GameTaskQueue pQueue;
     private DynamicsWorld dynamicsWorld = null;
     private BroadphaseInterface broadphase;
@@ -101,8 +103,26 @@ public class PhysicsSpace {
         return pSpace;
     }
 
+    public void enqueueSync(Callable callable){
+        pQueue.enqueue(callable);
+    }
+
+    public void reQueue(final Callable callable){
+        rQueue.enqueue(new Callable(){
+            public Object call() throws Exception {
+                pQueue.enqueue(callable);
+                return null;
+            }
+
+        });
+    }
+
     public PhysicsSpace(){
         //TODO: better multithreading/updating support via queues
+        GameTaskQueueManager.getManager().addQueue("jbullet_requeue", new GameTaskQueue());
+        rQueue=GameTaskQueueManager.getManager().getQueue("jbullet_requeue");
+        rQueue.setExecuteAll(true);
+
         GameTaskQueueManager.getManager().addQueue("jbullet_sync", new GameTaskQueue());
         pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
         pQueue.setExecuteAll(true);
@@ -131,17 +151,15 @@ public class PhysicsSpace {
     }
 
     public void syncPhysics(){
+        //distribute events
         distributeEvents();
+        //add recurring events
+        rQueue.execute();
         //sync nodes+joints
         pQueue.execute();
+        //sync ghostnodes
         for ( PhysicsGhostNode node : physicsGhostNodes.values() ){
             node.syncPhysics();
-        }
-        for ( PhysicsNode node : physicsNodes.values() ){
-            node.syncPhysics();
-        }
-        for (PhysicsJoint joint : physicsJoints){
-            joint.syncPhysics();
         }
     }
 

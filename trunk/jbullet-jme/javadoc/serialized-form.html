@@ -369,24 +369,6 @@ cShape</H3>
 </DL>
 <HR>
 <H3>
-motionState</H3>
-<PRE>
-com.bulletphysics.linearmath.MotionState <B>motionState</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-rebuild</H3>
-<PRE>
-boolean <B>rebuild</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
 physicsEnabled</H3>
 <PRE>
 boolean <B>physicsEnabled</B></PRE>
@@ -408,24 +390,6 @@ com.jme.math.Quaternion <B>tmp_inverseWorldRotation</B></PRE>
 tempTrans</H3>
 <PRE>
 com.bulletphysics.linearmath.Transform <B>tempTrans</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-tempLoc</H3>
-<PRE>
-javax.vecmath.Vector3f <B>tempLoc</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-tempVel</H3>
-<PRE>
-javax.vecmath.Vector3f <B>tempVel</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -480,24 +444,6 @@ com.jme.math.Matrix3f <B>tempMatrix</B></PRE>
 pQueue</H3>
 <PRE>
 com.jme.util.GameTaskQueue <B>pQueue</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-applyTranslation</H3>
-<PRE>
-boolean <B>applyTranslation</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-applyRotation</H3>
-<PRE>
-boolean <B>applyRotation</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -594,45 +540,36 @@ float <B>maxJumpHeight</B></PRE>
 </DL>
 <HR>
 <H3>
-applySpeeds</H3>
+doApplyWalkDirection</H3>
 <PRE>
-boolean <B>applySpeeds</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyWalkDirection</B></PRE>
 <DL>
 <DL>
 </DL>
 </DL>
 <HR>
 <H3>
-applyJump</H3>
+doApplyUpAxis</H3>
 <PRE>
-boolean <B>applyJump</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyUpAxis</B></PRE>
 <DL>
 <DL>
 </DL>
 </DL>
 <HR>
 <H3>
-applyJumpHeight</H3>
+doApplyMaxJumpHeight</H3>
 <PRE>
-boolean <B>applyJumpHeight</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyMaxJumpHeight</B></PRE>
 <DL>
 <DL>
 </DL>
 </DL>
 <HR>
 <H3>
-applyDirection</H3>
+doApplyJump</H3>
 <PRE>
-boolean <B>applyDirection</B></PRE>
-<DL>
-<DL>
-</DL>
-</DL>
-<HR>
-<H3>
-applyAxis</H3>
-<PRE>
-boolean <B>applyAxis</B></PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyJump</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -819,6 +756,15 @@ javax.vecmath.Vector3f <B>localInertia</B></PRE>
 </DL>
 <HR>
 <H3>
+motionStateTrans</H3>
+<PRE>
+com.bulletphysics.linearmath.Transform <B>motionStateTrans</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
 angularVelocity</H3>
 <PRE>
 com.jme.math.Vector3f <B>angularVelocity</B></PRE>
@@ -957,6 +903,24 @@ java.util.concurrent.Callable&lt;V&gt; <B>doApplyGravity</B></PRE>
 doApplyVelocity</H3>
 <PRE>
 java.util.concurrent.Callable&lt;V&gt; <B>doApplyVelocity</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyContinuousForce</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyContinuousForce</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyContinuousTorque</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyContinuousTorque</B></PRE>
 <DL>
 <DL>
 </DL>
@@ -1116,6 +1080,15 @@ boolean <B>applyEngineForce</B></PRE>
 </DL>
 <HR>
 <H3>
+applyBrake</H3>
+<PRE>
+boolean <B>applyBrake</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
 brakeValue</H3>
 <PRE>
 float <B>brakeValue</B></PRE>
@@ -1137,6 +1110,15 @@ float <B>steerValue</B></PRE>
 doUpdateVehicleConstraint</H3>
 <PRE>
 java.util.concurrent.Callable&lt;V&gt; <B>doUpdateVehicleConstraint</B></PRE>
+<DL>
+<DL>
+</DL>
+</DL>
+<HR>
+<H3>
+doApplyEngineForce</H3>
+<PRE>
+java.util.concurrent.Callable&lt;V&gt; <B>doApplyEngineForce</B></PRE>
 <DL>
 <DL>
 </DL>

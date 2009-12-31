@@ -35,9 +35,9 @@ import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
+import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -60,8 +60,6 @@ public class Physics6DofJoint extends PhysicsJoint{
     private Vector3f linearLowerLimit=new Vector3f();
     private Vector3f angularUpperLimit=new Vector3f();
     private Vector3f angularLowerLimit=new Vector3f();
-
-    private boolean updateLimits=false;
 
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
@@ -104,22 +102,22 @@ public class Physics6DofJoint extends PhysicsJoint{
 
     public void setLinearUpperLimit(Vector3f vector){
         this.linearUpperLimit.set(vector);
-        updateLimits=true;
+        pQueue.enqueue(doUpdateLimits);
     }
 
     public void setLinearLowerLimit(Vector3f vector){
         this.linearUpperLimit.set(vector);
-        updateLimits=true;
+        pQueue.enqueue(doUpdateLimits);
     }
 
     public void setAngularUpperLimit(Vector3f vector){
         this.angularUpperLimit.set(vector);
-        updateLimits=true;
+        pQueue.enqueue(doUpdateLimits);
     }
 
     public void setAngularLowerLimit(Vector3f vector){
         this.angularUpperLimit.set(vector);
-        updateLimits=true;
+        pQueue.enqueue(doUpdateLimits);
     }
     
     private void updateLimits(){
@@ -129,13 +127,11 @@ public class Physics6DofJoint extends PhysicsJoint{
         ((Generic6DofConstraint)constraint).setAngularUpperLimit(Converter.convert(angularLowerLimit));
     }
 
-    @Override
-    public void syncPhysics() {
-        if(updateLimits){
+    private Callable doUpdateLimits=new Callable(){
+        public Object call() throws Exception {
             updateLimits();
-            updateLimits=false;
+            return null;
         }
-        super.syncPhysics();
-    }
+    };
 
 }
