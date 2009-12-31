@@ -11,7 +11,7 @@ The synchronization of jme and the physics happens when PhyiscsSpace.syncPhysics
    * physics update run
   * *syncPhysics()* - should be run when update() is done / not running
    * collision events get dispatched
-   * jme2 node input gets applied to physics
+   * jme2 node input from queue gets applied to physics
    * physics state gets applied to jme2 nodes
 
 TODO: extend
