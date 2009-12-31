@@ -12,3 +12,13 @@ jbullet-jme uses the GameTaskQueueManager of jme to allow queueing of phyiscs ta
 {{{
 GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
 }}}
+
+== Developers Guide ==
+jbullet-jme internally keeps copies of the important jbullet values like velocities etc.
+For example when a [PhysicsNode]s setLocalTranslation() method is called and the rBody of that node is attached
+to the current dynamic physics space, the value is not applied to the rBody immediately.
+Instead, a Callable is stored in the "jbullet_sync" GameTaskQueue which in turn is called when
+the syncPhysics() method of the phyiscs space is called.
+
+Currently, jbullet-jme capsules everything that might be accessed from the jme side to ensure
+maximum safety. It should be investigated what data does not need to be doubled (e.g. CollisionEvents).
