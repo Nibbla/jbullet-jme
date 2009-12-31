@@ -31,11 +31,12 @@
  */
 package com.jmex.jbullet.joints;
 
+import com.bulletphysics.dynamics.constraintsolver.ConeTwistConstraint;
 import com.bulletphysics.dynamics.constraintsolver.HingeConstraint;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
+import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -57,8 +58,6 @@ public class PhysicsHingeJoint extends PhysicsJoint{
     private float relaxationFactor=1.0f;
 
     private boolean enableMotor=false;
-    private boolean applyMotor=false;
-    private boolean applyLimit=false;
 
     /**
      * Creates a new HingeJoint
@@ -78,7 +77,7 @@ public class PhysicsHingeJoint extends PhysicsJoint{
         this.enableMotor=enable;
         this.targetVelocity=targetVelocity;
         this.maxMotorImpule=maxMotorImpulse;
-        applyMotor=true;
+        pQueue.enqueue(doEnableMotor);
     }
 
 	public void setLimit(float low, float high) {
@@ -91,20 +90,21 @@ public class PhysicsHingeJoint extends PhysicsJoint{
         this.softness=_softness;
         this.biasFactor=_biasFactor;
         this.relaxationFactor=_relaxationFactor;
-        applyLimit=true;
+        pQueue.enqueue(doUpdateLimits);
     }
 
-    @Override
-    public void syncPhysics() {
-        super.syncPhysics();
-        if(applyLimit){
-            ((HingeConstraint)constraint).setLimit(limitLow, limitHigh, softness, biasFactor, relaxationFactor);
-            applyLimit=false;
-        }
-        if(applyMotor){
+    private Callable doEnableMotor=new Callable(){
+        public Object call() throws Exception {
             ((HingeConstraint)constraint).enableAngularMotor(enableMotor, targetVelocity, maxMotorImpule);
-            applyMotor=false;
+            return null;
         }
-    }
-    
+    };
+
+    private Callable doUpdateLimits=new Callable(){
+        public Object call() throws Exception {
+            ((HingeConstraint)constraint).setLimit(limitLow, limitHigh, softness, biasFactor, relaxationFactor);
+            return null;
+        }
+    };
+
 }

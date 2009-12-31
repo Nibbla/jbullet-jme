@@ -573,8 +573,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#syncPhysics()">syncPhysics</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called from the main loop to sync jme object with jbullet object<br>
- TODO: replace /w queue</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used to sync jme to physics (TODO: can be removed?)</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -1083,29 +1082,6 @@ public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
 </DL>
 <HR>
 
-<A NAME="applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
-applyImpulse</H3>
-<PRE>
-public void <B>applyImpulse</B>(com.jme.math.Vector3f&nbsp;vec,
-                         com.jme.math.Vector3f&nbsp;vec2)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="applyTorqueImpulse(com.jme.math.Vector3f)"><!-- --></A><H3>
-applyTorqueImpulse</H3>
-<PRE>
-public void <B>applyTorqueImpulse</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getContinuousTorque()"><!-- --></A><H3>
 getContinuousTorque</H3>
 <PRE>
@@ -1140,6 +1116,29 @@ public void <B>applyContinuousTorque</B>(boolean&nbsp;apply,
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>vec</CODE> - the vector of the force to apply</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyImpulse</H3>
+<PRE>
+public void <B>applyImpulse</B>(com.jme.math.Vector3f&nbsp;vec,
+                         com.jme.math.Vector3f&nbsp;vec2)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyTorqueImpulse(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyTorqueImpulse</H3>
+<PRE>
+public void <B>applyTorqueImpulse</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -1245,8 +1244,7 @@ syncPhysics</H3>
 <PRE>
 public void <B>syncPhysics</B>()</PRE>
 <DL>
-<DD>called from the main loop to sync jme object with jbullet object<br>
- TODO: replace /w queue
+<DD>used to sync jme to physics (TODO: can be removed?)
 <P>
 <DD><DL>
 </DL>

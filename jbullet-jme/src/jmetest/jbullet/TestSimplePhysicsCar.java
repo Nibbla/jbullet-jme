@@ -73,6 +73,8 @@ public class TestSimplePhysicsCar {
                 KeyInput.KEY_H);
         KeyBindingManager.getKeyBindingManager().set("key_steer_right",
                 KeyInput.KEY_K);
+        KeyBindingManager.getKeyBindingManager().set("key_action",
+                KeyInput.KEY_SPACE);
 
         // Create a DebugGameState
         // - override the update method to update/sync physics space
@@ -86,12 +88,13 @@ public class TestSimplePhysicsCar {
 
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_accelerate", false)) {
+                    physicsCar.brake(0f,false);
                     physicsCar.accelerate(1, true);
                 }
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_brake", false)) {
                     physicsCar.accelerate(0, false);
-                    physicsCar.brake(.1f);
+                    physicsCar.brake(.1f,true);
                 }
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_left", true)) {
@@ -100,6 +103,13 @@ public class TestSimplePhysicsCar {
                 else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_right", true)) {
                     physicsCar.steer(-.5f);
+                }
+                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_action", false)) {
+                    if(physicsCar.getContinuousForce()==null)
+                        physicsCar.applyContinuousForce(true, Vector3f.UNIT_Y.mult(10));
+                    else
+                        physicsCar.applyContinuousForce(false, Vector3f.UNIT_Y.mult(10));
                 }
                 else{
                     physicsCar.steer(0);

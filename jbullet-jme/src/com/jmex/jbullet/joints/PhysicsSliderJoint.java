@@ -31,13 +31,14 @@
  */
 package com.jmex.jbullet.joints;
 
+import com.bulletphysics.dynamics.constraintsolver.HingeConstraint;
 import com.bulletphysics.dynamics.constraintsolver.SliderConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
+import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -90,7 +91,6 @@ public class PhysicsSliderJoint extends PhysicsJoint{
     private Matrix3f rotA;
     private Matrix3f rotB;
 
-    private boolean updateMotors=false;
     
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
@@ -171,7 +171,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setLowerLinLimit(float lowerLinLimit) {
         this.lowerLinLimit = lowerLinLimit;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getUpperLinLimit() {
@@ -180,7 +180,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setUpperLinLimit(float upperLinLimit) {
         this.upperLinLimit = upperLinLimit;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getLowerAngLimit() {
@@ -189,7 +189,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setLowerAngLimit(float lowerAngLimit) {
         this.lowerAngLimit = lowerAngLimit;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getUpperAngLimit() {
@@ -198,7 +198,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setUpperAngLimit(float upperAngLimit) {
         this.upperAngLimit = upperAngLimit;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getSoftnessDirLin() {
@@ -207,7 +207,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setSoftnessDirLin(float softnessDirLin) {
         this.softnessDirLin = softnessDirLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getRestitutionDirLin() {
@@ -216,7 +216,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setRestitutionDirLin(float restitutionDirLin) {
         this.restitutionDirLin = restitutionDirLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getDampingDirLin() {
@@ -225,7 +225,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setDampingDirLin(float dampingDirLin) {
         this.dampingDirLin = dampingDirLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getSoftnessDirAng() {
@@ -234,7 +234,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setSoftnessDirAng(float softnessDirAng) {
         this.softnessDirAng = softnessDirAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getRestitutionDirAng() {
@@ -243,7 +243,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setRestitutionDirAng(float restitutionDirAng) {
         this.restitutionDirAng = restitutionDirAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getDampingDirAng() {
@@ -252,7 +252,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setDampingDirAng(float dampingDirAng) {
         this.dampingDirAng = dampingDirAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getSoftnessLimLin() {
@@ -261,7 +261,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setSoftnessLimLin(float softnessLimLin) {
         this.softnessLimLin = softnessLimLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getRestitutionLimLin() {
@@ -270,7 +270,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setRestitutionLimLin(float restitutionLimLin) {
         this.restitutionLimLin = restitutionLimLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getDampingLimLin() {
@@ -279,7 +279,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setDampingLimLin(float dampingLimLin) {
         this.dampingLimLin = dampingLimLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getSoftnessLimAng() {
@@ -288,7 +288,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setSoftnessLimAng(float softnessLimAng) {
         this.softnessLimAng = softnessLimAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getRestitutionLimAng() {
@@ -297,7 +297,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setRestitutionLimAng(float restitutionLimAng) {
         this.restitutionLimAng = restitutionLimAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getDampingLimAng() {
@@ -306,7 +306,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setDampingLimAng(float dampingLimAng) {
         this.dampingLimAng = dampingLimAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getSoftnessOrthoLin() {
@@ -315,7 +315,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setSoftnessOrthoLin(float softnessOrthoLin) {
         this.softnessOrthoLin = softnessOrthoLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getRestitutionOrthoLin() {
@@ -324,7 +324,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setRestitutionOrthoLin(float restitutionOrthoLin) {
         this.restitutionOrthoLin = restitutionOrthoLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getDampingOrthoLin() {
@@ -333,7 +333,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setDampingOrthoLin(float dampingOrthoLin) {
         this.dampingOrthoLin = dampingOrthoLin;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getSoftnessOrthoAng() {
@@ -342,7 +342,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setSoftnessOrthoAng(float softnessOrthoAng) {
         this.softnessOrthoAng = softnessOrthoAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getRestitutionOrthoAng() {
@@ -351,7 +351,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setRestitutionOrthoAng(float restitutionOrthoAng) {
         this.restitutionOrthoAng = restitutionOrthoAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public float getDampingOrthoAng() {
@@ -360,7 +360,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setDampingOrthoAng(float dampingOrthoAng) {
         this.dampingOrthoAng = dampingOrthoAng;
-        update=true;
+        pQueue.enqueue(doUpdateJoint);
     }
 
     public boolean isPoweredLinMotor() {
@@ -369,7 +369,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setPoweredLinMotor(boolean poweredLinMotor) {
         this.poweredLinMotor = poweredLinMotor;
-        updateMotors=true;
+        pQueue.enqueue(doUpdateMotor);
     }
 
     public float getTargetLinMotorVelocity() {
@@ -378,7 +378,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setTargetLinMotorVelocity(float targetLinMotorVelocity) {
         this.targetLinMotorVelocity = targetLinMotorVelocity;
-        updateMotors=true;
+        pQueue.enqueue(doUpdateMotor);
     }
 
     public float getMaxLinMotorForce() {
@@ -387,7 +387,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setMaxLinMotorForce(float maxLinMotorForce) {
         this.maxLinMotorForce = maxLinMotorForce;
-        updateMotors=true;
+        pQueue.enqueue(doUpdateMotor);
     }
 
     public boolean isPoweredAngMotor() {
@@ -396,7 +396,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setPoweredAngMotor(boolean poweredAngMotor) {
         this.poweredAngMotor = poweredAngMotor;
-        updateMotors=true;
+        pQueue.enqueue(doUpdateMotor);
     }
 
     public float getTargetAngMotorVelocity() {
@@ -405,7 +405,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setTargetAngMotorVelocity(float targetAngMotorVelocity) {
         this.targetAngMotorVelocity = targetAngMotorVelocity;
-        updateMotors=true;
+        pQueue.enqueue(doUpdateMotor);
     }
 
     public float getMaxAngMotorForce() {
@@ -414,7 +414,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public void setMaxAngMotorForce(float maxAngMotorForce) {
         this.maxAngMotorForce = maxAngMotorForce;
-        updateMotors=true;
+        pQueue.enqueue(doUpdateMotor);
     }
 
     private void updateJoint() {
@@ -445,6 +445,13 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     }
 
+    private Callable doUpdateJoint=new Callable(){
+        public Object call() throws Exception {
+            updateJoint();
+            return null;
+        }
+    };
+
     private void updateMotors(){
         ((SliderConstraint)constraint).setMaxAngMotorForce(maxAngMotorForce);
         ((SliderConstraint)constraint).setMaxLinMotorForce(maxLinMotorForce);
@@ -456,16 +463,11 @@ public class PhysicsSliderJoint extends PhysicsJoint{
         ((SliderConstraint)constraint).setPoweredLinMotor(collisionBetweenLinkedBodys);
     }
 
-    @Override
-    public void syncPhysics() {
-        if(update){
-            updateJoint();
-        }
-        if(updateMotors){
+    private Callable doUpdateMotor=new Callable(){
+        public Object call() throws Exception {
             updateMotors();
-            updateMotors=false;
+            return null;
         }
-        super.syncPhysics();
-    }
+    };
 
 }

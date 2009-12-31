@@ -96,17 +96,19 @@ public class PhysicsNode extends CollisionObject{
 
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
-    private Transform tempTrans=new Transform();
-    private javax.vecmath.Vector3f tempVel=new javax.vecmath.Vector3f();
-    private javax.vecmath.Quat4f tempRot=new javax.vecmath.Quat4f();
-    private com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
-    private com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
-    private com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
+    protected Transform tempTrans=new Transform();
+    protected javax.vecmath.Vector3f tempVel=new javax.vecmath.Vector3f();
+    protected javax.vecmath.Quat4f tempRot=new javax.vecmath.Quat4f();
+    protected com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
+    protected com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
+    protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
 
     //TODO: needed here?
     private javax.vecmath.Vector3f localInertia=new javax.vecmath.Vector3f();
+    //stores transform from motionstate
+    protected Transform motionStateTrans=new Transform();
 
-    private Vector3f angularVelocity=new Vector3f();
+    protected Vector3f angularVelocity=new Vector3f();
 
     private Vector3f gravity=new Vector3f();
 
@@ -197,17 +199,15 @@ public class PhysicsNode extends CollisionObject{
             }
 
             public void setWorldTransform(Transform worldTrans) {
-                //TODO: reuse transform
-                final Transform trans=new Transform(worldTrans);
-
+                motionStateTrans.set(worldTrans);
+                //TODO: different queue?
                 pQueue.enqueue(new Callable(){
-
                     public Object call() throws Exception {
 
-                        Converter.convert(trans.origin,tempLocation);
+                        Converter.convert(motionStateTrans.origin,tempLocation);
                         setWorldTranslation(tempLocation);
 
-                        Converter.convert(trans.basis,tempMatrix);
+                        Converter.convert(motionStateTrans.basis,tempMatrix);
                         tempRotation.fromRotationMatrix(tempMatrix);
                         setWorldRotation(tempRotation);
 
@@ -592,7 +592,56 @@ public class PhysicsNode extends CollisionObject{
     public void applyContinuousForce(boolean apply, Vector3f vec){
         if(vec!=null) continuousForce.set(vec);
         applyForce=apply;
+        if(applyForce)
+            pQueue.enqueue(doApplyContinuousForce);
     }
+
+    private Callable doApplyContinuousForce=new Callable(){
+        public Object call() throws Exception {
+            //TODO: reuse vector
+            rBody.applyCentralForce(Converter.convert(continuousForce));
+            if(applyForce){
+                PhysicsSpace.getPhysicsSpace().reQueue(doApplyContinuousForce);
+            }
+            return null;
+        }
+
+    };
+
+    public Vector3f getContinuousTorque(){
+        return continuousTorque;
+    }
+
+    public Vector3f getContinuousTorque(Vector3f vec){
+        return vec.set(continuousTorque);
+    }
+
+    /**
+     * Apply a continuous torque to this PhysicsNode. The torque is updated automatically each
+     * tick so you only need to set it once and then set it to false to stop applying
+     * the torque.
+     * @param apply true if the force should be applied each physics tick
+     * @param vec the vector of the force to apply
+     */
+    public void applyContinuousTorque(boolean apply, Vector3f vec){
+        if(vec!=null) continuousTorque.set(vec);
+        applyTorque=apply;
+        if(applyTorque){
+            pQueue.enqueue(doApplyContinuousTorque);
+        }
+    }
+
+    private Callable doApplyContinuousTorque=new Callable(){
+        public Object call() throws Exception {
+            //TODO: reuse vector
+            rBody.applyTorque(Converter.convert(continuousTorque));
+            if(applyForce){
+                PhysicsSpace.getPhysicsSpace().reQueue(doApplyContinuousTorque);
+            }
+            return null;
+        }
+
+    };
 
     public void applyImpulse(Vector3f vec, Vector3f vec2){
         if(vec!=null) impulseVector.set(vec);
@@ -631,26 +680,6 @@ public class PhysicsNode extends CollisionObject{
             return null;
         }
     };
-
-    public Vector3f getContinuousTorque(){
-        return continuousTorque;
-    }
-
-    public Vector3f getContinuousTorque(Vector3f vec){
-        return vec.set(continuousTorque);
-    }
-
-    /**
-     * Apply a continuous torque to this PhysicsNode. The torque is updated automatically each
-     * tick so you only need to set it once and then set it to false to stop applying
-     * the torque.
-     * @param apply true if the force should be applied each physics tick
-     * @param vec the vector of the force to apply
-     */
-    public void applyContinuousTorque(boolean apply, Vector3f vec){
-        if(vec!=null) continuousTorque.set(vec);
-        applyTorque=apply;
-    }
 
     public void clearForces(){
         if(rBody!=null&&rBody.isInWorld())
@@ -726,8 +755,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * called from the main loop to sync jme object with jbullet object<br>
-     * TODO: replace /w queue
+     * used to sync jme to physics (TODO: can be removed?)
      */
     public void syncPhysics(){
         if(rBody==null) return;
@@ -736,15 +764,6 @@ public class PhysicsNode extends CollisionObject{
             updateRigidBody();
             applyTranslation();
             applyRotation();
-        }
-
-        if(applyForce){
-            //TODO: reuse vector
-            rBody.applyCentralForce(Converter.convert(continuousForce));
-        }
-        if(applyTorque){
-            //TODO: reuse vector
-            rBody.applyTorque(Converter.convert(continuousTorque));
         }
     }
 

@@ -59,17 +59,11 @@ public class PhysicsGhostNode extends CollisionObject{
 	protected PairCachingGhostObject gObject;
     protected CollisionShape cShape;
 
-    private MotionState motionState=new DefaultMotionState();
-
-    private boolean rebuild=true;
-
     private boolean physicsEnabled=true;
 
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
     private Transform tempTrans=new Transform();
-    private javax.vecmath.Vector3f tempLoc=new javax.vecmath.Vector3f();
-    private javax.vecmath.Vector3f tempVel=new javax.vecmath.Vector3f();
     private javax.vecmath.Quat4f tempRot=new javax.vecmath.Quat4f();
     protected com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
     protected com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
@@ -77,8 +71,6 @@ public class PhysicsGhostNode extends CollisionObject{
     protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
 
     protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
-    private boolean applyTranslation=true;
-    private boolean applyRotation=true;
 
     public PhysicsGhostNode(Spatial child, int shapeType) {
         this.attachChild(child);
@@ -137,7 +129,6 @@ public class PhysicsGhostNode extends CollisionObject{
             tempLocation.set(getWorldTranslation());
             Converter.convert(tempLocation,tempTrans.origin);
             gObject.setWorldTransform(tempTrans);
-            motionState.setWorldTransform(tempTrans);
             return null;
         }
     };
@@ -179,7 +170,6 @@ public class PhysicsGhostNode extends CollisionObject{
             Converter.convert(tempRotation, tempRot);
             tempTrans.setRotation(tempRot);
             gObject.setWorldTransform(tempTrans);
-            motionState.setWorldTransform(tempTrans);
             return null;
         }
     };
@@ -231,30 +221,12 @@ public class PhysicsGhostNode extends CollisionObject{
 
         gObject.getWorldTransform(tempTrans);
 
-        if(applyTranslation){
-            tempLocation.set(getWorldTranslation());
-            Converter.convert(tempLocation,tempTrans.origin);
-            gObject.setWorldTransform(tempTrans);
-            motionState.setWorldTransform(tempTrans);
-            applyTranslation=false;
-        }
-        else{
-            Converter.convert(tempTrans.origin,tempLocation);
-            setWorldTranslation(tempLocation);
-        }
-        if(applyRotation){
-            tempRotation=getWorldRotation();
-            Converter.convert(tempRotation, tempRot);
-            tempTrans.setRotation(tempRot);
-            gObject.setWorldTransform(tempTrans);
-            motionState.setWorldTransform(tempTrans);
-            applyRotation=false;
-        }
-        else{
-            Converter.convert(tempTrans.basis,tempMatrix);
-            tempRotation.fromRotationMatrix(tempMatrix);
-            setWorldRotation(tempRotation);
-        }
+        Converter.convert(tempTrans.origin,tempLocation);
+        setWorldTranslation(tempLocation);
+
+        Converter.convert(tempTrans.basis,tempMatrix);
+        tempRotation.fromRotationMatrix(tempMatrix);
+        setWorldRotation(tempRotation);
     }
 
 }
