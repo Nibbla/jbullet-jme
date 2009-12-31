@@ -6,6 +6,14 @@ jbullet-jme has been developed in a way that makes it easy to integrate it into 
 == Details ==
 The synchronization of jme and the physics happens when PhyiscsSpace.syncPhysics() is called. The actual physics update() call is separated and can be called synchronously to other tasks.
 
+==Updating sequence==
+  * *update(float time)* - can be run in parallel to anything else, data is capsuled
+   * physics update run
+  * *syncPhysics()* - should be run when update() is done / not running
+   * collision events get dispatched
+   * jme2 node input gets applied to physics
+   * physics state gets applied to jme2 nodes
+
 TODO: extend
 == Queues ==
 jbullet-jme uses the GameTaskQueueManager of jme to allow queueing of phyiscs tasks.
