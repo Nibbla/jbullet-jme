@@ -39,6 +39,7 @@ import com.bulletphysics.collision.shapes.SphereShape;
 import com.jme.bounding.BoundingBox;
 import com.jme.bounding.BoundingCapsule;
 import com.jme.bounding.BoundingSphere;
+import com.jme.bounding.BoundingVolume;
 import com.jme.math.FastMath;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
@@ -64,8 +65,31 @@ public class CollisionShape {
         createCollisionShape(node);
     }
 
+    public CollisionShape(BoundingVolume volume) {
+        createCollisionShape(volume);
+    }
+
+    public CollisionShape(TriMesh mesh) {
+        createCollisionMesh(mesh);
+    }
+
     public int getType() {
         return type;
+    }
+
+    private void createCollisionShape(BoundingVolume volume){
+        if(volume instanceof BoundingSphere){
+            createCollisionSphere((BoundingSphere)volume);
+        }
+        else if(volume instanceof BoundingBox){
+            createCollisionBox((BoundingBox)volume);
+        }
+        else if(volume instanceof BoundingCapsule){
+            createCollisionCapsule((BoundingCapsule)volume);
+        }
+        else{
+            throw (new UnsupportedOperationException("BoundingVolume type not supported."));
+        }
     }
 
     /**
@@ -127,9 +151,14 @@ public class CollisionShape {
             node.updateWorldBound();
         }
         BoundingBox volume=(BoundingBox)node.getWorldBound();
+        createCollisionBox(volume);
+    }
+
+    private void createCollisionBox(BoundingBox volume) {
         javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
         BoxShape sphere=new BoxShape(halfExtents);
         cShape=sphere;
+        type=Shapes.BOX;
     }
 
     /**
@@ -147,8 +176,13 @@ public class CollisionShape {
             node.updateWorldBound();
         }
         BoundingSphere volume=(BoundingSphere)node.getWorldBound();
+        createCollisionSphere(volume);
+    }
+
+    private void createCollisionSphere(BoundingSphere volume) {
         SphereShape sphere=new SphereShape(volume.getRadius());
         cShape=sphere;
+        type=Shapes.SPHERE;
     }
 
     private void createCollisionCapsule(Node node) {
@@ -162,6 +196,10 @@ public class CollisionShape {
             node.updateWorldBound();
         }
         BoundingCapsule capsule=(BoundingCapsule)node.getWorldBound();
+        createCollisionCapsule(capsule);
+    }
+
+    private void createCollisionCapsule(BoundingCapsule capsule) {
         float radius=capsule.getRadius();
         float volume=capsule.getVolume();
         volume-= ( ((4.0f/3.0f) * FastMath.PI ) * FastMath.pow(radius,3) );
@@ -169,6 +207,7 @@ public class CollisionShape {
         height+=(radius*2);
         CapsuleShape capShape=new CapsuleShape(capsule.getRadius(),height);
         cShape=capShape;
+        type=Shapes.CAPSULE;
     }
 
     private void createCollisionCylinder(Node node){
@@ -183,9 +222,16 @@ public class CollisionShape {
         node.updateModelBound();
         node.updateWorldBound();
         BoundingBox volume=(BoundingBox)node.getWorldBound();
+        createCollisionCylinder(volume);
+    }
+
+    private void createCollisionCylinder(BoundingBox volume){
+        if(5==5)
+            throw (new UnsupportedOperationException("Not implemented yet."));
         javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
         CylinderShape capShape=new CylinderShape(halfExtents);
         cShape=capShape;
+        type=Shapes.CYLINDER;
     }
 
     /**
@@ -201,12 +247,17 @@ public class CollisionShape {
             throw (new UnsupportedOperationException("Can only create mesh from one single trimesh as leaf in this node."));
         }
         if(node.getChild(0) instanceof TriMesh){
-            TriMesh child=(TriMesh)node.getChild(0);
-            cShape=new BvhTriangleMeshShape(Converter.convert(child),true);
+            TriMesh mesh=(TriMesh)node.getChild(0);
+            createCollisionMesh(mesh);
         }
         else{
             throw (new UnsupportedOperationException("No usable trimesh attached to this node!"));
         }
+    }
+
+    private void createCollisionMesh(TriMesh mesh){
+        cShape=new BvhTriangleMeshShape(Converter.convert(mesh),true);
+        type=Shapes.MESH;
     }
 
     /**
