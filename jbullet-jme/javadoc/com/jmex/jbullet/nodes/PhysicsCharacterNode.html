@@ -4,17 +4,17 @@
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>
-PhysicsGhostNode
+PhysicsCharacterNode
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.nodes.PhysicsGhostNode class">
+<META NAME="keywords" CONTENT="com.jmex.jbullet.nodes.PhysicsCharacterNode class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="PhysicsGhostNode";
+    parent.document.title="PhysicsCharacterNode";
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -37,7 +37,7 @@ function windowTitle()
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsGhostNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsCharacterNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -52,11 +52,11 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html" title="class in com.jmex.jbullet.nodes"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsGhostNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="PhysicsGhostNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsCharacterNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PhysicsCharacterNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
@@ -87,36 +87,26 @@ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&n
 <FONT SIZE="-1">
 com.jmex.jbullet.nodes</FONT>
 <BR>
-Class PhysicsGhostNode</H2>
+Class PhysicsCharacterNode</H2>
 <PRE>
 java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Spatial
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Node
           <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">com.jmex.jbullet.collision.CollisionObject</A>
-              <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.nodes.PhysicsGhostNode</B>
+              <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">com.jmex.jbullet.nodes.PhysicsGhostNode</A>
+                  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.nodes.PhysicsCharacterNode</B>
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable, java.io.Serializable</DD>
 </DL>
-<DL>
-<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html" title="class in com.jmex.jbullet.nodes">PhysicsCharacterNode</A></DD>
-</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>PhysicsGhostNode</B><DT>extends <A HREF="../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">CollisionObject</A></DL>
+<DT><PRE>public class <B>PhysicsCharacterNode</B><DT>extends <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A></DL>
 </PRE>
 
 <P>
-<i>From Bullet manual:</i><br>
- GhostObject can keep track of all objects that are overlapping.
- By default, this overlap is based on the AABB.
- This is useful for creating a character controller,
- collision sensors/triggers, explosions etc.<br>
-<P>
-
-<P>
 <DL>
-<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.jmex.jbullet.nodes.PhysicsGhostNode">Serialized Form</A></DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.jmex.jbullet.nodes.PhysicsCharacterNode">Serialized Form</A></DL>
 <HR>
 
 <P>
@@ -167,15 +157,9 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#PhysicsGhostNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape)">PhysicsGhostNode</A></B>(com.jme.scene.Spatial&nbsp;child,
-                 <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#PhysicsGhostNode(com.jme.scene.Spatial, int)">PhysicsGhostNode</A></B>(com.jme.scene.Spatial&nbsp;child,
-                 int&nbsp;shapeType)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#PhysicsCharacterNode(com.jme.scene.Spatial, int, float)">PhysicsCharacterNode</A></B>(com.jme.scene.Spatial&nbsp;spat,
+                     int&nbsp;shapeType,
+                     float&nbsp;stepHeight)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -192,87 +176,52 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;com.bulletphysics.collision.dispatch.GhostObject</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getGhostObject()">getGhostObject</A></B>()</CODE>
+<CODE>&nbsp;com.bulletphysics.dynamics.character.KinematicCharacterController</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#getCharacterController()">getCharacterController</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;com.jme.math.Quaternion</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getLocalRotation()">getLocalRotation</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that getLocalRotation().set() will not update the physics object position.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getLocalTranslation()">getLocalTranslation</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that getLocalTranslation().set() will not update the physics object position.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A></B>(com.jme.math.Matrix3f&nbsp;arg0)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local rotation of this node.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A></B>(com.jme.math.Quaternion&nbsp;arg0)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local rotation of this node.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A></B>(float&nbsp;x,
-                    float&nbsp;y,
-                    float&nbsp;z)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local translation of this node.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A></B>(com.jme.math.Vector3f&nbsp;arg0)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local translation of this node.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;com.jme.math.Quaternion</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A></B>(com.jme.math.Quaternion&nbsp;rot)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computes the local rotation from the parameter rot and sets it as new
- local rotation.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A></B>(com.jme.math.Vector3f&nbsp;translation)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Computes the local translation from the parameter translation and sets it as new
- local translation.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#syncPhysics()">syncPhysics</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#jump()">jump</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setMaxJumpHeight(float)">setMaxJumpHeight</A></B>(float&nbsp;height)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setUpAxis(int)">setUpAxis</A></B>(int&nbsp;axis)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setWalkDirection(com.jme.math.Vector3f)">setWalkDirection</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.nodes.PhysicsGhostNode"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.nodes.<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getGhostObject()">getGhostObject</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getLocalRotation()">getLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getLocalTranslation()">getLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#syncPhysics()">syncPhysics</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Node"><!-- --></A>
@@ -324,20 +273,12 @@ java.lang.Object
 </TR>
 </TABLE>
 
-<A NAME="PhysicsGhostNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
-PhysicsGhostNode</H3>
+<A NAME="PhysicsCharacterNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
+PhysicsCharacterNode</H3>
 <PRE>
-public <B>PhysicsGhostNode</B>(com.jme.scene.Spatial&nbsp;child,
-                        int&nbsp;shapeType)</PRE>
-<DL>
-</DL>
-<HR>
-
-<A NAME="PhysicsGhostNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.CollisionShape)"><!-- --></A><H3>
-PhysicsGhostNode</H3>
-<PRE>
-public <B>PhysicsGhostNode</B>(com.jme.scene.Spatial&nbsp;child,
-                        <A HREF="../../../../com/jmex/jbullet/collision/CollisionShape.html" title="class in com.jmex.jbullet.collision">CollisionShape</A>&nbsp;shape)</PRE>
+public <B>PhysicsCharacterNode</B>(com.jme.scene.Spatial&nbsp;spat,
+                            int&nbsp;shapeType,
+                            float&nbsp;stepHeight)</PRE>
 <DL>
 </DL>
 
@@ -351,146 +292,10 @@ public <B>PhysicsGhostNode</B>(com.jme.scene.Spatial&nbsp;child,
 </TR>
 </TABLE>
 
-<A NAME="getLocalTranslation()"><!-- --></A><H3>
-getLocalTranslation</H3>
+<A NAME="setWalkDirection(com.jme.math.Vector3f)"><!-- --></A><H3>
+setWalkDirection</H3>
 <PRE>
-public com.jme.math.Vector3f <B>getLocalTranslation</B>()</PRE>
-<DL>
-<DD>Note that getLocalTranslation().set() will not update the physics object position.
- Use setLocalTranslation() instead!
-<P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>getLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setLocalTranslation(com.jme.math.Vector3f)"><!-- --></A><H3>
-setLocalTranslation</H3>
-<PRE>
-public void <B>setLocalTranslation</B>(com.jme.math.Vector3f&nbsp;arg0)</PRE>
-<DL>
-<DD>Sets the local translation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
-<P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setLocalTranslation(float, float, float)"><!-- --></A><H3>
-setLocalTranslation</H3>
-<PRE>
-public void <B>setLocalTranslation</B>(float&nbsp;x,
-                                float&nbsp;y,
-                                float&nbsp;z)</PRE>
-<DL>
-<DD>Sets the local translation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
-<P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getLocalRotation()"><!-- --></A><H3>
-getLocalRotation</H3>
-<PRE>
-public com.jme.math.Quaternion <B>getLocalRotation</B>()</PRE>
-<DL>
-<DD>Note that getLocalRotation().set() will not update the physics object position.
- Use setLocalRotation() instead!
-<P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>getLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setLocalRotation(com.jme.math.Matrix3f)"><!-- --></A><H3>
-setLocalRotation</H3>
-<PRE>
-public void <B>setLocalRotation</B>(com.jme.math.Matrix3f&nbsp;arg0)</PRE>
-<DL>
-<DD>Sets the local rotation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
-<P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setLocalRotation(com.jme.math.Quaternion)"><!-- --></A><H3>
-setLocalRotation</H3>
-<PRE>
-public void <B>setLocalRotation</B>(com.jme.math.Quaternion&nbsp;arg0)</PRE>
-<DL>
-<DD>Sets the local rotation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
-<P>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
-</DD>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setWorldTranslation(com.jme.math.Vector3f)"><!-- --></A><H3>
-setWorldTranslation</H3>
-<PRE>
-public com.jme.math.Vector3f <B>setWorldTranslation</B>(com.jme.math.Vector3f&nbsp;translation)</PRE>
-<DL>
-<DD>Computes the local translation from the parameter translation and sets it as new
- local translation.<br>
- This should only be called from the physics thread to update the jme spatial
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>translation</CODE> - new world translation of this spatial.
-<DT><B>Returns:</B><DD>the computed local translation</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="setWorldRotation(com.jme.math.Quaternion)"><!-- --></A><H3>
-setWorldRotation</H3>
-<PRE>
-public com.jme.math.Quaternion <B>setWorldRotation</B>(com.jme.math.Quaternion&nbsp;rot)</PRE>
-<DL>
-<DD>Computes the local rotation from the parameter rot and sets it as new
- local rotation.<br>
- This should only be called from the physics thread to update the jme spatial
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>rot</CODE> - new world rotation of this spatial.
-<DT><B>Returns:</B><DD>the computed local rotation</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="getGhostObject()"><!-- --></A><H3>
-getGhostObject</H3>
-<PRE>
-public com.bulletphysics.collision.dispatch.GhostObject <B>getGhostObject</B>()</PRE>
+public void <B>setWalkDirection</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -498,13 +303,47 @@ public com.bulletphysics.collision.dispatch.GhostObject <B>getGhostObject</B>()<
 </DL>
 <HR>
 
-<A NAME="syncPhysics()"><!-- --></A><H3>
-syncPhysics</H3>
+<A NAME="setUpAxis(int)"><!-- --></A><H3>
+setUpAxis</H3>
 <PRE>
-public void <B>syncPhysics</B>()</PRE>
+public void <B>setUpAxis</B>(int&nbsp;axis)</PRE>
 <DL>
 <DD><DL>
 </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxJumpHeight(float)"><!-- --></A><H3>
+setMaxJumpHeight</H3>
+<PRE>
+public void <B>setMaxJumpHeight</B>(float&nbsp;height)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="jump()"><!-- --></A><H3>
+jump</H3>
+<PRE>
+public void <B>jump</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCharacterController()"><!-- --></A><H3>
+getCharacterController</H3>
+<PRE>
+public com.bulletphysics.dynamics.character.KinematicCharacterController <B>getCharacterController</B>()</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the character</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
@@ -523,7 +362,7 @@ public void <B>syncPhysics</B>()</PRE>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
-  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsGhostNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsCharacterNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
   <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
@@ -538,11 +377,11 @@ public void <B>syncPhysics</B>()</PRE>
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html" title="class in com.jmex.jbullet.nodes"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;PREV CLASS&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsGhostNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
-&nbsp;<A HREF="PhysicsGhostNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsCharacterNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PhysicsCharacterNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
   if(window==top) {
