@@ -35,17 +35,19 @@ import com.bulletphysics.BulletGlobals;
 import com.bulletphysics.ContactAddedCallback;
 import com.bulletphysics.ContactDestroyedCallback;
 import com.bulletphysics.ContactProcessedCallback;
+import com.bulletphysics.collision.broadphase.AxisSweep3;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
-import com.bulletphysics.collision.broadphase.DbvtBroadphase;
+import com.bulletphysics.collision.broadphase.CollisionFilterGroups;
+import com.bulletphysics.collision.broadphase.SimpleBroadphase;
 import com.bulletphysics.collision.dispatch.CollisionDispatcher;
 import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
 import com.bulletphysics.collision.dispatch.GhostObject;
+import com.bulletphysics.collision.dispatch.GhostPairCallback;
 import com.bulletphysics.collision.narrowphase.ManifoldPoint;
 import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
-import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.jme.math.Vector3f;
 import com.jme.util.GameTaskQueue;
 import com.jme.util.GameTaskQueueManager;
@@ -54,8 +56,10 @@ import com.jmex.jbullet.collision.CollisionListener;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.joints.PhysicsJoint;
 import com.jmex.jbullet.nodes.PhysicsGhostNode;
+import com.jmex.jbullet.nodes.PhysicsCharacterNode;
 import com.jmex.jbullet.nodes.PhysicsVehicleNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
+import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +98,9 @@ public class PhysicsSpace {
     private List<CollisionEvent> collisionEvents=new LinkedList<CollisionEvent>();
 
     private static PhysicsSpace pSpace;
+
+    private Vector3f worldMin = new Vector3f(-10000f,-10000f,-10000f);
+    private Vector3f worldMax = new Vector3f(10000f,10000f,10000f);
     
     public static PhysicsSpace getPhysicsSpace(){
         if(pSpace!=null){
@@ -129,12 +136,16 @@ public class PhysicsSpace {
 
         collisionConfiguration = new DefaultCollisionConfiguration();
         dispatcher = new CollisionDispatcher( collisionConfiguration );
-//        broadphase = new SimpleBroadphase();
-        broadphase = new DbvtBroadphase();
-        solver = new SequentialImpulseConstraintSolver();
+        broadphase = new SimpleBroadphase();
+//        broadphase = new AxisSweep3(Converter.convert(worldMin), Converter.convert(worldMax));
+//        broadphase = new DbvtBroadphase();
+//        solver = new SequentialImpulseConstraintSolver();
+
 
         dynamicsWorld = new DiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
         dynamicsWorld.setGravity( new javax.vecmath.Vector3f( 0, -9.81f, 0 ) );
+        
+		broadphase.getOverlappingPairCache().setInternalGhostPairCallback(new GhostPairCallback());
         
         setContactCallbacks();
 
@@ -206,19 +217,28 @@ public class PhysicsSpace {
             removeJoint((PhysicsJoint)obj);
         }
         else{
-            throw (new UnsupportedOperationException("Cannot remove this kind of object to the physics space."));
+            throw (new UnsupportedOperationException("Cannot remove this kind of object from the physics space."));
         }
     }
 
     private void addGhostNode(PhysicsGhostNode node){
         node.syncPhysics();
         physicsGhostNodes.put(node.getGhostObject(),node);
-        getDynamicsWorld().addCollisionObject(node.getGhostObject());
+        if(node instanceof PhysicsCharacterNode){
+//            dynamicsWorld.addCollisionObject(node.getGhostObject(), CollisionFilterGroups.CHARACTER_FILTER, (short)(CollisionFilterGroups.STATIC_FILTER | CollisionFilterGroups.DEFAULT_FILTER));
+            getDynamicsWorld().addCollisionObject(node.getGhostObject());
+            dynamicsWorld.addAction(((PhysicsCharacterNode)node).getCharacterController());
+        }
+        else{
+            getDynamicsWorld().addCollisionObject(node.getGhostObject());
+        }
     }
 
     private void removeGhostNode(PhysicsGhostNode node){
         physicsGhostNodes.remove(node.getGhostObject());
         getDynamicsWorld().removeCollisionObject(node.getGhostObject());
+        if(node instanceof PhysicsCharacterNode)
+            dynamicsWorld.removeAction(((PhysicsCharacterNode)node).getCharacterController());
     }
 
     private void addNode(PhysicsNode node){

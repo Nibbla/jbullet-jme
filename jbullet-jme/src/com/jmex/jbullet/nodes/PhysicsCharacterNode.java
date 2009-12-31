@@ -31,6 +31,7 @@
  */
 package com.jmex.jbullet.nodes;
 
+import com.bulletphysics.collision.dispatch.CollisionFlags;
 import com.bulletphysics.collision.shapes.ConvexShape;
 import com.bulletphysics.dynamics.character.KinematicCharacterController;
 import com.jme.math.Vector3f;
@@ -43,9 +44,10 @@ import java.util.concurrent.Callable;
  *
  * @author normenhansen
  */
-public class PhysicsKinematicCharacterNode extends PhysicsGhostNode{
-	protected KinematicCharacterController character;
+public class PhysicsCharacterNode extends PhysicsGhostNode{
+	private KinematicCharacterController character;
 
+    private float stepHeight;
     private float fallSpeed;
     private float jumpSpeed;
 
@@ -54,11 +56,18 @@ public class PhysicsKinematicCharacterNode extends PhysicsGhostNode{
     private int upAxis=0;
     private float maxJumpHeight=1.0f;
 
-    public PhysicsKinematicCharacterNode(Spatial spat, int shapeType, float stepHeight) {
+    public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
         super(spat, shapeType);
+        this.stepHeight=stepHeight;
         if(shapeType==CollisionShape.Shapes.MESH)
             throw (new UnsupportedOperationException("Kinematic character nodes cannot have meshes as collision shape"));
         character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
+    }
+
+    @Override
+    protected void buildObject() {
+        super.buildObject();
+        gObject.setCollisionFlags(CollisionFlags.CHARACTER_OBJECT);
     }
 
     public void setWalkDirection(Vector3f vec){
@@ -107,5 +116,12 @@ public class PhysicsKinematicCharacterNode extends PhysicsGhostNode{
             return null;
         }
     };
+
+    /**
+     * @return the character
+     */
+    public KinematicCharacterController getCharacterController() {
+        return character;
+    }
 
 }

@@ -31,6 +31,7 @@
  */
 package com.jmex.jbullet.nodes;
 
+import com.bulletphysics.collision.dispatch.CollisionFlags;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
 import com.bulletphysics.linearmath.MotionState;
@@ -291,7 +292,12 @@ public class PhysicsNode extends CollisionObject{
     }
 
     protected void postRebuild(){
-
+        if(mass==0.0f){
+            rBody.setCollisionFlags( rBody.getCollisionFlags() | CollisionFlags.STATIC_OBJECT );
+        }
+        else{
+            rBody.setCollisionFlags( rBody.getCollisionFlags() & ~CollisionFlags.STATIC_OBJECT );
+        }
     }
 
     private void updateConstructionInfo(){
