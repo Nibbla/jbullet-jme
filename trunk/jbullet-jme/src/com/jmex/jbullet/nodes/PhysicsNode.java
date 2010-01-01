@@ -326,7 +326,10 @@ public class PhysicsNode extends CollisionObject{
     @Override
     public void setLocalTranslation(Vector3f arg0) {
         super.setLocalTranslation(arg0);
-        pQueue.enqueue(doApplyTranslation);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyTranslation);
+        else
+            applyTranslation();
     }
 
     /**
@@ -336,7 +339,10 @@ public class PhysicsNode extends CollisionObject{
     @Override
     public void setLocalTranslation(float x, float y, float z) {
         super.setLocalTranslation(x, y, z);
-        pQueue.enqueue(doApplyTranslation);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyTranslation);
+        else
+            applyTranslation();
     }
 
     private void applyTranslation() {
@@ -383,7 +389,10 @@ public class PhysicsNode extends CollisionObject{
     @Override
     public void setLocalRotation(Quaternion arg0) {
         super.setLocalRotation(arg0);
-        pQueue.enqueue(doApplyRotation);
+        if(rBody!=null&&rBody.isInWorld())
+            pQueue.enqueue(doApplyRotation);
+        else
+            applyRotation();
     }
 
     private void applyRotation() {

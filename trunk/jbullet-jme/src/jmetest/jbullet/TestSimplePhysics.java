@@ -92,7 +92,7 @@ public class TestSimplePhysics {
         Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
         PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.Shapes.BOX);
         physicsBox.setFriction(0.01f);
-        physicsBox.setLocalTranslation(new Vector3f(.4f,4,.5f));
+        physicsBox.setLocalTranslation(new Vector3f(.6f,4,.5f));
         state.getRootNode().attachChild(physicsBox);
         physicsBox.updateRenderState();
         pSpace.add(physicsBox);
@@ -111,7 +111,7 @@ public class TestSimplePhysics {
         state.getRootNode().attachChild(physicsCapsule);
         physicsCapsule.updateRenderState();
         pSpace.add(physicsCapsule);
-        physicsCapsule.setMass(100f);
+//        physicsCapsule.setMass(10f);
 
         // Join the physics objects with a Point2Point joint
 //        PhysicsPoint2PointJoint joint=new PhysicsPoint2PointJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0));

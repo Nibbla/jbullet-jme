@@ -87,6 +87,7 @@ public class PhysicsSpace {
     private GameTaskQueue pQueue;
     private DynamicsWorld dynamicsWorld = null;
     private BroadphaseInterface broadphase;
+    private int broadphaseType=0;
     private CollisionDispatcher dispatcher;
     private ConstraintSolver solver;
     private DefaultCollisionConfiguration collisionConfiguration;
@@ -111,22 +112,46 @@ public class PhysicsSpace {
         return pSpace;
     }
 
-    public void enqueueSync(Callable callable){
-        pQueue.enqueue(callable);
+    public static PhysicsSpace getPhysicsSpace(int broadphaseType){
+        if(pSpace!=null){
+            return pSpace;
+        }
+        pSpace=new PhysicsSpace(broadphaseType);
+        return pSpace;
     }
 
-    public void reQueue(final Callable callable){
-        rQueue.enqueue(new Callable(){
-            public Object call() throws Exception {
-                pQueue.enqueue(callable);
-                return null;
-            }
+    public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax){
+        if(pSpace!=null){
+            return pSpace;
+        }
+        pSpace=new PhysicsSpace(worldMin, worldMax);
+        return pSpace;
+    }
 
-        });
+    public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax, int broadphaseType){
+        if(pSpace!=null){
+            return pSpace;
+        }
+        pSpace=new PhysicsSpace(worldMin, worldMax, broadphaseType);
+        return pSpace;
     }
 
     public PhysicsSpace(){
-        //TODO: better multithreading/updating support via queues
+        this(new Vector3f(-10000f,-10000f,-10000f),new Vector3f(10000f,10000f,10000f),BroadphaseTypes.SIMPLE);
+    }
+
+    public PhysicsSpace(int broadphaseType){
+        this(new Vector3f(-10000f,-10000f,-10000f),new Vector3f(10000f,10000f,10000f),broadphaseType);
+    }
+
+    public PhysicsSpace(Vector3f worldMin, Vector3f worldMax){
+        this(worldMin,worldMax,BroadphaseTypes.AXIS_SWEEP_3);
+    }
+
+    public PhysicsSpace(Vector3f worldMin, Vector3f worldMax, int broadphaseType){
+        this.worldMin.set(worldMin);
+        this.worldMax.set(worldMax);
+        this.broadphaseType=broadphaseType;
         GameTaskQueueManager.getManager().addQueue("jbullet_requeue", new GameTaskQueue());
         rQueue=GameTaskQueueManager.getManager().getQueue("jbullet_requeue");
         rQueue.setExecuteAll(true);
@@ -137,19 +162,26 @@ public class PhysicsSpace {
 
         collisionConfiguration = new DefaultCollisionConfiguration();
         dispatcher = new CollisionDispatcher( collisionConfiguration );
-        broadphase = new SimpleBroadphase();
-//        broadphase = new AxisSweep3(Converter.convert(worldMin), Converter.convert(worldMax));
-//        broadphase = new DbvtBroadphase();
-        solver = new SequentialImpulseConstraintSolver();
+        switch(broadphaseType){
+            case BroadphaseTypes.SIMPLE:
+                broadphase = new SimpleBroadphase();
+            break;
+            case BroadphaseTypes.AXIS_SWEEP_3:
+                broadphase = new AxisSweep3(Converter.convert(worldMin), Converter.convert(worldMax));
+            break;
+            case BroadphaseTypes.DBVT:
+                broadphase = new DbvtBroadphase();
+            break;
+        }
 
+        solver = new SequentialImpulseConstraintSolver();
 
         dynamicsWorld = new DiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
         dynamicsWorld.setGravity( new javax.vecmath.Vector3f( 0, -9.81f, 0 ) );
-        
-		broadphase.getOverlappingPairCache().setInternalGhostPairCallback(new GhostPairCallback());
-        
-        setContactCallbacks();
 
+		broadphase.getOverlappingPairCache().setInternalGhostPairCallback(new GhostPairCallback());
+
+        setContactCallbacks();
     }
 
     public void update(float time){
@@ -182,6 +214,20 @@ public class PhysicsSpace {
                 listener.collision(event);
         }
         collisionEvents.clear();
+    }
+
+    public void enqueueSync(Callable callable){
+        pQueue.enqueue(callable);
+    }
+
+    public void reQueue(final Callable callable){
+        rQueue.enqueue(new Callable(){
+            public Object call() throws Exception {
+                pQueue.enqueue(callable);
+                return null;
+            }
+
+        });
     }
 
     /**
@@ -329,11 +375,23 @@ public class PhysicsSpace {
     	});
     }
 
+    public void destroy(){
+        dynamicsWorld.destroy();
+        dynamicsWorld=null;
+        pSpace=null;
+    }
+
     /**
      * @return the dynamicsWorld
      */
     public DynamicsWorld getDynamicsWorld() {
         return dynamicsWorld;
+    }
+
+    public interface BroadphaseTypes{
+        public static final int SIMPLE=0;
+        public static final int AXIS_SWEEP_3=1;
+        public static final int DBVT=2;
     }
 
 }
