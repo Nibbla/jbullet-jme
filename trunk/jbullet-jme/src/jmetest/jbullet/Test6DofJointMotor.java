@@ -138,6 +138,8 @@ public class Test6DofJointMotor {
         pSpace.add(hammer);
 
         joint=new Physics6DofJoint(holder, hammer, new Vector3f(), new Vector3f(0,2,0), true);
+        joint.getRotationalLimitMotor(1).setLoLimit(0);
+        joint.getRotationalLimitMotor(1).setHiLimit(0);
         pSpace.add(joint);
 
         // an obstacle mesh, does not move (mass=0)
