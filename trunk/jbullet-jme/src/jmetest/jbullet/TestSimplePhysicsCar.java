@@ -119,6 +119,7 @@ public class TestSimplePhysicsCar {
             }
             
         };
+        state.setText("u,h,j,k = control vehicle / space = toggle upwards force to vehicle");
 
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);

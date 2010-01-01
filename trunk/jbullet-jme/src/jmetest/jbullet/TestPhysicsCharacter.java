@@ -109,6 +109,7 @@ public class TestPhysicsCharacter {
             }
             
         };
+        state.setText("u,h,j,k = move character / space = stop");
 
         Sphere caps=new Sphere("character",8,8,2f);
         character=new PhysicsCharacterNode(caps, CollisionShape.Shapes.SPHERE, .1f);

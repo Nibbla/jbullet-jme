@@ -123,6 +123,7 @@ public class TestHingeJointMotor {
             }
             
         };
+        state.setText("h,k = enable motor left/right / u,j = disable motor / space = spawn ball");
 
         Sphere sphere=new Sphere("physicsobstaclemesh",8,8,0.25f);
         PhysicsNode holder=new PhysicsNode(sphere, CollisionShape.Shapes.SPHERE,0);
