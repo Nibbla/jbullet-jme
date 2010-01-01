@@ -87,26 +87,22 @@ public class Test6DofJointMotor {
 
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_accelerate", false)) {
-                    joint.getRotationalLimitMotor(0).setMaxMotorForce(1);
                     joint.getRotationalLimitMotor(0).setTargetVelocity(-1);
                     joint.getRotationalLimitMotor(0).setEnableMotor(true);
                 }
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_brake", false)) {
-                    joint.getRotationalLimitMotor(0).setMaxMotorForce(1);
                     joint.getRotationalLimitMotor(0).setTargetVelocity(1);
                     joint.getRotationalLimitMotor(0).setEnableMotor(true);
                 }
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_left", true)) {
-                    joint.getRotationalLimitMotor(2).setMaxMotorForce(1);
                     joint.getRotationalLimitMotor(2).setTargetVelocity(1);
                     joint.getRotationalLimitMotor(2).setEnableMotor(true);
 
                 }
                 else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_right", true)) {
-                    joint.getRotationalLimitMotor(2).setMaxMotorForce(1);
                     joint.getRotationalLimitMotor(2).setTargetVelocity(-1);
                     joint.getRotationalLimitMotor(2).setEnableMotor(true);
                 }
@@ -140,6 +136,8 @@ public class Test6DofJointMotor {
         joint=new Physics6DofJoint(holder, hammer, new Vector3f(), new Vector3f(0,2,0), true);
         joint.getRotationalLimitMotor(1).setLoLimit(0);
         joint.getRotationalLimitMotor(1).setHiLimit(0);
+        joint.getRotationalLimitMotor(0).setMaxMotorForce(4);
+        joint.getRotationalLimitMotor(2).setMaxMotorForce(4);
         pSpace.add(joint);
 
         // an obstacle mesh, does not move (mass=0)
