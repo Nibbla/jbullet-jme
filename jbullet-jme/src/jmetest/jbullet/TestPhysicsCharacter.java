@@ -59,7 +59,7 @@ public class TestPhysicsCharacter {
 
     public static void setupGame(){
         // creates and initializes the PhysicsSpace
-        final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+        final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace(PhysicsSpace.BroadphaseTypes.AXIS_SWEEP_3);
 
         // add some keybindings to control the vehicle
         KeyBindingManager.getKeyBindingManager().set("key_accelerate",
