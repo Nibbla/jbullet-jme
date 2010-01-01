@@ -34,6 +34,7 @@ package jmetest.jbullet;
 
 import com.jme.input.KeyBindingManager;
 import com.jme.input.KeyInput;
+import com.jmex.jbullet.collision.CollisionEvent;
 import java.util.concurrent.Callable;
 
 import com.jme.math.Vector3f;
@@ -45,6 +46,7 @@ import com.jmex.game.StandardGame;
 import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.CollisionListener;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.nodes.PhysicsVehicleNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
@@ -54,15 +56,30 @@ import com.jmex.jbullet.nodes.PhysicsNode;
  *
  * @author normenhansen
  */
-public class TestSimplePhysicsCar {
+public class TestSimplePhysicsCar{
     private static Vector3f wheelDirection=new Vector3f(0,-1,0);
     private static Vector3f wheelAxle=new Vector3f(-1,0,0);
 
     private static PhysicsVehicleNode physicsCar;
+    private static DebugGameState state;
+    private static PhysicsNode node2;
 
     public static void setupGame(){
         // creates and initializes the PhysicsSpace
         final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+
+        //collision listener for collisions with the sphere
+        pSpace.addCollisionListener(new CollisionListener(){
+            public void collision(CollisionEvent event) {
+                if(event.getNodeA().equals(node2)&&event.getAppliedImpulse()>1){
+                    state.setText("you hit the sphere! "+event.getAppliedImpulse());
+                }
+                else if(event.getNodeB().equals(node2)&&event.getAppliedImpulse()>1){
+                    state.setText("you hit the sphere!!"+event.getAppliedImpulse());
+                }
+            }
+
+        });
 
         // add some keybindings to control the vehicle
         KeyBindingManager.getKeyBindingManager().set("key_accelerate",
@@ -78,7 +95,7 @@ public class TestSimplePhysicsCar {
 
         // Create a DebugGameState
         // - override the update method to update/sync physics space
-        DebugGameState state = new DebugGameState(){
+        state = new DebugGameState(){
             private boolean stoppedBrake=false;
             private boolean stoppedAccel=false;
             private boolean stoppedSteer=false;
@@ -185,7 +202,7 @@ public class TestSimplePhysicsCar {
 //        physicsCar.setMass(100);
 
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH,0);
+        node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH,0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
