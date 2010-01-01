@@ -233,11 +233,19 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#accelerate(float, boolean)">accelerate</A></B>(float&nbsp;force,
-           boolean&nbsp;apply)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#accelerate(float)">accelerate</A></B>(float&nbsp;force)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply the given engine force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#accelerate(int, float)">accelerate</A></B>(int&nbsp;wheelNumber,
+           float&nbsp;force)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -256,8 +264,16 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#brake(float, boolean)">brake</A></B>(float&nbsp;value,
-      boolean&nbsp;apply)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#brake(float)">brake</A></B>(float&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#brake(int, float)">brake</A></B>(int&nbsp;wheelNumber,
+      float&nbsp;force)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -316,7 +332,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#getVehicle()">getVehicle</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used internally</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -324,7 +340,16 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setFrictionSlip(float)">setFrictionSlip</A></B>(float&nbsp;frictionSlip)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the friction of the wheels</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the friction of the wheels.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setFrictionSlip(int, float)">setFrictionSlip</A></B>(int&nbsp;wheel,
+                float&nbsp;frictionSlip)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -338,17 +363,45 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setMaxSuspensionTravelCm(int, float)">setMaxSuspensionTravelCm</A></B>(int&nbsp;wheel,
+                         float&nbsp;maxSuspensionTravelCm)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setRollInfluence(float)">setRollInfluence</A></B>(float&nbsp;rollInfluence)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets how much wheels without motor influence the vehicles path (e.g. front
  steering, rear acceleration)<br>
- default=1.0f</TD>
+ default=1.0f<br>
+ Use before adding wheels, this is the default used when adding wheels.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setRollInfluence(int, float)">setRollInfluence</A></B>(int&nbsp;wheel,
+                 float&nbsp;rollInfluence)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionCompression(float)">setSuspensionCompression</A></B>(float&nbsp;suspensionCompression)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use before adding wheels, this is the default used when adding wheels.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionCompression(int, float)">setSuspensionCompression</A></B>(int&nbsp;wheel,
+                         float&nbsp;suspensionCompression)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -359,12 +412,30 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionDamping(float)">setSuspensionDamping</A></B>(float&nbsp;suspensionDamping)</CODE>
 
 <BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use before adding wheels, this is the default used when adding wheels.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionDamping(int, float)">setSuspensionDamping</A></B>(int&nbsp;wheel,
+                     float&nbsp;suspensionDamping)</CODE>
+
+<BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionStiffness(float)">setSuspensionStiffness</A></B>(float&nbsp;suspensionStiffness)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use before adding wheels, this is the default used when adding wheels.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionStiffness(int, float)">setSuspensionStiffness</A></B>(int&nbsp;wheel,
+                       float&nbsp;suspensionStiffness)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -535,10 +606,24 @@ setFrictionSlip</H3>
 <PRE>
 public void <B>setFrictionSlip</B>(float&nbsp;frictionSlip)</PRE>
 <DL>
-<DD>Sets the friction of the wheels
+<DD>Sets the friction of the wheels.
+ Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>frictionSlip</CODE> - the frictionSlip to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setFrictionSlip(int, float)"><!-- --></A><H3>
+setFrictionSlip</H3>
+<PRE>
+public void <B>setFrictionSlip</B>(int&nbsp;wheel,
+                            float&nbsp;frictionSlip)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -562,10 +647,24 @@ public void <B>setRollInfluence</B>(float&nbsp;rollInfluence)</PRE>
 <DL>
 <DD>Sets how much wheels without motor influence the vehicles path (e.g. front
  steering, rear acceleration)<br>
- default=1.0f
+ default=1.0f<br>
+ Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>rollInfluence</CODE> - the rollInfluence to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setRollInfluence(int, float)"><!-- --></A><H3>
+setRollInfluence</H3>
+<PRE>
+public void <B>setRollInfluence</B>(int&nbsp;wheel,
+                             float&nbsp;rollInfluence)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -588,10 +687,24 @@ setMaxSuspensionTravelCm</H3>
 public void <B>setMaxSuspensionTravelCm</B>(float&nbsp;maxSuspensionTravelCm)</PRE>
 <DL>
 <DD>this is (as far as I understand bullet) the size of the plane where the wheel touches
- the floor. Set this too low and your car will fall through the ground..
+ the floor. Set this too low and your car will fall through the ground..<br>
+ Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>maxSuspensionTravelCm</CODE> - the maxSuspensionTravelCm to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxSuspensionTravelCm(int, float)"><!-- --></A><H3>
+setMaxSuspensionTravelCm</H3>
+<PRE>
+public void <B>setMaxSuspensionTravelCm</B>(int&nbsp;wheel,
+                                     float&nbsp;maxSuspensionTravelCm)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -613,8 +726,23 @@ setSuspensionCompression</H3>
 <PRE>
 public void <B>setSuspensionCompression</B>(float&nbsp;suspensionCompression)</PRE>
 <DL>
+<DD>Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
+<P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>suspensionCompression</CODE> - the suspensionCompression to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSuspensionCompression(int, float)"><!-- --></A><H3>
+setSuspensionCompression</H3>
+<PRE>
+public void <B>setSuspensionCompression</B>(int&nbsp;wheel,
+                                     float&nbsp;suspensionCompression)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -636,8 +764,23 @@ setSuspensionDamping</H3>
 <PRE>
 public void <B>setSuspensionDamping</B>(float&nbsp;suspensionDamping)</PRE>
 <DL>
+<DD>Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
+<P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>suspensionDamping</CODE> - the suspensionDamping to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSuspensionDamping(int, float)"><!-- --></A><H3>
+setSuspensionDamping</H3>
+<PRE>
+public void <B>setSuspensionDamping</B>(int&nbsp;wheel,
+                                 float&nbsp;suspensionDamping)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -659,22 +802,48 @@ setSuspensionStiffness</H3>
 <PRE>
 public void <B>setSuspensionStiffness</B>(float&nbsp;suspensionStiffness)</PRE>
 <DL>
+<DD>Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
+<P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>suspensionStiffness</CODE> - the suspensionStiffness to set</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="accelerate(float, boolean)"><!-- --></A><H3>
+<A NAME="setSuspensionStiffness(int, float)"><!-- --></A><H3>
+setSuspensionStiffness</H3>
+<PRE>
+public void <B>setSuspensionStiffness</B>(int&nbsp;wheel,
+                                   float&nbsp;suspensionStiffness)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="accelerate(float)"><!-- --></A><H3>
 accelerate</H3>
 <PRE>
-public void <B>accelerate</B>(float&nbsp;force,
-                       boolean&nbsp;apply)</PRE>
+public void <B>accelerate</B>(float&nbsp;force)</PRE>
 <DL>
 <DD>apply the given engine force
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>force</CODE> - <DD><CODE>apply</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="accelerate(int, float)"><!-- --></A><H3>
+accelerate</H3>
+<PRE>
+public void <B>accelerate</B>(int&nbsp;wheelNumber,
+                       float&nbsp;force)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -692,11 +861,22 @@ public void <B>steer</B>(float&nbsp;value)</PRE>
 </DL>
 <HR>
 
-<A NAME="brake(float, boolean)"><!-- --></A><H3>
+<A NAME="brake(float)"><!-- --></A><H3>
 brake</H3>
 <PRE>
-public void <B>brake</B>(float&nbsp;value,
-                  boolean&nbsp;apply)</PRE>
+public void <B>brake</B>(float&nbsp;value)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="brake(int, float)"><!-- --></A><H3>
+brake</H3>
+<PRE>
+public void <B>brake</B>(int&nbsp;wheelNumber,
+                  float&nbsp;force)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -709,6 +889,8 @@ getVehicle</H3>
 <PRE>
 public com.bulletphysics.dynamics.vehicle.RaycastVehicle <B>getVehicle</B>()</PRE>
 <DL>
+<DD>used internally
+<P>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the vehicle</DL>
