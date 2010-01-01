@@ -32,11 +32,15 @@
 package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
+import com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jmex.jbullet.joints.motors.RotationalLimitMotor;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.concurrent.Callable;
 
 /**
@@ -61,13 +65,15 @@ public class Physics6DofJoint extends PhysicsJoint{
     private Vector3f angularUpperLimit=new Vector3f();
     private Vector3f angularLowerLimit=new Vector3f();
 
+    private LinkedList<RotationalLimitMotor> rotationalMotors=new LinkedList<RotationalLimitMotor>();
+    private TranslationalLimitMotor translationalMotor;
+//    private LinkedList<RotationalLimitMotor> translationalMotors=new LinkedList<RotationalLimitMotor>();
+
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
         this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         this.rotA=rotA;
         this.rotB=rotB;
-
-//        setDefaults();
 
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
@@ -78,8 +84,7 @@ public class Physics6DofJoint extends PhysicsJoint{
         Converter.convert(rotB,transB.basis);
 
         constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
-//        updateJoint();
-//        ((Generic6DofConstraint)constraint).
+        gatherMotors();
     }
 
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
@@ -88,8 +93,6 @@ public class Physics6DofJoint extends PhysicsJoint{
         this.rotA=new Matrix3f();
         this.rotB=new Matrix3f();
 
-//        setDefaults();
-
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
 
@@ -97,7 +100,24 @@ public class Physics6DofJoint extends PhysicsJoint{
         Converter.convert(pivotB,transB.origin);
 
         constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
-//        updateJoint();
+        gatherMotors();
+    }
+
+    private void gatherMotors(){
+        for (int i = 0; i < 3; i++) {
+            RotationalLimitMotor rmot=new RotationalLimitMotor(((Generic6DofConstraint)constraint).getRotationalLimitMotor(i));
+            rotationalMotors.add(rmot);
+        }
+        translationalMotor=new TranslationalLimitMotor(((Generic6DofConstraint)constraint).getTranslationalLimitMotor());
+//        translationalMotors.add(tmot);
+    }
+
+    public TranslationalLimitMotor getTranslationalLimitMotor() {
+        return translationalMotor;
+    }
+
+    public RotationalLimitMotor getRotationalLimitMotor(int index){
+        return rotationalMotors.get(index);
     }
 
     public void setLinearUpperLimit(Vector3f vector){
