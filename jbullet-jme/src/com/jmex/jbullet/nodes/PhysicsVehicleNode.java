@@ -69,12 +69,6 @@ import java.util.concurrent.Callable;
  * You can add wheels to the vehicle by calling the addWheel() method. The given jme
  * spatial will be displayed in the wheels location and rotate accordingly.<br>
  * You can accelerate/brake/steer the car with the corresponding methods.
- * </p>
- * TODO:<br>
- * - wheel rotation weirdness<br>
- * - accelerate/brake single<br>
- * - aceelerate/brake groups (front wheel)<br>
- * </p>
  * @see com.jmex.jbullet.node.PhysicsNode
  * @see com.jmex.jbullet.PhysicsSpace
  * @author normenhansen
