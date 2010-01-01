@@ -75,6 +75,7 @@ public class TestSimpleRagdoll {
             }
             
         };
+        state.setText("very todo as you see :)");
 
 
         //create limb nodes
