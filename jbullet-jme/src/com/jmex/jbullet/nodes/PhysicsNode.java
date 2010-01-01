@@ -608,9 +608,9 @@ public class PhysicsNode extends CollisionObject{
      */
     public void applyContinuousForce(boolean apply, Vector3f vec){
         if(vec!=null) continuousForce.set(vec);
-        applyForce=apply;
-        if(applyForce)
+        if(!applyForce&&apply)
             pQueue.enqueue(doApplyContinuousForce);
+        applyForce=apply;
     }
 
     private Callable doApplyContinuousForce=new Callable(){
@@ -642,10 +642,10 @@ public class PhysicsNode extends CollisionObject{
      */
     public void applyContinuousTorque(boolean apply, Vector3f vec){
         if(vec!=null) continuousTorque.set(vec);
-        applyTorque=apply;
-        if(applyTorque){
+        if(!applyTorque&&apply){
             pQueue.enqueue(doApplyContinuousTorque);
         }
+        applyTorque=apply;
     }
 
     private Callable doApplyContinuousTorque=new Callable(){
