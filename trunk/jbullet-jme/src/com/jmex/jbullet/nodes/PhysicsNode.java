@@ -202,24 +202,26 @@ public class PhysicsNode extends CollisionObject{
             public void setWorldTransform(Transform worldTrans) {
                 motionStateTrans.set(worldTrans);
                 //TODO: different queue?
-                pQueue.enqueue(new Callable(){
-                    public Object call() throws Exception {
-
-                        Converter.convert(motionStateTrans.origin,tempLocation);
-                        setWorldTranslation(tempLocation);
-
-                        Converter.convert(motionStateTrans.basis,tempMatrix);
-                        tempRotation.fromRotationMatrix(tempMatrix);
-                        setWorldRotation(tempRotation);
-
-                        Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
-                        return null;
-                    }
-                });
+                pQueue.enqueue(doApplyMotionState);
             }
 
         };
     }
+
+    private Callable doApplyMotionState=new Callable(){
+        public Object call() throws Exception {
+
+            Converter.convert(motionStateTrans.origin,tempLocation);
+            setWorldTranslation(tempLocation);
+
+            Converter.convert(motionStateTrans.basis,tempMatrix);
+            tempRotation.fromRotationMatrix(tempMatrix);
+            setWorldRotation(tempRotation);
+
+            Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
+            return null;
+        }
+    };
 
     /**
      * updates the phyiscs body when parameters have changed
