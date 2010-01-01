@@ -36,7 +36,7 @@ import com.bulletphysics.collision.shapes.ConvexShape;
 import com.bulletphysics.dynamics.character.KinematicCharacterController;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
-import com.jmex.jbullet.collision.CollisionShape;
+import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.util.Converter;
 import java.util.concurrent.Callable;
 

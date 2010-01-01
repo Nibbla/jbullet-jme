@@ -45,7 +45,7 @@ import com.jmex.game.StandardGame;
 import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
-import com.jmex.jbullet.collision.CollisionShape;
+import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.nodes.PhysicsCharacterNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
 

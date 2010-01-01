@@ -43,7 +43,7 @@ import com.jme.scene.Spatial;
 import com.jme.util.GameTaskQueue;
 import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.collision.CollisionObject;
-import com.jmex.jbullet.collision.CollisionShape;
+import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.util.Converter;
 import java.util.concurrent.Callable;
 
