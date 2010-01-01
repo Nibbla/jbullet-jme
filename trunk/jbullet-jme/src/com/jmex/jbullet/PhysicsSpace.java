@@ -37,7 +37,7 @@ import com.bulletphysics.ContactDestroyedCallback;
 import com.bulletphysics.ContactProcessedCallback;
 import com.bulletphysics.collision.broadphase.AxisSweep3;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
-import com.bulletphysics.collision.broadphase.CollisionFilterGroups;
+import com.bulletphysics.collision.broadphase.DbvtBroadphase;
 import com.bulletphysics.collision.broadphase.SimpleBroadphase;
 import com.bulletphysics.collision.dispatch.CollisionDispatcher;
 import com.bulletphysics.collision.dispatch.DefaultCollisionConfiguration;
@@ -48,6 +48,7 @@ import com.bulletphysics.dynamics.DiscreteDynamicsWorld;
 import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
+import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.jme.math.Vector3f;
 import com.jme.util.GameTaskQueue;
 import com.jme.util.GameTaskQueueManager;
@@ -139,7 +140,7 @@ public class PhysicsSpace {
         broadphase = new SimpleBroadphase();
 //        broadphase = new AxisSweep3(Converter.convert(worldMin), Converter.convert(worldMax));
 //        broadphase = new DbvtBroadphase();
-//        solver = new SequentialImpulseConstraintSolver();
+        solver = new SequentialImpulseConstraintSolver();
 
 
         dynamicsWorld = new DiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
