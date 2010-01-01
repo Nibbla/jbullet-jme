@@ -79,6 +79,13 @@ public class TestSimplePhysicsCar {
         // Create a DebugGameState
         // - override the update method to update/sync physics space
         DebugGameState state = new DebugGameState(){
+            private boolean stoppedBrake=false;
+            private boolean stoppedAccel=false;
+            private boolean stoppedSteer=false;
+
+            private boolean appliedBrake=false;
+            private boolean appliedAccel=false;
+            private boolean appliedSteer=false;
 
             @Override
             public void update(float tpf) {
@@ -87,33 +94,65 @@ public class TestSimplePhysicsCar {
                 super.update(tpf);
 
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_accelerate", false)) {
-                    physicsCar.brake(0);
-                    physicsCar.accelerate(1);
+                        "key_accelerate", true)) {
+                    if(!appliedAccel){
+                        physicsCar.brake(0);
+                        physicsCar.accelerate(1);
+                        appliedAccel=true;
+                        stoppedBrake=false;
+                        stoppedAccel=false;
+                    }
                 }
+                else if(!stoppedAccel){
+                    physicsCar.accelerate(0f);
+                    appliedAccel=false;
+                    stoppedAccel=true;
+                }
+
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_brake", false)) {
-                    physicsCar.accelerate(0);
-                    physicsCar.brake(.1f);
+                        "key_brake", true)) {
+                    if(!appliedBrake){
+                        physicsCar.accelerate(0);
+                        physicsCar.brake(.1f);
+                        appliedBrake=true;
+                        stoppedBrake=false;
+                        stoppedAccel=false;
+                    }
                 }
-                
+                else if(!stoppedBrake){
+                    physicsCar.brake(0f);
+                    stoppedBrake=true;
+                    appliedBrake=false;
+                }
+
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_left", true)) {
-                    physicsCar.steer(.5f);
+                    if(!appliedSteer){
+                        physicsCar.steer(.5f);
+                        stoppedSteer=false;
+                        appliedSteer=true;
+                    }
                 }
                 else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_right", true)) {
-                    physicsCar.steer(-.5f);
+                    if(!appliedSteer){
+                        physicsCar.steer(-.5f);
+                        stoppedSteer=false;
+                        appliedSteer=true;
+                    }
                 }
-                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                else if(!stoppedSteer){
+                    physicsCar.steer(0);
+                    stoppedSteer=true;
+                    appliedSteer=false;
+                }
+
+                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_action", false)) {
                     if(physicsCar.getContinuousForce()==null)
                         physicsCar.applyContinuousForce(true, Vector3f.UNIT_Y.mult(10));
                     else
                         physicsCar.applyContinuousForce(false, Vector3f.UNIT_Y.mult(10));
-                }
-                else{
-                    physicsCar.steer(0);
                 }
 
             }
