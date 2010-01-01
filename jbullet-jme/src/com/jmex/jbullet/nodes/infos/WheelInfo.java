@@ -60,6 +60,12 @@ public class WheelInfo {
     private float radius;
     private float restLength;
 
+    private float steerValue=0;
+    private float engineForce=0;
+    private float brakeForce=0;
+    private boolean applyEngine=false;
+    private boolean applyBrake=false;
+
     private com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
     private com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
     private com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
@@ -188,6 +194,8 @@ public class WheelInfo {
         wheelInfo.frictionSlip = frictionSlip;
         wheelInfo.rollInfluence = rollInfluence;
         wheelInfo.maxSuspensionTravelCm = maxSuspensionTravelCm;
+        wheelInfo.wheelsRadius = radius;
+        wheelInfo.bIsFrontWheel = frontWheel;
     }
 
     public void syncPhysics(){
@@ -218,6 +226,46 @@ public class WheelInfo {
 
     public void setRestLength(float restLength) {
         this.restLength = restLength;
+    }
+
+    public float getSteerValue() {
+        return steerValue;
+    }
+
+    public void setSteerValue(float steerValue) {
+        this.steerValue = steerValue;
+    }
+
+    public float getEngineForce() {
+        return engineForce;
+    }
+
+    public void setEngineForce(float engineForce) {
+        this.engineForce = engineForce;
+    }
+
+    public float getBrakeForce() {
+        return brakeForce;
+    }
+
+    public void setBrakeForce(float brakeForce) {
+        this.brakeForce = brakeForce;
+    }
+
+    public boolean isApplyEngine() {
+        return applyEngine;
+    }
+
+    public void setApplyEngine(boolean applyEngine) {
+        this.applyEngine = applyEngine;
+    }
+
+    public boolean isApplyBrake() {
+        return applyBrake;
+    }
+
+    public void setApplyBrake(boolean applyBrake) {
+        this.applyBrake = applyBrake;
     }
 
 }
