@@ -89,7 +89,7 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
 
     private Callable doApplyUpAxis=new Callable(){
         public Object call() throws Exception {
-            character.setWalkDirection(Converter.convert(walkDirection));
+            character.setUpAxis(upAxis);
             return null;
         }
     };
