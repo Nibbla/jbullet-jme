@@ -88,14 +88,15 @@ public class TestSimplePhysicsCar {
 
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_accelerate", false)) {
-                    physicsCar.brake(0f,false);
-                    physicsCar.accelerate(1, true);
+                    physicsCar.brake(0);
+                    physicsCar.accelerate(1);
                 }
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_brake", false)) {
-                    physicsCar.accelerate(0, false);
-                    physicsCar.brake(.1f,true);
+                    physicsCar.accelerate(0);
+                    physicsCar.brake(.1f);
                 }
+                
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_left", true)) {
                     physicsCar.steer(.5f);
