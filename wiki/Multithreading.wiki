@@ -13,5 +13,5 @@ TODO: extend
 == Queues ==
 jbullet-jme uses the GameTaskQueueManager of jme to allow queueing of phyiscs tasks.
 {{{
-GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
+GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
 }}}
