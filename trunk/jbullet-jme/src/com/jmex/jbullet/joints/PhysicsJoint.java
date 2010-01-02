@@ -33,8 +33,6 @@ package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.TypedConstraint;
 import com.jme.math.Vector3f;
-import com.jme.util.GameTaskQueue;
-import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
@@ -54,7 +52,7 @@ import com.jmex.jbullet.nodes.PhysicsNode;
  * </p>
  * @author normenhansen
  */
-public class PhysicsJoint {
+public abstract class PhysicsJoint {
     protected TypedConstraint constraint;
     protected PhysicsNode nodeA;
     protected PhysicsNode nodeB;
