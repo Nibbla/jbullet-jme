@@ -44,3 +44,7 @@ public void update(float tpf) {
     pSpace.update(tpf);
 }
 }}}
+
+== Examples in the source ==
+Theres more examples of jbullet functions in the source of jbullet-jme here:
+[http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/src/jmetest/jbullet/]
