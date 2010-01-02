@@ -4,4 +4,4 @@ This special PhysicsNode represents a vehicle in the physics space and can have 
 When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and its axes/radius etc. then the spatial will act like the wheel of the vehicle.
 
 ==JavaDoc==
-http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/node/PhysicsVehicleNode.html
+http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsVehicleNode.html
