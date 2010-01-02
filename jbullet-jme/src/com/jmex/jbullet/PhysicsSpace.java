@@ -36,6 +36,7 @@ import com.bulletphysics.ContactAddedCallback;
 import com.bulletphysics.ContactDestroyedCallback;
 import com.bulletphysics.ContactProcessedCallback;
 import com.bulletphysics.collision.broadphase.AxisSweep3;
+import com.bulletphysics.collision.broadphase.AxisSweep3_32;
 import com.bulletphysics.collision.broadphase.BroadphaseInterface;
 import com.bulletphysics.collision.broadphase.DbvtBroadphase;
 import com.bulletphysics.collision.broadphase.SimpleBroadphase;
@@ -192,6 +193,9 @@ public abstract class PhysicsSpace {
             break;
             case BroadphaseTypes.AXIS_SWEEP_3:
                 broadphase = new AxisSweep3(Converter.convert(worldMin), Converter.convert(worldMax));
+            break;
+            case BroadphaseTypes.AXIS_SWEEP_3_32:
+                broadphase = new AxisSweep3_32(Converter.convert(worldMin), Converter.convert(worldMax));
             break;
             case BroadphaseTypes.DBVT:
                 broadphase = new DbvtBroadphase();
@@ -444,7 +448,8 @@ public abstract class PhysicsSpace {
     public interface BroadphaseTypes{
         public static final int SIMPLE=0;
         public static final int AXIS_SWEEP_3=1;
-        public static final int DBVT=2;
+        public static final int AXIS_SWEEP_3_32=2;
+        public static final int DBVT=3;
     }
 
 }
