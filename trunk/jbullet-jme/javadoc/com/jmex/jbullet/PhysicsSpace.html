@@ -103,9 +103,7 @@ java.lang.Object
  USAGE:<br>
  The PhysicsSpace needs to be started by getting a <code>PhysicsSpace</code> Object
  by calling <code>PhysicsSpace physics=PhysicsSpace.getPhysicsSpace();</code>
- and updated by calling the update(float time) method. The syncPhysics() method
- synchronizes the physics and jme objects and is called seperately to allow multithreading
- and/or different decoupling techniques between the OpenGL and Physics engine.<br>
+ and updated by calling the <code>update(float time)</code> method.<br>
  Bullet internally works with 60 frames/s...<br>
  TODO: extend
  </p>
@@ -113,7 +111,7 @@ java.lang.Object
 
 <P>
 <DL>
-<DT><B>See Also:</B><DD><CODE>com.jmex.jbullet.node.PhysicsNode</CODE></DL>
+<DT><B>See Also:</B><DD><A HREF="../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes"><CODE>PhysicsNode</CODE></A></DL>
 <HR>
 
 <P>
@@ -290,14 +288,6 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#syncPhysics()">syncPhysics</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#update(float)">update</A></B>(float&nbsp;time)</CODE>
 
 <BR>
@@ -442,17 +432,6 @@ update</H3>
 <PRE>
 public void <B>update</B>(float&nbsp;time,
                    int&nbsp;maxSteps)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="syncPhysics()"><!-- --></A><H3>
-syncPhysics</H3>
-<PRE>
-public void <B>syncPhysics</B>()</PRE>
 <DL>
 <DD><DL>
 </DL>

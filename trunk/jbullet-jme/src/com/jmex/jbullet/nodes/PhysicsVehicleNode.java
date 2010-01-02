@@ -67,7 +67,7 @@ import java.util.List;
  * You can add wheels to the vehicle by calling the addWheel() method. The given jme
  * spatial will be displayed in the wheels location and rotate accordingly.<br>
  * You can accelerate/brake/steer the car with the corresponding methods.
- * @see com.jmex.jbullet.node.PhysicsNode
+ * @see com.jmex.jbullet.nodes.PhysicsNode
  * @see com.jmex.jbullet.PhysicsSpace
  * @author normenhansen
  */
@@ -286,7 +286,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
     /**
      * apply the given engine force
      * @param force
-     * @param apply
      */
     public void accelerate(float force){
         for(WheelInfo wheel:wheels){
