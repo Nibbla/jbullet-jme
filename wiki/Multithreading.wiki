@@ -16,11 +16,14 @@ jbullet-jme uses the GameTaskQueueManager of jme to allow queueing of phyiscs ta
 //get the queue
 GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
 
-//add a task
-Callable call=new Callable(){
+//create a task
+Callable task=new Callable(){
     public Object call() throws Exception {
         doWork();
         return null;
     }
 };
+
+//add task
+pQueue.enqueue(task);
 }}}
