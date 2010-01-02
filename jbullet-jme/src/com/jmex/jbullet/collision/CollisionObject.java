@@ -37,6 +37,6 @@ import com.jme.scene.Node;
  * Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)
  * @author normenhansen
  */
-public class CollisionObject extends Node{
+public abstract class CollisionObject extends Node{
 
 }
