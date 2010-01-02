@@ -149,6 +149,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
         for(WheelInfo wheel:wheels){
             wheel.setWheelInfo(vehicle.addWheel(Converter.convert(wheel.getLocation()), Converter.convert(wheel.getDirection()), Converter.convert(wheel.getAxle()),
                     wheel.getRestLength(), wheel.getRadius(), tuning, wheel.isFrontWheel()));
+            wheel.applyInfo();
             wheel.syncPhysics();
         }
     }
@@ -169,6 +170,11 @@ public class PhysicsVehicleNode extends PhysicsNode{
         info.setWheelInfo(
                 vehicle.addWheel(Converter.convert(connectionPoint), Converter.convert(direction), Converter.convert(axle), suspensionRestLength, wheelRadius, tuning, isFrontWheel)
                 );
+        info.setFrictionSlip(tuning.frictionSlip);
+        info.setMaxSuspensionTravelCm(tuning.maxSuspensionTravelCm);
+        info.setSuspensionStiffness(tuning.suspensionStiffness);
+        info.setWheelsDampingCompression(tuning.suspensionCompression);
+        info.setWheelsDampingRelaxation(tuning.suspensionDamping);
         info.applyInfo();
         wheels.add(info);
         for (int i = 0; i < wheels.size(); i++) {
@@ -364,9 +370,10 @@ public class PhysicsVehicleNode extends PhysicsNode{
         return vehicle;
     }
 
-    public void syncWheels() {
+    private void syncWheels() {
         if(wheels!=null)
         for (int i = 0; i < wheels.size(); i++) {
+            vehicle.updateWheelTransform(i, true);
             wheels.get(i).syncPhysics();
         }
     }
