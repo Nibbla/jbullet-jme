@@ -38,10 +38,13 @@ import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
-import com.jme.util.GameTaskQueue;
-import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.collision.CollisionObject;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
+import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
+import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
+import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
+import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
 
 /**
@@ -84,10 +87,31 @@ public class PhysicsGhostNode extends CollisionObject{
         gObject.setCollisionShape(cShape.getCShape());
     }
 
+    /**
+     * creates a collisionShape from the BoundingVolume of this node.
+     * If no BoundingVolume of the give type exists yet, it will be created.
+     * Otherwise a new BoundingVolume will be created.
+     * @param type
+     */
     private void buildCollisionShape(int type){
-        cShape=new CollisionShape(type, this);
+        switch(type){
+            case CollisionShape.Shapes.BOX:
+                cShape=new BoxCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.SPHERE:
+                cShape=new SphereCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.CAPSULE:
+                cShape=new CapsuleCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.CYLINDER:
+                cShape=new CylinderCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.MESH:
+                cShape=new MeshCollisionShape(this);
+            break;
+        }
     }
-
 
     /**
      * Note that getLocalTranslation().set() will not update the physics object position.
