@@ -1,11 +1,11 @@
 #summary A Basic jbullet-jme example
 *api may change until release*
-= Create physics space =
+== Create physics space ==
 Create a PhysicsSpace like this:
 {{{
 PhyiscsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 }}}
-= Add physics objects =
+== Add physics objects ==
 Now you can add physics objects to the world like this:
 
 {{{
@@ -36,7 +36,7 @@ floor.updateRenderState();
 //Add floor to physics space
 pSpace.add(floor);
 }}}
-= Update call =
+== Update call ==
 In your jme2 Gamestate, update physics like this:
 {{{
 public void update(float tpf) {
