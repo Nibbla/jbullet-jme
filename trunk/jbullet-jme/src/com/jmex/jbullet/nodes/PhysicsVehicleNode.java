@@ -176,6 +176,10 @@ public class PhysicsVehicleNode extends PhysicsNode{
         }
     }
 
+    public WheelInfo getWheelInfo(int wheel){
+        return wheels.get(wheel);
+    }
+
     /**
      * @return the frictionSlip
      */
@@ -317,6 +321,12 @@ public class PhysicsVehicleNode extends PhysicsNode{
             if(wheel.isFrontWheel())
                 wheel.setSteerValue(value);
         }
+        applySteer();
+    }
+
+    public void steer(int wheel, float value){
+        if(wheels.get(wheel).isFrontWheel())
+            wheels.get(wheel).setSteerValue(value);
         applySteer();
     }
 
