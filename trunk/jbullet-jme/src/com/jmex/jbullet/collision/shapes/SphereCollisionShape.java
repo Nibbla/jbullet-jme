@@ -35,6 +35,16 @@ public class SphereCollisionShape extends CollisionShape{
     }
 
     /**
+     * Creates a SphereCollisionShape with the given radius
+     * @param radius
+     */
+    public SphereCollisionShape(float radius) {
+        SphereShape sphere=new SphereShape(radius);
+        cShape=sphere;
+        type=Shapes.SPHERE;
+    }
+
+    /**
      * Creates a sphere in the physics space that represents this Node and all
      * children. The radius is computed from the world bound of this Node.
      */

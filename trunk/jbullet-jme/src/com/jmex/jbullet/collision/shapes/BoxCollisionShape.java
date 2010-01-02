@@ -7,8 +7,10 @@ package com.jmex.jbullet.collision.shapes;
 
 import com.bulletphysics.collision.shapes.BoxShape;
 import com.jme.bounding.BoundingBox;
+import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
+import com.jmex.jbullet.util.Converter;
 import java.util.List;
 
 /**
@@ -31,6 +33,16 @@ public class BoxCollisionShape extends CollisionShape{
      */
     public BoxCollisionShape(BoundingBox volume) {
         createCollisionBox(volume);
+    }
+
+    /**
+     * Creates a collision box from the given halfExtents
+     * @param halfExtents the halfExtents of the CollisionBox
+     */
+    public BoxCollisionShape(Vector3f halfExtents) {
+        BoxShape sphere=new BoxShape(Converter.convert(halfExtents));
+        cShape=sphere;
+        type=Shapes.BOX;
     }
 
     /**

@@ -37,6 +37,7 @@ import java.util.concurrent.Callable;
 import com.jme.math.Vector3f;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Capsule;
+import com.jme.scene.shape.Cylinder;
 import com.jme.scene.shape.Sphere;
 import com.jme.util.GameTaskQueueManager;
 import com.jmex.editors.swing.settings.GameSettingsPanel;
@@ -45,7 +46,6 @@ import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.joints.PhysicsHingeJoint;
 import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
@@ -90,22 +90,22 @@ public class TestSimplePhysics {
         // Add a physics box to the world
         Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
         PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.Shapes.BOX);
-        physicsBox.setFriction(0.01f);
+        physicsBox.setFriction(0.1f);
         physicsBox.setLocalTranslation(new Vector3f(.6f,4,.5f));
         state.getRootNode().attachChild(physicsBox);
         physicsBox.updateRenderState();
         pSpace.add(physicsBox);
 
-//        Cylinder cylGeom=new Cylinder("physicscyliner",16,16,0.5f,6f);
-//        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.Shapes.CYLINDER);
-//        physicsCylinder.setFriction(0.01f);
-//        physicsCylinder.setLocalTranslation(new Vector3f(-5,4,0));
-//        state.getRootNode().attachChild(physicsCylinder);
-//        physicsCylinder.updateRenderState();
+        Cylinder cylGeom=new Cylinder("physicscyliner",16,16,1f,3f);
+        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.Shapes.CYLINDER);
+        physicsCylinder.setLocalTranslation(new Vector3f(-5,4,0));
+        state.getRootNode().attachChild(physicsCylinder);
+        physicsCylinder.updateRenderState();
+        pSpace.add(physicsCylinder);
 
         Capsule capGeom=new Capsule("physicscapsule",16,16,16,0.5f,2f);
         PhysicsNode physicsCapsule=new PhysicsNode(capGeom, CollisionShape.Shapes.CAPSULE);
-        physicsCapsule.setFriction(0.001f);
+        physicsCapsule.setFriction(0.1f);
         physicsCapsule.setLocalTranslation(new Vector3f(-8,4,0));
         state.getRootNode().attachChild(physicsCapsule);
         physicsCapsule.updateRenderState();

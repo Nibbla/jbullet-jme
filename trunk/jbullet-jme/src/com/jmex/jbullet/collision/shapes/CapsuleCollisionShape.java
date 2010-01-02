@@ -35,6 +35,17 @@ public class CapsuleCollisionShape extends CollisionShape{
         createCollisionCapsule(volume);
     }
 
+    /**
+     * Creates a new CapsuleCollisionShape with the given radius and height
+     * @param radius
+     * @param height
+     */
+    public CapsuleCollisionShape(float radius, float height) {
+        CapsuleShape capShape=new CapsuleShape(radius,height);
+        cShape=capShape;
+        type=Shapes.CAPSULE;
+    }
+
     private void createCollisionCapsule(Node node) {
         List<Spatial> children=node.getChildren();
         if(children.size()==0){

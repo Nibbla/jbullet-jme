@@ -6,10 +6,13 @@
 package com.jmex.jbullet.collision.shapes;
 
 import com.bulletphysics.collision.shapes.CylinderShape;
+import com.bulletphysics.collision.shapes.CylinderShapeZ;
 import com.jme.bounding.BoundingBox;
+import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
+import com.jmex.jbullet.util.Converter;
 import java.util.List;
 
 /**
@@ -34,10 +37,17 @@ public class CylinderCollisionShape extends CollisionShape{
         createCollisionCylinder(volume);
     }
 
-    private void createCollisionCylinder(Node node){
-        if(5==5)
-            throw (new UnsupportedOperationException("Not implemented yet."));
+    /**
+     * Creates a cylinder shape from the given halfextents
+     * @param halfExtents
+     */
+    public CylinderCollisionShape(Vector3f halfExtents) {
+        CylinderShape capShape=new CylinderShapeZ(Converter.convert(halfExtents));
+        cShape=capShape;
+        type=Shapes.CYLINDER;
+    }
 
+    private void createCollisionCylinder(Node node){
         List<Spatial> children=node.getChildren();
         if(children.size()==0){
             throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision cylinder"));
@@ -50,10 +60,8 @@ public class CylinderCollisionShape extends CollisionShape{
     }
 
     private void createCollisionCylinder(BoundingBox volume){
-        if(5==5)
-            throw (new UnsupportedOperationException("Not implemented yet."));
         javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
-        CylinderShape capShape=new CylinderShape(halfExtents);
+        CylinderShapeZ capShape=new CylinderShapeZ(halfExtents);
         cShape=capShape;
         type=Shapes.CYLINDER;
     }
