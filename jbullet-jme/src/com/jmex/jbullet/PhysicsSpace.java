@@ -446,8 +446,17 @@ public abstract class PhysicsSpace {
      * interface with Broadphase types
      */
     public interface BroadphaseTypes{
+        /**
+         * basic Broadphase
+         */
         public static final int SIMPLE=0;
+        /**
+         * better Broadphase, needs worldBounds , max Object number = 16384
+         */
         public static final int AXIS_SWEEP_3=1;
+        /**
+         * better Broadphase, needs worldBounds , max Object number = 65536
+         */
         public static final int AXIS_SWEEP_3_32=2;
         public static final int DBVT=3;
     }
