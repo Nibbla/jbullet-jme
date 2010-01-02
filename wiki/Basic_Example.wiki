@@ -41,7 +41,7 @@ Add floor to physics space
 pSpace.add(floor);
 }}}
 = Update call =
-In your jme2 Gamestate, update and sync physics like this:
+In your jme2 Gamestate, update physics like this:
 {{{
 public void update(float tpf) {
     super.update(tpf);
