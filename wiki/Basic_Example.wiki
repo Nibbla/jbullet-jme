@@ -13,7 +13,7 @@ Now you can add physics objects to the world like this:
 Sphere sphere=new Sphere("physicssphere",16,16,1f);
 
 //Create physics sphere from it
-PhysicsNode physicsSphere=new PhysicsNode(sphere, CollisionShape.Shapes.SPHERE);
+PhysicsNode physicsSphere=new PhysicsNode(sphere, CollisionShape.ShapeTypes.SPHERE);
 physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
 
 //Add sphere to jme scenegraph
@@ -25,7 +25,7 @@ pSpace.add(physicsSphere);
 
 //Add a physics mesh as floor to the world, note that objects with mass=0 are static
 Box box=new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f);
-PhysicsNode floor=new PhysicsNode(box, CollisionShape.Shapes.MESH);
+PhysicsNode floor=new PhysicsNode(box, CollisionShape.ShapeTypes.MESH);
 floor.setMass(0);
 floor.setLocalTranslation(new Vector3f(0f,-6,0f));
 
