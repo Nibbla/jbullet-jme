@@ -32,11 +32,11 @@
 package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
-import com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
 import com.jmex.jbullet.joints.motors.RotationalLimitMotor;
+import com.jmex.jbullet.joints.motors.TranslationalLimitMotor;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
