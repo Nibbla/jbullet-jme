@@ -80,7 +80,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see com.jmex.jbullet.nodes.PhysicsNode
  * @author normenhansen
  */
-public class PhysicsSpace {
+public abstract class PhysicsSpace {
     private GameTaskQueue rQueue;
     private GameTaskQueue pQueue;
     private DynamicsWorld dynamicsWorld = null;
@@ -106,7 +106,7 @@ public class PhysicsSpace {
         if(pSpace!=null){
             return pSpace;
         }
-        pSpace=new PhysicsSpace();
+        pSpace=new PhysicsSpace(){};
         return pSpace;
     }
 
@@ -114,7 +114,7 @@ public class PhysicsSpace {
         if(pSpace!=null){
             return pSpace;
         }
-        pSpace=new PhysicsSpace(broadphaseType);
+        pSpace=new PhysicsSpace(broadphaseType){};
         return pSpace;
     }
 
@@ -122,7 +122,7 @@ public class PhysicsSpace {
         if(pSpace!=null){
             return pSpace;
         }
-        pSpace=new PhysicsSpace(worldMin, worldMax);
+        pSpace=new PhysicsSpace(worldMin, worldMax){};
         return pSpace;
     }
 
@@ -130,7 +130,7 @@ public class PhysicsSpace {
         if(pSpace!=null){
             return pSpace;
         }
-        pSpace=new PhysicsSpace(worldMin, worldMax, broadphaseType);
+        pSpace=new PhysicsSpace(worldMin, worldMax, broadphaseType){};
         return pSpace;
     }
 
