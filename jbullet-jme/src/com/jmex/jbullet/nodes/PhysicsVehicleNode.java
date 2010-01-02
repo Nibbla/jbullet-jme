@@ -149,7 +149,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
         for(WheelInfo wheel:wheels){
             wheel.setWheelInfo(vehicle.addWheel(Converter.convert(wheel.getLocation()), Converter.convert(wheel.getDirection()), Converter.convert(wheel.getAxle()),
                     wheel.getRestLength(), wheel.getRadius(), tuning, wheel.isFrontWheel()));
-            wheel.applyInfo();
             wheel.syncPhysics();
         }
     }
