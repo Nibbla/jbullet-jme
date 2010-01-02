@@ -325,8 +325,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     public void steer(int wheel, float value){
-        if(wheels.get(wheel).isFrontWheel())
-            wheels.get(wheel).setSteerValue(value);
+        wheels.get(wheel).setSteerValue(value);
         applySteer();
     }
 
