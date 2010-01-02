@@ -3,7 +3,7 @@
 == Create physics space ==
 Create a PhysicsSpace like this:
 {{{
-PhyiscsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 }}}
 == Add physics objects ==
 Now you can add physics objects to the world like this:
