@@ -188,21 +188,18 @@ public class PhysicsSpace {
 
     public void update(float time, int maxSteps){
         if(getDynamicsWorld()==null) return;
-        getDynamicsWorld().stepSimulation(time,maxSteps);
-        doQueue();
-    }
-
-    private void doQueue(){
-        //distribute events
-        distributeEvents();
         //add recurring events
         rQueue.execute();
-        //sync nodes+joints
+        //execute queue
         pQueue.execute();
+        //step simulation
+        getDynamicsWorld().stepSimulation(time,maxSteps);
         //sync ghostnodes
         for ( PhysicsGhostNode node : physicsGhostNodes.values() ){
             node.syncPhysics();
         }
+        //distribute events
+        distributeEvents();
     }
 
     private void distributeEvents() {
