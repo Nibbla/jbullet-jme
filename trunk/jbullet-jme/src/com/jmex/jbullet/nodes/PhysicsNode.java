@@ -597,6 +597,9 @@ public class PhysicsNode extends CollisionObject{
         else if(bounds instanceof BoundingCapsule){
             collisionShape=new CapsuleCollisionShape(this);
         }
+        else{
+            createCollisionShape(CollisionShape.Shapes.SPHERE);
+        }
         constructionInfo.collisionShape=collisionShape.getCShape();
         rebuildRigidBody();
     }
