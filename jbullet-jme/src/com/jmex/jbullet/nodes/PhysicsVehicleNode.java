@@ -42,7 +42,7 @@ import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
+import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.nodes.infos.WheelInfo;
 import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
@@ -78,7 +78,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private List<WheelInfo> wheels=new LinkedList<WheelInfo>();
 
     public PhysicsVehicleNode(Spatial child){
-        super(child, Shapes.BOX);
+        super(child, ShapeTypes.BOX);
     }
 
     public PhysicsVehicleNode(Spatial child, int collisionShapeType){

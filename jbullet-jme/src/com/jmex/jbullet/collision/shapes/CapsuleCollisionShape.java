@@ -10,7 +10,7 @@ import com.jme.bounding.BoundingCapsule;
 import com.jme.math.FastMath;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
-import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
+import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import java.util.List;
 
 /**
@@ -43,7 +43,7 @@ public class CapsuleCollisionShape extends CollisionShape{
     public CapsuleCollisionShape(float radius, float height) {
         CapsuleShape capShape=new CapsuleShape(radius,height);
         cShape=capShape;
-        type=Shapes.CAPSULE;
+        type=ShapeTypes.CAPSULE;
     }
 
     private void createCollisionCapsule(Node node) {
@@ -68,7 +68,7 @@ public class CapsuleCollisionShape extends CollisionShape{
         height+=(radius*2);
         CapsuleShape capShape=new CapsuleShape(capsule.getRadius(),height);
         cShape=capShape;
-        type=Shapes.CAPSULE;
+        type=ShapeTypes.CAPSULE;
     }
 
 }
