@@ -81,7 +81,6 @@ public class Test6DofJointMotor {
 
             @Override
             public void update(float tpf) {
-                pSpace.syncPhysics();
                 pSpace.update(tpf);
                 super.update(tpf);
 
