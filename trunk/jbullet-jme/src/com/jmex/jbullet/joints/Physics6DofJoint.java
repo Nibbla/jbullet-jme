@@ -74,10 +74,10 @@ public class Physics6DofJoint extends PhysicsJoint{
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
 
-        Transform transA=new Transform();
+        Transform transA=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotA,transA.origin);
 
-        Transform transB=new Transform();
+        Transform transB=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotB,transB.origin);
 
         constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
