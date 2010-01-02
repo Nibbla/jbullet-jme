@@ -204,8 +204,8 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#enqueueSync(java.util.concurrent.Callable)">enqueueSync</A></B>(java.util.concurrent.Callable&nbsp;callable)</CODE>
+<CODE>&nbsp;java.util.concurrent.Future</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#enqueueUpdate(java.util.concurrent.Callable)">enqueueUpdate</A></B>(java.util.concurrent.Callable&nbsp;callable)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -271,7 +271,7 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
+<CODE>&nbsp;java.util.concurrent.Future</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#reQueue(java.util.concurrent.Callable)">reQueue</A></B>(java.util.concurrent.Callable&nbsp;callable)</CODE>
 
 <BR>
@@ -439,10 +439,10 @@ public void <B>update</B>(float&nbsp;time,
 </DL>
 <HR>
 
-<A NAME="enqueueSync(java.util.concurrent.Callable)"><!-- --></A><H3>
-enqueueSync</H3>
+<A NAME="enqueueUpdate(java.util.concurrent.Callable)"><!-- --></A><H3>
+enqueueUpdate</H3>
 <PRE>
-public void <B>enqueueSync</B>(java.util.concurrent.Callable&nbsp;callable)</PRE>
+public java.util.concurrent.Future <B>enqueueUpdate</B>(java.util.concurrent.Callable&nbsp;callable)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -453,7 +453,7 @@ public void <B>enqueueSync</B>(java.util.concurrent.Callable&nbsp;callable)</PRE
 <A NAME="reQueue(java.util.concurrent.Callable)"><!-- --></A><H3>
 reQueue</H3>
 <PRE>
-public void <B>reQueue</B>(java.util.concurrent.Callable&nbsp;callable)</PRE>
+public java.util.concurrent.Future <B>reQueue</B>(java.util.concurrent.Callable&nbsp;callable)</PRE>
 <DL>
 <DD><DL>
 </DL>
