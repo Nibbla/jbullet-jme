@@ -67,8 +67,6 @@ public class PhysicsGhostNode extends CollisionObject{
     protected com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
     protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
 
-    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
-
     public PhysicsGhostNode(Spatial child, int shapeType) {
         this.attachChild(child);
         buildCollisionShape(shapeType);
