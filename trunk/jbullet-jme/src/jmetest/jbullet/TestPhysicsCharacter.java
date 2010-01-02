@@ -111,28 +111,28 @@ public class TestPhysicsCharacter {
         state.setText("u,h,j,k = move character / space = stop");
 
         Sphere caps=new Sphere("character",8,8,2f);
-        character=new PhysicsCharacterNode(caps, CollisionShape.Shapes.SPHERE, .1f);
+        character=new PhysicsCharacterNode(caps, CollisionShape.ShapeTypes.SPHERE, .1f);
         character.setLocalTranslation(0,3,0);
         state.getRootNode().attachChild(character);
         character.updateRenderState();
         pSpace.add(character);
 
         Box box=new Box("physicsobstaclemesh",Vector3f.ZERO,.5f,.5f,.5f);
-        PhysicsNode boxNode=new PhysicsNode(box, CollisionShape.Shapes.BOX);
+        PhysicsNode boxNode=new PhysicsNode(box, CollisionShape.ShapeTypes.BOX);
         boxNode.setLocalTranslation(6,-1,0);
         state.getRootNode().attachChild(boxNode);
         boxNode.updateRenderState();
         pSpace.add(boxNode);
 
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Box("physicsobstaclemesh",Vector3f.ZERO,2,2,2),CollisionShape.Shapes.BOX,0);
+        PhysicsNode node2=new PhysicsNode(new Box("physicsobstaclemesh",Vector3f.ZERO,2,2,2),CollisionShape.ShapeTypes.BOX,0);
         node2.setLocalTranslation(new Vector3f(0f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH,0);
+        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();

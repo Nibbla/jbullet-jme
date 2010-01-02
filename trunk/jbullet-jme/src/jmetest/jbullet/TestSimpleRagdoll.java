@@ -79,43 +79,43 @@ public class TestSimpleRagdoll {
 
         //create limb nodes
         Capsule shoulders=new Capsule("capsule",8,8,8,0.2f,2f);
-        PhysicsNode shouldersNode=new PhysicsNode(shoulders,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode shouldersNode=new PhysicsNode(shoulders,CollisionShape.ShapeTypes.CAPSULE);
         shouldersNode.setLocalTranslation(0, 0, 0);
         shouldersNode.setLocalRotation(new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_Z));
 
         Capsule lArmLower=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode lArmLowerNode=new PhysicsNode(lArmLower,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode lArmLowerNode=new PhysicsNode(lArmLower,CollisionShape.ShapeTypes.CAPSULE);
         lArmLowerNode.setLocalTranslation(-1, -2, 0);
         Capsule lArmUpper=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode lArmUpperNode=new PhysicsNode(lArmUpper,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode lArmUpperNode=new PhysicsNode(lArmUpper,CollisionShape.ShapeTypes.CAPSULE);
         lArmUpperNode.setLocalTranslation(-1, -1, 0);
         Capsule rArmLower=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode rArmLowerNode=new PhysicsNode(rArmLower,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode rArmLowerNode=new PhysicsNode(rArmLower,CollisionShape.ShapeTypes.CAPSULE);
         rArmLowerNode.setLocalTranslation(1, -2, 0);
         Capsule rArmUpper=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode rArmUpperNode=new PhysicsNode(rArmUpper,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode rArmUpperNode=new PhysicsNode(rArmUpper,CollisionShape.ShapeTypes.CAPSULE);
         rArmUpperNode.setLocalTranslation(1, -1, 0);
 
         Capsule body=new Capsule("capsule",8,8,8,0.2f,2f);
-        PhysicsNode bodyNode=new PhysicsNode(body,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode bodyNode=new PhysicsNode(body,CollisionShape.ShapeTypes.CAPSULE);
         bodyNode.setLocalTranslation(0, -1, 0);
 
         Capsule hips=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode hipsNode=new PhysicsNode(hips,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode hipsNode=new PhysicsNode(hips,CollisionShape.ShapeTypes.CAPSULE);
         hipsNode.setLocalTranslation(0, -2, 0);
         hipsNode.setLocalRotation(new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_Z));
 
         Capsule lLegLower=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode lLegLowerNode=new PhysicsNode(lLegLower,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode lLegLowerNode=new PhysicsNode(lLegLower,CollisionShape.ShapeTypes.CAPSULE);
         lLegLowerNode.setLocalTranslation(-0.5f, -4, 0);
         Capsule lLegUpper=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode lLegUpperNode=new PhysicsNode(lLegUpper,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode lLegUpperNode=new PhysicsNode(lLegUpper,CollisionShape.ShapeTypes.CAPSULE);
         lLegUpperNode.setLocalTranslation(-0.5f, -3, 0);
         Capsule rLegLower=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode rLegLowerNode=new PhysicsNode(rLegLower,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode rLegLowerNode=new PhysicsNode(rLegLower,CollisionShape.ShapeTypes.CAPSULE);
         rLegLowerNode.setLocalTranslation(0.5f, -4, 0);
         Capsule rLegUpper=new Capsule("capsule",8,8,8,0.2f,1f);
-        PhysicsNode rLegUpperNode=new PhysicsNode(rLegUpper,CollisionShape.Shapes.CAPSULE);
+        PhysicsNode rLegUpperNode=new PhysicsNode(rLegUpper,CollisionShape.ShapeTypes.CAPSULE);
         rLegUpperNode.setLocalTranslation(0.5f, -3, 0);
 
         //add nodes to scenegraph & physics space
@@ -212,7 +212,7 @@ public class TestSimpleRagdoll {
         pSpace.add(rLegLow);
 
         // the floor, does not move (mass=0)
-        PhysicsNode physicsFloor=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH);
+        PhysicsNode physicsFloor=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH);
         physicsFloor.setMass(0);
         physicsFloor.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(physicsFloor);

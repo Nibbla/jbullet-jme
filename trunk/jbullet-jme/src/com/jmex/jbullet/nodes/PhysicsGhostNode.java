@@ -95,19 +95,19 @@ public class PhysicsGhostNode extends CollisionObject{
      */
     private void buildCollisionShape(int type){
         switch(type){
-            case CollisionShape.Shapes.BOX:
+            case CollisionShape.ShapeTypes.BOX:
                 cShape=new BoxCollisionShape(this);
             break;
-            case CollisionShape.Shapes.SPHERE:
+            case CollisionShape.ShapeTypes.SPHERE:
                 cShape=new SphereCollisionShape(this);
             break;
-            case CollisionShape.Shapes.CAPSULE:
+            case CollisionShape.ShapeTypes.CAPSULE:
                 cShape=new CapsuleCollisionShape(this);
             break;
-            case CollisionShape.Shapes.CYLINDER:
+            case CollisionShape.ShapeTypes.CYLINDER:
                 cShape=new CylinderCollisionShape(this);
             break;
-            case CollisionShape.Shapes.MESH:
+            case CollisionShape.ShapeTypes.MESH:
                 cShape=new MeshCollisionShape(this);
             break;
         }

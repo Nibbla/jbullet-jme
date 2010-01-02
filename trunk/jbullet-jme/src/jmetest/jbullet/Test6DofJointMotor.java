@@ -119,14 +119,14 @@ public class Test6DofJointMotor {
         state.setText("h,k = enable motor left/right / u,j = enable motor forwards/backwards / space = stop applying forces");
 
         Sphere sphere=new Sphere("physicsobstaclemesh",8,8,0.25f);
-        PhysicsNode holder=new PhysicsNode(sphere, CollisionShape.Shapes.SPHERE,0);
+        PhysicsNode holder=new PhysicsNode(sphere, CollisionShape.ShapeTypes.SPHERE,0);
         holder.setLocalTranslation(0,1,0);
         state.getRootNode().attachChild(holder);
         holder.updateRenderState();
         pSpace.add(holder);
 
         Box box=new Box("physicsobstaclemesh",Vector3f.ZERO,.5f,.5f,.5f);
-        hammer=new PhysicsNode(box, CollisionShape.Shapes.BOX);
+        hammer=new PhysicsNode(box, CollisionShape.ShapeTypes.BOX);
         hammer.setLocalTranslation(0,-1,0);
         state.getRootNode().attachChild(hammer);
         hammer.updateRenderState();
@@ -140,14 +140,14 @@ public class Test6DofJointMotor {
         pSpace.add(joint);
 
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Box("physicsobstaclemesh",Vector3f.ZERO,2,2,2),CollisionShape.Shapes.MESH,0);
+        PhysicsNode node2=new PhysicsNode(new Box("physicsobstaclemesh",Vector3f.ZERO,2,2,2),CollisionShape.ShapeTypes.MESH,0);
         node2.setLocalTranslation(new Vector3f(0f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH,0);
+        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();

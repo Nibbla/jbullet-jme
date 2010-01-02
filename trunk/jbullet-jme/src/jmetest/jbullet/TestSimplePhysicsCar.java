@@ -191,7 +191,7 @@ public class TestSimplePhysicsCar{
 
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
-        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.Shapes.BOX);
+        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.ShapeTypes.BOX);
         physicsCar.setMaxSuspensionTravelCm(500);
         physicsCar.setSuspensionCompression(4.4f);
         physicsCar.setSuspensionDamping(2.3f);
@@ -222,14 +222,14 @@ public class TestSimplePhysicsCar{
 //        physicsCar.setMass(100);
 
         // an obstacle mesh, does not move (mass=0)
-        node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.Shapes.MESH,0);
+        node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.ShapeTypes.MESH,0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.Shapes.MESH,0);
+        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();

@@ -42,7 +42,7 @@ public class BoxCollisionShape extends CollisionShape{
     public BoxCollisionShape(Vector3f halfExtents) {
         BoxShape sphere=new BoxShape(Converter.convert(halfExtents));
         cShape=sphere;
-        type=Shapes.BOX;
+        type=ShapeTypes.BOX;
     }
 
     /**
@@ -67,7 +67,7 @@ public class BoxCollisionShape extends CollisionShape{
         javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
         BoxShape sphere=new BoxShape(halfExtents);
         cShape=sphere;
-        type=Shapes.BOX;
+        type=ShapeTypes.BOX;
     }
 
 }

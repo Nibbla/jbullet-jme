@@ -9,7 +9,7 @@ import com.bulletphysics.collision.shapes.BvhTriangleMeshShape;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.scene.TriMesh;
-import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
+import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.util.Converter;
 import java.util.List;
 
@@ -59,7 +59,7 @@ public class MeshCollisionShape extends CollisionShape{
 
     private void createCollisionMesh(TriMesh mesh){
         cShape=new BvhTriangleMeshShape(Converter.convert(mesh),true);
-        type=Shapes.MESH;
+        type=ShapeTypes.MESH;
     }
 
 }

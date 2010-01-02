@@ -53,7 +53,7 @@ import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
+import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
 import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
@@ -76,7 +76,7 @@ import java.util.concurrent.Callable;
  * Then add the PhyiscsNode to the PhysicsSpace by calling <code>physicsSpace.add(node);</code>
  * The given spatial will be the added as child node or geometry of the PhysicsNode and
  * will thus move with the PhysicsNode.<br>
- * The shapeType is one of <code>CollisionShape.Shapes.XXX</code>
+ * The shapeType is one of <code>CollisionShape.ShapeTypes.XXX</code>
  * and defines what kind of shape the PhysicsNode has in the physics space,
  * the size of the shape is dependent on the BoundingVolume of this PhysicsNode.<br>
  * PhysicsNodes with mass=0 are static and do not move.
@@ -126,7 +126,7 @@ public class PhysicsNode extends CollisionObject{
      * @param child
      */
     public PhysicsNode(Spatial child){
-        this(child,Shapes.SPHERE);
+        this(child,ShapeTypes.SPHERE);
     }
 
     /**
@@ -578,19 +578,19 @@ public class PhysicsNode extends CollisionObject{
      */
     public void createCollisionShape(int type){
         switch(type){
-            case CollisionShape.Shapes.BOX:
+            case CollisionShape.ShapeTypes.BOX:
                 collisionShape=new BoxCollisionShape(this);
             break;
-            case CollisionShape.Shapes.SPHERE:
+            case CollisionShape.ShapeTypes.SPHERE:
                 collisionShape=new SphereCollisionShape(this);
             break;
-            case CollisionShape.Shapes.CAPSULE:
+            case CollisionShape.ShapeTypes.CAPSULE:
                 collisionShape=new CapsuleCollisionShape(this);
             break;
-            case CollisionShape.Shapes.CYLINDER:
+            case CollisionShape.ShapeTypes.CYLINDER:
                 collisionShape=new CylinderCollisionShape(this);
             break;
-            case CollisionShape.Shapes.MESH:
+            case CollisionShape.ShapeTypes.MESH:
                 collisionShape=new MeshCollisionShape(this);
             break;
         }
@@ -614,7 +614,7 @@ public class PhysicsNode extends CollisionObject{
             collisionShape=new CapsuleCollisionShape(this);
         }
         else{
-            createCollisionShape(CollisionShape.Shapes.SPHERE);
+            createCollisionShape(CollisionShape.ShapeTypes.SPHERE);
         }
         constructionInfo.collisionShape=collisionShape.getCShape();
         rebuildRigidBody();
