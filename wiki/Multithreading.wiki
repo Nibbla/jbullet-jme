@@ -5,9 +5,9 @@ jbullet-jme has been developed in a way that makes it easy to integrate it into 
 
 ==Updating sequence==
   * *update(float time)*
-   * physics update run
-   * collision events get dispatched
    * queue input gets applied
+   * physics update run / jme spatial update 
+   * collision events get dispatched
 
 TODO: extend
 == Queues ==
