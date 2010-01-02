@@ -6,6 +6,7 @@
 package com.jmex.jbullet.collision.shapes;
 
 import com.bulletphysics.collision.shapes.CylinderShape;
+import com.bulletphysics.collision.shapes.CylinderShapeX;
 import com.bulletphysics.collision.shapes.CylinderShapeZ;
 import com.jme.bounding.BoundingBox;
 import com.jme.math.Vector3f;
@@ -44,6 +45,25 @@ public class CylinderCollisionShape extends CollisionShape{
     public CylinderCollisionShape(Vector3f halfExtents) {
         CylinderShape capShape=new CylinderShapeZ(Converter.convert(halfExtents));
         cShape=capShape;
+        type=Shapes.CYLINDER;
+    }
+
+    /**
+     * Creates a cylinder shape around the given axis (0=X,1=Y,2=Z) from the given halfextents
+     * @param halfExtents
+     */
+    public CylinderCollisionShape(Vector3f halfExtents, int axis) {
+        switch(axis){
+            case 0:
+                cShape=new CylinderShapeX(Converter.convert(halfExtents));
+            break;
+            case 1:
+                cShape=new CylinderShape(Converter.convert(halfExtents));
+            break;
+            case 2:
+                cShape=new CylinderShapeZ(Converter.convert(halfExtents));
+            break;
+        }
         type=Shapes.CYLINDER;
     }
 
