@@ -269,7 +269,6 @@ public class PhysicsSpace {
     }
 
     private void addGhostNode(PhysicsGhostNode node){
-        node.syncPhysics();
         physicsGhostNodes.put(node.getGhostObject(),node);
         if(node instanceof PhysicsCharacterNode){
 //            dynamicsWorld.addCollisionObject(node.getGhostObject(), CollisionFilterGroups.CHARACTER_FILTER, (short)(CollisionFilterGroups.STATIC_FILTER | CollisionFilterGroups.DEFAULT_FILTER));
@@ -289,7 +288,6 @@ public class PhysicsSpace {
     }
 
     private void addNode(PhysicsNode node){
-        node.syncPhysics();
         physicsNodes.put(node.getRigidBody(),node);
         getDynamicsWorld().addRigidBody(node.getRigidBody());
         if(node instanceof PhysicsVehicleNode)
@@ -304,7 +302,6 @@ public class PhysicsSpace {
     }
 
     private void addJoint(PhysicsJoint joint){
-        joint.syncPhysics();
         physicsJoints.add(joint);
         getDynamicsWorld().addConstraint(joint.getConstraint(), !joint.isCollisionBetweenLinkedBodys());
     }

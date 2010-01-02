@@ -38,7 +38,6 @@ import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.util.Converter;
-import java.util.concurrent.Callable;
 
 /**
  *
@@ -48,13 +47,9 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
 	private KinematicCharacterController character;
 
     private float stepHeight;
-    private float fallSpeed;
-    private float jumpSpeed;
 
     private Vector3f walkDirection=new Vector3f();
 
-    private int upAxis=0;
-    private float maxJumpHeight=1.0f;
 
     public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
         super(spat, shapeType);
@@ -72,50 +67,20 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
 
     public void setWalkDirection(Vector3f vec){
         walkDirection.set(vec);
-        pQueue.enqueue(doApplyWalkDirection);
+        character.setWalkDirection(Converter.convert(walkDirection));
     }
-
-    private Callable doApplyWalkDirection=new Callable(){
-        public Object call() throws Exception {
-            character.setWalkDirection(Converter.convert(walkDirection));
-            return null;
-        }
-    };
 
     public void setUpAxis(int axis){
-        upAxis=axis;
-        pQueue.enqueue(doApplyUpAxis);
+        character.setUpAxis(axis);
     }
-
-    private Callable doApplyUpAxis=new Callable(){
-        public Object call() throws Exception {
-            character.setUpAxis(upAxis);
-            return null;
-        }
-    };
 
     public void setMaxJumpHeight(float height){
-        maxJumpHeight=height;
-        pQueue.enqueue(doApplyMaxJumpHeight);
+        character.setMaxJumpHeight(height);
     }
-
-    private Callable doApplyMaxJumpHeight=new Callable(){
-        public Object call() throws Exception {
-            character.setMaxJumpHeight(maxJumpHeight);
-            return null;
-        }
-    };
 
     public void jump() {
-        pQueue.enqueue(doApplyJump);
+        character.jump();
     }
-
-    private Callable doApplyJump=new Callable(){
-        public Object call() throws Exception {
-            character.jump();
-            return null;
-        }
-    };
 
     /**
      * @return the character

@@ -37,7 +37,6 @@ import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
-import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -48,9 +47,6 @@ import java.util.concurrent.Callable;
  */
 public class PhysicsConeJoint extends PhysicsJoint{
     private Matrix3f rotA, rotB;
-    private float swingSpan1=1e30f, swingSpan2=1e30f, twistSpan=1e30f;
-    //TODO: softness
-    private float softness, biasFactor=0.3f, relaxationFactor=1.0f;
 
     public PhysicsConeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
         super(nodeA, nodeB, pivotA, pivotB);
@@ -81,17 +77,7 @@ public class PhysicsConeJoint extends PhysicsJoint{
     }
 
     public void setLimit(float swingSpan1, float swingSpan2, float twistSpan) {
-        this.swingSpan1=swingSpan1;
-        this.swingSpan2=swingSpan2;
-        this.twistSpan=twistSpan;
-        pQueue.enqueue(doUpdateLimits);
+        ((ConeTwistConstraint)constraint).setLimit(swingSpan1, swingSpan2, twistSpan);
     }
-
-    private Callable doUpdateLimits=new Callable(){
-        public Object call() throws Exception {
-            ((ConeTwistConstraint)constraint).setLimit(swingSpan1, swingSpan2, twistSpan);
-            return null;
-        }
-    };
 
 }

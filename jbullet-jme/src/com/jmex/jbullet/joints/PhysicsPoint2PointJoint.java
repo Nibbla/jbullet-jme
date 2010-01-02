@@ -33,7 +33,6 @@ package com.jmex.jbullet.joints;
 
 import com.bulletphysics.dynamics.constraintsolver.Point2PointConstraint;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 

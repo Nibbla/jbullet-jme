@@ -74,11 +74,6 @@ public class PhysicsJoint {
         this.pivotB = pivotB;
     }
 
-
-    public void syncPhysics() {
-        
-    }
-
     /**
      * @return the constraint
      */
