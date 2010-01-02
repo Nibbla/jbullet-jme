@@ -322,6 +322,14 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#getWheelInfo(int)">getWheelInfo</A></B>(int&nbsp;wheel)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setFrictionSlip(float)">setFrictionSlip</A></B>(float&nbsp;frictionSlip)</CODE>
 
@@ -422,6 +430,15 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the given steering value (0 = forward)</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#steer(int, float)">steer</A></B>(int&nbsp;wheel,
+      float&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -560,6 +577,17 @@ public void <B>addWheel</B>(com.jme.scene.Spatial&nbsp;spat,
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>spat</CODE> - the wheel Spatial (mesh)<DD><CODE>connectionPoint</CODE> - the location of the wheel relative to the car<DD><CODE>direction</CODE> - the direction of the wheel (should be -Y / -1,0,0 for a normal car)<DD><CODE>axle</CODE> - The axis of the wheel (should be -X / 0,-1,0 for a normal car)<DD><CODE>suspensionRestLength</CODE> - the suspension rest length<DD><CODE>wheelRadius</CODE> - the wheel radius<DD><CODE>isFrontWheel</CODE> - sets if this wheel is a front wheel (steering)</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getWheelInfo(int)"><!-- --></A><H3>
+getWheelInfo</H3>
+<PRE>
+public <A HREF="../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A> <B>getWheelInfo</B>(int&nbsp;wheel)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -803,6 +831,18 @@ public void <B>steer</B>(float&nbsp;value)</PRE>
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>value</CODE> - the steering angle of the front wheels (Pi = 360deg)</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="steer(int, float)"><!-- --></A><H3>
+steer</H3>
+<PRE>
+public void <B>steer</B>(int&nbsp;wheel,
+                  float&nbsp;value)</PRE>
+<DL>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
