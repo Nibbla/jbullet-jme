@@ -3,5 +3,7 @@ The PhysicsSpace defines the basic physics world in jbullet-jme. Things such as 
 
 The PhysicsSpace needs to be started by getting a PhysicsSpace Object and updated by calling the update(float time) method.
 
+In order for PhysicsNodes and PhysicsJoints to work, they need to be added to the PhysicsSpace by calling physicsSpace.add(node);
+
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/PhysicsSpace.html
