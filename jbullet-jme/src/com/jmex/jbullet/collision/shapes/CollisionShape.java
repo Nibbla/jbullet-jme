@@ -31,11 +31,6 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
-import com.bulletphysics.collision.shapes.CylinderShape;
-import com.jme.bounding.BoundingBox;
-import com.jme.scene.Node;
-import com.jme.scene.Spatial;
-import java.util.List;
 import javax.vecmath.Vector3f;
 
 /**
