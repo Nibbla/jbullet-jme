@@ -63,8 +63,6 @@ public class WheelInfo {
     private float steerValue=0;
     private float engineForce=0;
     private float brakeForce=0;
-    private boolean applyEngine=false;
-    private boolean applyBrake=false;
 
     private com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
     private com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
@@ -274,24 +272,6 @@ public class WheelInfo {
 
     public void setBrakeForce(float brakeForce) {
         this.brakeForce = brakeForce;
-        applyInfo();
-    }
-
-    public boolean isApplyEngine() {
-        return applyEngine;
-    }
-
-    public void setApplyEngine(boolean applyEngine) {
-        this.applyEngine = applyEngine;
-        applyInfo();
-    }
-
-    public boolean isApplyBrake() {
-        return applyBrake;
-    }
-
-    public void setApplyBrake(boolean applyBrake) {
-        this.applyBrake = applyBrake;
         applyInfo();
     }
 
