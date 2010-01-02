@@ -38,8 +38,10 @@ import com.jmex.jbullet.collision.CollisionEvent;
 import java.util.concurrent.Callable;
 
 import com.jme.math.Vector3f;
+import com.jme.renderer.Camera;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Sphere;
+import com.jme.system.DisplaySystem;
 import com.jme.util.GameTaskQueueManager;
 import com.jmex.editors.swing.settings.GameSettingsPanel;
 import com.jmex.game.StandardGame;
@@ -63,6 +65,7 @@ public class TestSimplePhysicsCar{
     private static PhysicsVehicleNode physicsCar;
     private static DebugGameState state;
     private static PhysicsNode node2;
+    private static boolean carCam=false;
 
     public static void setupGame(){
         // creates and initializes the PhysicsSpace
@@ -92,6 +95,8 @@ public class TestSimplePhysicsCar{
                 KeyInput.KEY_K);
         KeyBindingManager.getKeyBindingManager().set("key_action",
                 KeyInput.KEY_SPACE);
+        KeyBindingManager.getKeyBindingManager().set("key_cam",
+                KeyInput.KEY_V);
 
         // Create a DebugGameState
         // - override the update method to update/sync physics space
@@ -108,7 +113,10 @@ public class TestSimplePhysicsCar{
             public void update(float tpf) {
                 pSpace.update(tpf);
                 super.update(tpf);
-
+                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_cam", false)) {
+                    carCam=!carCam;
+                }
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_accelerate", true)) {
                     if(!appliedAccel){
@@ -171,10 +179,15 @@ public class TestSimplePhysicsCar{
                         physicsCar.applyContinuousForce(false, Vector3f.UNIT_Y.mult(10));
                 }
 
+                if(carCam){
+                    Camera cam=DisplaySystem.getDisplaySystem().getRenderer().getCamera();
+                    cam.getLocation().set(physicsCar.getLocalTranslation().add(new Vector3f(0,1,0)));
+                    cam.setAxes(physicsCar.getLocalRotation());
+                }
             }
             
         };
-        state.setText("u,h,j,k = control vehicle / space = toggle upwards force to vehicle");
+        state.setText("u,h,j,k = control vehicle / v = toggle car camera / space = toggle upwards force to vehicle");
 
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
