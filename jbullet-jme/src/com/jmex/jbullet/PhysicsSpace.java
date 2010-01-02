@@ -77,7 +77,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Bullet internally works with 60 frames/s...<br>
  * TODO: extend
  * </p>
- * @see com.jmex.jbullet.node.PhysicsNode
+ * @see com.jmex.jbullet.nodes.PhysicsNode
  * @author normenhansen
  */
 public class PhysicsSpace {
@@ -154,8 +154,8 @@ public class PhysicsSpace {
         rQueue=GameTaskQueueManager.getManager().getQueue("jbullet_requeue");
         rQueue.setExecuteAll(true);
 
-        GameTaskQueueManager.getManager().addQueue("jbullet_sync", new GameTaskQueue());
-        pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
+        GameTaskQueueManager.getManager().addQueue("jbullet_update", new GameTaskQueue());
+        pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
         pQueue.setExecuteAll(true);
 
         collisionConfiguration = new DefaultCollisionConfiguration();

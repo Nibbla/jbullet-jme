@@ -61,7 +61,7 @@ public class PhysicsJoint {
     protected Vector3f pivotA;
     protected Vector3f pivotB;
     protected boolean collisionBetweenLinkedBodys=true;
-    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
+    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
 
     /**
      * @param pivotA local translation of the joint connection point in node A

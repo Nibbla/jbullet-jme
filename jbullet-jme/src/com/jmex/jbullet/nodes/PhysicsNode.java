@@ -112,7 +112,7 @@ public class PhysicsNode extends CollisionObject{
     private Vector3f continuousForce=new Vector3f();
     private Vector3f continuousTorque=new Vector3f();
 
-    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
+    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
     private boolean applyForce=false;
     private boolean applyTorque=false;
 
