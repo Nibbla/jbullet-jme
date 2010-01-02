@@ -2,11 +2,10 @@
 *Navigation*
  * [Introduction]
  * [Installing_Building]
- * Objects
-  * [PhysicsSpace]
-  * [PhysicsNode]
-  * [PhysicsVehicleNode]
-  * [PhysicsJoint]
+ * [PhysicsSpace]
+ * [PhysicsNode]
+ * [PhysicsVehicleNode]
+ * [PhysicsJoint]
  * CollisionShapes
  * [Multithreading]
  * Examples
