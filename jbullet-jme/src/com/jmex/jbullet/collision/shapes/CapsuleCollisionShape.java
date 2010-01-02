@@ -14,15 +14,23 @@ import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
 import java.util.List;
 
 /**
- *
+ * Basic capsule collision shape
  * @author normenhansen
  */
 public class CapsuleCollisionShape extends CollisionShape{
 
+    /**
+     * Creates a collision shape from the bounding volume of the given node
+     * @param node the node to get the BoundingVolume from
+     */
     public CapsuleCollisionShape(Node node) {
         createCollisionCapsule(node);
     }
 
+    /**
+     * Creates a collision shape from the given bounding volume
+     * @param volume the BoundingVolume to use
+     */
     public CapsuleCollisionShape(BoundingCapsule volume) {
         createCollisionCapsule(volume);
     }

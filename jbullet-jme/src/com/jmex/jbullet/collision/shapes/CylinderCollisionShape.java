@@ -13,15 +13,23 @@ import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
 import java.util.List;
 
 /**
- *
+ * Basic cylinder collision shape
  * @author normenhansen
  */
 public class CylinderCollisionShape extends CollisionShape{
 
+    /**
+     * Creates a collision shape from the bounding volume of the given node
+     * @param node the node to get the BoundingVolume from
+     */
     public CylinderCollisionShape(Node node) {
         createCollisionCylinder(node);
     }
 
+    /**
+     * Creates a collision shape from the given bounding volume
+     * @param volume the BoundingVolume to use
+     */
     public CylinderCollisionShape(BoundingBox volume) {
         createCollisionCylinder(volume);
     }

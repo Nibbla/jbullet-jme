@@ -94,6 +94,10 @@ Interface CollisionListener</H2>
 </PRE>
 
 <P>
+Interface for Objects that want to be informed about CollisionEvents
+<P>
+
+<P>
 <HR>
 
 <P>
@@ -112,7 +116,7 @@ Interface CollisionListener</H2>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/collision/CollisionListener.html#collision(com.jmex.jbullet.collision.CollisionEvent)">collision</A></B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision">CollisionEvent</A>&nbsp;event)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;called when a collision happens in the PhysicsSpace</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -133,8 +137,10 @@ collision</H3>
 <PRE>
 void <B>collision</B>(<A HREF="../../../../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision">CollisionEvent</A>&nbsp;event)</PRE>
 <DL>
+<DD>called when a collision happens in the PhysicsSpace
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>event</CODE> - the CollisionEvent</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

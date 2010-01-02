@@ -226,6 +226,9 @@ public class PhysicsGhostNode extends CollisionObject{
         return localRotation;
     }
 
+    /**
+     * used internally
+     */
     public GhostObject getGhostObject(){
         return gObject;
     }

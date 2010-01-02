@@ -230,7 +230,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#accelerate(float)">accelerate</A></B>(float&nbsp;force)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply the given engine force</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply the given engine force to all wheels, works continuously</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -239,7 +239,7 @@ java.lang.Object
            float&nbsp;force)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply the given engine force, works continuously</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -258,10 +258,10 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#brake(float)">brake</A></B>(float&nbsp;value)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#brake(float)">brake</A></B>(float&nbsp;force)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply the given brake force to all wheels, works continuously</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -270,7 +270,7 @@ java.lang.Object
       float&nbsp;force)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply the given brake force, works continuously</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -429,24 +429,16 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#steer(float)">steer</A></B>(float&nbsp;value)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the given steering value (0 = forward)</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the given steering value to all front wheels (0 = forward)</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#steer(int, float)">steer</A></B>(int&nbsp;wheel,
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#steer(int, float)">steer</A></B>(int&nbsp;wheelNumber,
       float&nbsp;value)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#syncWheels()">syncWheels</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the given steering value to the given wheel (0 = forward)</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.nodes.PhysicsNode"><!-- --></A>
@@ -455,7 +447,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.nodes.<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)">applyContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean, com.jme.math.Vector3f)">applyContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyTorqueImpulse(com.jme.math.Vector3f)">applyTorqueImpulse</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#clearForces()">clearForces</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape()">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity(com.jme.math.Vector3f)">getAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getCollisionShape()">getCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForce()">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForce(com.jme.math.Vector3f)">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousTorque()">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousTorque(com.jme.math.Vector3f)">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getFriction()">getFriction</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getGravity(com.jme.math.Vector3f)">getGravity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalRotation()">getLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalTranslation()">getLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getMass()">getMass</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getRestitution()">getRestitution</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getRigidBody()">getRigidBody</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#read(com.jme.util.export.JMEImporter)">read</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setAngularVelocity(com.jme.math.Vector3f)">setAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.shapes.CollisionShape)">setCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setDamping(float, float)">setDamping</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setFriction(float)">setFriction</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setGravity(com.jme.math.Vector3f)">setGravity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setMass(float)">setMass</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setModelBound(com.jme.bounding.BoundingVolume)">setModelBound</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setRestitution(float)">setRestitution</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#updateGeometricState(float, boolean)">updateGeometricState</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#write(com.jme.util.export.JMEExporter)">write</A></CODE></TD>
+<TD><CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)">applyContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean, com.jme.math.Vector3f)">applyContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyTorqueImpulse(com.jme.math.Vector3f)">applyTorqueImpulse</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#clearForces()">clearForces</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape()">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity(com.jme.math.Vector3f)">getAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getCollisionShape()">getCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForce()">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForce(com.jme.math.Vector3f)">getContinuousForce</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousTorque()">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousTorque(com.jme.math.Vector3f)">getContinuousTorque</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getFriction()">getFriction</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getGravity(com.jme.math.Vector3f)">getGravity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalRotation()">getLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalTranslation()">getLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getMass()">getMass</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getRestitution()">getRestitution</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getRigidBody()">getRigidBody</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#read(com.jme.util.export.JMEImporter)">read</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setAngularVelocity(com.jme.math.Vector3f)">setAngularVelocity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.shapes.CollisionShape)">setCollisionShape</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setDamping(float, float)">setDamping</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setFriction(float)">setFriction</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setGravity(com.jme.math.Vector3f)">setGravity</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setMass(float)">setMass</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setRestitution(float)">setRestitution</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setWorldRotation(com.jme.math.Quaternion)">setWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setWorldTranslation(com.jme.math.Vector3f)">setWorldTranslation</A>, <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#write(com.jme.util.export.JMEExporter)">write</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Node"><!-- --></A>
@@ -464,7 +456,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Node</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>attachChild, attachChildAt, childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, setCollisionMask, setCollisionMask, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors</CODE></TD>
+<TD><CODE>attachChild, attachChildAt, childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, setCollisionMask, setCollisionMask, setModelBound, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
@@ -473,7 +465,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocalScale, setLocalScale, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocalScale, setLocalScale, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -802,10 +794,10 @@ accelerate</H3>
 <PRE>
 public void <B>accelerate</B>(float&nbsp;force)</PRE>
 <DL>
-<DD>apply the given engine force
+<DD>apply the given engine force to all wheels, works continuously
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>force</CODE> - </DL>
+<DT><B>Parameters:</B><DD><CODE>force</CODE> - the force</DL>
 </DD>
 </DL>
 <HR>
@@ -816,8 +808,10 @@ accelerate</H3>
 public void <B>accelerate</B>(int&nbsp;wheelNumber,
                        float&nbsp;force)</PRE>
 <DL>
+<DD>apply the given engine force, works continuously
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheelNumber</CODE> - the wheel to apply the force on<DD><CODE>force</CODE> - the force</DL>
 </DD>
 </DL>
 <HR>
@@ -827,7 +821,7 @@ steer</H3>
 <PRE>
 public void <B>steer</B>(float&nbsp;value)</PRE>
 <DL>
-<DD>set the given steering value (0 = forward)
+<DD>set the given steering value to all front wheels (0 = forward)
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>value</CODE> - the steering angle of the front wheels (Pi = 360deg)</DL>
@@ -838,11 +832,13 @@ public void <B>steer</B>(float&nbsp;value)</PRE>
 <A NAME="steer(int, float)"><!-- --></A><H3>
 steer</H3>
 <PRE>
-public void <B>steer</B>(int&nbsp;wheel,
+public void <B>steer</B>(int&nbsp;wheelNumber,
                   float&nbsp;value)</PRE>
 <DL>
+<DD>set the given steering value to the given wheel (0 = forward)
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheelNumber</CODE> - the wheel to set the steering on<DD><CODE>value</CODE> - the steering angle of the front wheels (Pi = 360deg)</DL>
 </DD>
 </DL>
 <HR>
@@ -850,10 +846,12 @@ public void <B>steer</B>(int&nbsp;wheel,
 <A NAME="brake(float)"><!-- --></A><H3>
 brake</H3>
 <PRE>
-public void <B>brake</B>(float&nbsp;value)</PRE>
+public void <B>brake</B>(float&nbsp;force)</PRE>
 <DL>
+<DD>apply the given brake force to all wheels, works continuously
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>force</CODE> - the force</DL>
 </DD>
 </DL>
 <HR>
@@ -864,8 +862,10 @@ brake</H3>
 public void <B>brake</B>(int&nbsp;wheelNumber,
                   float&nbsp;force)</PRE>
 <DL>
+<DD>apply the given brake force, works continuously
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheelNumber</CODE> - the wheel to apply the force on<DD><CODE>force</CODE> - the force</DL>
 </DD>
 </DL>
 <HR>
@@ -880,17 +880,6 @@ public com.bulletphysics.dynamics.vehicle.RaycastVehicle <B>getVehicle</B>()</PR
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the vehicle</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="syncWheels()"><!-- --></A><H3>
-syncWheels</H3>
-<PRE>
-public void <B>syncWheels</B>()</PRE>
-<DL>
-<DD><DL>
-</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

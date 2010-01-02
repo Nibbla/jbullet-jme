@@ -12,15 +12,23 @@ import com.jme.scene.Spatial;
 import java.util.List;
 
 /**
- *
+ * Basic box collision shape
  * @author normenhansen
  */
 public class BoxCollisionShape extends CollisionShape{
 
+    /**
+     * Creates a collision shape from the bounding volume of the given node
+     * @param node the node to get the BoundingVolume from
+     */
     public BoxCollisionShape(Node node) {
         createCollisionBox(node);
     }
 
+    /**
+     * Creates a collision shape from the given bounding volume
+     * @param volume the BoundingVolume to use
+     */
     public BoxCollisionShape(BoundingBox volume) {
         createCollisionBox(volume);
     }

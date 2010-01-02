@@ -84,22 +84,22 @@ Method in class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/c
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.Shapes.html#CAPSULE"><B>CAPSULE</B></A> - 
 Static variable in interface com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.Shapes.html" title="interface in com.jmex.jbullet.collision.shapes">CollisionShape.Shapes</A>
 <DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>CapsuleCollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/shapes/package-summary.html">com.jmex.jbullet.collision.shapes</A><DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html#CapsuleCollisionShape(com.jme.scene.Node)"><B>CapsuleCollisionShape(Node)</B></A> - 
+<DT><A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>CapsuleCollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/shapes/package-summary.html">com.jmex.jbullet.collision.shapes</A><DD>Basic capsule collision shape<DT><A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html#CapsuleCollisionShape(com.jme.scene.Node)"><B>CapsuleCollisionShape(Node)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CapsuleCollisionShape</A>
-<DD>&nbsp;
+<DD>Creates a collision shape from the bounding volume of the given node
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html#CapsuleCollisionShape(com.jme.bounding.BoundingCapsule)"><B>CapsuleCollisionShape(BoundingCapsule)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CapsuleCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CapsuleCollisionShape</A>
-<DD>&nbsp;
+<DD>Creates a collision shape from the given bounding volume
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#clearForces()"><B>clearForces()</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/collision/CollisionListener.html#collision(com.jmex.jbullet.collision.CollisionEvent)"><B>collision(CollisionEvent)</B></A> - 
 Method in interface com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision">CollisionListener</A>
-<DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision"><B>CollisionEvent</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>A CollisionEvent stores all information about a collision in the phyiscs world<DT><A HREF="../com/jmex/jbullet/collision/CollisionEvent.html#CollisionEvent(int, com.jmex.jbullet.collision.CollisionObject, com.jmex.jbullet.collision.CollisionObject, com.bulletphysics.collision.narrowphase.ManifoldPoint)"><B>CollisionEvent(int, CollisionObject, CollisionObject, ManifoldPoint)</B></A> - 
+<DD>called when a collision happens in the PhysicsSpace
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision"><B>CollisionEvent</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>A CollisionEvent stores all information about a collision in the PhysicsSorld<DT><A HREF="../com/jmex/jbullet/collision/CollisionEvent.html#CollisionEvent(int, com.jmex.jbullet.collision.CollisionObject, com.jmex.jbullet.collision.CollisionObject, com.bulletphysics.collision.narrowphase.ManifoldPoint)"><B>CollisionEvent(int, CollisionObject, CollisionObject, ManifoldPoint)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionEvent.html" title="class in com.jmex.jbullet.collision">CollisionEvent</A>
 <DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision"><B>CollisionListener</B></A> - Interface in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision"><B>CollisionObject</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)<DT><A HREF="../com/jmex/jbullet/collision/CollisionObject.html#CollisionObject()"><B>CollisionObject()</B></A> - 
+<DT><A HREF="../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision"><B>CollisionListener</B></A> - Interface in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>Interface for Objects that want to be informed about CollisionEvents<DT><A HREF="../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision"><B>CollisionObject</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/package-summary.html">com.jmex.jbullet.collision</A><DD>Base class for collision objects (PhysicsNode, PhysicsGhostNode)<DT><A HREF="../com/jmex/jbullet/collision/CollisionObject.html#CollisionObject()"><B>CollisionObject()</B></A> - 
 Constructor for class com.jmex.jbullet.collision.<A HREF="../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">CollisionObject</A>
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>CollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/shapes/package-summary.html">com.jmex.jbullet.collision.shapes</A><DD>This Object holds information about a jbullet CollisionShape to be able to reuse
@@ -155,12 +155,12 @@ Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/Physic
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.Shapes.html#CYLINDER"><B>CYLINDER</B></A> - 
 Static variable in interface com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.Shapes.html" title="interface in com.jmex.jbullet.collision.shapes">CollisionShape.Shapes</A>
 <DD>&nbsp;
-<DT><A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>CylinderCollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/shapes/package-summary.html">com.jmex.jbullet.collision.shapes</A><DD>&nbsp;<DT><A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html#CylinderCollisionShape(com.jme.scene.Node)"><B>CylinderCollisionShape(Node)</B></A> - 
+<DT><A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>CylinderCollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/shapes/package-summary.html">com.jmex.jbullet.collision.shapes</A><DD>Basic cylinder collision shape<DT><A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html#CylinderCollisionShape(com.jme.scene.Node)"><B>CylinderCollisionShape(Node)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CylinderCollisionShape</A>
-<DD>&nbsp;
+<DD>Creates a collision shape from the bounding volume of the given node
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html#CylinderCollisionShape(com.jme.bounding.BoundingBox)"><B>CylinderCollisionShape(BoundingBox)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CylinderCollisionShape</A>
-<DD>&nbsp;
+<DD>Creates a collision shape from the given bounding volume
 </DL>
 <HR>
 

@@ -34,7 +34,7 @@ package com.jmex.jbullet.collision;
 import com.jme.scene.Node;
 
 /**
- * Basic interface for collision objects (PhysicsNode, PhysicsGhostNode)
+ * Base class for collision objects (PhysicsNode, PhysicsGhostNode)
  * @author normenhansen
  */
 public abstract class CollisionObject extends Node{

@@ -33,12 +33,11 @@ package com.jmex.jbullet.collision;
 
 import com.bulletphysics.collision.narrowphase.ManifoldPoint;
 import com.jme.math.Vector3f;
-import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 import java.util.EventObject;
 
 /**
- * A CollisionEvent stores all information about a collision in the phyiscs world
+ * A CollisionEvent stores all information about a collision in the PhysicsSorld
  * @author normenhansen
  */
 public class CollisionEvent extends EventObject{
@@ -51,61 +50,12 @@ public class CollisionEvent extends EventObject{
 
     private ManifoldPoint cp;
 
-//    private float appliedImpulse;
-//    private float appliedImpulseLateral1;
-//    private float appliedImpulseLateral2;
-//    private float combinedFriction;
-//    private float combinedRestitution;
-//    private float distance1;
-//    private int index0;
-//    private int index1;
-//    private Vector3f lateralFrictionDir1;
-//    private Vector3f lateralFrictionDir2;
-//    private boolean lateralFrictionInitialized;
-//    private int lifeTime;
-//    private Vector3f localPointA;
-//    private Vector3f localPointB;
-//    private Vector3f normalWorldOnB;
-//    private int partId0;
-//    private int partId1;
-//    private Vector3f positionWorldOnA;
-//    private Vector3f positionWorldOnB;
-//    private Object userPersistentData;
-    
-
-//    public CollisionEvent(int type, CollisionObject source, CollisionObject nodeB) {
-//        super(source);
-//        this.type=type;
-//        this.nodeA=source;
-//        this.nodeB=nodeB;
-//    }
-
     public CollisionEvent(int type, CollisionObject source, CollisionObject nodeB, ManifoldPoint cp) {
         super(source);
         this.type=type;
         this.nodeA=source;
         this.nodeB=nodeB;
         this.cp=cp;
-//        this.appliedImpulse=cp.appliedImpulse;
-//        this.appliedImpulseLateral1=cp.appliedImpulseLateral1;
-//        this.appliedImpulseLateral2=cp.appliedImpulseLateral2;
-//        this.combinedFriction=cp.combinedFriction;
-//        this.combinedRestitution=cp.combinedRestitution;
-//        this.distance1=cp.distance1;
-//        this.index0=cp.index0;
-//        this.index1=cp.index1;
-//        this.lateralFrictionDir1=Converter.convert(cp.lateralFrictionDir1);
-//        this.lateralFrictionDir2=Converter.convert(cp.lateralFrictionDir2);
-//        this.lateralFrictionInitialized=cp.lateralFrictionInitialized;
-//        this.lifeTime=cp.lifeTime;
-//        this.localPointA=Converter.convert(cp.localPointA);
-//        this.localPointB=Converter.convert(cp.localPointB);
-//        this.normalWorldOnB=Converter.convert(cp.normalWorldOnB);
-//        this.partId0=cp.partId0;
-//        this.partId1=cp.partId1;
-//        this.positionWorldOnA=Converter.convert(cp.positionWorldOnA);
-//        this.positionWorldOnB=Converter.convert(cp.positionWorldOnB);
-//        this.userPersistentData=cp.userPersistentData;
     }
 
     public int getType() {

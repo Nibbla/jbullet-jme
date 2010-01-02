@@ -102,7 +102,11 @@ public abstract class PhysicsSpace {
 
     private Vector3f worldMin = new Vector3f(-10000f,-10000f,-10000f);
     private Vector3f worldMax = new Vector3f(10000f,10000f,10000f);
-    
+
+    /**
+     * Get the current PhysicsSpace or create a new standard PhysicsSpace
+     * @return the exising or created PhysicsSpace
+     */
     public static PhysicsSpace getPhysicsSpace(){
         if(pSpace!=null){
             return pSpace;
@@ -111,6 +115,12 @@ public abstract class PhysicsSpace {
         return pSpace;
     }
 
+    /**
+     * Get the current PhysicsSpace or create a new PhysicsSpace with
+     * the given Broadphase type.
+     * @param broadphaseType The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
+     * @return the exising or created PhysicsSpace
+     */
     public static PhysicsSpace getPhysicsSpace(int broadphaseType){
         if(pSpace!=null){
             return pSpace;
@@ -119,6 +129,13 @@ public abstract class PhysicsSpace {
         return pSpace;
     }
 
+    /**
+     * Get the current PhysicsSpace or create a new PhysicsSpace with
+     * the AxisSweep3 Broadphase type and given world size.
+     * @param worldMin the worldMin vector (e.g. -1000,-1000,-1000)
+     * @param worldMax the worldMax vector (e.g. -1000,-1000,-1000)
+     * @return the exising or created PhysicsSpace
+     */
     public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax){
         if(pSpace!=null){
             return pSpace;
@@ -127,6 +144,14 @@ public abstract class PhysicsSpace {
         return pSpace;
     }
 
+    /**
+     * Get the current PhysicsSpace or create a new PhysicsSpace with
+     * the given Broadphase type and given world size.
+     * @param worldMin the worldMin vector (e.g. -1000,-1000,-1000)
+     * @param worldMax the worldMax vector (e.g. -1000,-1000,-1000)
+     * @param broadphaseType The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
+     * @return the exising or created PhysicsSpace
+     */
     public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax, int broadphaseType){
         if(pSpace!=null){
             return pSpace;
@@ -183,10 +208,64 @@ public abstract class PhysicsSpace {
         setContactCallbacks();
     }
 
+    private void setContactCallbacks() {
+        BulletGlobals.setContactAddedCallback(new ContactAddedCallback(){
+        	public boolean contactAdded(ManifoldPoint cp, com.bulletphysics.collision.dispatch.CollisionObject colObj0,
+        			int partId0, int index0, com.bulletphysics.collision.dispatch.CollisionObject colObj1, int partId1,
+        			int index1){
+                System.out.println("contact added");
+        		return true;
+        	}
+        });
+
+        BulletGlobals.setContactProcessedCallback(new ContactProcessedCallback(){
+        	public boolean contactProcessed(ManifoldPoint cp, Object body0, Object body1){
+                CollisionObject node=null,node1=null;
+                if(body0 instanceof RigidBody){
+                    RigidBody rBody=(RigidBody)body0;
+                    node=physicsNodes.get(rBody);
+                }
+                else if(body0 instanceof GhostObject){
+                    GhostObject rBody=(GhostObject)body0;
+                    node=physicsGhostNodes.get(rBody);
+                }
+                if(body1 instanceof RigidBody){
+                    RigidBody rBody=(RigidBody)body1;
+                    node1=physicsNodes.get(rBody);
+                }
+                else if(body1 instanceof GhostObject){
+                    GhostObject rBody=(GhostObject)body1;
+                    node1=physicsGhostNodes.get(rBody);
+                }
+                if(node!=null&&node1!=null)
+                    collisionEvents.add(new CollisionEvent(CollisionEvent.TYPE_PROCESSED,node,node1,cp));
+                else
+                    System.out.println("error finding node during collision");
+        		return true;
+        	}
+    	});
+
+        BulletGlobals.setContactDestroyedCallback(new ContactDestroyedCallback(){
+ 			public boolean contactDestroyed(Object userPersistentData) {
+                System.out.println("contact destroyed");
+ 				return true;
+			}
+    	});
+    }
+
+    /**
+     * updates the physics space
+     * @param time the current time value
+     */
     public void update(float time){
         update(time,1);
     }
 
+    /**
+     * updates the physics space, uses maxSteps<br>
+     * @param time the current time value
+     * @param maxSteps using values bigger than one effectively increases physics speed
+     */
     public void update(float time, int maxSteps){
         if(getDynamicsWorld()==null) return;
         //add recurring events
@@ -212,10 +291,21 @@ public abstract class PhysicsSpace {
         collisionEvents.clear();
     }
 
+    /**
+     * enqueues a Callable in the update queue of the physics thread
+     * @param callable the Callable to add
+     * @return the created Future for the Callable
+     */
     public Future enqueueUpdate(Callable callable){
         return pQueue.enqueue(callable);
     }
 
+    /**
+     * enqueues a Callable in the update queue in the next update call
+     * (added to avoid loops in update queue)
+     * @param callable
+     * @return the created Future for the requeue Callable
+     */
     public Future reQueue(final Callable callable){
         return rQueue.enqueue(new Callable(){
             public Object call() throws Exception {
@@ -308,66 +398,32 @@ public abstract class PhysicsSpace {
     }
 
     /**
-     * not safe
+     * sets the gravity of the PhysicsSpace
      * @param gravity
      */
     public void setGravity(Vector3f gravity){
         pSpace.setGravity(gravity);
     }
 
+    /**
+     * adds a CollisionListener that will be informed about collision events
+     * @param listener the CollisionListener to add
+     */
     public void addCollisionListener(CollisionListener listener){
         collisionListeners.add(listener);
     }
 
+    /**
+     * removes a CollisionListener from the list
+     * @param listener the CollisionListener to remove
+     */
     public void removeCollisionListener(CollisionListener listener){
         collisionListeners.remove(listener);
     }
 
-    private void setContactCallbacks() {
-        BulletGlobals.setContactAddedCallback(new ContactAddedCallback(){
-        	public boolean contactAdded(ManifoldPoint cp, com.bulletphysics.collision.dispatch.CollisionObject colObj0,
-        			int partId0, int index0, com.bulletphysics.collision.dispatch.CollisionObject colObj1, int partId1,
-        			int index1){
-                System.out.println("contact added");
-        		return true;
-        	}
-        });
-
-        BulletGlobals.setContactProcessedCallback(new ContactProcessedCallback(){
-        	public boolean contactProcessed(ManifoldPoint cp, Object body0, Object body1){
-                CollisionObject node=null,node1=null;
-                if(body0 instanceof RigidBody){
-                    RigidBody rBody=(RigidBody)body0;
-                    node=physicsNodes.get(rBody);
-                }
-                else if(body0 instanceof GhostObject){
-                    GhostObject rBody=(GhostObject)body0;
-                    node=physicsGhostNodes.get(rBody);
-                }
-                if(body1 instanceof RigidBody){
-                    RigidBody rBody=(RigidBody)body1;
-                    node1=physicsNodes.get(rBody);
-                }
-                else if(body1 instanceof GhostObject){
-                    GhostObject rBody=(GhostObject)body1;
-                    node1=physicsGhostNodes.get(rBody);
-                }
-                if(node!=null&&node1!=null)
-                    collisionEvents.add(new CollisionEvent(CollisionEvent.TYPE_PROCESSED,node,node1,cp));
-                else
-                    System.out.println("error finding node during collision");
-        		return true;
-        	}
-    	});
-
-        BulletGlobals.setContactDestroyedCallback(new ContactDestroyedCallback(){
- 			public boolean contactDestroyed(Object userPersistentData) {
-                System.out.println("contact destroyed");
- 				return true;
-			}
-    	});
-    }
-
+    /**
+     * destroys the current PhysicsSpace so that a new one can be created
+     */
     public void destroy(){
         dynamicsWorld.destroy();
         dynamicsWorld=null;
@@ -375,12 +431,16 @@ public abstract class PhysicsSpace {
     }
 
     /**
+     * used internally
      * @return the dynamicsWorld
      */
     public DynamicsWorld getDynamicsWorld() {
         return dynamicsWorld;
     }
 
+    /**
+     * interface with Broadphase types
+     */
     public interface BroadphaseTypes{
         public static final int SIMPLE=0;
         public static final int AXIS_SWEEP_3=1;

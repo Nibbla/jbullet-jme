@@ -14,15 +14,23 @@ import com.jmex.jbullet.util.Converter;
 import java.util.List;
 
 /**
- *
+ * Basic mesh collision shape
  * @author normenhansen
  */
 public class MeshCollisionShape extends CollisionShape{
 
+    /**
+     * Creates a collision shape from the TriMesh leaf in the given node
+     * @param node the node to get the TriMesh from
+     */
     public MeshCollisionShape(Node node) {
         createCollisionMesh(node);
     }
 
+    /**
+     * Creates a collision shape from the given TriMesh
+     * @param mesh the TriMesh to use
+     */
     public MeshCollisionShape(TriMesh mesh) {
         createCollisionMesh(mesh);
     }
