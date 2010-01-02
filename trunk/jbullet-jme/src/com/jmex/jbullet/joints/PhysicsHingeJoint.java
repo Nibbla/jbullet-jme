@@ -31,12 +31,10 @@
  */
 package com.jmex.jbullet.joints;
 
-import com.bulletphysics.dynamics.constraintsolver.ConeTwistConstraint;
 import com.bulletphysics.dynamics.constraintsolver.HingeConstraint;
 import com.jme.math.Vector3f;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
-import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -49,15 +47,6 @@ import java.util.concurrent.Callable;
 public class PhysicsHingeJoint extends PhysicsJoint{
     protected Vector3f axisA;
     protected Vector3f axisB;
-    private float targetVelocity=0.0f;
-    private float maxMotorImpule=0.0f;
-    private float limitLow=1e30f;
-    private float limitHigh=-1e30f;;
-    private float softness=0.9f;
-    private float biasFactor=0.3f;
-    private float relaxationFactor=1.0f;
-
-    private boolean enableMotor=false;
 
     /**
      * Creates a new HingeJoint
@@ -74,37 +63,15 @@ public class PhysicsHingeJoint extends PhysicsJoint{
     }
 
     public void enableMotor(boolean enable, float targetVelocity, float maxMotorImpulse){
-        this.enableMotor=enable;
-        this.targetVelocity=targetVelocity;
-        this.maxMotorImpule=maxMotorImpulse;
-        pQueue.enqueue(doEnableMotor);
+        ((HingeConstraint)constraint).enableAngularMotor(enable, targetVelocity, maxMotorImpulse);
     }
 
 	public void setLimit(float low, float high) {
-        setLimit(low,high,0.9f,0.3f,1.0f);
+        setLimit(low,high);
     }
 
 	public void setLimit(float low, float high, float _softness, float _biasFactor, float _relaxationFactor) {
-        this.limitLow=low;
-        this.limitHigh=high;
-        this.softness=_softness;
-        this.biasFactor=_biasFactor;
-        this.relaxationFactor=_relaxationFactor;
-        pQueue.enqueue(doUpdateLimits);
+        ((HingeConstraint)constraint).setLimit(low, high, _softness, _biasFactor, _relaxationFactor);
     }
-
-    private Callable doEnableMotor=new Callable(){
-        public Object call() throws Exception {
-            ((HingeConstraint)constraint).enableAngularMotor(enableMotor, targetVelocity, maxMotorImpule);
-            return null;
-        }
-    };
-
-    private Callable doUpdateLimits=new Callable(){
-        public Object call() throws Exception {
-            ((HingeConstraint)constraint).setLimit(limitLow, limitHigh, softness, biasFactor, relaxationFactor);
-            return null;
-        }
-    };
 
 }

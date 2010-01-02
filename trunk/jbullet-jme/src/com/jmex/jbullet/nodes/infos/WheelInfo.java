@@ -175,6 +175,14 @@ public class WheelInfo {
         return rollInfluence;
     }
 
+    /**
+     * Sets how much wheels without motor influence the vehicles path (e.g. front
+     * steering, rear acceleration)<br>
+     * default=1.0f<br>
+     * Use before adding wheels, this is the default used when adding wheels.
+     * After adding the wheel, use direct wheel access.
+     * @param rollInfluence the rollInfluence to set
+     */
     public void setRollInfluence(float rollInfluence) {
         this.rollInfluence = rollInfluence;
     }

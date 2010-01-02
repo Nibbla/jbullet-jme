@@ -180,19 +180,27 @@ public class TestSimplePhysicsCar{
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
         physicsCar=new PhysicsVehicleNode(box1,CollisionShape.Shapes.BOX);
+        physicsCar.setMaxSuspensionTravelCm(500);
+        physicsCar.setSuspensionCompression(4.4f);
+        physicsCar.setSuspensionDamping(2.3f);
+        physicsCar.setSuspensionStiffness(20f);
 
         // Create four wheels and add them at their locations
         Sphere wheel=new Sphere("wheel",8,8,0.5f);
         physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,2f), wheelDirection, wheelAxle, 0.2f, 0.5f, true);
+        physicsCar.setRollInfluence(0, 1);
 
         wheel=new Sphere("wheel",8,8,0.5f);
         physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,2f), wheelDirection, wheelAxle, 0.2f, 0.5f, true);
+        physicsCar.setRollInfluence(1, 1);
 
         wheel=new Sphere("wheel",8,8,0.5f);
         physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,-2f), wheelDirection, wheelAxle, 0.2f, 0.5f, false);
+        physicsCar.setRollInfluence(2, 1);
 
         wheel=new Sphere("wheel",8,8,0.5f);
         physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,-2f), wheelDirection, wheelAxle, 0.2f, 0.5f, false);
+        physicsCar.setRollInfluence(3, 1);
         
         physicsCar.setLocalTranslation(new Vector3f(10,-2,0));
         state.getRootNode().attachChild(physicsCar);

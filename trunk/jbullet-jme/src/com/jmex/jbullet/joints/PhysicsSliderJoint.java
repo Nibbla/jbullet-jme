@@ -31,14 +31,12 @@
  */
 package com.jmex.jbullet.joints;
 
-import com.bulletphysics.dynamics.constraintsolver.HingeConstraint;
 import com.bulletphysics.dynamics.constraintsolver.SliderConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
-import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -46,59 +44,9 @@ import java.util.concurrent.Callable;
  * @author normenhansen
  */
 public class PhysicsSliderJoint extends PhysicsJoint{
-	public static final float SLIDER_CONSTRAINT_DEF_SOFTNESS    = 1.0f;
-	public static final float SLIDER_CONSTRAINT_DEF_DAMPING     = 1.0f;
-	public static final float SLIDER_CONSTRAINT_DEF_RESTITUTION = 0.7f;
-
-	// use frameA fo define limits, if true
-	private boolean useLinearReferenceFrameA;
-	// linear limits
-	private float lowerLinLimit;
-	private float upperLinLimit;
-	// angular limits
-	private float lowerAngLimit;
-	private float upperAngLimit;
-
-	private float softnessDirLin;
-	private float restitutionDirLin;
-	private float dampingDirLin;
-	private float softnessDirAng;
-	private float restitutionDirAng;
-	private float dampingDirAng;
-	private float softnessLimLin;
-	private float restitutionLimLin;
-	private float dampingLimLin;
-	private float softnessLimAng;
-	private float restitutionLimAng;
-	private float dampingLimAng;
-	private float softnessOrthoLin;
-	private float restitutionOrthoLin;
-	private float dampingOrthoLin;
-	private float softnessOrthoAng;
-	private float restitutionOrthoAng;
-	private float dampingOrthoAng;
-    
-	private boolean poweredLinMotor;
-	private float targetLinMotorVelocity;
-	private float maxLinMotorForce;
-//	private float accumulatedLinMotorImpulse;
-
-	private boolean poweredAngMotor;
-	private float targetAngMotorVelocity;
-	private float maxAngMotorForce;
-//	private float accumulatedAngMotorImpulse;
-
-    private Matrix3f rotA;
-    private Matrix3f rotB;
-
     
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
-        this.rotA=rotA;
-        this.rotB=rotB;
-        
-        setDefaults();
 
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
@@ -109,365 +57,242 @@ public class PhysicsSliderJoint extends PhysicsJoint{
         Converter.convert(rotB,transB.basis);
 
         constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
-        updateJoint();
     }
 
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
-        this.rotA=new Matrix3f();
-        this.rotB=new Matrix3f();
 
-        setDefaults();
-
-        Transform transA=new Transform(Converter.convert(rotA));
+        Transform transA=new Transform();
         Converter.convert(pivotA,transA.origin);
 
-        Transform transB=new Transform(Converter.convert(rotB));
+        Transform transB=new Transform();
         Converter.convert(pivotB,transB.origin);
 
         constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
-        updateJoint();
-    }
-
-    private void setDefaults() {
-		lowerLinLimit = 1f;
-		upperLinLimit = -1f;
-		lowerAngLimit = 0f;
-		upperAngLimit = 0f;
-		softnessDirLin = SLIDER_CONSTRAINT_DEF_SOFTNESS;
-		restitutionDirLin = SLIDER_CONSTRAINT_DEF_RESTITUTION;
-		dampingDirLin = 0f;
-		softnessDirAng = SLIDER_CONSTRAINT_DEF_SOFTNESS;
-		restitutionDirAng = SLIDER_CONSTRAINT_DEF_RESTITUTION;
-		dampingDirAng = 0f;
-		softnessOrthoLin = SLIDER_CONSTRAINT_DEF_SOFTNESS;
-		restitutionOrthoLin = SLIDER_CONSTRAINT_DEF_RESTITUTION;
-		dampingOrthoLin = SLIDER_CONSTRAINT_DEF_DAMPING;
-		softnessOrthoAng = SLIDER_CONSTRAINT_DEF_SOFTNESS;
-		restitutionOrthoAng = SLIDER_CONSTRAINT_DEF_RESTITUTION;
-		dampingOrthoAng = SLIDER_CONSTRAINT_DEF_DAMPING;
-		softnessLimLin = SLIDER_CONSTRAINT_DEF_SOFTNESS;
-		restitutionLimLin = SLIDER_CONSTRAINT_DEF_RESTITUTION;
-		dampingLimLin = SLIDER_CONSTRAINT_DEF_DAMPING;
-		softnessLimAng = SLIDER_CONSTRAINT_DEF_SOFTNESS;
-		restitutionLimAng = SLIDER_CONSTRAINT_DEF_RESTITUTION;
-		dampingLimAng = SLIDER_CONSTRAINT_DEF_DAMPING;
-
-		poweredLinMotor = false;
-		targetLinMotorVelocity = 0f;
-		maxLinMotorForce = 0f;
-//		accumulatedLinMotorImpulse = 0f;
-
-		poweredAngMotor = false;
-		targetAngMotorVelocity = 0f;
-		maxAngMotorForce = 0f;
-//		accumulatedAngMotorImpulse = 0f;
     }
 
     public float getLowerLinLimit() {
-        return lowerLinLimit;
+        return ((SliderConstraint)constraint).getLowerLinLimit();
     }
 
     public void setLowerLinLimit(float lowerLinLimit) {
-        this.lowerLinLimit = lowerLinLimit;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setLowerLinLimit(lowerLinLimit);
     }
 
     public float getUpperLinLimit() {
-        return upperLinLimit;
+        return ((SliderConstraint)constraint).getUpperLinLimit();
     }
 
     public void setUpperLinLimit(float upperLinLimit) {
-        this.upperLinLimit = upperLinLimit;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setUpperLinLimit(upperLinLimit);
     }
 
     public float getLowerAngLimit() {
-        return lowerAngLimit;
+        return ((SliderConstraint)constraint).getLowerAngLimit();
     }
 
     public void setLowerAngLimit(float lowerAngLimit) {
-        this.lowerAngLimit = lowerAngLimit;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setLowerAngLimit(lowerAngLimit);
     }
 
     public float getUpperAngLimit() {
-        return upperAngLimit;
+        return ((SliderConstraint)constraint).getUpperAngLimit();
     }
 
     public void setUpperAngLimit(float upperAngLimit) {
-        this.upperAngLimit = upperAngLimit;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setUpperAngLimit(upperAngLimit);
     }
 
     public float getSoftnessDirLin() {
-        return softnessDirLin;
+        return ((SliderConstraint)constraint).getSoftnessDirLin();
     }
 
     public void setSoftnessDirLin(float softnessDirLin) {
-        this.softnessDirLin = softnessDirLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setSoftnessDirLin(softnessDirLin);
     }
 
     public float getRestitutionDirLin() {
-        return restitutionDirLin;
+        return ((SliderConstraint)constraint).getRestitutionDirLin();
     }
 
     public void setRestitutionDirLin(float restitutionDirLin) {
-        this.restitutionDirLin = restitutionDirLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setRestitutionDirLin(restitutionDirLin);
     }
 
     public float getDampingDirLin() {
-        return dampingDirLin;
+        return ((SliderConstraint)constraint).getDampingDirLin();
     }
 
     public void setDampingDirLin(float dampingDirLin) {
-        this.dampingDirLin = dampingDirLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setDampingDirLin(dampingDirLin);
     }
 
     public float getSoftnessDirAng() {
-        return softnessDirAng;
+        return ((SliderConstraint)constraint).getSoftnessDirAng();
     }
 
     public void setSoftnessDirAng(float softnessDirAng) {
-        this.softnessDirAng = softnessDirAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setSoftnessDirAng(softnessDirAng);
     }
 
     public float getRestitutionDirAng() {
-        return restitutionDirAng;
+        return ((SliderConstraint)constraint).getRestitutionDirAng();
     }
 
     public void setRestitutionDirAng(float restitutionDirAng) {
-        this.restitutionDirAng = restitutionDirAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setRestitutionDirAng(restitutionDirAng);
     }
 
     public float getDampingDirAng() {
-        return dampingDirAng;
+        return ((SliderConstraint)constraint).getDampingDirAng();
     }
 
     public void setDampingDirAng(float dampingDirAng) {
-        this.dampingDirAng = dampingDirAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setDampingDirAng(dampingDirAng);
     }
 
     public float getSoftnessLimLin() {
-        return softnessLimLin;
+        return ((SliderConstraint)constraint).getSoftnessLimLin();
     }
 
     public void setSoftnessLimLin(float softnessLimLin) {
-        this.softnessLimLin = softnessLimLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setSoftnessLimLin(softnessLimLin);
     }
 
     public float getRestitutionLimLin() {
-        return restitutionLimLin;
+        return ((SliderConstraint)constraint).getRestitutionLimLin();
     }
 
     public void setRestitutionLimLin(float restitutionLimLin) {
-        this.restitutionLimLin = restitutionLimLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setRestitutionLimLin(restitutionLimLin);
     }
 
     public float getDampingLimLin() {
-        return dampingLimLin;
+        return ((SliderConstraint)constraint).getDampingLimLin();
     }
 
     public void setDampingLimLin(float dampingLimLin) {
-        this.dampingLimLin = dampingLimLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setDampingLimLin(dampingLimLin);
     }
 
     public float getSoftnessLimAng() {
-        return softnessLimAng;
+        return ((SliderConstraint)constraint).getSoftnessLimAng();
     }
 
     public void setSoftnessLimAng(float softnessLimAng) {
-        this.softnessLimAng = softnessLimAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setSoftnessLimAng(softnessLimAng);
     }
 
     public float getRestitutionLimAng() {
-        return restitutionLimAng;
+        return ((SliderConstraint)constraint).getRestitutionLimAng();
     }
 
     public void setRestitutionLimAng(float restitutionLimAng) {
-        this.restitutionLimAng = restitutionLimAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setRestitutionLimAng (restitutionLimAng);
     }
 
     public float getDampingLimAng() {
-        return dampingLimAng;
+        return ((SliderConstraint)constraint).getDampingLimAng();
     }
 
     public void setDampingLimAng(float dampingLimAng) {
-        this.dampingLimAng = dampingLimAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setDampingLimAng(dampingLimAng);
     }
 
     public float getSoftnessOrthoLin() {
-        return softnessOrthoLin;
+        return ((SliderConstraint)constraint).getSoftnessOrthoLin();
     }
 
     public void setSoftnessOrthoLin(float softnessOrthoLin) {
-        this.softnessOrthoLin = softnessOrthoLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setSoftnessOrthoLin(softnessOrthoLin);
     }
 
     public float getRestitutionOrthoLin() {
-        return restitutionOrthoLin;
+        return ((SliderConstraint)constraint).getRestitutionOrthoLin();
     }
 
     public void setRestitutionOrthoLin(float restitutionOrthoLin) {
-        this.restitutionOrthoLin = restitutionOrthoLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setRestitutionOrthoLin(restitutionOrthoLin);
     }
 
     public float getDampingOrthoLin() {
-        return dampingOrthoLin;
+        return ((SliderConstraint)constraint).getDampingOrthoLin();
     }
 
     public void setDampingOrthoLin(float dampingOrthoLin) {
-        this.dampingOrthoLin = dampingOrthoLin;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setDampingOrthoLin(dampingOrthoLin);
     }
 
     public float getSoftnessOrthoAng() {
-        return softnessOrthoAng;
+        return ((SliderConstraint)constraint).getSoftnessOrthoAng();
     }
 
     public void setSoftnessOrthoAng(float softnessOrthoAng) {
-        this.softnessOrthoAng = softnessOrthoAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setSoftnessOrthoAng(softnessOrthoAng);
     }
 
     public float getRestitutionOrthoAng() {
-        return restitutionOrthoAng;
+        return ((SliderConstraint)constraint).getRestitutionOrthoAng();
     }
 
     public void setRestitutionOrthoAng(float restitutionOrthoAng) {
-        this.restitutionOrthoAng = restitutionOrthoAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setRestitutionOrthoAng(restitutionOrthoAng);
     }
 
     public float getDampingOrthoAng() {
-        return dampingOrthoAng;
+        return ((SliderConstraint)constraint).getDampingOrthoAng();
     }
 
     public void setDampingOrthoAng(float dampingOrthoAng) {
-        this.dampingOrthoAng = dampingOrthoAng;
-        pQueue.enqueue(doUpdateJoint);
+        ((SliderConstraint)constraint).setDampingOrthoAng(dampingOrthoAng);
     }
 
     public boolean isPoweredLinMotor() {
-        return poweredLinMotor;
+        return ((SliderConstraint)constraint).getPoweredLinMotor();
     }
 
     public void setPoweredLinMotor(boolean poweredLinMotor) {
-        this.poweredLinMotor = poweredLinMotor;
-        pQueue.enqueue(doUpdateMotor);
+        ((SliderConstraint)constraint).setPoweredLinMotor(poweredLinMotor);
     }
 
     public float getTargetLinMotorVelocity() {
-        return targetLinMotorVelocity;
+        return ((SliderConstraint)constraint).getTargetLinMotorVelocity();
     }
 
     public void setTargetLinMotorVelocity(float targetLinMotorVelocity) {
-        this.targetLinMotorVelocity = targetLinMotorVelocity;
-        pQueue.enqueue(doUpdateMotor);
+        ((SliderConstraint)constraint).setTargetLinMotorVelocity(targetLinMotorVelocity);
     }
 
     public float getMaxLinMotorForce() {
-        return maxLinMotorForce;
+        return ((SliderConstraint)constraint).getMaxLinMotorForce();
     }
 
     public void setMaxLinMotorForce(float maxLinMotorForce) {
-        this.maxLinMotorForce = maxLinMotorForce;
-        pQueue.enqueue(doUpdateMotor);
+        ((SliderConstraint)constraint).setMaxLinMotorForce(maxLinMotorForce);
     }
 
     public boolean isPoweredAngMotor() {
-        return poweredAngMotor;
+        return ((SliderConstraint)constraint).getPoweredAngMotor();
     }
 
     public void setPoweredAngMotor(boolean poweredAngMotor) {
-        this.poweredAngMotor = poweredAngMotor;
-        pQueue.enqueue(doUpdateMotor);
+        ((SliderConstraint)constraint).setPoweredAngMotor(poweredAngMotor);
     }
 
     public float getTargetAngMotorVelocity() {
-        return targetAngMotorVelocity;
+        return ((SliderConstraint)constraint).getTargetAngMotorVelocity();
     }
 
     public void setTargetAngMotorVelocity(float targetAngMotorVelocity) {
-        this.targetAngMotorVelocity = targetAngMotorVelocity;
-        pQueue.enqueue(doUpdateMotor);
+        ((SliderConstraint)constraint).setTargetAngMotorVelocity(targetAngMotorVelocity);
     }
 
     public float getMaxAngMotorForce() {
-        return maxAngMotorForce;
+        return ((SliderConstraint)constraint).getMaxAngMotorForce();
     }
 
     public void setMaxAngMotorForce(float maxAngMotorForce) {
-        this.maxAngMotorForce = maxAngMotorForce;
-        pQueue.enqueue(doUpdateMotor);
-    }
-
-    private void updateJoint() {
-        ((SliderConstraint)constraint).setLowerAngLimit(lowerAngLimit);
-        ((SliderConstraint)constraint).setLowerLinLimit(lowerLinLimit);
-        ((SliderConstraint)constraint).setUpperAngLimit(upperAngLimit);
-        ((SliderConstraint)constraint).setUpperLinLimit(upperLinLimit);
-
-        ((SliderConstraint)constraint).setDampingDirAng(dampingDirAng);
-        ((SliderConstraint)constraint).setDampingDirLin(dampingDirLin);
-        ((SliderConstraint)constraint).setDampingLimAng(dampingLimAng);
-        ((SliderConstraint)constraint).setDampingLimLin(dampingLimLin);
-        ((SliderConstraint)constraint).setDampingOrthoAng(dampingOrthoAng);
-        ((SliderConstraint)constraint).setDampingOrthoLin(dampingOrthoLin);
-
-        ((SliderConstraint)constraint).setRestitutionDirAng(restitutionDirAng);
-        ((SliderConstraint)constraint).setRestitutionDirLin(restitutionDirLin);
-        ((SliderConstraint)constraint).setRestitutionLimAng(restitutionLimAng);
-        ((SliderConstraint)constraint).setRestitutionLimLin(restitutionLimLin);
-        ((SliderConstraint)constraint).setRestitutionOrthoAng(restitutionOrthoAng);
-        ((SliderConstraint)constraint).setRestitutionOrthoLin(restitutionOrthoLin);
-        ((SliderConstraint)constraint).setSoftnessDirAng(softnessDirAng);
-        ((SliderConstraint)constraint).setSoftnessDirLin(softnessDirLin);
-        ((SliderConstraint)constraint).setSoftnessLimAng(softnessLimAng);
-        ((SliderConstraint)constraint).setSoftnessLimLin(softnessLimLin);
-        ((SliderConstraint)constraint).setSoftnessOrthoAng(softnessOrthoAng);
-        ((SliderConstraint)constraint).setSoftnessOrthoLin(softnessOrthoLin);
-
-    }
-
-    private Callable doUpdateJoint=new Callable(){
-        public Object call() throws Exception {
-            updateJoint();
-            return null;
-        }
-    };
-
-    private void updateMotors(){
         ((SliderConstraint)constraint).setMaxAngMotorForce(maxAngMotorForce);
-        ((SliderConstraint)constraint).setMaxLinMotorForce(maxLinMotorForce);
-
-        ((SliderConstraint)constraint).setTargetAngMotorVelocity(targetAngMotorVelocity);
-        ((SliderConstraint)constraint).setTargetLinMotorVelocity(targetLinMotorVelocity);
-
-        ((SliderConstraint)constraint).setPoweredAngMotor(collisionBetweenLinkedBodys);
-        ((SliderConstraint)constraint).setPoweredLinMotor(collisionBetweenLinkedBodys);
     }
-
-    private Callable doUpdateMotor=new Callable(){
-        public Object call() throws Exception {
-            updateMotors();
-            return null;
-        }
-    };
 
 }

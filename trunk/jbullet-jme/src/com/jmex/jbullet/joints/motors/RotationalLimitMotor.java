@@ -31,41 +31,15 @@
  */
 package com.jmex.jbullet.joints.motors;
 
-import com.jme.util.GameTaskQueue;
-import com.jme.util.GameTaskQueueManager;
-import java.util.concurrent.Callable;
-
 /**
  *
  * @author normenhansen
  */
 public class RotationalLimitMotor {
     private com.bulletphysics.dynamics.constraintsolver.RotationalLimitMotor motor;
-	private float loLimit;
-    private float hiLimit;
-    private float targetVelocity;
-    private float maxMotorForce;
-    private float maxLimitForce;
-    private float damping;
-    private float limitSoftness;
-    private float ERP;
-    private float bounce;
-    private boolean enableMotor;
-    
-    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
 
     public RotationalLimitMotor(com.bulletphysics.dynamics.constraintsolver.RotationalLimitMotor motor) {
         this.motor=motor;
-        this.loLimit=motor.loLimit;
-        this.hiLimit=motor.hiLimit;
-        this.targetVelocity=motor.targetVelocity;
-        this.maxMotorForce=motor.maxMotorForce;
-        this.maxLimitForce=motor.maxLimitForce;
-        this.damping=motor.damping;
-        this.limitSoftness=motor.limitSoftness;
-        this.ERP=motor.ERP;
-        this.bounce=motor.bounce;
-        this.enableMotor=motor.enableMotor;
     }
 
     public com.bulletphysics.dynamics.constraintsolver.RotationalLimitMotor getMotor() {
@@ -73,113 +47,83 @@ public class RotationalLimitMotor {
     }
 
     public float getLoLimit() {
-        return loLimit;
+        return motor.loLimit;
     }
 
     public void setLoLimit(float loLimit) {
-        this.loLimit = loLimit;
-        pQueue.enqueue(doSyncPhysics);
+        motor.loLimit = loLimit;
     }
 
     public float getHiLimit() {
-        return hiLimit;
+        return motor.hiLimit;
     }
 
     public void setHiLimit(float hiLimit) {
-        this.hiLimit = hiLimit;
-        pQueue.enqueue(doSyncPhysics);
+        motor.hiLimit = hiLimit;
     }
 
     public float getTargetVelocity() {
-        return targetVelocity;
+        return motor.targetVelocity;
     }
 
     public void setTargetVelocity(float targetVelocity) {
-        this.targetVelocity = targetVelocity;
-        pQueue.enqueue(doSyncPhysics);
+        motor.targetVelocity = targetVelocity;
     }
 
     public float getMaxMotorForce() {
-        return maxMotorForce;
+        return motor.maxMotorForce;
     }
 
     public void setMaxMotorForce(float maxMotorForce) {
-        this.maxMotorForce = maxMotorForce;
-        pQueue.enqueue(doSyncPhysics);
+        motor.maxMotorForce = maxMotorForce;
     }
 
     public float getMaxLimitForce() {
-        return maxLimitForce;
+        return motor.maxLimitForce;
     }
 
     public void setMaxLimitForce(float maxLimitForce) {
-        this.maxLimitForce = maxLimitForce;
-        pQueue.enqueue(doSyncPhysics);
+        motor.maxLimitForce = maxLimitForce;
     }
 
     public float getDamping() {
-        return damping;
+        return motor.damping;
     }
 
     public void setDamping(float damping) {
-        this.damping = damping;
-        pQueue.enqueue(doSyncPhysics);
+        motor.damping = damping;
     }
 
     public float getLimitSoftness() {
-        return limitSoftness;
+        return motor.limitSoftness;
     }
 
     public void setLimitSoftness(float limitSoftness) {
-        this.limitSoftness = limitSoftness;
-        pQueue.enqueue(doSyncPhysics);
+        motor.limitSoftness = limitSoftness;
     }
 
     public float getERP() {
-        return ERP;
+        return motor.ERP;
     }
 
     public void setERP(float ERP) {
-        this.ERP = ERP;
-        pQueue.enqueue(doSyncPhysics);
+        motor.ERP = ERP;
     }
 
     public float getBounce() {
-        return bounce;
+        return motor.bounce;
     }
 
     public void setBounce(float bounce) {
-        this.bounce = bounce;
-        pQueue.enqueue(doSyncPhysics);
+        motor.bounce = bounce;
     }
 
     public boolean isEnableMotor() {
-        return enableMotor;
+        return motor.enableMotor;
     }
 
     public void setEnableMotor(boolean enableMotor) {
-        this.enableMotor = enableMotor;
-        pQueue.enqueue(doSyncPhysics);
+        motor.enableMotor = enableMotor;
     }
     
-    public void syncPhysics() {
-        motor.loLimit=this.loLimit;
-        motor.hiLimit=this.hiLimit;
-        motor.targetVelocity=this.targetVelocity;
-        motor.maxMotorForce=this.maxMotorForce;
-        motor.maxLimitForce=this.maxLimitForce;
-        motor.damping=this.damping;
-        motor.limitSoftness=this.limitSoftness;
-        motor.ERP=this.ERP;
-        motor.bounce=this.bounce;
-        motor.enableMotor=this.enableMotor;
-    }
-
-    private Callable doSyncPhysics=new Callable(){
-        public Object call() throws Exception {
-            syncPhysics();
-            return null;
-        }
-    };
-
 }

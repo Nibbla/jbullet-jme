@@ -415,7 +415,10 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setRollInfluence(float)">setRollInfluence</A></B>(float&nbsp;rollInfluence)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets how much wheels without motor influence the vehicles path (e.g. front
+ steering, rear acceleration)<br>
+ default=1.0f<br>
+ Use before adding wheels, this is the default used when adding wheels.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -778,8 +781,14 @@ setRollInfluence</H3>
 <PRE>
 public void <B>setRollInfluence</B>(float&nbsp;rollInfluence)</PRE>
 <DL>
+<DD>Sets how much wheels without motor influence the vehicles path (e.g. front
+ steering, rear acceleration)<br>
+ default=1.0f<br>
+ Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>rollInfluence</CODE> - the rollInfluence to set</DL>
 </DD>
 </DL>
 <HR>

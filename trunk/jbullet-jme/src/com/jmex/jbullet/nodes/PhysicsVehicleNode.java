@@ -36,7 +36,6 @@ import com.bulletphysics.dynamics.vehicle.DefaultVehicleRaycaster;
 import com.bulletphysics.dynamics.vehicle.RaycastVehicle;
 import com.bulletphysics.dynamics.vehicle.VehicleRaycaster;
 import com.bulletphysics.dynamics.vehicle.VehicleTuning;
-//import com.bulletphysics.dynamics.vehicle.WheelInfo;
 import com.bulletphysics.linearmath.MotionState;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Vector3f;
@@ -48,7 +47,6 @@ import com.jmex.jbullet.nodes.infos.WheelInfo;
 import com.jmex.jbullet.util.Converter;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 
 /**
@@ -78,18 +76,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private VehicleTuning tuning;
     private VehicleRaycaster rayCaster;
     private List<WheelInfo> wheels=new LinkedList<WheelInfo>();
-    private float rollInfluence=1.0f;
-    private float frictionSlip=10.5f;
-    //standards:
-//	public float suspensionStiffness = 5.88f;
-//	public float suspensionCompression = 0.83f;
-//	public float suspensionDamping = 0.88f;
-//	public float maxSuspensionTravelCm = 500f;
-//	public float frictionSlip = 10.5f;
-    private float maxSuspensionTravelCm=500f;
-    private float suspensionCompression=4.4f;
-    private float suspensionDamping=2.3f;
-    private float suspensionStiffness=20.0f;
 
     public PhysicsVehicleNode(Spatial child){
         super(child, Shapes.BOX);
@@ -129,27 +115,22 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
             public void setWorldTransform(Transform worldTrans) {
                 motionStateTrans.set(worldTrans);
-
-                pQueue.enqueue(new Callable(){
-
-                    public Object call() throws Exception {
-
-                        Converter.convert(motionStateTrans.origin,tempLocation);
-                        setWorldTranslation(tempLocation);
-
-                        Converter.convert(motionStateTrans.basis,tempMatrix);
-                        tempRotation.fromRotationMatrix(tempMatrix);
-                        setWorldRotation(tempRotation);
-
-                        Converter.convert(rBody.getAngularVelocity(tempVel),angularVelocity);
-                        //to set wheel locations
-                        syncWheels();
-                        return null;
-                    }
-                });
+                applyMotionState();
             }
 
         };
+    }
+
+    private void applyMotionState() {
+        Converter.convert(motionStateTrans.origin,tempLocation);
+        setWorldTranslation(tempLocation);
+
+        Converter.convert(motionStateTrans.basis,tempMatrix);
+        tempRotation.fromRotationMatrix(tempMatrix);
+        setWorldRotation(tempRotation);
+
+        //to set wheel locations
+        syncWheels();
     }
 
     @Override
@@ -160,8 +141,8 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     private void createVehicleConstraint() {
-        tuning=new VehicleTuning();
-        updateVehicleConstraint();
+        if(tuning==null)
+            tuning=new VehicleTuning();
         rayCaster=new DefaultVehicleRaycaster(PhysicsSpace.getPhysicsSpace().getDynamicsWorld());
         vehicle=new RaycastVehicle(tuning, rBody, rayCaster);
         if(wheels!=null)
@@ -170,25 +151,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
                     wheel.getRestLength(), wheel.getRadius(), tuning, wheel.isFrontWheel()));
             wheel.applyInfo();
             wheel.syncPhysics();
-        }
-    }
-
-    private Callable doUpdateVehicleConstraint=new Callable(){
-        public Object call() throws Exception {
-            updateVehicleConstraint();
-            return null;
-        }
-    };
-
-    private void updateVehicleConstraint() {
-        tuning.frictionSlip=frictionSlip;
-        tuning.maxSuspensionTravelCm=maxSuspensionTravelCm;
-        tuning.suspensionCompression=suspensionCompression;
-        tuning.suspensionDamping=suspensionDamping;
-        tuning.suspensionStiffness=suspensionStiffness;
-        if(vehicle!=null&&wheels!=null)
-        for(WheelInfo wheel:wheels){
-            wheel.applyInfo();
         }
     }
 
@@ -208,15 +170,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
         info.setWheelInfo(
                 vehicle.addWheel(Converter.convert(connectionPoint), Converter.convert(direction), Converter.convert(axle), suspensionRestLength, wheelRadius, tuning, isFrontWheel)
                 );
-        info.setSuspensionStiffness(suspensionStiffness);
-        info.setWheelsDampingRelaxation(suspensionDamping);
-        info.setWheelsDampingCompression(suspensionCompression);
-        info.setFrictionSlip(frictionSlip);
-        info.setRollInfluence(rollInfluence);
-        info.setMaxSuspensionTravelCm(maxSuspensionTravelCm);
-        info.applyInfo();
         wheels.add(info);
-        updateVehicleConstraint();
         for (int i = 0; i < wheels.size(); i++) {
             wheels.get(i).syncPhysics();
         }
@@ -226,7 +180,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @return the frictionSlip
      */
     public float getFrictionSlip() {
-        return frictionSlip;
+        return tuning.frictionSlip;
     }
 
     /**
@@ -236,45 +190,22 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @param frictionSlip the frictionSlip to set
      */
     public void setFrictionSlip(float frictionSlip) {
-        this.frictionSlip = frictionSlip;
-        pQueue.enqueue(doUpdateVehicleConstraint);
+        tuning.frictionSlip = frictionSlip;
     }
 
     public void setFrictionSlip(int wheel, float frictionSlip) {
         wheels.get(wheel).setFrictionSlip(frictionSlip);
-        pQueue.enqueue(doUpdateVehicleConstraint);
-    }
-
-    /**
-     * @return the rollInfluence
-     */
-    public float getRollInfluence() {
-        return rollInfluence;
-    }
-
-    /**
-     * Sets how much wheels without motor influence the vehicles path (e.g. front
-     * steering, rear acceleration)<br>
-     * default=1.0f<br>
-     * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
-     * @param rollInfluence the rollInfluence to set
-     */
-    public void setRollInfluence(float rollInfluence) {
-        this.rollInfluence = rollInfluence;
-        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     public void setRollInfluence(int wheel, float rollInfluence) {
         wheels.get(wheel).setRollInfluence(rollInfluence);
-        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
      * @return the maxSuspensionTravelCm
      */
     public float getMaxSuspensionTravelCm() {
-        return maxSuspensionTravelCm;
+        return tuning.maxSuspensionTravelCm;
     }
 
     /**
@@ -285,20 +216,18 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @param maxSuspensionTravelCm the maxSuspensionTravelCm to set
      */
     public void setMaxSuspensionTravelCm(float maxSuspensionTravelCm) {
-        this.maxSuspensionTravelCm = maxSuspensionTravelCm;
-        pQueue.enqueue(doUpdateVehicleConstraint);
+        tuning.maxSuspensionTravelCm = maxSuspensionTravelCm;
     }
 
     public void setMaxSuspensionTravelCm(int wheel, float maxSuspensionTravelCm) {
         wheels.get(wheel).setMaxSuspensionTravelCm(maxSuspensionTravelCm);
-        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
      * @return the suspensionCompression
      */
     public float getSuspensionCompression() {
-        return suspensionCompression;
+        return tuning.suspensionCompression;
     }
 
     /**
@@ -307,20 +236,18 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @param suspensionCompression the suspensionCompression to set
      */
     public void setSuspensionCompression(float suspensionCompression) {
-        this.suspensionCompression = suspensionCompression;
-        pQueue.enqueue(doUpdateVehicleConstraint);
+        tuning.suspensionCompression = suspensionCompression;
     }
 
     public void setSuspensionCompression(int wheel, float suspensionCompression) {
         wheels.get(wheel).setWheelsDampingCompression(suspensionCompression);
-        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
      * @return the suspensionDamping
      */
     public float getSuspensionDamping() {
-        return suspensionDamping;
+        return tuning.suspensionDamping;
     }
 
     /**
@@ -329,20 +256,18 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @param suspensionDamping the suspensionDamping to set
      */
     public void setSuspensionDamping(float suspensionDamping) {
-        this.suspensionDamping = suspensionDamping;
-        pQueue.enqueue(doUpdateVehicleConstraint);
+        tuning.suspensionDamping = suspensionDamping;
     }
 
     public void setSuspensionDamping(int wheel, float suspensionDamping) {
         wheels.get(wheel).setWheelsDampingRelaxation(suspensionDamping);
-        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
      * @return the suspensionStiffness
      */
     public float getSuspensionStiffness() {
-        return suspensionStiffness;
+        return tuning.suspensionStiffness;
     }
 
     /**
@@ -351,13 +276,11 @@ public class PhysicsVehicleNode extends PhysicsNode{
      * @param suspensionStiffness the suspensionStiffness to set
      */
     public void setSuspensionStiffness(float suspensionStiffness) {
-        this.suspensionStiffness = suspensionStiffness;
-        pQueue.enqueue(doUpdateVehicleConstraint);
+        tuning.suspensionStiffness = suspensionStiffness;
     }
 
     public void setSuspensionStiffness(int wheel, float suspensionStiffness) {
         wheels.get(wheel).setSuspensionStiffness(suspensionStiffness);
-        pQueue.enqueue(doUpdateVehicleConstraint);
     }
 
     /**
@@ -369,24 +292,22 @@ public class PhysicsVehicleNode extends PhysicsNode{
         for(WheelInfo wheel:wheels){
             wheel.setEngineForce(force);
         }
-        pQueue.enqueue(doApplyEngineForce);
+        applyEngineForce();
     }
 
     public void accelerate(int wheelNumber, float force){
         WheelInfo wheelInfo=wheels.get(wheelNumber);
         wheelInfo.setEngineForce(force);
-        pQueue.enqueue(doApplyEngineForce);
+        applyEngineForce();
     }
 
-    private Callable doApplyEngineForce=new Callable(){
-        public Object call() throws Exception {
-            for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheel=wheels.get(i);
-                vehicle.applyEngineForce(wheel.getEngineForce(), i);
-            }
-            return null;
+    private void applyEngineForce(){
+        for (int i = 0; i < wheels.size(); i++) {
+            WheelInfo wheel=wheels.get(i);
+            vehicle.applyEngineForce(wheel.getEngineForce(), i);
         }
-    };
+    }
+
 
     /**
      * set the given steering value (0 = forward)
@@ -397,41 +318,35 @@ public class PhysicsVehicleNode extends PhysicsNode{
             if(wheel.isFrontWheel())
                 wheel.setSteerValue(value);
         }
-        pQueue.enqueue(doApplySteer);
+        applySteer();
     }
 
-    private Callable doApplySteer=new Callable(){
-        public Object call() throws Exception {
-            for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheelInfo = wheels.get(i);
-                vehicle.setSteeringValue(wheelInfo.getSteerValue(), i);
-            }
-            return null;
+    private void applySteer() {
+        for (int i = 0; i < wheels.size(); i++) {
+            WheelInfo wheelInfo = wheels.get(i);
+            vehicle.setSteeringValue(wheelInfo.getSteerValue(), i);
         }
-    };
+    }
 
     public void brake(float value){
         for(WheelInfo wheel:wheels){
             wheel.setBrakeForce(value);
         }
-        pQueue.enqueue(doApplyBrake);
+        applyBrake();
     }
 
     public void brake(int wheelNumber, float force){
         WheelInfo wheelInfo=wheels.get(wheelNumber);
         wheelInfo.setBrakeForce(force);
-        pQueue.enqueue(doApplyBrake);
+        applyBrake();
     }
 
-    private Callable doApplyBrake=new Callable(){
-        public Object call() throws Exception {
-            for (int i = 0; i < wheels.size(); i++) {
-                WheelInfo wheelInfo = wheels.get(i);
-                vehicle.setBrake(wheelInfo.getBrakeForce(), i);
-            }
-            return null;
+    private void applyBrake() {
+        for (int i = 0; i < wheels.size(); i++) {
+            WheelInfo wheelInfo = wheels.get(i);
+            vehicle.setBrake(wheelInfo.getBrakeForce(), i);
         }
-    };
+    }
 
     /**
      * used internally

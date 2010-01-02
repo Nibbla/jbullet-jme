@@ -39,9 +39,7 @@ import com.jme.math.Vector3f;
 import com.jmex.jbullet.joints.motors.RotationalLimitMotor;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.concurrent.Callable;
 
 /**
  * <i>From bullet manual:</i><br>
@@ -55,25 +53,11 @@ import java.util.concurrent.Callable;
  * @author normenhansen
  */
 public class Physics6DofJoint extends PhysicsJoint{
-    private Matrix3f rotA;
-    private Matrix3f rotB;
-	// use frameA fo define limits, if true
-	private boolean useLinearReferenceFrameA;
-
-    private Vector3f linearUpperLimit=new Vector3f();
-    private Vector3f linearLowerLimit=new Vector3f();
-    private Vector3f angularUpperLimit=new Vector3f();
-    private Vector3f angularLowerLimit=new Vector3f();
-
     private LinkedList<RotationalLimitMotor> rotationalMotors=new LinkedList<RotationalLimitMotor>();
     private TranslationalLimitMotor translationalMotor;
-//    private LinkedList<RotationalLimitMotor> translationalMotors=new LinkedList<RotationalLimitMotor>();
 
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
-        this.rotA=rotA;
-        this.rotB=rotB;
 
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
@@ -89,14 +73,11 @@ public class Physics6DofJoint extends PhysicsJoint{
 
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
-        this.rotA=new Matrix3f();
-        this.rotB=new Matrix3f();
 
-        Transform transA=new Transform(Converter.convert(rotA));
+        Transform transA=new Transform();
         Converter.convert(pivotA,transA.origin);
 
-        Transform transB=new Transform(Converter.convert(rotB));
+        Transform transB=new Transform();
         Converter.convert(pivotB,transB.origin);
 
         constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
@@ -109,7 +90,6 @@ public class Physics6DofJoint extends PhysicsJoint{
             rotationalMotors.add(rmot);
         }
         translationalMotor=new TranslationalLimitMotor(((Generic6DofConstraint)constraint).getTranslationalLimitMotor());
-//        translationalMotors.add(tmot);
     }
 
     public TranslationalLimitMotor getTranslationalLimitMotor() {
@@ -121,37 +101,19 @@ public class Physics6DofJoint extends PhysicsJoint{
     }
 
     public void setLinearUpperLimit(Vector3f vector){
-        this.linearUpperLimit.set(vector);
-        pQueue.enqueue(doUpdateLimits);
+        ((Generic6DofConstraint)constraint).setLinearUpperLimit(Converter.convert(vector));
     }
 
     public void setLinearLowerLimit(Vector3f vector){
-        this.linearUpperLimit.set(vector);
-        pQueue.enqueue(doUpdateLimits);
+        ((Generic6DofConstraint)constraint).setLinearLowerLimit(Converter.convert(vector));
     }
 
     public void setAngularUpperLimit(Vector3f vector){
-        this.angularUpperLimit.set(vector);
-        pQueue.enqueue(doUpdateLimits);
+        ((Generic6DofConstraint)constraint).setAngularUpperLimit(Converter.convert(vector));
     }
 
     public void setAngularLowerLimit(Vector3f vector){
-        this.angularUpperLimit.set(vector);
-        pQueue.enqueue(doUpdateLimits);
+        ((Generic6DofConstraint)constraint).setAngularLowerLimit(Converter.convert(vector));
     }
     
-    private void updateLimits(){
-        ((Generic6DofConstraint)constraint).setLinearUpperLimit(Converter.convert(linearUpperLimit));
-        ((Generic6DofConstraint)constraint).setLinearLowerLimit(Converter.convert(linearLowerLimit));
-        ((Generic6DofConstraint)constraint).setAngularLowerLimit(Converter.convert(angularUpperLimit));
-        ((Generic6DofConstraint)constraint).setAngularUpperLimit(Converter.convert(angularLowerLimit));
-    }
-
-    private Callable doUpdateLimits=new Callable(){
-        public Object call() throws Exception {
-            updateLimits();
-            return null;
-        }
-    };
-
 }

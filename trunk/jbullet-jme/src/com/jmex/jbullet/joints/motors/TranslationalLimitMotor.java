@@ -32,10 +32,7 @@
 package com.jmex.jbullet.joints.motors;
 
 import com.jme.math.Vector3f;
-import com.jme.util.GameTaskQueue;
-import com.jme.util.GameTaskQueueManager;
 import com.jmex.jbullet.util.Converter;
-import java.util.concurrent.Callable;
 
 /**
  *
@@ -44,23 +41,8 @@ import java.util.concurrent.Callable;
 public class TranslationalLimitMotor {
     private com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor motor;
 
-	private Vector3f lowerLimit = new Vector3f(); //! Bounce parameter for linear limit
-    private Vector3f upperLimit = new Vector3f();
-    private Vector3f accumulatedImpulse = new Vector3f();
-    private float limitSoftness;
-    private float damping;
-    private float restitution;
-
-    protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_sync");
-
     public TranslationalLimitMotor(com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor motor) {
         this.motor = motor;
-        this.limitSoftness=motor.limitSoftness;
-        this.damping=motor.damping;
-        this.restitution=motor.restitution;
-        Converter.convert(motor.lowerLimit,lowerLimit);
-        Converter.convert(motor.upperLimit,upperLimit);
-        Converter.convert(motor.accumulatedImpulse,accumulatedImpulse);
     }
 
     public com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor getMotor() {
@@ -68,73 +50,51 @@ public class TranslationalLimitMotor {
     }
 
     public Vector3f getLowerLimit() {
-        return lowerLimit;
+        return Converter.convert(motor.lowerLimit);
     }
 
     public void setLowerLimit(Vector3f lowerLimit) {
-        this.lowerLimit.set(lowerLimit);
-        pQueue.enqueue(doSyncPhysics);
+        Converter.convert(lowerLimit,motor.lowerLimit);
     }
 
     public Vector3f getUpperLimit() {
-        return upperLimit;
+        return Converter.convert(motor.upperLimit);
     }
 
     public void setUpperLimit(Vector3f upperLimit) {
-        this.upperLimit.set(upperLimit);
-        pQueue.enqueue(doSyncPhysics);
+        Converter.convert(upperLimit,motor.upperLimit);
     }
 
     public Vector3f getAccumulatedImpulse() {
-        return accumulatedImpulse;
+        return Converter.convert(motor.accumulatedImpulse);
     }
 
     public void setAccumulatedImpulse(Vector3f accumulatedImpulse) {
-        this.accumulatedImpulse.set(accumulatedImpulse);
-        pQueue.enqueue(doSyncPhysics);
+        Converter.convert(accumulatedImpulse,motor.accumulatedImpulse);
     }
 
     public float getLimitSoftness() {
-        return limitSoftness;
+        return motor.limitSoftness;
     }
 
     public void setLimitSoftness(float limitSoftness) {
-        this.limitSoftness = limitSoftness;
-        pQueue.enqueue(doSyncPhysics);
+        motor.limitSoftness = limitSoftness;
     }
 
     public float getDamping() {
-        return damping;
+        return motor.damping;
     }
 
     public void setDamping(float damping) {
-        this.damping = damping;
-         pQueue.enqueue(doSyncPhysics);
+        motor.damping = damping;
    }
 
     public float getRestitution() {
-        return restitution;
+        return motor.restitution;
     }
 
     public void setRestitution(float restitution) {
-        this.restitution = restitution;
-        pQueue.enqueue(doSyncPhysics);
+        motor.restitution = restitution;
     }
-
-    public void syncPhysics() {
-        motor.limitSoftness=this.limitSoftness;
-        motor.damping=this.damping;
-        motor.restitution=this.restitution;
-        Converter.convert(this.lowerLimit,motor.lowerLimit);
-        Converter.convert(this.upperLimit,motor.upperLimit);
-        Converter.convert(this.accumulatedImpulse,motor.accumulatedImpulse);
-    }
-
-    private Callable doSyncPhysics=new Callable(){
-        public Object call() throws Exception {
-            syncPhysics();
-            return null;
-        }
-    };
 
 }
