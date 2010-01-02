@@ -46,6 +46,5 @@ In your jme2 Gamestate, update and sync physics like this:
 public void update(float tpf) {
     super.update(tpf);
     pSpace.update(tpf);
-    pSpace.syncPhysics();
 }
 }}}
