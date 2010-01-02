@@ -483,11 +483,17 @@ public class PhysicsNode extends CollisionObject{
     };
 
     public Vector3f getContinuousTorque(){
-        return continuousTorque;
+        if(applyTorque)
+            return continuousTorque;
+        else
+            return null;
     }
 
     public Vector3f getContinuousTorque(Vector3f vec){
-        return vec.set(continuousTorque);
+        if(applyTorque)
+            return vec.set(continuousTorque);
+        else
+            return null;
     }
 
     /**
