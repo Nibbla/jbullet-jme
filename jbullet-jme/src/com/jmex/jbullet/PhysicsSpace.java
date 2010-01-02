@@ -66,6 +66,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
 
 /**
  * <p>PhysicsSpace - The central jbullet-jme physics space</p>
@@ -211,12 +212,12 @@ public abstract class PhysicsSpace {
         collisionEvents.clear();
     }
 
-    public void enqueueSync(Callable callable){
-        pQueue.enqueue(callable);
+    public Future enqueueUpdate(Callable callable){
+        return pQueue.enqueue(callable);
     }
 
-    public void reQueue(final Callable callable){
-        rQueue.enqueue(new Callable(){
+    public Future reQueue(final Callable callable){
+        return rQueue.enqueue(new Callable(){
             public Object call() throws Exception {
                 pQueue.enqueue(callable);
                 return null;
