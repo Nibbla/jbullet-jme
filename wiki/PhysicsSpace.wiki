@@ -1,8 +1,12 @@
 #summary Basic jbullet-jme physics space
 The PhysicsSpace defines the basic physics world in jbullet-jme. Things such as global gravity etc. are set here and all [PhysicsNode]s are added here.
 
-The PhysicsSpace needs to be started by getting a PhysicsSpace Object and updated by calling the update(float time) method.
+== Creating the PhysicsSpace ==
+The PhysicsSpace needs to be started by getting a PhysicsSpace Object with PhysicsSpace.getPhysicsSpace() and updated by calling the update(float time) method.
 
+You can add options to the getPhysicsSpace() method to improve the physics performance.
+
+== Adding physics objects ==
 In order for [PhysicsNode]s and [PhysicsJoint]s to work, they need to be added to the PhysicsSpace by calling physicsSpace.add(node);
 
 ==JavaDoc==
