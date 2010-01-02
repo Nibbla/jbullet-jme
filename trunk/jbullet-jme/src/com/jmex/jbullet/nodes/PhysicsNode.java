@@ -36,6 +36,9 @@ import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
 import com.bulletphysics.linearmath.MotionState;
 import com.bulletphysics.linearmath.Transform;
+import com.jme.bounding.BoundingBox;
+import com.jme.bounding.BoundingCapsule;
+import com.jme.bounding.BoundingSphere;
 import com.jme.bounding.BoundingVolume;
 import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
@@ -47,8 +50,13 @@ import com.jme.util.export.JMEExporter;
 import com.jme.util.export.JMEImporter;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionObject;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
+import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
+import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
+import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
+import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -553,7 +561,23 @@ public class PhysicsNode extends CollisionObject{
      * @param type
      */
     public void createCollisionShape(int type){
-        collisionShape=new CollisionShape(type, this);
+        switch(type){
+            case CollisionShape.Shapes.BOX:
+                collisionShape=new BoxCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.SPHERE:
+                collisionShape=new SphereCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.CAPSULE:
+                collisionShape=new CapsuleCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.CYLINDER:
+                collisionShape=new CylinderCollisionShape(this);
+            break;
+            case CollisionShape.Shapes.MESH:
+                collisionShape=new MeshCollisionShape(this);
+            break;
+        }
         rebuildRigidBody();
     }
   
@@ -563,7 +587,16 @@ public class PhysicsNode extends CollisionObject{
      * a sphere will be created.
      */
     public void createCollisionShape(){
-        collisionShape=new CollisionShape(this);
+        BoundingVolume bounds=getWorldBound();
+        if(bounds instanceof BoundingBox){
+            collisionShape=new BoxCollisionShape(this);
+        }
+        else if(bounds instanceof BoundingSphere){
+            collisionShape=new SphereCollisionShape(this);
+        }
+        else if(bounds instanceof BoundingCapsule){
+            collisionShape=new CapsuleCollisionShape(this);
+        }
         constructionInfo.collisionShape=collisionShape.getCShape();
         rebuildRigidBody();
     }
