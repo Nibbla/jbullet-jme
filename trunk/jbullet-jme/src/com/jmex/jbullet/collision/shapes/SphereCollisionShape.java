@@ -13,15 +13,23 @@ import com.jmex.jbullet.collision.shapes.CollisionShape.Shapes;
 import java.util.List;
 
 /**
- *
+ * Basic sphere collision shape
  * @author normenhansen
  */
 public class SphereCollisionShape extends CollisionShape{
 
+    /**
+     * Creates a collision shape from the bounding volume of the given node
+     * @param node the node to get the BoundingVolume from
+     */
     public SphereCollisionShape(Node node) {
         createCollisionSphere(node);
     }
 
+    /**
+     * Creates a collision shape from the given bounding volume
+     * @param volume the BoundingVolume to use
+     */
     public SphereCollisionShape(BoundingSphere volume) {
         createCollisionSphere(volume);
     }

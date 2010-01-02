@@ -129,7 +129,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.BroadphaseTypes.html" title="interface in com.jmex.jbullet">PhysicsSpace.BroadphaseTypes</A></B></CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interface with Broadphase types</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -192,7 +192,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#addCollisionListener(com.jmex.jbullet.collision.CollisionListener)">addCollisionListener</A></B>(<A HREF="../../../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision">CollisionListener</A>&nbsp;listener)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adds a CollisionListener that will be informed about collision events</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -200,7 +200,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#destroy()">destroy</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destroys the current PhysicsSpace so that a new one can be created</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -208,7 +208,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#enqueueUpdate(java.util.concurrent.Callable)">enqueueUpdate</A></B>(java.util.concurrent.Callable&nbsp;callable)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enqueues a Callable in the update queue of the physics thread</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -216,7 +216,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#getDynamicsWorld()">getDynamicsWorld</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used internally</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -224,7 +224,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#getPhysicsSpace()">getPhysicsSpace</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the current PhysicsSpace or create a new standard PhysicsSpace</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -232,7 +232,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#getPhysicsSpace(int)">getPhysicsSpace</A></B>(int&nbsp;broadphaseType)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the current PhysicsSpace or create a new PhysicsSpace with
+ the given Broadphase type.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -241,7 +242,8 @@ java.lang.Object
                 com.jme.math.Vector3f&nbsp;worldMax)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the current PhysicsSpace or create a new PhysicsSpace with
+ the AxisSweep3 Broadphase type and given world size.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -251,7 +253,8 @@ java.lang.Object
                 int&nbsp;broadphaseType)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the current PhysicsSpace or create a new PhysicsSpace with
+ the given Broadphase type and given world size.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -267,7 +270,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#removeCollisionListener(com.jmex.jbullet.collision.CollisionListener)">removeCollisionListener</A></B>(<A HREF="../../../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision">CollisionListener</A>&nbsp;listener)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;removes a CollisionListener from the list</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -275,7 +278,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#reQueue(java.util.concurrent.Callable)">reQueue</A></B>(java.util.concurrent.Callable&nbsp;callable)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enqueues a Callable in the update queue in the next update call
+ (added to avoid loops in update queue)</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -283,7 +287,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#setGravity(com.jme.math.Vector3f)">setGravity</A></B>(com.jme.math.Vector3f&nbsp;gravity)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;not safe</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the gravity of the PhysicsSpace</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -291,7 +295,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#update(float)">update</A></B>(float&nbsp;time)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;updates the physics space</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -300,7 +304,7 @@ java.lang.Object
        int&nbsp;maxSteps)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;updates the physics space, uses maxSteps<br></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -374,8 +378,11 @@ getPhysicsSpace</H3>
 <PRE>
 public static <A HREF="../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A> <B>getPhysicsSpace</B>()</PRE>
 <DL>
+<DD>Get the current PhysicsSpace or create a new standard PhysicsSpace
+<P>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the exising or created PhysicsSpace</DL>
 </DD>
 </DL>
 <HR>
@@ -385,8 +392,12 @@ getPhysicsSpace</H3>
 <PRE>
 public static <A HREF="../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A> <B>getPhysicsSpace</B>(int&nbsp;broadphaseType)</PRE>
 <DL>
+<DD>Get the current PhysicsSpace or create a new PhysicsSpace with
+ the given Broadphase type.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>broadphaseType</CODE> - The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
+<DT><B>Returns:</B><DD>the exising or created PhysicsSpace</DL>
 </DD>
 </DL>
 <HR>
@@ -397,8 +408,12 @@ getPhysicsSpace</H3>
 public static <A HREF="../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A> <B>getPhysicsSpace</B>(com.jme.math.Vector3f&nbsp;worldMin,
                                            com.jme.math.Vector3f&nbsp;worldMax)</PRE>
 <DL>
+<DD>Get the current PhysicsSpace or create a new PhysicsSpace with
+ the AxisSweep3 Broadphase type and given world size.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>worldMin</CODE> - the worldMin vector (e.g. -1000,-1000,-1000)<DD><CODE>worldMax</CODE> - the worldMax vector (e.g. -1000,-1000,-1000)
+<DT><B>Returns:</B><DD>the exising or created PhysicsSpace</DL>
 </DD>
 </DL>
 <HR>
@@ -410,8 +425,12 @@ public static <A HREF="../../../com/jmex/jbullet/PhysicsSpace.html" title="class
                                            com.jme.math.Vector3f&nbsp;worldMax,
                                            int&nbsp;broadphaseType)</PRE>
 <DL>
+<DD>Get the current PhysicsSpace or create a new PhysicsSpace with
+ the given Broadphase type and given world size.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>worldMin</CODE> - the worldMin vector (e.g. -1000,-1000,-1000)<DD><CODE>worldMax</CODE> - the worldMax vector (e.g. -1000,-1000,-1000)<DD><CODE>broadphaseType</CODE> - The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
+<DT><B>Returns:</B><DD>the exising or created PhysicsSpace</DL>
 </DD>
 </DL>
 <HR>
@@ -421,8 +440,10 @@ update</H3>
 <PRE>
 public void <B>update</B>(float&nbsp;time)</PRE>
 <DL>
+<DD>updates the physics space
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>time</CODE> - the current time value</DL>
 </DD>
 </DL>
 <HR>
@@ -433,8 +454,10 @@ update</H3>
 public void <B>update</B>(float&nbsp;time,
                    int&nbsp;maxSteps)</PRE>
 <DL>
+<DD>updates the physics space, uses maxSteps<br>
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>time</CODE> - the current time value<DD><CODE>maxSteps</CODE> - using values bigger than one effectively increases physics speed</DL>
 </DD>
 </DL>
 <HR>
@@ -444,8 +467,11 @@ enqueueUpdate</H3>
 <PRE>
 public java.util.concurrent.Future <B>enqueueUpdate</B>(java.util.concurrent.Callable&nbsp;callable)</PRE>
 <DL>
+<DD>enqueues a Callable in the update queue of the physics thread
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>callable</CODE> - the Callable to add
+<DT><B>Returns:</B><DD>the created Future for the Callable</DL>
 </DD>
 </DL>
 <HR>
@@ -455,8 +481,12 @@ reQueue</H3>
 <PRE>
 public java.util.concurrent.Future <B>reQueue</B>(java.util.concurrent.Callable&nbsp;callable)</PRE>
 <DL>
+<DD>enqueues a Callable in the update queue in the next update call
+ (added to avoid loops in update queue)
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>callable</CODE> - 
+<DT><B>Returns:</B><DD>the created Future for the requeue Callable</DL>
 </DD>
 </DL>
 <HR>
@@ -492,7 +522,7 @@ setGravity</H3>
 <PRE>
 public void <B>setGravity</B>(com.jme.math.Vector3f&nbsp;gravity)</PRE>
 <DL>
-<DD>not safe
+<DD>sets the gravity of the PhysicsSpace
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>gravity</CODE> - </DL>
@@ -505,8 +535,10 @@ addCollisionListener</H3>
 <PRE>
 public void <B>addCollisionListener</B>(<A HREF="../../../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision">CollisionListener</A>&nbsp;listener)</PRE>
 <DL>
+<DD>adds a CollisionListener that will be informed about collision events
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>listener</CODE> - the CollisionListener to add</DL>
 </DD>
 </DL>
 <HR>
@@ -516,8 +548,10 @@ removeCollisionListener</H3>
 <PRE>
 public void <B>removeCollisionListener</B>(<A HREF="../../../com/jmex/jbullet/collision/CollisionListener.html" title="interface in com.jmex.jbullet.collision">CollisionListener</A>&nbsp;listener)</PRE>
 <DL>
+<DD>removes a CollisionListener from the list
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>listener</CODE> - the CollisionListener to remove</DL>
 </DD>
 </DL>
 <HR>
@@ -527,6 +561,8 @@ destroy</H3>
 <PRE>
 public void <B>destroy</B>()</PRE>
 <DL>
+<DD>destroys the current PhysicsSpace so that a new one can be created
+<P>
 <DD><DL>
 </DL>
 </DD>
@@ -538,6 +574,8 @@ getDynamicsWorld</H3>
 <PRE>
 public com.bulletphysics.dynamics.DynamicsWorld <B>getDynamicsWorld</B>()</PRE>
 <DL>
+<DD>used internally
+<P>
 <DD><DL>
 
 <DT><B>Returns:</B><DD>the dynamicsWorld</DL>

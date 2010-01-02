@@ -96,10 +96,6 @@ public class PhysicsNode extends CollisionObject{
     private MotionState motionState;//=new DefaultMotionState();
     private CollisionShape collisionShape;
     private float mass=1f;
-//    private float friction=1f;//.4f;
-//    private float angularDamping=.1f;
-//    private float linearDamping=.1f;
-//    private float restitution=0f;
 
     private boolean physicsEnabled=true;
 
@@ -397,6 +393,10 @@ public class PhysicsNode extends CollisionObject{
         Converter.convert(tempVel,gravity);
     }
 
+    /**
+     * set the gravity of this PhysicsNode
+     * @param gravity the gravity vector to set
+     */
     public void setGravity(Vector3f gravity){
         rBody.setGravity(Converter.convert(gravity));
     }
@@ -449,6 +449,11 @@ public class PhysicsNode extends CollisionObject{
         rBody.setAngularVelocity(Converter.convert(vec));
     }
 
+    /**
+     * get the currently applied continuous force
+     * @param vec the vector to store the continuous force in
+     * @return null if no force is applied
+     */
     public Vector3f getContinuousForce(Vector3f vec){
         if(applyForce)
             return vec.set(continuousForce);
@@ -456,6 +461,10 @@ public class PhysicsNode extends CollisionObject{
             return null;
     }
 
+    /**
+     * get the currently applied continuous force
+     * @return null if no force is applied
+     */
     public Vector3f getContinuousForce(){
         if(applyForce)
             return continuousForce;
@@ -490,6 +499,10 @@ public class PhysicsNode extends CollisionObject{
 
     };
 
+    /**
+     * get the currently applied continuous torque
+     * @return null if no torque is applied
+     */
     public Vector3f getContinuousTorque(){
         if(applyTorque)
             return continuousTorque;
@@ -497,6 +510,11 @@ public class PhysicsNode extends CollisionObject{
             return null;
     }
 
+    /**
+     * get the currently applied continuous torque
+     * @param vec the vector to store the continuous torque in
+     * @return null if no torque is applied
+     */
     public Vector3f getContinuousTorque(Vector3f vec){
         if(applyTorque)
             return vec.set(continuousTorque);
@@ -531,27 +549,25 @@ public class PhysicsNode extends CollisionObject{
 
     };
 
+    /**
+     * apply an impulse to the PhysicsNode
+     * @param vec
+     * @param vec2
+     */
     public void applyImpulse(Vector3f vec, Vector3f vec2){
         rBody.applyImpulse(Converter.convert(vec), Converter.convert(vec2));
     }
 
+    /**
+     * apply a toque impulse to the PhysicsNode
+     * @param vec
+     */
     public void applyTorqueImpulse(Vector3f vec){
         rBody.applyTorqueImpulse(Converter.convert(vec));
     }
 
     public void clearForces(){
         rBody.clearForces();
-    }
-
-    @Override
-    public void updateGeometricState(float arg0, boolean arg1) {
-        super.updateGeometricState(arg0, arg1);
-    }
-
-    @Override
-    public void setModelBound(BoundingVolume modelBound) {
-        //TODO: update collision shape from model bound
-        super.setModelBound(modelBound);
     }
 
     /**

@@ -294,8 +294,8 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     /**
-     * apply the given engine force
-     * @param force
+     * apply the given engine force to all wheels, works continuously
+     * @param force the force
      */
     public void accelerate(float force){
         for(WheelInfo wheel:wheels){
@@ -304,6 +304,11 @@ public class PhysicsVehicleNode extends PhysicsNode{
         applyEngineForce();
     }
 
+    /**
+     * apply the given engine force, works continuously
+     * @param wheelNumber the wheel to apply the force on
+     * @param force the force
+     */
     public void accelerate(int wheelNumber, float force){
         WheelInfo wheelInfo=wheels.get(wheelNumber);
         wheelInfo.setEngineForce(force);
@@ -319,7 +324,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
 
     /**
-     * set the given steering value (0 = forward)
+     * set the given steering value to all front wheels (0 = forward)
      * @param value the steering angle of the front wheels (Pi = 360deg)
      */
     public void steer(float value){
@@ -330,8 +335,13 @@ public class PhysicsVehicleNode extends PhysicsNode{
         applySteer();
     }
 
-    public void steer(int wheel, float value){
-        wheels.get(wheel).setSteerValue(value);
+    /**
+     * set the given steering value to the given wheel (0 = forward)
+     * @param wheelNumber the wheel to set the steering on
+     * @param value the steering angle of the front wheels (Pi = 360deg)
+     */
+    public void steer(int wheelNumber, float value){
+        wheels.get(wheelNumber).setSteerValue(value);
         applySteer();
     }
 
@@ -342,13 +352,22 @@ public class PhysicsVehicleNode extends PhysicsNode{
         }
     }
 
-    public void brake(float value){
+    /**
+     * apply the given brake force to all wheels, works continuously
+     * @param force the force
+     */
+    public void brake(float force){
         for(WheelInfo wheel:wheels){
-            wheel.setBrakeForce(value);
+            wheel.setBrakeForce(force);
         }
         applyBrake();
     }
 
+    /**
+     * apply the given brake force, works continuously
+     * @param wheelNumber the wheel to apply the force on
+     * @param force the force
+     */
     public void brake(int wheelNumber, float force){
         WheelInfo wheelInfo=wheels.get(wheelNumber);
         wheelInfo.setBrakeForce(force);

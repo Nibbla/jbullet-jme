@@ -32,11 +32,15 @@
 package com.jmex.jbullet.collision;
 
 /**
- *
+ * Interface for Objects that want to be informed about CollisionEvents
  * @author normenhansen
  */
 public interface CollisionListener {
 
+    /**
+     * called when a collision happens in the PhysicsSpace
+     * @param event the CollisionEvent
+     */
     public void collision(CollisionEvent event);
 
 }
