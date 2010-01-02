@@ -69,7 +69,6 @@ public class TestSimpleRagdoll {
 
             @Override
             public void update(float tpf) {
-                pSpace.syncPhysics();
                 pSpace.update(tpf);
                 super.update(tpf);
             }
