@@ -12,4 +12,5 @@
   * [Multithreading]
  * Examples
   * [Basic_Example]
+ * [VersionHistory]
  * [DevelopersGuide]
