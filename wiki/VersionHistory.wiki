@@ -13,4 +13,4 @@ jbulet-jme version numbers advance in the following way:
 == Versions ==
 
 ==== 0.9 alpha ====
-- first released version
+- first released alpha testing version
