@@ -78,37 +78,76 @@ public class TestPhysicsCharacter {
         DebugGameState state = new DebugGameState(){
             CollisionShape shape;
 
+            private boolean stoppedBrake=false;
+            private boolean stoppedAccel=false;
+            private boolean stoppedSteerL=false;
+            private boolean stoppedSteerR=false;
+
+            private boolean appliedBrake=false;
+            private boolean appliedAccel=false;
+            private boolean appliedSteerL=false;
+            private boolean appliedSteerR=false;
+
             @Override
             public void update(float tpf) {
                 pSpace.update(tpf);
                 super.update(tpf);
-
                 if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_accelerate", false)) {
-                    character.setWalkDirection(Vector3f.UNIT_Z.mult(-.1f));
+                        "key_accelerate", true)) {
+                    if(!appliedAccel){
+                        character.setWalkDirection(Vector3f.UNIT_Z.mult(-.1f));
+                        appliedAccel=true;
+                        stoppedBrake=false;
+                        stoppedAccel=false;
+                    }
                 }
-                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_brake", false)) {
-                    character.setWalkDirection(Vector3f.UNIT_Z.mult(.1f));
+                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_brake", true)) {
+                    if(!appliedBrake){
+                        character.setWalkDirection(Vector3f.UNIT_Z.mult(.1f));
+                        appliedBrake=true;
+                        stoppedBrake=false;
+                        stoppedAccel=false;
+                    }
                 }
-                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_left", true)) {
-                    character.setWalkDirection(Vector3f.UNIT_X.mult(-.1f));
+                    if(!appliedSteerL){
+                        character.setWalkDirection(Vector3f.UNIT_X.mult(-.1f));
+                        stoppedSteerL=false;
+                        appliedSteerL=true;
+                    }
                 }
                 else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
                         "key_steer_right", true)) {
-                    character.setWalkDirection(Vector3f.UNIT_X.mult(.1f));
+                    if(!appliedSteerR){
+                        character.setWalkDirection(Vector3f.UNIT_X.mult(.1f));
+                        stoppedSteerR=false;
+                        appliedSteerR=true;
+                    }
                 }
-                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_action", false)) {
+                else if(!stoppedSteerL||!stoppedSteerR||!stoppedAccel||!stoppedBrake){
                     character.setWalkDirection(Vector3f.ZERO);
+                    stoppedSteerL=true;
+                    appliedSteerL=false;
+                    stoppedSteerR=true;
+                    appliedSteerR=false;
+                    stoppedBrake=true;
+                    appliedBrake=false;
+                    appliedAccel=false;
+                    stoppedAccel=true;
+                }
+
+                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
+                        "key_action", false)) {
+//                    character.setWalkDirection(Vector3f.ZERO);
                     character.jump();
                 }
 
             }
             
         };
-        state.setText("u,h,j,k = move character / space = stop");
+        state.setText("u,h,j,k = move character / space = jump");
 
         Sphere caps=new Sphere("character",8,8,2f);
         character=new PhysicsCharacterNode(caps, CollisionShape.ShapeTypes.SPHERE, .1f);
