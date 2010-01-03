@@ -9,5 +9,6 @@
   * [PhysicsJoint]
   * CollisionShapes
   * [Multithreading]
+ * [DevelopersGuide]
  * Examples
   * [Basic_Example]
