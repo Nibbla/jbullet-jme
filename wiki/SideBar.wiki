@@ -1,6 +1,7 @@
 #summary The wiki sidebar
 *Navigation*
  * [Introduction]
+ * [Features]
  * [InstallingBuilding]
  * Manual
   * [PhysicsSpace]
