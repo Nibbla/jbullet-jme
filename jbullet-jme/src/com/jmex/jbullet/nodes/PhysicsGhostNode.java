@@ -195,7 +195,7 @@ public class PhysicsGhostNode extends CollisionObject{
      * @param translation new world translation of this spatial.
      * @return the computed local translation
      */
-    public Vector3f setWorldTranslation( Vector3f translation ) {
+    protected Vector3f setWorldTranslation( Vector3f translation ) {
         Vector3f localTranslation = this.getLocalTranslation();
         if ( parent != null ) {
             localTranslation.set( translation ).subtractLocal(parent.getWorldTranslation() );
@@ -215,7 +215,7 @@ public class PhysicsGhostNode extends CollisionObject{
      * @param rot new world rotation of this spatial.
      * @return the computed local rotation
      */
-    public Quaternion setWorldRotation( Quaternion rot ) {
+    protected Quaternion setWorldRotation( Quaternion rot ) {
         Quaternion localRotation = getLocalRotation();
         if ( parent != null ) {
             tmp_inverseWorldRotation.set( parent.getWorldRotation()).inverseLocal().mult( rot, localRotation );
