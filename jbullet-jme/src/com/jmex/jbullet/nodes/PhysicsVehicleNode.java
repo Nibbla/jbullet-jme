@@ -383,7 +383,6 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     /**
      * used internally
-     * @return the vehicle
      */
     public RaycastVehicle getVehicle() {
         return vehicle;

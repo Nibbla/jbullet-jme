@@ -91,7 +91,7 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
     }
 
     /**
-     * @return the character
+     * used internally
      */
     public KinematicCharacterController getCharacterController() {
         return character;
