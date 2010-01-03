@@ -4,17 +4,17 @@
  * [PhysicsNode PhysicsNodes] (RigidBodys)
  * applying forces
  * CollisionShapes
-   * Box
-   * Sphere
-   * Capsule
-   * Cylinder
-   * Mesh
+  * Box
+  * Sphere
+  * Capsule
+  * Cylinder
+  * Mesh
  * [PhysicsJoint Joints]
-   * HingeJoint (incl. motors)
-   * Point2PointJoint
-   * SliderJoint (incl. motors)
-   * ConeJoint
-   * 6DofJoint (incl motors)
+  * HingeJoint (incl. motors)
+  * Point2PointJoint
+  * SliderJoint (incl. motors)
+  * ConeJoint
+  * 6DofJoint (incl motors)
  * CollisionEvents
  * [PhysicsVehicleNode Vehicles]
  * Character Nodes
