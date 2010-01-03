@@ -1,6 +1,11 @@
 #summary The version history of jbullet-jme
 
-== Introduction ==
+== Versions ==
+
+==== 0.9 alpha ====
+ * first released alpha testing version
+
+== Version Numbering ==
 jbulet-jme version numbers advance in the following way:
 
  * 3rd order: bugfix releases 
@@ -9,8 +14,3 @@ jbulet-jme version numbers advance in the following way:
   * 1.0.0 -> 1.1.0
  * 1st order:  releases changing api / bringing massive changes
   * 1.0.0 -> 2.0.0
-
-== Versions ==
-
-==== 0.9 alpha ====
- * first released alpha testing version
