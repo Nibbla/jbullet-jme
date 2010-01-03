@@ -65,6 +65,10 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
         gObject.setCollisionFlags(CollisionFlags.CHARACTER_OBJECT);
     }
 
+    public void warp(Vector3f location){
+        character.warp(Converter.convert(location));
+    }
+
     /**
      * set the walk direction, works continuously
      * @param vec the walk direction to set
