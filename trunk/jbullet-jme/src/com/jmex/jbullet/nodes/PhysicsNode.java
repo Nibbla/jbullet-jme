@@ -639,7 +639,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * @return the JBullet RigidBody
+     * used internally
      */
     public RigidBody getRigidBody() {
         return rBody;
