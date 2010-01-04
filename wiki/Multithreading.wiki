@@ -27,3 +27,9 @@ Callable task=new Callable(){
 //add task
 pQueue.enqueue(task);
 }}}
+
+For continuous tasks, you can requeue your task like this when it is called:
+{{{
+//requeue task
+PhysicsSpace.getPhysicsSpace().requeue(task);
+}}}
