@@ -7,6 +7,7 @@
   * [PhysicsSpace]
   * [PhysicsNode]
   * [PhysicsVehicleNode]
+  * [PhysicsCharacterNode]
   * [PhysicsJoint]
   * CollisionShapes
   * [Multithreading]
