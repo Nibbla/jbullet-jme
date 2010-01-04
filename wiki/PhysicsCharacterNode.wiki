@@ -1,4 +1,4 @@
-#summary Infos about character nodes
+#summary Special node that represents a character
 
 == Introduction ==
 The bullet CharacterController is pretty basic, its aim is performance with lots of character nodes, not realism. For something more advanced, I'd suggest building up the character from multiple PhysicsNodes.
