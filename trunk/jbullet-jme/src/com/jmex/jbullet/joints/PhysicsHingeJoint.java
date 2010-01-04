@@ -67,7 +67,7 @@ public class PhysicsHingeJoint extends PhysicsJoint{
     }
 
 	public void setLimit(float low, float high) {
-        setLimit(low,high);
+        ((HingeConstraint)constraint).setLimit(low,high);
     }
 
 	public void setLimit(float low, float high, float _softness, float _biasFactor, float _relaxationFactor) {
