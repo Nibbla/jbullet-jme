@@ -1,6 +1,8 @@
 #summary Infos on how to install and build jbullet-jme
 
 == Downloading ==
+In the "Downloads" section of this project you will find the most current release version of jbullet-jme
+
 Using SVN, you can download the most current version of jbullet-jme like this:
 {{{
 svn checkout http://jbullet-jme.googlecode.com/svn/trunk/ jbullet-jme-read-only
