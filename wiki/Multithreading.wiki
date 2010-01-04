@@ -28,7 +28,7 @@ Callable task=new Callable(){
 pQueue.enqueue(task);
 }}}
 
-For continuous tasks, you can requeue your task like this when it is called and wwants to be called again next tick:
+For continuous tasks, you can requeue your task like this when it is called and wants to be called again next tick:
 {{{
 //requeue task
 PhysicsSpace.getPhysicsSpace().requeue(task);
