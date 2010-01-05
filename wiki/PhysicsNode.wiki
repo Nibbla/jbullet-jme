@@ -4,6 +4,8 @@ A PhysicsNode represents an object in the physics space and in the jme scenegrap
 For bullet, it stores a RigidBody and its CollisionShape including their options (friction, mass etc.)
 
 ==Notes==
+The localTranslation/Rotation of the attached spatial should always be zero and not be changed, the PhysicsNode should be rotated and translated instead.
+
 Currently, mesh objects do not collide with other mesh objects, so mesh objects are mostly to be used for static objects (floor/world) while box/sphere etc. shapes should be used for mobile objects.
 
 ==JavaDoc==
