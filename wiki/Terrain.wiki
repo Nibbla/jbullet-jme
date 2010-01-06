@@ -1,6 +1,6 @@
 #summary How to use jme terrains with jbullet-jme
 == Introduction ==
-TerrainBlocks are normal TriMeshes in jme, so they work with the MeshCollisionShape shape.
+TerrainBlocks are normal TriMeshes in jme, so you create a PhysicsNode with a MeshCollisionShape for it.
 
 == Example ==
 TODO: extend
