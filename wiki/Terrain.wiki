@@ -1,0 +1,23 @@
+#summary How to use jme terrains with jbullet-jme
+== Introduction ==
+TerrainBlocks are normal TriMeshes in jme, so they work with the MeshCollisionShape shape.
+
+== Example ==
+TODO: extend
+
+{{{
+RawHeightMap heightMap = new RawHeightMap(ActionGame.class
+                .getClassLoader().getResource("heights.raw"),
+                129, RawHeightMap.FORMAT_16BITLE, false);
+
+TerrainBlock tb = new TerrainBlock("Terrain", heightMap.getSize(), terrainScale,
+                                           heightMap.getHeightMap(),
+                                           new Vector3f(0, 0, 0));
+
+MeshCollisionShape coll=new MeshCollisionShape(tb);
+PhysicsNode terrainPnode=new PhysicsNode(tb,coll,0);
+
+terrainPnode.setLocalTranslation(new Vector3f(-300,-10,-300));
+terrainPnode.rotateUpTo(new Vector3f(0,1,0));
+PhysicsSpace.getPhysicsSpace().add(terrainPnode);
+}}}
