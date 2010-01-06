@@ -3,8 +3,6 @@
 TerrainBlocks are normal TriMeshes in jme so to have physics terrain, you create a PhysicsNode with a MeshCollisionShape and mass=0 for your TerrainBlock.
 
 == Example ==
-TODO: extend
-
 {{{
 RawHeightMap heightMap = new RawHeightMap(ActionGame.class
                 .getClassLoader().getResource("heights.raw"),
