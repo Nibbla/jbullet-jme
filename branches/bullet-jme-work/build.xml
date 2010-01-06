@@ -46,11 +46,11 @@
             On mac, often jnilibs dont get loaded by standard class loading
             if they are not in /Library/Java/Extensions
         -->
-        <copy toDir="/Library/Java/Extensions" failonerror="true" verbose="true">
+        <!--copy toDir="/Library/Java/Extensions" failonerror="true" verbose="true">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.jnilib"/>
 			</fileset>
-        </copy>
+        </copy-->
     </target>
 
     <!-- javadoc - create javadoc -->
