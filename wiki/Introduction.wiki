@@ -27,7 +27,7 @@ Still, wrapping jbullet like its done here keeps the possibility of developing a
   * 6DofJoint (incl motors)
  * CollisionEvents
  * [PhysicsVehicleNode Vehicles]
- * Character Nodes
+ * [PhysicsCharacterNode Character Nodes]
  * [Multithreading GameTaskQueue] for optional multithreading
 
 == JME integration ==
