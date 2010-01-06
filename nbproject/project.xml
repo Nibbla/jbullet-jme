@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.ant.freeform</type>
+    <configuration>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+            <name>bullet-jme</name>
+        </general-data>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/2">
+            <!-- Do not use Project Properties customizer when editing this file manually. -->
+            <name>bullet-jme</name>
+            <properties/>
+            <folders>
+                <source-folder>
+                    <label>bullet-jme</label>
+                    <location>.</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+                <source-folder>
+                    <label>src</label>
+                    <type>java</type>
+                    <location>src</location>
+                    <encoding>UTF-8</encoding>
+                </source-folder>
+            </folders>
+            <ide-actions>
+                <action name="build">
+                    <target>dist</target>
+                </action>
+                <action name="clean">
+                    <target>clean</target>
+                </action>
+                <action name="run">
+                    <target>run</target>
+                </action>
+                <action name="rebuild">
+                    <target>clean</target>
+                    <target>dist</target>
+                </action>
+                <action name="run.single">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>run-selected-file-in-src</target>
+                    <context>
+                        <property>run.class</property>
+                        <folder>src</folder>
+                        <pattern>\.java$</pattern>
+                        <format>java-name</format>
+                        <arity>
+                            <one-file-only/>
+                        </arity>
+                    </context>
+                </action>
+                <action name="javadoc">
+                    <target>javadoc</target>
+                </action>
+            </ide-actions>
+            <export>
+                <type>jar</type>
+                <location>dist/bullet-jme.jar</location>
+                <build-target>dist</build-target>
+            </export>
+            <export>
+                <type>folder</type>
+                <location>build/classes</location>
+                <build-target>dist</build-target>
+            </export>
+            <view>
+                <items>
+                    <source-folder style="packages">
+                        <label>src</label>
+                        <location>src</location>
+                    </source-folder>
+                    <source-file>
+                        <location>build.xml</location>
+                    </source-file>
+                </items>
+                <context-menu>
+                    <ide-action name="build"/>
+                    <ide-action name="rebuild"/>
+                    <ide-action name="clean"/>
+                    <ide-action name="javadoc"/>
+                    <ide-action name="run"/>
+                </context-menu>
+            </view>
+            <subprojects/>
+        </general-data>
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/1">
+            <compilation-unit>
+                <package-root>src</package-root>
+                <classpath mode="compile">../jbullet-jme/lib/jMonkeyEngine/jme-audio.jar:../jbullet-jme/lib/jMonkeyEngine/jme-awt.jar:../jbullet-jme/lib/jMonkeyEngine/jme-collada.jar:../jbullet-jme/lib/jMonkeyEngine/jme-colladabinding.jar:../jbullet-jme/lib/jMonkeyEngine/jme-editors.jar:../jbullet-jme/lib/jMonkeyEngine/jme-effects.jar:../jbullet-jme/lib/jMonkeyEngine/jme-font.jar:../jbullet-jme/lib/jMonkeyEngine/jme-gamestates.jar:../jbullet-jme/lib/jMonkeyEngine/jme-model.jar:../jbullet-jme/lib/jMonkeyEngine/jme-ogrexml.jar:../jbullet-jme/lib/jMonkeyEngine/jme-scene.jar:../jbullet-jme/lib/jMonkeyEngine/jme-terrain.jar:../jbullet-jme/lib/jMonkeyEngine/jme.jar:../jbullet-jme/lib/jMonkeyEngine/jorbis-0.0.17.jar:../jbullet-jme/lib/LWJGL/AppleJavaExtensions.jar:../jbullet-jme/lib/LWJGL/jinput.jar:../jbullet-jme/lib/LWJGL/lwjgl-debug.jar:../jbullet-jme/lib/LWJGL/lwjgl.jar:../jbullet-jme/lib/LWJGL/lwjgl_test.jar:../jbullet-jme/lib/LWJGL/lwjgl_util.jar:../jbullet-jme/lib/LWJGL/lwjgl_util_applet.jar:../jbullet-jme/lib/LWJGL/lzma.jar:../jbullet-jme/lib/LWJGL/native.jar</classpath>
+                <built-to>dist/bullet-jme.jar</built-to>
+                <built-to>build/classes</built-to>
+                <source-level>1.5</source-level>
+            </compilation-unit>
+        </java-data>
+        <preferences xmlns="http://www.netbeans.org/ns/auxiliary-configuration-preferences/1">
+            <module name="org-netbeans-modules-editor-indent">
+                <node name="text">
+                    <node name="x-java">
+                        <node name="CodeStyle">
+                            <node name="project"/>
+                        </node>
+                    </node>
+                </node>
+                <node name="CodeStyle">
+                    <node name="project">
+                        <property name="text-limit-width" value="80"/>
+                        <property name="tab-size" value="8"/>
+                    </node>
+                    <property name="usedProfile" value="default"/>
+                </node>
+            </module>
+        </preferences>
+    </configuration>
+</project>

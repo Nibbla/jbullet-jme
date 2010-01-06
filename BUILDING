@@ -1,0 +1,134 @@
+***********************************
+* Build info for bullet-jme       *
+***********************************
+
+This document outlines the process of building bullet-jme on different platforms.
+Since bullet-jme is a native java library (JNI),
+building requires you to have the bullet source and c++ development tools.
+
+bullet-jme (c) 2010 Normen Hansen
+
+
+***********************************
+* Building bullet                 *
+***********************************
+
+-----------------------------------
+Requirements
+-----------------------------------
+- Bullet source: http://bullet.googlecode.com/
+- Gnu C++ Compiler: http://gcc.gnu.org/
+- CMake: http://www.cmake.org/
+
+-----------------------------------
+Downloading and extracting bullet
+-----------------------------------
+- extract bullet source
+- build bullet (see below)
+
+-----------------------------------
+Building bullet on Mac OSX
+-----------------------------------
+> cd bullet-2.75
+> cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DFRAMEWORK=OFF \
+              -DCMAKE_OSX_ARCHITECTURES='ppc;i386;ppc64;x86_64' \
+              -DBUILD_EXTRAS=off -DBUILD_DEMOS=off -DCMAKE_BUILD_TYPE=Release
+> make
+
+-----------------------------------
+Building bullet on WINDOWS/LINUX
+-----------------------------------
+> cd bullet-2.75
+> cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DFRAMEWORK=OFF \
+              -DBUILD_EXTRAS=off -DBUILD_DEMOS=off -DCMAKE_BUILD_TYPE=Release
+> make
+
+
+
+***********************************
+* Building bullet-jme             *
+***********************************
+
+-----------------------------------
+Requirements
+-----------------------------------
+- Java SDK 1.5+: http://java.sun.com
+- C++ Compiler: (see below)
+- jbullet-jme Source: http://jbullet-jme.googlecode.com/
+- Statically compiled bullet source (see above)
+
+-----------------------------------
+Preparation
+-----------------------------------
+- copy/link bullet-2.75 folder into the same folder where the bullet-jme folder is:
+
+disk
+ |
+ +-root folder
+    |
+    +-jbullet-jme
+    |
+    +-bullet-jme
+    |
+    +-bullet-2.75
+
+- You can alter options in the "bullet-jme/build.properties" file, such as the used bullet
+  version, native compilation options etc. (see below)
+
+-----------------------------------
+Building bullet-jme jar + native
+-----------------------------------
+> cd bullet-jme
+> ant dist
+
+Thats all. ANT takes care of compiling the java source, building native binaries
+and creating bullet-jme jar files.
+
+-----------------------------------
+Altering the native build process
+-----------------------------------
+bullet-jme uses cpptasks to compile native code.
+In the "nbproject" folder you can find "build-native-platform.xml" files containing the commands
+to compile bullet-jme on different platforms. If you want to alter the process,
+you can copy and modify one of the files and import it in the "build.xml" file instead
+of the old one.
+
+To change the used compiler, edit the "native.platform.compiler" entry in the
+"build.properties" file. The following compilers work with cpptasks:
+
+gcc     GCC C++ compiler
+g++     GCC C++ compiler
+c++     GCC C++ compiler
+g77     GNU FORTRAN compiler
+msvc    Microsoft Visual C++
+bcc     Borland C++ Compiler
+msrc	Microsoft Resource Compiler
+brc     Borland Resource Compiler
+df      Compaq Visual Fortran Compiler
+midl	Microsoft MIDL Compiler
+icl     Intel C++ compiler for Windows (IA-32)
+ecl     Intel C++ compiler for Windows (IA-64)
+icc     Intel C++ compiler for Linux (IA-32)
+ecc     Intel C++ compiler for Linux (IA-64)
+CC      Sun ONE C++ compiler
+aCC     HP aC++ C++ Compiler
+os390	OS390 C Compiler
+os400	Icc Compiler
+sunc89	Sun C89 C Compiler
+xlC     VisualAge C Compiler
+uic     Qt user interface compiler (creates .h, .cpp and moc_*.cpp files).
+moc     Qt meta-object compiler
+xpidl	Mozilla xpidl compiler (creates .h and .xpt files).
+wcl     OpenWatcom C/C++ compiler
+wfl     OpenWatcom FORTRAN compiler
+
+-----------------------------------
+Netbeans Project
+-----------------------------------
+The project includes a Netbeans project to edit the source in the Netbeans IDE.
+
+To have correct syntax highlighting in .cpp/.h files:
+
+- in Netbeans Settings -> C/C++ -> Code Assistance -> C++
+  - add bullet-2.75/src as include directories for c++
+  - add JAVA_HOME/include as include directories for c++

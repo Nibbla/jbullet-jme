@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="bullet-jme" default="install" basedir=".">
+    <!-- import init script -->
+    <import file="nbproject/build-init.xml"/>
+    
+    <!-- import native library build scripts - change to use different settings -->
+    <import file="nbproject/build-native-osx.xml"/>
+    <import file="nbproject/build-native-windows.xml"/>
+    <import file="nbproject/build-native-linux.xml"/>
+
+    <!-- init - create build directories -->
+    <target name="init" description="create build directories">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${build.headers.dir}"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${build.native.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <!-- compile - compile java sources -->
+    <target name="compile" depends="init" description="compile java sources">
+        <javac srcdir="${source.dir}" destdir="${build.classes.dir}"
+               source="1.5" target="1.5"
+               includeAntRuntime="no"
+               classpathref="lib.path" debug="${compile.debug}">
+        </javac>
+    </target>
+
+    <!-- jar - build jar and c header files -->
+    <target name="jar" depends="compile" description="build jar and c header files">
+        <jar jarfile="${jar.file}" basedir="${build.classes.dir}" manifest="${manifest.file}"/>
+		<!-- generate the header files -->
+        <javah destdir="${build.headers.dir}" classpath="${jar.file}" force="yes">
+            <class name="com.jmex.bullet.PhysicsSpace"/>
+        </javah>
+    </target>
+
+    <!-- nativelib - build native libraries -->
+	<target name="nativelib" depends="jar, _nativelib_osx, _nativelib_windows, _nativelib_linux">
+        <!-- native building happens in nbproject/build-native-platform.xml -->
+    </target>
+
+    <!-- dist - copy the built objects to the 'dist' directory. -->
+    <target name="dist" description="Install jar" depends="nativelib">
+        <!-- 
+            On mac, often jnilibs dont get loaded by standard class loading
+            if they are not in /Library/Java/Extensions
+        -->
+        <copy toDir="/Library/Java/Extensions" failonerror="true" verbose="true">
+			<fileset dir="${dist.dir}">
+				<include name="**/*.jnilib"/>
+			</fileset>
+        </copy>
+    </target>
+
+    <!-- javadoc - create javadoc -->
+    <target name="javadoc">
+        <javadoc destdir="${build.javadoc.dir}" access="public" author="false" charset="UTF-8" additionalparam="-notimestamp"
+        failonerror="true" useexternalfile="true" docencoding="UTF-8" windowtitle="${library.name} javadoc"
+        source="1.5" encoding="UTF-8" version="false" use="true" splitindex="true">
+            <classpath>
+                <path refid="lib.path"/>
+            </classpath>
+            <fileset dir="${source.dir}" excludes="" includes="**">
+                <filename name="**/*.java"/>
+            </fileset>
+        </javadoc>
+        <jar jarfile="${javadoc.file}" basedir="${build.javadoc.dir}"/>
+    </target>
+
+    <!-- run - runs example -->
+	<target name="run">
+		<java classpath="${jar.file}${path.separator}${dist.dir}${path.separator}${lib.importpath}"
+              classname="jmetest/bullet/TestSimplePhysics" fork="true"/>
+              <echo>${lib.importpath}</echo>
+	</target>
+	
+    <!-- clean - deletes build and dist folder -->
+    <target name="clean" depends="init" description="Remove build and dist directories">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+</project>
