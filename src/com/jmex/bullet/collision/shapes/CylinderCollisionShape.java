@@ -69,8 +69,7 @@ public class CylinderCollisionShape extends CollisionShape{
      * @param halfExtents
      */
     public CylinderCollisionShape(Vector3f halfExtents) {
-//        CylinderShape capShape=new CylinderShapeZ(Converter.convert(halfExtents));
-//        cShape=capShape;
+        cShape=createCollisionCylinder(halfExtents.x, halfExtents.y, halfExtents.z);
         type=ShapeTypes.CYLINDER;
     }
 
@@ -91,6 +90,7 @@ public class CylinderCollisionShape extends CollisionShape{
 //            break;
         }
         type=ShapeTypes.CYLINDER;
+        throw (new UnsupportedOperationException("Not implemented yet."));
     }
 
     private void createCollisionCylinder(Node node){
@@ -106,10 +106,9 @@ public class CylinderCollisionShape extends CollisionShape{
     }
 
     private void createCollisionCylinder(BoundingBox volume){
-//        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
-//        CylinderShapeZ capShape=new CylinderShapeZ(halfExtents);
-//        cShape=capShape;
+        cShape=createCollisionCylinder(volume.xExtent, volume.yExtent, volume.zExtent);
         type=ShapeTypes.CYLINDER;
     }
 
+    native long createCollisionCylinder(float x, float y, float z);
 }

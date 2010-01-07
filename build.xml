@@ -34,6 +34,10 @@
             <class name="com.jmex.bullet.PhysicsSpace"/>
             <class name="com.jmex.bullet.nodes.PhysicsNode"/>
             <class name="com.jmex.bullet.collision.shapes.BoxCollisionShape"/>
+            <class name="com.jmex.bullet.collision.shapes.SphereCollisionShape"/>
+            <class name="com.jmex.bullet.collision.shapes.CapsuleCollisionShape"/>
+            <class name="com.jmex.bullet.collision.shapes.CylinderCollisionShape"/>
+            <class name="com.jmex.bullet.collision.shapes.MeshCollisionShape"/>
         </javah>
     </target>
 

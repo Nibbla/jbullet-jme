@@ -187,29 +187,6 @@ public abstract class PhysicsSpace {
         GameTaskQueueManager.getManager().addQueue("jbullet_update", new GameTaskQueue());
         pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
         pQueue.setExecuteAll(true);
-
-//        collisionConfiguration = new DefaultCollisionConfiguration();
-//        dispatcher = new CollisionDispatcher( collisionConfiguration );
-//        switch(broadphaseType){
-//            case BroadphaseTypes.SIMPLE:
-//                broadphase = new SimpleBroadphase();
-//            break;
-//            case BroadphaseTypes.AXIS_SWEEP_3:
-//                broadphase = new AxisSweep3(Converter.convert(worldMin), Converter.convert(worldMax));
-//            break;
-//            case BroadphaseTypes.AXIS_SWEEP_3_32:
-//                broadphase = new AxisSweep3_32(Converter.convert(worldMin), Converter.convert(worldMax));
-//            break;
-//            case BroadphaseTypes.DBVT:
-//                broadphase = new DbvtBroadphase();
-//            break;
-//        }
-//
-//        solver = new SequentialImpulseConstraintSolver();
-//
-//        dynamicsWorld = new DiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
-//        dynamicsWorld.setGravity( new javax.vecmath.Vector3f( 0, -9.81f, 0 ) );
-//
 //		broadphase.getOverlappingPairCache().setInternalGhostPairCallback(new GhostPairCallback());
         startPhysicsSpace(worldMin.x,worldMin.y,worldMin.z,worldMax.x,worldMax.y,worldMax.z,broadphaseType);
         setContactCallbacks();

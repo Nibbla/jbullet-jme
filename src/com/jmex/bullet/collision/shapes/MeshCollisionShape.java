@@ -32,6 +32,7 @@
 package com.jmex.bullet.collision.shapes;
 
 //import com.bulletphysics.collision.shapes.BvhTriangleMeshShape;
+import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.scene.TriMesh;
@@ -44,6 +45,7 @@ import java.util.List;
  * @author normenhansen
  */
 public class MeshCollisionShape extends CollisionShape{
+    private TriMesh triMesh;
 
     /**
      * Creates a collision shape from the TriMesh leaf in the given node
@@ -84,8 +86,47 @@ public class MeshCollisionShape extends CollisionShape{
     }
 
     private void createCollisionMesh(TriMesh mesh){
-//        cShape=new BvhTriangleMeshShape(Converter.convert(mesh),true);
+        this.triMesh=mesh;
+        cShape=createCollisionMesh();
         type=ShapeTypes.MESH;
     }
+
+    protected float[] getVerticesArray() {
+        //This is probably the LEAST efficient way to do this, but it'll work!
+        Vector3f[] triangleVertices = new Vector3f[triMesh.getTriangleCount()*3];
+        triMesh.getMeshAsTrianglesVertices(triangleVertices);
+        float[] vertices=new float[triangleVertices.length * 3];
+//        int[] triangles=new int[triangleVertices.length];
+        Vector3f temp = new Vector3f();
+        for(int loop=0; loop<triangleVertices.length; loop++)
+        {
+            triangleVertices[loop].mult(triMesh.getLocalScale(),temp);
+            vertices[loop*3]=temp.x;
+            vertices[loop*3+1]=temp.y;
+            vertices[loop*3+2]=temp.z;
+//            triangles[loop]=loop;
+        }
+        return vertices;
+    }
+
+    protected int[] getTrianglesArray() {
+        //This is probably the LEAST efficient way to do this, but it'll work!
+        Vector3f[] triangleVertices = new Vector3f[triMesh.getTriangleCount()*3];
+        triMesh.getMeshAsTrianglesVertices(triangleVertices);
+//        float[] vertices=new float[triangleVertices.length * 3];
+        int[] triangles=new int[triangleVertices.length];
+        Vector3f temp = new Vector3f();
+        for(int loop=0; loop<triangleVertices.length; loop++)
+        {
+            triangleVertices[loop].mult(triMesh.getLocalScale(),temp);
+//            vertices[loop*3]=temp.x;
+//            vertices[loop*3+1]=temp.y;
+//            vertices[loop*3+2]=temp.z;
+            triangles[loop]=loop;
+        }
+        return triangles;
+    }
+
+    native long createCollisionMesh();
 
 }

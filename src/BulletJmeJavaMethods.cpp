@@ -40,6 +40,10 @@
 #include "com_jmex_bullet_PhysicsSpace.h"
 #include "com_jmex_bullet_nodes_PhysicsNode.h"
 #include "com_jmex_bullet_collision_shapes_BoxCollisionShape.h"
+#include "com_jmex_bullet_collision_shapes_SphereCollisionShape.h"
+#include "com_jmex_bullet_collision_shapes_CapsuleCollisionShape.h"
+#include "com_jmex_bullet_collision_shapes_CylinderCollisionShape.h"
+#include "com_jmex_bullet_collision_shapes_MeshCollisionShape.h"
 
 #include "BulletJmePhysicsSpace.h"
 
@@ -96,6 +100,50 @@ extern "C" {
 
         if(g_physSpace != NULL){
             return g_physSpace->createBoxCollisionShape(env, javaShape, extentsX, extentsY, extentsZ);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+        return -1;
+    }
+
+    JNIEXPORT jlong JNICALL Java_com_jmex_bullet_collision_shapes_SphereCollisionShape_createCollisionSphere(JNIEnv* env, jobject javaShape, jfloat radius) {
+
+        if(g_physSpace != NULL){
+            return g_physSpace->createSphereCollisionShape(env, javaShape, radius);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+        return -1;
+    }
+
+    JNIEXPORT jlong JNICALL Java_com_jmex_bullet_collision_shapes_CapsuleCollisionShape_createCollisionCapsule(JNIEnv* env, jobject javaShape, jfloat radius, jfloat height) {
+
+        if(g_physSpace != NULL){
+            return g_physSpace->createCapsuleCollisionShape(env, javaShape, radius, height);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+        return -1;
+    }
+
+    JNIEXPORT jlong JNICALL Java_com_jmex_bullet_collision_shapes_CylinderCollisionShape_createCollisionCylinder(JNIEnv* env, jobject javaShape, jfloat extentsX, jfloat extentsY, jfloat extentsZ) {
+
+        if(g_physSpace != NULL){
+            return g_physSpace->createCylinderCollisionShape(env, javaShape, extentsX, extentsY, extentsZ);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+        return -1;
+    }
+
+    JNIEXPORT jlong JNICALL Java_com_jmex_bullet_collision_shapes_MeshCollisionShape_createCollisionMesh(JNIEnv* env, jobject javaShape) {
+
+        if(g_physSpace != NULL){
+            return g_physSpace->createMeshCollisionShape(env, javaShape);
         } else {
             jclass newExc=env->FindClass("java/lang/IllegalStateException");
             env->ThrowNew(newExc, "The physics space has not been created.");

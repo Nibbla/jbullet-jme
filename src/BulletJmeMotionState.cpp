@@ -32,14 +32,12 @@
 #include "BulletJmeMotionState.h"
 
 BulletJmeMotionState::BulletJmeMotionState(btTransform worldTrans) {
-//    fprintf(stdout,"new motionstate\n");
     worldTransform=worldTrans;
     dirty=true;
 }
 
 void BulletJmeMotionState::getWorldTransform(btTransform& worldTrans ) const{
     worldTrans=worldTransform;
-//    fprintf(stdout,"Get world transform\n");
 }
 
 void BulletJmeMotionState::setWorldTransform(const btTransform& worldTrans){
@@ -49,13 +47,13 @@ void BulletJmeMotionState::setWorldTransform(const btTransform& worldTrans){
     if(env!=NULL && javaRigidBody!=NULL){
 //        jvm->AttachCurrentThread((void**)&env, NULL);
 
-        env->CallVoidMethod(this->javaRigidBody,method_physicsNode_setWorldTranslation,
+        env->CallVoidMethod(this->javaRigidBody,physicsNode_setWorldTranslation,
                 worldTransform.getOrigin().m_floats[0],
                 worldTransform.getOrigin().m_floats[1],
                 worldTransform.getOrigin().m_floats[2]);
         if (env->ExceptionCheck()) env->Throw(env->ExceptionOccurred());
 
-        env->CallVoidMethod(this->javaRigidBody,method_physicsNode_setWorldRotation,
+        env->CallVoidMethod(this->javaRigidBody,physicsNode_setWorldRotation,
                 worldTransform.getBasis().getColumn(0).m_floats[0],
                 worldTransform.getBasis().getColumn(0).m_floats[1],
                 worldTransform.getBasis().getColumn(0).m_floats[2],
@@ -88,13 +86,13 @@ bool BulletJmeMotionState::initJavaMethodHandles(JNIEnv* env) {
         return false;
     }
 
-    method_physicsNode_setWorldTranslation = env->GetMethodID(physicsNodeClass, "setWorldTranslation", "(FFF)V");
+    physicsNode_setWorldTranslation = env->GetMethodID(physicsNodeClass, "setWorldTranslation", "(FFF)V");
     if (env->ExceptionCheck()) {
         env->Throw(env->ExceptionOccurred());
         return false;
     }
 
-    method_physicsNode_setWorldRotation = env->GetMethodID(physicsNodeClass, "setWorldRotation", "(FFFFFFFFF)V");
+    physicsNode_setWorldRotation = env->GetMethodID(physicsNodeClass, "setWorldRotation", "(FFFFFFFFF)V");
     if (env->ExceptionCheck()) {
         env->Throw(env->ExceptionOccurred());
         return false;
