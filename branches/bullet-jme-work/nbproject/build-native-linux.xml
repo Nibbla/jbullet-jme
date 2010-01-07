@@ -5,8 +5,6 @@
     Created on : 5. Januar 2010, 16:38
     Author     : normenhansen
     Description: target to build linux native library
-
-    TODO: check linux executable, help at http://ant-contrib.sourceforge.net/cpptasks/antdocs/CCTask.html
 -->
 
 <project basedir=".." default="default" name="bullet-jme-native-linux">
@@ -18,17 +16,17 @@
                </include>
            </fileset>
            <includepath path="${native.java.include}"/>
+           <includepath path="${native.java.include}/linux"/>
            <includepath path="${native.bullet.include}"/>
            <includepath path="${build.headers.dir}"/>
            <linker name="${native.linux.compiler}">
-               <!--libset dir="${bullet.folder}\src\.libs" libs="bulletmath,bulletdynamics,bulletcollision,bulletmultithreaded"/-->
                <libset dir="${bullet.folder}/src/LinearMath" libs="LinearMath"/>
                <libset dir="${bullet.folder}/src/BulletDynamics" libs="BulletDynamics"/>
                <libset dir="${bullet.folder}/src/BulletCollision" libs="BulletCollision"/>
                <libset dir="${bullet.folder}/src/BulletMultiThreaded" libs="BulletMultiThreaded"/>
            </linker>
         </cc>
-        <copy file="${build.native.dir}/lib${library.name}.dylib" tofile="${dist.dir}/lib${library.name}.dylib" failonerror="true" verbose="true"/>
+        <copy file="${build.native.dir}/lib${library.name}.so" tofile="${dist.dir}/lib${library.name}.so" failonerror="true" verbose="true"/>
     </target>
     
 </project>

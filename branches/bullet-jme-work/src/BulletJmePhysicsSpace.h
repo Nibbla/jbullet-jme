@@ -30,7 +30,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <jni.h>
-#include <map.h>
+#include <map>
 #include "btBulletDynamicsCommon.h"
 #include "btBulletCollisionCommon.h"
 //#include "BulletDynamics/Dynamics/btRigidBody.h"
@@ -43,12 +43,12 @@ private:
 	btDynamicsWorld* dynWorld;
 	jobject javaPhysicsSpace;
 	
-	map<jlong,jobject> javaRigidBodies;
-	map<jlong,btRigidBody*> bulletRigidBodies;
-	map<jlong,jobject> javaJoints;
-	map<jlong,btTypedConstraint*> bulletConstraints;
-	map<jlong,jobject> javaCollisionShapes;
-	map<jlong,btCollisionShape*> bulletCollisionShapes;
+	std::map<jlong,jobject> javaRigidBodies;
+	std::map<jlong,btRigidBody*> bulletRigidBodies;
+	std::map<jlong,jobject> javaJoints;
+	std::map<jlong,btTypedConstraint*> bulletConstraints;
+	std::map<jlong,jobject> javaCollisionShapes;
+	std::map<jlong,btCollisionShape*> bulletCollisionShapes;
 	
         long rigidBodyIndex;
         long collisionShapeIndex;
