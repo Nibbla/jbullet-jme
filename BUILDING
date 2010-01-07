@@ -53,6 +53,7 @@ Building bullet on WINDOWS/LINUX
 Requirements
 -----------------------------------
 - Java SDK 1.5+: http://java.sun.com
+- Apache ANT: http://ant.apache.org
 - C++ Compiler: (see below)
 - jbullet-jme Source: http://jbullet-jme.googlecode.com/
 - Statically compiled bullet source (see above)
