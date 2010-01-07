@@ -22,12 +22,13 @@
            <includepath path="${build.headers.dir}"/>
            <!--compilerarg value="-m32"/-->
            <linker name="${native.windows.compiler}">
-               <libset dir="${bullet.folder}\src\LinearMath" libs="LinearMath"/>
+               <libset dir="${bullet.folder}\src\BulletMultiThreaded" libs="BulletMultiThreaded"/>
                <libset dir="${bullet.folder}\src\BulletDynamics" libs="BulletDynamics"/>
                <libset dir="${bullet.folder}\src\BulletCollision" libs="BulletCollision"/>
-               <libset dir="${bullet.folder}\src\BulletMultiThreaded" libs="BulletMultiThreaded"/>
+               <libset dir="${bullet.folder}\src\LinearMath" libs="LinearMath"/>
            </linker>
         </cc>
+        <move file="${build.native.dir}\${library.name}.so" tofile="${build.native.dir}\${library.name}.dll" failonerror="false" verbose="false"/>
         <copy file="${build.native.dir}\${library.name}.dll" tofile="${dist.dir}\${library.name}.dll" failonerror="true" verbose="true"/>
     </target>
 

@@ -33,10 +33,10 @@
            <compilerarg value="-arch"/>
            <compilerarg value="x86_64"/>
            <linker name="${native.osx.compiler}">
-                <libset dir="${bullet.folder}/src/LinearMath" libs="LinearMath"/>
+                <libset dir="${bullet.folder}/src/BulletMultiThreaded" libs="BulletMultiThreaded"/>
                 <libset dir="${bullet.folder}/src/BulletDynamics" libs="BulletDynamics"/>
                 <libset dir="${bullet.folder}/src/BulletCollision" libs="BulletCollision"/>
-                <libset dir="${bullet.folder}/src/BulletMultiThreaded" libs="BulletMultiThreaded"/>
+                <libset dir="${bullet.folder}/src/LinearMath" libs="LinearMath"/>
                 <linkerarg value="-arch"/>
                 <linkerarg value="ppc"/>
                 <linkerarg value="-arch"/>
