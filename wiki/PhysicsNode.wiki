@@ -5,5 +5,7 @@ PhysicsNodes are normal JME Nodes that are updated by the physics thread. So to 
 ==Notes==
 Normally, the localTranslation/Rotation of the attached spatial should always be zero and not be changed, the PhysicsNode should be rotated and translated instead. You can however move/rotate or animate the child spatial for some effect but you have to be aware that the actual physics shape stays in its place/does not change.
 
+PhysicsNodes with mass=0 are static and do not move.
+
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsNode.html
