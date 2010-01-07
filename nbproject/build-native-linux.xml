@@ -20,10 +20,10 @@
            <includepath path="${native.bullet.include}"/>
            <includepath path="${build.headers.dir}"/>
            <linker name="${native.linux.compiler}">
-               <libset dir="${bullet.folder}/src/LinearMath" libs="LinearMath"/>
+               <libset dir="${bullet.folder}/src/BulletMultiThreaded" libs="BulletMultiThreaded"/>
                <libset dir="${bullet.folder}/src/BulletDynamics" libs="BulletDynamics"/>
                <libset dir="${bullet.folder}/src/BulletCollision" libs="BulletCollision"/>
-               <libset dir="${bullet.folder}/src/BulletMultiThreaded" libs="BulletMultiThreaded"/>
+               <libset dir="${bullet.folder}/src/LinearMath" libs="LinearMath"/>
            </linker>
         </cc>
         <copy file="${build.native.dir}/lib${library.name}.so" tofile="${dist.dir}/lib${library.name}.so" failonerror="true" verbose="true"/>
