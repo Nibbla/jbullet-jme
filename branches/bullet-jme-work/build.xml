@@ -30,8 +30,10 @@
     <target name="jar" depends="compile" description="build jar and c header files">
         <jar jarfile="${jar.file}" basedir="${build.classes.dir}" manifest="${manifest.file}"/>
 		<!-- generate the header files -->
-        <javah destdir="${build.headers.dir}" classpath="${jar.file}" force="yes">
+        <javah destdir="${build.headers.dir}" classpath="${jar.file}${path.separator}${lib.importpath}" force="yes">
             <class name="com.jmex.bullet.PhysicsSpace"/>
+            <class name="com.jmex.bullet.nodes.PhysicsNode"/>
+            <class name="com.jmex.bullet.collision.shapes.BoxCollisionShape"/>
         </javah>
     </target>
 
