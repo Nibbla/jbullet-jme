@@ -7,5 +7,17 @@ jbullet-jme is a pretty straightforward jbullet wrapper that mostly encapsules j
 
 Some objects integrate functions of RigidBodys with Constraints, such as PhysicsVehicleNode or PhysicsCharacterNode.
 
-== Details ==
+== JAVA version ==
 TODO
+
+== Native version ==
+====BulletJmeJavaMethods.cpp====
+This file contains the native methods of *all* bullet-jme java classes. Mostly it routes the calls to the created BulletJmePhysicsSpace object.
+
+====BulletJmePhysicsSpace.cpp====
+In this object the bullet DynamicsWorld and objects are stored and almost all interaction with them happens via the methods of this class.
+
+Since java does not allow storing pointers to C++ objects, all bullet objects are stored in maps, with a "jlong" as pointer to them. This long value is also stored in the corrsponding java object. When a java object wants to call some command on the native object, it also sends the long identifier of that C++ object.
+
+====BulletJmeMotionState.cpp====
+This is the MotionState attached to RigidBodys which receives the location/rotation changes of the RigidBody and synchronizes the corresponding JME Node. It stores a java pointer to the corresponding PhysicsNode.
