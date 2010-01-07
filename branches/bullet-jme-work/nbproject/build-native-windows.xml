@@ -28,7 +28,7 @@
                <libset dir="${bullet.folder}\src\LinearMath" libs="LinearMath"/>
            </linker>
         </cc>
-        <move file="${build.native.dir}\${library.name}.so" tofile="${build.native.dir}\${library.name}.dll" failonerror="false" verbose="false"/>
+        <move file="${build.native.dir}\lib${library.name}.so" tofile="${build.native.dir}\${library.name}.dll" failonerror="false" verbose="false"/>
         <copy file="${build.native.dir}\${library.name}.dll" tofile="${dist.dir}\${library.name}.dll" failonerror="true" verbose="true"/>
     </target>
 
