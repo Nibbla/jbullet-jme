@@ -18,6 +18,7 @@
                </include>
            </fileset>
            <includepath path="${native.java.include}"/>
+           <includepath path="${native.java.include}\win32"/>
            <includepath path="${native.bullet.include}"/>
            <includepath path="${build.headers.dir}"/>
            <!--compilerarg value="-m32"/-->
