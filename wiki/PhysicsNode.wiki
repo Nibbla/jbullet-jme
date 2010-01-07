@@ -1,7 +1,6 @@
 #summary Basic jbullet-jme physics object
 
-A PhysicsNode represents an object in the physics space and in the jme scenegraph. It is derived from com.jme.scene.Node to integrate nicely with the jme2 scenegraph.
-For bullet, it stores a RigidBody and its CollisionShape including their options (friction, mass etc.)
+PhysicsNodes are normal JME Nodes that are updated by the physics thread. So to have some phyiscs object in your world, you first create the jme geometry you'd like to move. Then you create a PhysicsNode with that object as a child. The PhysicsNode now contains all information about the location, rotation etc. of your physics object. The created geometry moves with it in the jme scenegraph, creating... visible physics :)
 
 ==Notes==
 The localTranslation/Rotation of the attached spatial should always be zero and not be changed, the PhysicsNode should be rotated and translated instead.
