@@ -65,8 +65,7 @@ public class SphereCollisionShape extends CollisionShape{
      * @param radius
      */
     public SphereCollisionShape(float radius) {
-//        SphereShape sphere=new SphereShape(radius);
-//        cShape=sphere;
+        cShape=cShape=createCollisionSphere(radius);
         type=ShapeTypes.SPHERE;
     }
 
@@ -89,9 +88,10 @@ public class SphereCollisionShape extends CollisionShape{
     }
 
     private void createCollisionSphere(BoundingSphere volume) {
-//        SphereShape sphere=new SphereShape(volume.getRadius());
-//        cShape=sphere;
+        cShape=createCollisionSphere(volume.getRadius());
         type=ShapeTypes.SPHERE;
     }
+
+    native long createCollisionSphere(float radius);
 
 }

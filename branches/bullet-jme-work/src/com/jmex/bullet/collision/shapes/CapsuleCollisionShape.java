@@ -67,8 +67,7 @@ public class CapsuleCollisionShape extends CollisionShape{
      * @param height
      */
     public CapsuleCollisionShape(float radius, float height) {
-//        CapsuleShape capShape=new CapsuleShape(radius,height);
-//        cShape=capShape;
+        cShape=createCollisionCapsule(radius, height);
         type=ShapeTypes.CAPSULE;
     }
 
@@ -92,9 +91,9 @@ public class CapsuleCollisionShape extends CollisionShape{
         volume-= ( ((4.0f/3.0f) * FastMath.PI ) * FastMath.pow(radius,3) );
         float height=(volume/(FastMath.PI*FastMath.pow(radius,2)));
         height+=(radius*2);
-//        CapsuleShape capShape=new CapsuleShape(capsule.getRadius(),height);
-//        cShape=capShape;
+        cShape=createCollisionCapsule(radius, height);
         type=ShapeTypes.CAPSULE;
     }
 
+    native long createCollisionCapsule(float radius, float height);
 }

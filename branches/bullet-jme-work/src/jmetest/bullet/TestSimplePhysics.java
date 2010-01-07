@@ -72,7 +72,7 @@ public class TestSimplePhysics {
         };
 
         // Add a physics sphere to the world
-        Sphere sphere=new Sphere("physicssphere",16,16,1f);
+        Sphere sphere=new Sphere("physicssphere",16,16,.81f);
         PhysicsNode physicsSphere=new PhysicsNode(sphere,CollisionShape.ShapeTypes.SPHERE);
         physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
         state.getRootNode().attachChild(physicsSphere);
@@ -80,7 +80,7 @@ public class TestSimplePhysics {
         pSpace.add(physicsSphere);
 
         // Add a physics sphere to the world using the collision shape from sphere one
-        Sphere sphere2=new Sphere("physicssphere",16,16,1f);
+        Sphere sphere2=new Sphere("physicssphere",16,16,.81f);
         PhysicsNode physicsSphere2=new PhysicsNode(sphere2,physicsSphere.getCollisionShape());
         physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
         state.getRootNode().attachChild(physicsSphere2);
@@ -118,14 +118,14 @@ public class TestSimplePhysics {
 //        pSpace.add(joint);
         
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.ShapeTypes.BOX,0);
+        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1f),CollisionShape.ShapeTypes.SPHERE,0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.BOX,0);
+        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();

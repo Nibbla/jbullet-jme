@@ -34,9 +34,6 @@
 #include "btBulletDynamicsCommon.h"
 #include "btBulletCollisionCommon.h"
 //#include "BulletDynamics/Dynamics/btRigidBody.h"
-#include "BulletCollision/Gimpact/btGImpactShape.h"
-#include "BulletMultiThreaded/btGpu3DGridBroadphase.h"
-#include "BulletJmeMotionState.h"
 
 class BulletJmePhysicsSpace {
 private:
@@ -57,7 +54,11 @@ private:
 //        btTransform tempTrans;
 
 	jclass physicsSpaceClass;
-	jmethodID method_physicsSpace_test;
+	jmethodID physicsSpace_test;
+
+        jclass meshCollisionShapeClass;
+        jmethodID meshCollisionShape_getVerticesArray;
+        jmethodID meshCollisionShape_getTrianglesArray;
 
 	bool initJavaMethodHandles(JNIEnv*);
 	
@@ -67,9 +68,15 @@ public:
 	BulletJmePhysicsSpace(JNIEnv*, jobject, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jint);
 	
 	void update(jfloat, jint);
+        
         jlong createBoxCollisionShape(JNIEnv*, jobject ,jfloat ,jfloat ,jfloat );
+        jlong createSphereCollisionShape(JNIEnv*, jobject, jfloat);
+        jlong createCapsuleCollisionShape(JNIEnv*, jobject, jfloat, jfloat);
+        jlong createCylinderCollisionShape(JNIEnv*, jobject,jfloat ,jfloat ,jfloat );
+        jlong createMeshCollisionShape(JNIEnv*, jobject);
+        
         jlong createRigidBody(JNIEnv*, jobject, jlong, jfloat);
-        void translateRigidBody(jlong, jfloat, jfloat, jfloat);
         void addRigidBody(jlong);
         void removeRigidBody(jlong);
+        void translateRigidBody(jlong, jfloat, jfloat, jfloat);
 };

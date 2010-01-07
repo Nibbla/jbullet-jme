@@ -43,8 +43,8 @@ private:
         JavaVM* jvm;
         JNIEnv* env;
 	jclass physicsNodeClass;
-	jmethodID method_physicsNode_setWorldTranslation;
-	jmethodID method_physicsNode_setWorldRotation;
+	jmethodID physicsNode_setWorldTranslation;
+	jmethodID physicsNode_setWorldRotation;
 	bool initJavaMethodHandles(JNIEnv*);
         
 public:
