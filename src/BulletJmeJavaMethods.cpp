@@ -38,6 +38,8 @@
  */
 
 #include "com_jmex_bullet_PhysicsSpace.h"
+#include "com_jmex_bullet_nodes_PhysicsNode.h"
+#include "com_jmex_bullet_collision_shapes_BoxCollisionShape.h"
 
 #include "BulletJmePhysicsSpace.h"
 
