@@ -3,7 +3,7 @@
 PhysicsNodes are normal JME Nodes that are updated by the physics thread. So to have some phyiscs object in your world, you first create the jme geometry you'd like to move. Then you create a PhysicsNode with that object as a child. The PhysicsNode now contains all information about the location, rotation etc. of your physics object. The created geometry moves with it in the jme scenegraph, creating... visible physics :)
 
 ==Notes==
-The localTranslation/Rotation of the attached spatial should always be zero and not be changed, the PhysicsNode should be rotated and translated instead.
+Normally, the localTranslation/Rotation of the attached spatial should always be zero and not be changed, the PhysicsNode should be rotated and translated instead. You can however move/rotate or animate the child spatial for some effect but you have to be aware that the actual physics shape stays in its place/does not change.
 
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsNode.html
