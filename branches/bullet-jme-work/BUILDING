@@ -84,6 +84,8 @@ Building bullet-jme jar + native
 
 Thats all. ANT takes care of compiling the java source, building native binaries
 and creating bullet-jme jar files.
+If you get compilation errors, try setting "native.java.include" in the build.properties file to your
+JDK include directory, e.g. /opt/java/include or "c:\Program Files\Java\jdk1.6.0_20\include".
 
 -----------------------------------
 Altering the native build process
