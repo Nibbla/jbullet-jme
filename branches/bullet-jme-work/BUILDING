@@ -1,12 +1,12 @@
 ***********************************
 * Build info for bullet-jme       *
+* (c) 2010 Normen Hansen          *
 ***********************************
 
 This document outlines the process of building bullet-jme on different platforms.
-Since bullet-jme is a native java library (JNI),
-building requires you to have the bullet source and c++ development tools.
+Since bullet-jme is a native java library and bullet gets included statically,
+building requires you to download and build the bullet source first.
 
-bullet-jme (c) 2010 Normen Hansen
 
 
 ***********************************
@@ -19,22 +19,20 @@ General info
 Note that the compilation of bullet should not produce dll / so / dylib files
 but static *.a libraries which can later be compiled into the binary of bullet-jme.
 
-Requirements:
-- Bullet source: http://bullet.googlecode.com/
-
 -----------------------------------
 Downloading and extracting bullet
 -----------------------------------
-- extract bullet source
-- build bullet (see below)
+Requirements:
+- Bullet source: http://bullet.googlecode.com/
+
+Extract bullet source and build bullet (see below)
 
 -----------------------------------
-Building bullet on Mac OSX
+Building on Mac OSX
 -----------------------------------
 Requirements:
 - Apple Developer tools: http://developer.apple.com/
-- CMake: http://www.cmake.org/
-  alternatively via http://www.macports.org
+- CMake: http://www.cmake.org/ (or via http://www.macports.org)
 
 Commands:
 > cd bullet-2.75
@@ -44,7 +42,7 @@ Commands:
 > make
 
 -----------------------------------
-Building bullet on WINDOWS
+Building on WINDOWS (VisualStudio)
 -----------------------------------
 Requirements:
 - Microsoft Visual Studio http://msdn.microsoft.com/
@@ -54,8 +52,11 @@ The main Workspace/Solution is located in Bullet/msvc/8/wksbullet.sln (replace 8
 
 Build the project to create static libraries.
 
-Alternatively you can use the GNU C++ compiler and cmake:
-- Gnu C++ Compiler: http://gcc.gnu.org/
+-----------------------------------
+Building on WINDOWS (MinGW/GCC)
+-----------------------------------
+Requirements:
+- GNU C++ Compiler: http://www.mingw.org/
 - CMake: http://www.cmake.org/
 
 Commands:
@@ -69,10 +70,10 @@ Building bullet on LINUX
 -----------------------------------
 Requirements:
 - Gnu C++ Compiler: http://gcc.gnu.org/
-- CMake: http://www.cmake.org/ (or via http://www.macports.org)
+- CMake: http://www.cmake.org/ (or via your package manager of choice)
 
-On Linux, I had to remove two lines from the bullet-2.75/src/BulletMultiThreaded/CMakeLists.txt
-to compile correctly:
+On Linux, I had to remove two lines from bullet-2.75/src/BulletMultiThreaded/CMakeLists.txt
+to compile correctly.
     SpuNarrowPhaseCollisionTask/SpuMinkowskiPenetrationDepthSolver.cpp
     SpuNarrowPhaseCollisionTask/SpuMinkowskiPenetrationDepthSolver.cpp
 
@@ -123,11 +124,13 @@ disk
 -----------------------------------
 Building bullet-jme jar + native
 -----------------------------------
+Commands:
 > cd bullet-jme
 > ant dist
 
 Thats all. ANT takes care of compiling the java source, building native binaries
 and creating bullet-jme jar files.
+
 If you get compilation errors, try setting "native.java.include" in the build.properties file to your
 JDK include directory, e.g. /opt/java/include or "c:\Program Files\Java\jdk1.6.0_20\include".
 
