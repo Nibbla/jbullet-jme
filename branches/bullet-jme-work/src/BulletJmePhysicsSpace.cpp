@@ -216,12 +216,14 @@ jlong BulletJmePhysicsSpace::createRigidBody(JNIEnv* env, jobject javaBody, jlon
     BulletJmeMotionState* motionState = new BulletJmeMotionState(btTransform());
     motionState->setJavaRigidBody(env, javaBody);
 
-    btVector3 localInertia = btVector3();
+    btVector3 localInertia = btVector3(0,0,0);
     if(bulletCollisionShapes[collisionShapeIndex]==NULL){
         fprintf(stdout,"error - no collision shape: %d\n", collisionShapeIndex);
         fflush(stdout);
+        return -1;
     }else{
-        bulletCollisionShapes[collisionShapeIndex]->calculateLocalInertia(mass,localInertia);
+        if(mass>0)
+            bulletCollisionShapes[collisionShapeIndex]->calculateLocalInertia(mass,localInertia);
     }
 
     btRigidBody::btRigidBodyConstructionInfo* constructionInfo
@@ -254,10 +256,10 @@ void BulletJmePhysicsSpace::removeRigidBody(jlong bodyIndex) {
 }
 
 void BulletJmePhysicsSpace::translateRigidBody(jlong bodyIndex, jfloat x, jfloat y, jfloat z) {
-    bulletRigidBodies[bodyIndex]->getWorldTransform().getOrigin().setValue(x,y,z);
+    //TODO: temp values!
+    bulletRigidBodies[bodyIndex]->setWorldTransform(btTransform(btQuaternion(bulletRigidBodies[bodyIndex]->getWorldTransform().getRotation()),btVector3(x,y,z)));
+//    bulletRigidBodies[bodyIndex]->getWorldTransform().getOrigin().setValue(x,y,z);
     if(!bulletRigidBodies[bodyIndex]->isStaticOrKinematicObject())
         bulletRigidBodies[bodyIndex]->activate(true);
-//    else
-//        bulletRigidBodies[bodyIndex]->activate(true);
 }
 
