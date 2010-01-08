@@ -52,11 +52,11 @@
             On mac, often jnilibs dont get loaded by standard class loading
             if they are not in /Library/Java/Extensions
         -->
-        <!--copy toDir="/Library/Java/Extensions" failonerror="true" verbose="true">
+        <copy toDir="/Library/Java/Extensions" failonerror="true" verbose="true">
 			<fileset dir="${dist.dir}">
 				<include name="**/*.jnilib"/>
 			</fileset>
-        </copy-->
+        </copy>
     </target>
 
     <!-- javadoc - create javadoc -->
@@ -80,6 +80,20 @@
               classname="jmetest/bullet/TestSimplePhysics" fork="true"/>
               <echo>${lib.importpath}</echo>
 	</target>
+
+    <!-- profile - profiles example in netbeans IDE -->
+    <target name="profile" depends="dist" description="Profile Project">
+        <fail unless="netbeans.home">This target can only run inside the NetBeans IDE.</fail>
+
+        <nbprofiledirect>
+            <classpath> <pathelement location="${jar.file}"/> </classpath>
+        </nbprofiledirect>
+
+        <java classpath="${jar.file}${path.separator}${dist.dir}${path.separator}${lib.importpath}"
+              classname="jmetest/bullet/TestSimplePhysics" fork="true">
+            <jvmarg value="${profiler.info.jvmargs.agent}"/>
+        </java>
+    </target>
 	
     <!-- clean - deletes build and dist folder -->
     <target name="clean" depends="init" description="Remove build and dist directories">

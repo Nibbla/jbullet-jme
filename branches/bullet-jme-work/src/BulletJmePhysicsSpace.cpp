@@ -258,8 +258,33 @@ void BulletJmePhysicsSpace::removeRigidBody(jlong bodyIndex) {
 void BulletJmePhysicsSpace::translateRigidBody(jlong bodyIndex, jfloat x, jfloat y, jfloat z) {
     //TODO: temp values!
     bulletRigidBodies[bodyIndex]->setWorldTransform(btTransform(btQuaternion(bulletRigidBodies[bodyIndex]->getWorldTransform().getRotation()),btVector3(x,y,z)));
-//    bulletRigidBodies[bodyIndex]->getWorldTransform().getOrigin().setValue(x,y,z);
     if(!bulletRigidBodies[bodyIndex]->isStaticOrKinematicObject())
         bulletRigidBodies[bodyIndex]->activate(true);
 }
 
+void BulletJmePhysicsSpace::rotateRigidBody(jlong bodyIndex, jfloat m00, jfloat m01, jfloat m02, jfloat m10, jfloat m11, jfloat m12, jfloat m20, jfloat m21, jfloat m22) {
+    //TODO: temp values!
+    bulletRigidBodies[bodyIndex]->setWorldTransform(btTransform(btMatrix3x3(m00,m01,m02,m10,m11,m12,m20,m21,m22),
+                                                                bulletRigidBodies[bodyIndex]->getWorldTransform().getOrigin()));
+    if(!bulletRigidBodies[bodyIndex]->isStaticOrKinematicObject())
+        bulletRigidBodies[bodyIndex]->activate(true);
+}
+
+void BulletJmePhysicsSpace::setRigidBodyGravity(jlong bodyIndex, jfloat x, jfloat y, jfloat z) {
+    //TODO: temp values!
+    bulletRigidBodies[bodyIndex]->setGravity(btVector3(x,y,z));
+    if(!bulletRigidBodies[bodyIndex]->isStaticOrKinematicObject())
+        bulletRigidBodies[bodyIndex]->activate(true);
+}
+
+void BulletJmePhysicsSpace::setRigidBodyFriction(jlong bodyIndex, jfloat friction) {
+    bulletRigidBodies[bodyIndex]->setFriction(friction);
+}
+
+void BulletJmePhysicsSpace::setRigidBodyDamping(jlong bodyIndex, jfloat linear, jfloat angular) {
+    bulletRigidBodies[bodyIndex]->setDamping(linear, angular);
+}
+
+void BulletJmePhysicsSpace::setRigidBodyRestitution(jlong bodyIndex, jfloat restitution) {
+    bulletRigidBodies[bodyIndex]->setRestitution(restitution);
+}

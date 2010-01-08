@@ -177,6 +177,61 @@ extern "C" {
 
     }
 
+    JNIEXPORT void JNICALL Java_com_jmex_bullet_nodes_PhysicsNode_setNativeRotation(JNIEnv* env, jobject javaBody, jlong rigidBody, jfloat m00, jfloat m01, jfloat m02, jfloat m10, jfloat m11, jfloat m12, jfloat m20, jfloat m21, jfloat m22) {
+
+        if(g_physSpace != NULL){
+            g_physSpace->rotateRigidBody(rigidBody,m00,m01,m02,m10,m11,m12,m20,m21,m22);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+
+    }
+
+    JNIEXPORT void JNICALL Java_com_jmex_bullet_nodes_PhysicsNode_setNativeGravity(JNIEnv* env, jobject javaBody, jlong rigidBody, jfloat x, jfloat y, jfloat z) {
+
+        if(g_physSpace != NULL){
+            g_physSpace->setRigidBodyGravity(rigidBody,x,y,z);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+
+    }
+
+    JNIEXPORT void JNICALL Java_com_jmex_bullet_nodes_PhysicsNode_setNativeFriction(JNIEnv* env, jobject javaBody, jlong rigidBody, jfloat friction) {
+
+        if(g_physSpace != NULL){
+            g_physSpace->setRigidBodyFriction(rigidBody,friction);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+
+    }
+
+    JNIEXPORT void JNICALL Java_com_jmex_bullet_nodes_PhysicsNode_setNativeDamping(JNIEnv* env, jobject javaBody, jlong rigidBody, jfloat linear, jfloat angular) {
+
+        if(g_physSpace != NULL){
+            g_physSpace->setRigidBodyDamping(rigidBody,linear, angular);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+
+    }
+
+    JNIEXPORT void JNICALL Java_com_jmex_bullet_nodes_PhysicsNode_setNativeRestitution(JNIEnv* env, jobject javaBody, jlong rigidBody, jfloat restitution) {
+
+        if(g_physSpace != NULL){
+            g_physSpace->setRigidBodyRestitution(rigidBody,restitution);
+        } else {
+            jclass newExc=env->FindClass("java/lang/IllegalStateException");
+            env->ThrowNew(newExc, "The physics space has not been created.");
+        }
+
+    }
+
 #ifdef __cplusplus
 }
 #endif
