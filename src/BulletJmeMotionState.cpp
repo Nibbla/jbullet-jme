@@ -43,10 +43,8 @@ void BulletJmeMotionState::getWorldTransform(btTransform& worldTrans ) const{
 void BulletJmeMotionState::setWorldTransform(const btTransform& worldTrans){
     worldTransform=worldTrans;
     dirty=true;
-    float x=worldTransform.getOrigin().m_floats[0];
     if(env!=NULL && javaRigidBody!=NULL){
 //        jvm->AttachCurrentThread((void**)&env, NULL);
-
         env->CallVoidMethod(this->javaRigidBody,physicsNode_setWorldTranslation,
                 worldTransform.getOrigin().m_floats[0],
                 worldTransform.getOrigin().m_floats[1],
@@ -54,15 +52,15 @@ void BulletJmeMotionState::setWorldTransform(const btTransform& worldTrans){
         if (env->ExceptionCheck()) env->Throw(env->ExceptionOccurred());
 
         env->CallVoidMethod(this->javaRigidBody,physicsNode_setWorldRotation,
-                worldTransform.getBasis().getColumn(0).m_floats[0],
-                worldTransform.getBasis().getColumn(0).m_floats[1],
-                worldTransform.getBasis().getColumn(0).m_floats[2],
-                worldTransform.getBasis().getColumn(1).m_floats[0],
-                worldTransform.getBasis().getColumn(1).m_floats[1],
-                worldTransform.getBasis().getColumn(1).m_floats[2],
-                worldTransform.getBasis().getColumn(2).m_floats[0],
-                worldTransform.getBasis().getColumn(2).m_floats[1],
-                worldTransform.getBasis().getColumn(2).m_floats[2]);
+                worldTransform.getBasis().getRow(0).m_floats[0],
+                worldTransform.getBasis().getRow(0).m_floats[1],
+                worldTransform.getBasis().getRow(0).m_floats[2],
+                worldTransform.getBasis().getRow(1).m_floats[0],
+                worldTransform.getBasis().getRow(1).m_floats[1],
+                worldTransform.getBasis().getRow(1).m_floats[2],
+                worldTransform.getBasis().getRow(2).m_floats[0],
+                worldTransform.getBasis().getRow(2).m_floats[1],
+                worldTransform.getBasis().getRow(2).m_floats[2]);
         if (env->ExceptionCheck()) env->Throw(env->ExceptionOccurred());
     }
 }
