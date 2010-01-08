@@ -79,4 +79,9 @@ public:
         void addRigidBody(jlong);
         void removeRigidBody(jlong);
         void translateRigidBody(jlong, jfloat, jfloat, jfloat);
+        void rotateRigidBody(jlong, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat, jfloat);
+        void setRigidBodyGravity(jlong, jfloat, jfloat, jfloat);
+        void setRigidBodyFriction(jlong, jfloat);
+        void setRigidBodyDamping(jlong, jfloat, jfloat);
+        void setRigidBodyRestitution(jlong, jfloat);
 };

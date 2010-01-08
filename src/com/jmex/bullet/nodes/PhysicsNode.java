@@ -331,12 +331,11 @@ public class PhysicsNode extends CollisionObject{
         applyRotation();
     }
 
+    native void setNativeRotation(long handle, float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
+
     private void applyRotation() {
-        tempRotation.set(getWorldRotation());
-//        Converter.convert(tempRotation, tempRot);
-//        rBody.getWorldTransform(tempTrans);
-//        tempTrans.setRotation(tempRot);
-//        rBody.setWorldTransform(tempTrans);
+        tempMatrix.set(getWorldRotation());
+        setNativeRotation(rBody,tempMatrix.m00,tempMatrix.m01,tempMatrix.m02,tempMatrix.m10,tempMatrix.m11,tempMatrix.m12,tempMatrix.m20,tempMatrix.m21,tempMatrix.m22);
     }
 
     /**
@@ -422,6 +421,8 @@ public class PhysicsNode extends CollisionObject{
         rebuildRigidBody();
     }
 
+    private native void setNativeGravity(long body, float x, float y, float z);
+
     public void getGravity(Vector3f gravity){
 //        rBody.getGravity(tempVel);
 //        Converter.convert(tempVel,gravity);
@@ -432,39 +433,45 @@ public class PhysicsNode extends CollisionObject{
      * @param gravity the gravity vector to set
      */
     public void setGravity(Vector3f gravity){
-//        rBody.setGravity(Converter.convert(gravity));
+        setNativeGravity(rBody,gravity.x, gravity.y, gravity.z);
     }
 
 //    public float getFriction() {
 //        return rBody.getFriction();
 //    }
 
+    private native void setNativeFriction(long body, float friction);
+
     /**
      * sets the friction of this physics object
      * @param friction the friction of this physics object
      */
     public void setFriction(float friction){
+        setNativeFriction(rBody,friction);
 //        constructionInfo.friction=friction;
-//        rBody.setFriction(friction);
     }
 
+    private native void setNativeDamping(long body, float linear, float angular);
+    
     public void setDamping(float linearDamping,float angularDamping){
+        setNativeDamping(rBody,linearDamping,angularDamping);
 //        constructionInfo.linearDamping = linearDamping;
 //        constructionInfo.angularDamping = angularDamping;
-//        rBody.setDamping(linearDamping, angularDamping);
     }
 
 //    public float getRestitution() {
 //        return rBody.getRestitution();
 //    }
 
+    private native void setNativeRestitution(long body, float restitution);
+
     /**
      * best performance if restitution=0
      * @param restitution
      */
     public void setRestitution(float restitution) {
+        setNativeRestitution(rBody, restitution);
 //        constructionInfo.restitution=restitution;
-//        rBody.setRestitution(restitution);
     }
 
 //    public Vector3f getAngularVelocity(){
