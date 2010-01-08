@@ -73,9 +73,9 @@ Requirements:
 - CMake: http://www.cmake.org/ (or via your package manager of choice)
 
 On Linux, I had to remove two lines from bullet-2.75/src/BulletMultiThreaded/CMakeLists.txt
-to compile correctly.
+to compile correctly:
     SpuNarrowPhaseCollisionTask/SpuMinkowskiPenetrationDepthSolver.cpp
-    SpuNarrowPhaseCollisionTask/SpuMinkowskiPenetrationDepthSolver.cpp
+    SpuNarrowPhaseCollisionTask/SpuMinkowskiPenetrationDepthSolver.h
 
 Commands:
 > cd bullet-2.75
@@ -138,44 +138,33 @@ JDK include directory, e.g. /opt/java/include or "c:\Program Files\Java\jdk1.6.0
 Altering the native build process
 -----------------------------------
 bullet-jme uses cpptasks to compile native code.
-In the "nbproject" folder you can find "build-native-platform.xml" files containing the commands
-to compile bullet-jme on different platforms. If you want to alter the process,
-you can copy and modify one of the files and import it in the "build.xml" file instead
-of the old one.
 
 To change the used compiler, edit the "native.platform.compiler" entry in the
-"build.properties" file. The following compilers work with cpptasks:
+"build.properties" file. The following c++ compilers work with cpptasks:
 
 gcc     GCC C++ compiler
 g++     GCC C++ compiler
 c++     GCC C++ compiler
-g77     GNU FORTRAN compiler
 msvc    Microsoft Visual C++
 bcc     Borland C++ Compiler
-msrc	Microsoft Resource Compiler
-brc     Borland Resource Compiler
-df      Compaq Visual Fortran Compiler
-midl	Microsoft MIDL Compiler
 icl     Intel C++ compiler for Windows (IA-32)
 ecl     Intel C++ compiler for Windows (IA-64)
 icc     Intel C++ compiler for Linux (IA-32)
 ecc     Intel C++ compiler for Linux (IA-64)
 CC      Sun ONE C++ compiler
 aCC     HP aC++ C++ Compiler
-os390	OS390 C Compiler
-os400	Icc Compiler
-sunc89	Sun C89 C Compiler
-xlC     VisualAge C Compiler
-uic     Qt user interface compiler (creates .h, .cpp and moc_*.cpp files).
-moc     Qt meta-object compiler
-xpidl	Mozilla xpidl compiler (creates .h and .xpt files).
 wcl     OpenWatcom C/C++ compiler
-wfl     OpenWatcom FORTRAN compiler
+
+In the "nbproject" folder you can find "build-native-platform.xml" files containing the commands
+to compile bullet-jme on different platforms. If you want to alter the process,
+you can copy and modify one of the files and import it in the "build.xml" file instead
+of the old one.
 
 -----------------------------------
 Netbeans Project
 -----------------------------------
-The project includes a Netbeans project to edit the source in the Netbeans IDE.
+The project also includes a Netbeans project to edit and build
+the source in the Netbeans IDE.
 
 To have correct syntax highlighting in .cpp/.h files:
 
