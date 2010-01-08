@@ -118,7 +118,7 @@ public class TestSimplePhysics {
 //        pSpace.add(joint);
         
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1f),CollisionShape.ShapeTypes.SPHERE,0);
+        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1f),CollisionShape.ShapeTypes.MESH,0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
