@@ -2,6 +2,12 @@
 
 == Versions ==
 
+==== svn trunk ====
+ * made setWorldRotation/Translation protected
+ * added warp() to PhysicsCharacterNode
+ * fixed bug in PhysicsHingeJoint.setLimit(low, high)
+ * added fix for BoundingVolume update
+
 ==== 0.9 alpha ====
  * first released alpha testing version
 
