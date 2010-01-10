@@ -53,6 +53,7 @@ public class CapsuleCollisionShape extends CollisionShape{
         }
         if(!(node.getWorldBound() instanceof BoundingCapsule)){
             node.setModelBound(new BoundingCapsule());
+            node.updateGeometricState(0,true);
             node.updateModelBound();
             node.updateWorldBound();
         }
