@@ -73,6 +73,7 @@ public class CylinderCollisionShape extends CollisionShape{
             throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision cylinder"));
         }
         node.setModelBound(new BoundingBox());
+        node.updateGeometricState(0,true);
         node.updateModelBound();
         node.updateWorldBound();
         BoundingBox volume=(BoundingBox)node.getWorldBound();
