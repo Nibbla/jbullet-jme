@@ -388,6 +388,11 @@ public class PhysicsVehicleNode extends PhysicsNode{
         return vehicle;
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
+
     private void syncWheels() {
         if(wheels!=null)
         for (int i = 0; i < wheels.size(); i++) {
