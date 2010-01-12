@@ -334,7 +334,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#getWheelInfo(int)">getWheelInfo</A></B>(int&nbsp;wheel)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You can get access to the single wheels via this method.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -342,7 +342,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setFrictionSlip(float)">setFrictionSlip</A></B>(float&nbsp;frictionSlip)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the friction of the wheels.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use before adding wheels, this is the default used when adding wheels.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -351,7 +351,7 @@ java.lang.Object
                 float&nbsp;frictionSlip)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The coefficient of friction between the tyre and the ground.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -359,8 +359,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setMaxSuspensionTravelCm(float)">setMaxSuspensionTravelCm</A></B>(float&nbsp;maxSuspensionTravelCm)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this is (as far as I understand bullet) the size of the plane where the wheel touches
- the floor.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Use before adding wheels, this is the default used when adding wheels.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -369,7 +368,7 @@ java.lang.Object
                          float&nbsp;maxSuspensionTravelCm)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The maximum distance the suspension can be compressed (centimetres)</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -378,7 +377,7 @@ java.lang.Object
                  float&nbsp;rollInfluence)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -395,7 +394,7 @@ java.lang.Object
                          float&nbsp;suspensionCompression)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The damping coefficient for when the suspension is compressed.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -412,7 +411,7 @@ java.lang.Object
                      float&nbsp;suspensionDamping)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The damping coefficient for when the suspension is expanding.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -429,7 +428,7 @@ java.lang.Object
                        float&nbsp;suspensionStiffness)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -576,7 +575,7 @@ public void <B>addWheel</B>(com.jme.scene.Spatial&nbsp;spat,
 <DD>add a wheel to this vehicle
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>spat</CODE> - the wheel Spatial (mesh)<DD><CODE>connectionPoint</CODE> - the location of the wheel relative to the car<DD><CODE>direction</CODE> - the direction of the wheel (should be -Y / -1,0,0 for a normal car)<DD><CODE>axle</CODE> - The axis of the wheel (should be -X / 0,-1,0 for a normal car)<DD><CODE>suspensionRestLength</CODE> - the suspension rest length<DD><CODE>wheelRadius</CODE> - the wheel radius<DD><CODE>isFrontWheel</CODE> - sets if this wheel is a front wheel (steering)</DL>
+<DT><B>Parameters:</B><DD><CODE>spat</CODE> - the wheel Spatial (mesh)<DD><CODE>connectionPoint</CODE> - The starting point of the ray, where the suspension connects to the chassis (chassis space)<DD><CODE>direction</CODE> - the direction of the wheel (should be -Y / 0,-1,0 for a normal car)<DD><CODE>axle</CODE> - The axis of the wheel (should be -X / -1,0,0 for a normal car)<DD><CODE>suspensionRestLength</CODE> - The current length of the suspension (metres)<DD><CODE>wheelRadius</CODE> - the wheel radius<DD><CODE>isFrontWheel</CODE> - sets if this wheel is a front wheel (steering)</DL>
 </DD>
 </DL>
 <HR>
@@ -586,8 +585,11 @@ getWheelInfo</H3>
 <PRE>
 public <A HREF="../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A> <B>getWheelInfo</B>(int&nbsp;wheel)</PRE>
 <DL>
+<DD>You can get access to the single wheels via this method.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheel</CODE> - 
+<DT><B>Returns:</B><DD></DL>
 </DD>
 </DL>
 <HR>
@@ -609,9 +611,11 @@ setFrictionSlip</H3>
 <PRE>
 public void <B>setFrictionSlip</B>(float&nbsp;frictionSlip)</PRE>
 <DL>
-<DD>Sets the friction of the wheels.
- Use before adding wheels, this is the default used when adding wheels.
- After adding the wheel, use direct wheel access.
+<DD>Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.<br>
+ The coefficient of friction between the tyre and the ground.
+ Should be about 0.8 for realistic cars, but can increased for better handling.
+ Set large (10000.0) for kart racers
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>frictionSlip</CODE> - the frictionSlip to set</DL>
@@ -625,8 +629,12 @@ setFrictionSlip</H3>
 public void <B>setFrictionSlip</B>(int&nbsp;wheel,
                             float&nbsp;frictionSlip)</PRE>
 <DL>
+<DD>The coefficient of friction between the tyre and the ground.
+ Should be about 0.8 for realistic cars, but can increased for better handling.
+ Set large (10000.0) for kart racers
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheel</CODE> - <DD><CODE>frictionSlip</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -637,6 +645,11 @@ setRollInfluence</H3>
 public void <B>setRollInfluence</B>(int&nbsp;wheel,
                              float&nbsp;rollInfluence)</PRE>
 <DL>
+<DD>Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+ This is a bit of a hack, but it's quite effective. 0.0 = no roll, 1.0 = physical behaviour.
+ If m_frictionSlip is too high, you'll need to reduce this to stop the vehicle rolling over.
+ You should also try lowering the vehicle's centre of mass
+<P>
 <DD><DL>
 </DL>
 </DD>
@@ -660,10 +673,9 @@ setMaxSuspensionTravelCm</H3>
 <PRE>
 public void <B>setMaxSuspensionTravelCm</B>(float&nbsp;maxSuspensionTravelCm)</PRE>
 <DL>
-<DD>this is (as far as I understand bullet) the size of the plane where the wheel touches
- the floor. Set this too low and your car will fall through the ground..<br>
- Use before adding wheels, this is the default used when adding wheels.
- After adding the wheel, use direct wheel access.
+<DD>Use before adding wheels, this is the default used when adding wheels.
+ After adding the wheel, use direct wheel access.<br>
+ The maximum distance the suspension can be compressed (centimetres)
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>maxSuspensionTravelCm</CODE> - the maxSuspensionTravelCm to set</DL>
@@ -677,8 +689,10 @@ setMaxSuspensionTravelCm</H3>
 public void <B>setMaxSuspensionTravelCm</B>(int&nbsp;wheel,
                                      float&nbsp;maxSuspensionTravelCm)</PRE>
 <DL>
+<DD>The maximum distance the suspension can be compressed (centimetres)
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheel</CODE> - <DD><CODE>maxSuspensionTravelCm</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -701,7 +715,11 @@ setSuspensionCompression</H3>
 public void <B>setSuspensionCompression</B>(float&nbsp;suspensionCompression)</PRE>
 <DL>
 <DD>Use before adding wheels, this is the default used when adding wheels.
- After adding the wheel, use direct wheel access.
+ After adding the wheel, use direct wheel access.<br>
+ The damping coefficient for when the suspension is compressed.
+ Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+ k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
+ 0.1 to 0.3 are good values
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>suspensionCompression</CODE> - the suspensionCompression to set</DL>
@@ -715,8 +733,13 @@ setSuspensionCompression</H3>
 public void <B>setSuspensionCompression</B>(int&nbsp;wheel,
                                      float&nbsp;suspensionCompression)</PRE>
 <DL>
+<DD>The damping coefficient for when the suspension is compressed.
+ Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+ k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
+ 0.1 to 0.3 are good values
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheel</CODE> - <DD><CODE>suspensionCompression</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -739,7 +762,9 @@ setSuspensionDamping</H3>
 public void <B>setSuspensionDamping</B>(float&nbsp;suspensionDamping)</PRE>
 <DL>
 <DD>Use before adding wheels, this is the default used when adding wheels.
- After adding the wheel, use direct wheel access.
+ After adding the wheel, use direct wheel access.<br>
+ The damping coefficient for when the suspension is expanding.
+ See the comments for setSuspensionCompression for how to set k.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>suspensionDamping</CODE> - the suspensionDamping to set</DL>
@@ -753,8 +778,11 @@ setSuspensionDamping</H3>
 public void <B>setSuspensionDamping</B>(int&nbsp;wheel,
                                  float&nbsp;suspensionDamping)</PRE>
 <DL>
+<DD>The damping coefficient for when the suspension is expanding.
+ See the comments for setSuspensionCompression for how to set k.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheel</CODE> - <DD><CODE>suspensionDamping</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -777,10 +805,11 @@ setSuspensionStiffness</H3>
 public void <B>setSuspensionStiffness</B>(float&nbsp;suspensionStiffness)</PRE>
 <DL>
 <DD>Use before adding wheels, this is the default used when adding wheels.
- After adding the wheel, use direct wheel access.
+ After adding the wheel, use direct wheel access.<br>
+ The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>suspensionStiffness</CODE> - the suspensionStiffness to set</DL>
+<DT><B>Parameters:</B><DD><CODE>suspensionStiffness</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -791,8 +820,10 @@ setSuspensionStiffness</H3>
 public void <B>setSuspensionStiffness</B>(int&nbsp;wheel,
                                    float&nbsp;suspensionStiffness)</PRE>
 <DL>
+<DD>The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheel</CODE> - <DD><CODE>suspensionStiffness</CODE> - </DL>
 </DD>
 </DL>
 <HR>

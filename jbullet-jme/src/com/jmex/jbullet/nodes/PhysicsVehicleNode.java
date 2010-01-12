@@ -157,10 +157,10 @@ public class PhysicsVehicleNode extends PhysicsNode{
     /**
      * add a wheel to this vehicle
      * @param spat the wheel Spatial (mesh)
-     * @param connectionPoint the location of the wheel relative to the car
-     * @param direction the direction of the wheel (should be -Y / -1,0,0 for a normal car)
-     * @param axle The axis of the wheel (should be -X / 0,-1,0 for a normal car)
-     * @param suspensionRestLength the suspension rest length
+     * @param connectionPoint The starting point of the ray, where the suspension connects to the chassis (chassis space)
+     * @param direction the direction of the wheel (should be -Y / 0,-1,0 for a normal car)
+     * @param axle The axis of the wheel (should be -X / -1,0,0 for a normal car)
+     * @param suspensionRestLength The current length of the suspension (metres)
      * @param wheelRadius the wheel radius
      * @param isFrontWheel sets if this wheel is a front wheel (steering)
      */
@@ -182,6 +182,11 @@ public class PhysicsVehicleNode extends PhysicsNode{
         }
     }
 
+    /**
+     * You can get access to the single wheels via this method.
+     * @param wheel
+     * @return
+     */
     public WheelInfo getWheelInfo(int wheel){
         return wheels.get(wheel);
     }
@@ -194,19 +199,34 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     /**
-     * Sets the friction of the wheels.
      * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
+     * After adding the wheel, use direct wheel access.<br>
+     * The coefficient of friction between the tyre and the ground.
+     * Should be about 0.8 for realistic cars, but can increased for better handling.
+     * Set large (10000.0) for kart racers
      * @param frictionSlip the frictionSlip to set
      */
     public void setFrictionSlip(float frictionSlip) {
         tuning.frictionSlip = frictionSlip;
     }
 
+    /**
+     * The coefficient of friction between the tyre and the ground.
+     * Should be about 0.8 for realistic cars, but can increased for better handling.
+     * Set large (10000.0) for kart racers
+     * @param wheel
+     * @param frictionSlip
+     */
     public void setFrictionSlip(int wheel, float frictionSlip) {
         wheels.get(wheel).setFrictionSlip(frictionSlip);
     }
-
+    
+    /**
+     * Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+     * This is a bit of a hack, but it's quite effective. 0.0 = no roll, 1.0 = physical behaviour.
+     * If m_frictionSlip is too high, you'll need to reduce this to stop the vehicle rolling over.
+     * You should also try lowering the vehicle's centre of mass
+     */
     public void setRollInfluence(int wheel, float rollInfluence) {
         wheels.get(wheel).setRollInfluence(rollInfluence);
     }
@@ -219,16 +239,20 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     /**
-     * this is (as far as I understand bullet) the size of the plane where the wheel touches
-     * the floor. Set this too low and your car will fall through the ground..<br>
      * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
+     * After adding the wheel, use direct wheel access.<br>
+     * The maximum distance the suspension can be compressed (centimetres)
      * @param maxSuspensionTravelCm the maxSuspensionTravelCm to set
      */
     public void setMaxSuspensionTravelCm(float maxSuspensionTravelCm) {
         tuning.maxSuspensionTravelCm = maxSuspensionTravelCm;
     }
 
+    /**
+     * The maximum distance the suspension can be compressed (centimetres)
+     * @param wheel
+     * @param maxSuspensionTravelCm
+     */
     public void setMaxSuspensionTravelCm(int wheel, float maxSuspensionTravelCm) {
         wheels.get(wheel).setMaxSuspensionTravelCm(maxSuspensionTravelCm);
     }
@@ -242,13 +266,25 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     /**
      * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
+     * After adding the wheel, use direct wheel access.<br>
+     * The damping coefficient for when the suspension is compressed.
+     * Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+     * k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
+     * 0.1 to 0.3 are good values
      * @param suspensionCompression the suspensionCompression to set
      */
     public void setSuspensionCompression(float suspensionCompression) {
         tuning.suspensionCompression = suspensionCompression;
     }
 
+    /**
+     * The damping coefficient for when the suspension is compressed.
+     * Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+     * k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
+     * 0.1 to 0.3 are good values
+     * @param wheel
+     * @param suspensionCompression
+     */
     public void setSuspensionCompression(int wheel, float suspensionCompression) {
         wheels.get(wheel).setWheelsDampingCompression(suspensionCompression);
     }
@@ -262,13 +298,21 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     /**
      * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
+     * After adding the wheel, use direct wheel access.<br>
+     * The damping coefficient for when the suspension is expanding.
+     * See the comments for setSuspensionCompression for how to set k.
      * @param suspensionDamping the suspensionDamping to set
      */
     public void setSuspensionDamping(float suspensionDamping) {
         tuning.suspensionDamping = suspensionDamping;
     }
 
+    /**
+     * The damping coefficient for when the suspension is expanding.
+     * See the comments for setSuspensionCompression for how to set k.
+     * @param wheel
+     * @param suspensionDamping
+     */
     public void setSuspensionDamping(int wheel, float suspensionDamping) {
         wheels.get(wheel).setWheelsDampingRelaxation(suspensionDamping);
     }
@@ -282,13 +326,19 @@ public class PhysicsVehicleNode extends PhysicsNode{
 
     /**
      * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
-     * @param suspensionStiffness the suspensionStiffness to set
+     * After adding the wheel, use direct wheel access.<br>
+     * The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+     * @param suspensionStiffness 
      */
     public void setSuspensionStiffness(float suspensionStiffness) {
         tuning.suspensionStiffness = suspensionStiffness;
     }
 
+    /**
+     * The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+     * @param wheel
+     * @param suspensionStiffness
+     */
     public void setSuspensionStiffness(int wheel, float suspensionStiffness) {
         wheels.get(wheel).setSuspensionStiffness(suspensionStiffness);
     }
