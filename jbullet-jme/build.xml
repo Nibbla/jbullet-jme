@@ -29,6 +29,17 @@
             </arg>
         </exec>
     </target>
+
+    <target depends="clean,jar,javadoc" name="release-zip">
+        <zip destfile="dist/${application.title}-${application.version}.zip">
+            <zipfileset dir="lib/jbullet" excludes="javadoc.zip"/>
+            <zipfileset dir="dist/" excludes="README.TXT"/>
+            <zipfileset dir="licenses/" prefix="licenses/"/>
+        </zip>
+        <zip destfile="dist/${application.title}-${application.version}-javadoc.zip">
+            <zipfileset dir="javadoc/" excludes=".svn"/>
+        </zip>
+    </target>
     <!--target name="-post-jar" depends="javadoc">
 
     </target-->
