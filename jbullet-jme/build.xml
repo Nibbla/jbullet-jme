@@ -30,7 +30,9 @@
         </exec>
     </target>
 
-    <target depends="clean,jar,javadoc" name="release-zip">
+    <target depends="jar,javadoc" name="release-zip">
+        <delete file="dist/${application.title}-${application.version}.zip"/>
+        <delete file="dist/${application.title}-${application.version}-javadoc.zip"/>
         <zip destfile="dist/${application.title}-${application.version}.zip">
             <zipfileset dir="lib/jbullet" excludes="javadoc.zip"/>
             <zipfileset dir="dist/" excludes="README.TXT"/>
