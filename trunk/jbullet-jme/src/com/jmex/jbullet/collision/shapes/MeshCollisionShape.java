@@ -50,6 +50,7 @@ public class MeshCollisionShape extends CollisionShape{
         }
         if(node.getChild(0) instanceof TriMesh){
             TriMesh mesh=(TriMesh)node.getChild(0);
+//            mesh.setL
             createCollisionMesh(mesh);
         }
         else{

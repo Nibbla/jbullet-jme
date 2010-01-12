@@ -97,4 +97,9 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
         return character;
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
+
 }

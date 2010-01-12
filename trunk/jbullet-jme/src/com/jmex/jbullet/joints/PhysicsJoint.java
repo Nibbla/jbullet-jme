@@ -92,4 +92,7 @@ public abstract class PhysicsJoint {
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
         this.collisionBetweenLinkedBodys = collisionBetweenLinkedBodys;
     }
+
+    public void destroy(){
+    }
 }

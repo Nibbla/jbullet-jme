@@ -83,7 +83,8 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     protected void buildObject() {
-        gObject=new PairCachingGhostObject();
+        if(gObject==null)
+            gObject=new PairCachingGhostObject();
         gObject.setCollisionShape(cShape.getCShape());
     }
 
@@ -227,10 +228,40 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
+     * note that the physics body and collision shape get
+     * rebuilt when scaling this PhysicsNode
+     */
+    @Override
+    public void setLocalScale(float localScale) {
+        super.setLocalScale(localScale);
+        updateWorldBound();
+        buildCollisionShape(cShape.getType());
+        buildObject();
+    }
+
+    /**
+     * note that the physics body and collision shape get
+     * rebuilt when scaling this PhysicsNode
+     */
+    @Override
+    public void setLocalScale(Vector3f localScale) {
+        super.setLocalScale(localScale);
+        updateWorldBound();
+        buildCollisionShape(cShape.getType());
+        buildObject();
+    }
+    
+    /**
      * used internally
      */
     public GhostObject getGhostObject(){
         return gObject;
+    }
+
+    /**
+     * destroys this PhysicsGhostNode and removes it from memory
+     */
+    public void destroy(){
     }
 
     public void syncPhysics(){

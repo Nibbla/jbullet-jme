@@ -374,6 +374,28 @@ public class PhysicsNode extends CollisionObject{
         return localRotation;
     }
 
+    /**
+     * note that the physics body and collision shape get
+     * rebuilt when scaling this PhysicsNode
+     */
+    @Override
+    public void setLocalScale(float localScale) {
+        super.setLocalScale(localScale);
+        updateWorldBound();
+        createCollisionShape(collisionShape.getType());
+    }
+
+    /**
+     * note that the physics body and collision shape get
+     * rebuilt when scaling this PhysicsNode
+     */
+    @Override
+    public void setLocalScale(Vector3f localScale) {
+        super.setLocalScale(localScale);
+        updateWorldBound();
+        createCollisionShape(collisionShape.getType());
+    }
+
     public float getMass() {
         return mass;
     }
@@ -643,6 +665,13 @@ public class PhysicsNode extends CollisionObject{
      */
     public RigidBody getRigidBody() {
         return rBody;
+    }
+
+    /**
+     * destroys this PhysicsNode and removes it from memory
+     */
+    public void destroy(){
+        rBody.destroy();
     }
 
     @Override
