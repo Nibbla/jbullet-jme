@@ -300,6 +300,14 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#destroy()">destroy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destroys this PhysicsNode and removes it from memory</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A></B>()</CODE>
 
@@ -478,6 +486,24 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalScale(float)">setLocalScale</A></B>(float&nbsp;localScale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note that the physics body and collision shape get
+ rebuilt when scaling this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalScale(com.jme.math.Vector3f)">setLocalScale</A></B>(com.jme.math.Vector3f&nbsp;localScale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note that the physics body and collision shape get
+ rebuilt when scaling this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A></B>(float&nbsp;x,
                     float&nbsp;y,
                     float&nbsp;z)</CODE>
@@ -533,7 +559,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocalScale, setLocalScale, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -748,6 +774,40 @@ public void <B>setLocalRotation</B>(com.jme.math.Quaternion&nbsp;arg0)</PRE>
 </DD>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalScale(float)"><!-- --></A><H3>
+setLocalScale</H3>
+<PRE>
+public void <B>setLocalScale</B>(float&nbsp;localScale)</PRE>
+<DL>
+<DD>note that the physics body and collision shape get
+ rebuilt when scaling this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalScale</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalScale(com.jme.math.Vector3f)"><!-- --></A><H3>
+setLocalScale</H3>
+<PRE>
+public void <B>setLocalScale</B>(com.jme.math.Vector3f&nbsp;localScale)</PRE>
+<DL>
+<DD>note that the physics body and collision shape get
+ rebuilt when scaling this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalScale</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -1083,6 +1143,19 @@ getRigidBody</H3>
 public com.bulletphysics.dynamics.RigidBody <B>getRigidBody</B>()</PRE>
 <DL>
 <DD>used internally
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="destroy()"><!-- --></A><H3>
+destroy</H3>
+<PRE>
+public void <B>destroy</B>()</PRE>
+<DL>
+<DD>destroys this PhysicsNode and removes it from memory
 <P>
 <DD><DL>
 </DL>
