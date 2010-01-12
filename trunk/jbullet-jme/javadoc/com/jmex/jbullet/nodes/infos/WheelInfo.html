@@ -236,7 +236,7 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.scene.Spatial</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getSpat()">getSpat</A></B>()</CODE>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getSpatial()">getSpatial</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -327,7 +327,7 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setFrictionSlip(float)">setFrictionSlip</A></B>(float&nbsp;frictionSlip)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The coefficient of friction between the tyre and the ground.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -351,7 +351,7 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setMaxSuspensionTravelCm(float)">setMaxSuspensionTravelCm</A></B>(float&nbsp;maxSuspensionTravelCm)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The maximum distance the suspension can be compressed (centimetres)</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -383,15 +383,12 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setRollInfluence(float)">setRollInfluence</A></B>(float&nbsp;rollInfluence)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets how much wheels without motor influence the vehicles path (e.g. front
- steering, rear acceleration)<br>
- default=1.0f<br>
- Use before adding wheels, this is the default used when adding wheels.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setSpat(com.jme.scene.Spatial)">setSpat</A></B>(com.jme.scene.Spatial&nbsp;spat)</CODE>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setSpatial(com.jme.scene.Spatial)">setSpatial</A></B>(com.jme.scene.Spatial&nbsp;spat)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -410,7 +407,7 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setSuspensionStiffness(float)">setSuspensionStiffness</A></B>(float&nbsp;suspensionStiffness)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -426,7 +423,7 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setWheelsDampingCompression(float)">setWheelsDampingCompression</A></B>(float&nbsp;wheelsDampingCompression)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The damping coefficient for when the suspension is compressed.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -434,7 +431,7 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#setWheelsDampingRelaxation(float)">setWheelsDampingRelaxation</A></B>(float&nbsp;wheelsDampingRelaxation)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The damping coefficient for when the suspension is expanding.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -535,10 +532,10 @@ public void <B>setWheelInfo</B>(com.bulletphysics.dynamics.vehicle.WheelInfo&nbs
 </DL>
 <HR>
 
-<A NAME="getSpat()"><!-- --></A><H3>
-getSpat</H3>
+<A NAME="getSpatial()"><!-- --></A><H3>
+getSpatial</H3>
 <PRE>
-public com.jme.scene.Spatial <B>getSpat</B>()</PRE>
+public com.jme.scene.Spatial <B>getSpatial</B>()</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -546,10 +543,10 @@ public com.jme.scene.Spatial <B>getSpat</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="setSpat(com.jme.scene.Spatial)"><!-- --></A><H3>
-setSpat</H3>
+<A NAME="setSpatial(com.jme.scene.Spatial)"><!-- --></A><H3>
+setSpatial</H3>
 <PRE>
-public void <B>setSpat</B>(com.jme.scene.Spatial&nbsp;spat)</PRE>
+public void <B>setSpatial</B>(com.jme.scene.Spatial&nbsp;spat)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -661,8 +658,10 @@ setSuspensionStiffness</H3>
 <PRE>
 public void <B>setSuspensionStiffness</B>(float&nbsp;suspensionStiffness)</PRE>
 <DL>
+<DD>The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>suspensionStiffness</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -683,8 +682,11 @@ setWheelsDampingRelaxation</H3>
 <PRE>
 public void <B>setWheelsDampingRelaxation</B>(float&nbsp;wheelsDampingRelaxation)</PRE>
 <DL>
+<DD>The damping coefficient for when the suspension is expanding.
+ See the comments for setWheelsDampingCompression for how to set k.
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheelsDampingRelaxation</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -705,8 +707,13 @@ setWheelsDampingCompression</H3>
 <PRE>
 public void <B>setWheelsDampingCompression</B>(float&nbsp;wheelsDampingCompression)</PRE>
 <DL>
+<DD>The damping coefficient for when the suspension is compressed.
+ Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+ k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
+ 0.1 to 0.3 are good values
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>wheelsDampingCompression</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -727,8 +734,12 @@ setFrictionSlip</H3>
 <PRE>
 public void <B>setFrictionSlip</B>(float&nbsp;frictionSlip)</PRE>
 <DL>
+<DD>The coefficient of friction between the tyre and the ground.
+ Should be about 0.8 for realistic cars, but can increased for better handling.
+ Set large (10000.0) for kart racers
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>frictionSlip</CODE> - </DL>
 </DD>
 </DL>
 <HR>
@@ -749,11 +760,10 @@ setRollInfluence</H3>
 <PRE>
 public void <B>setRollInfluence</B>(float&nbsp;rollInfluence)</PRE>
 <DL>
-<DD>Sets how much wheels without motor influence the vehicles path (e.g. front
- steering, rear acceleration)<br>
- default=1.0f<br>
- Use before adding wheels, this is the default used when adding wheels.
- After adding the wheel, use direct wheel access.
+<DD>Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+ This is a bit of a hack, but it's quite effective. 0.0 = no roll, 1.0 = physical behaviour.
+ If m_frictionSlip is too high, you'll need to reduce this to stop the vehicle rolling over.
+ You should also try lowering the vehicle's centre of mass
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>rollInfluence</CODE> - the rollInfluence to set</DL>
@@ -777,8 +787,10 @@ setMaxSuspensionTravelCm</H3>
 <PRE>
 public void <B>setMaxSuspensionTravelCm</B>(float&nbsp;maxSuspensionTravelCm)</PRE>
 <DL>
+<DD>The maximum distance the suspension can be compressed (centimetres)
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>maxSuspensionTravelCm</CODE> - </DL>
 </DD>
 </DL>
 <HR>

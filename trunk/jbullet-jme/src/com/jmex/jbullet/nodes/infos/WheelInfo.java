@@ -97,11 +97,11 @@ public class WheelInfo {
         this.wheelInfo = wheelInfo;
     }
 
-    public Spatial getSpat() {
+    public Spatial getSpatial() {
         return spatial;
     }
 
-    public void setSpat(Spatial spat) {
+    public void setSpatial(Spatial spat) {
         this.spatial = spat;
     }
 
@@ -145,6 +145,10 @@ public class WheelInfo {
         return suspensionStiffness;
     }
 
+    /**
+     * The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+     * @param suspensionStiffness
+     */
     public void setSuspensionStiffness(float suspensionStiffness) {
         this.suspensionStiffness = suspensionStiffness;
         applyInfo();
@@ -154,6 +158,11 @@ public class WheelInfo {
         return wheelsDampingRelaxation;
     }
 
+    /**
+     * The damping coefficient for when the suspension is expanding.
+     * See the comments for setWheelsDampingCompression for how to set k.
+     * @param wheelsDampingRelaxation
+     */
     public void setWheelsDampingRelaxation(float wheelsDampingRelaxation) {
         this.wheelsDampingRelaxation = wheelsDampingRelaxation;
         applyInfo();
@@ -163,6 +172,13 @@ public class WheelInfo {
         return wheelsDampingCompression;
     }
 
+    /**
+     * The damping coefficient for when the suspension is compressed.
+     * Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+     * k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
+     * 0.1 to 0.3 are good values
+     * @param wheelsDampingCompression
+     */
     public void setWheelsDampingCompression(float wheelsDampingCompression) {
         this.wheelsDampingCompression = wheelsDampingCompression;
         applyInfo();
@@ -172,6 +188,12 @@ public class WheelInfo {
         return frictionSlip;
     }
 
+    /**
+     * The coefficient of friction between the tyre and the ground.
+     * Should be about 0.8 for realistic cars, but can increased for better handling.
+     * Set large (10000.0) for kart racers
+     * @param frictionSlip
+     */
     public void setFrictionSlip(float frictionSlip) {
         this.frictionSlip = frictionSlip;
         applyInfo();
@@ -182,11 +204,10 @@ public class WheelInfo {
     }
 
     /**
-     * Sets how much wheels without motor influence the vehicles path (e.g. front
-     * steering, rear acceleration)<br>
-     * default=1.0f<br>
-     * Use before adding wheels, this is the default used when adding wheels.
-     * After adding the wheel, use direct wheel access.
+     * Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+     * This is a bit of a hack, but it's quite effective. 0.0 = no roll, 1.0 = physical behaviour.
+     * If m_frictionSlip is too high, you'll need to reduce this to stop the vehicle rolling over.
+     * You should also try lowering the vehicle's centre of mass
      * @param rollInfluence the rollInfluence to set
      */
     public void setRollInfluence(float rollInfluence) {
@@ -198,6 +219,10 @@ public class WheelInfo {
         return maxSuspensionTravelCm;
     }
 
+    /**
+     * The maximum distance the suspension can be compressed (centimetres)
+     * @param maxSuspensionTravelCm
+     */
     public void setMaxSuspensionTravelCm(float maxSuspensionTravelCm) {
         this.maxSuspensionTravelCm = maxSuspensionTravelCm;
         applyInfo();
