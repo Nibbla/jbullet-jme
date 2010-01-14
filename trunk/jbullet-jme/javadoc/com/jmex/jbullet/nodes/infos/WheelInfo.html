@@ -164,6 +164,38 @@ Stores info about one wheel of a PhysicsVehicleNode
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionLocation()">getCollisionLocation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the location where the wheel collides with the ground</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionLocation(com.jme.math.Vector3f)">getCollisionLocation</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the location where the wheel collides with the ground</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionNormal()">getCollisionNormal</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the normal where the wheel collides with the ground</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionNormal(com.jme.math.Vector3f)">getCollisionNormal</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the normal where the wheel collides with the ground</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getDirection()">getDirection</A></B>()</CODE>
 
 <BR>
@@ -184,6 +216,14 @@ Stores info about one wheel of a PhysicsVehicleNode
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">CollisionObject</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getGroundObject()">getGroundObject</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns the object this wheel is in contact with or null if no contact</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -232,6 +272,14 @@ Stores info about one wheel of a PhysicsVehicleNode
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/nodes/infos/WheelInfo.html#getSkidInfo()">getSkidInfo</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Returns how much the wheel skids on the ground (for skid sounds/smoke etc.)</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -921,6 +969,86 @@ setBrakeForce</H3>
 <PRE>
 public void <B>setBrakeForce</B>(float&nbsp;brakeForce)</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getGroundObject()"><!-- --></A><H3>
+getGroundObject</H3>
+<PRE>
+public <A HREF="../../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">CollisionObject</A> <B>getGroundObject</B>()</PRE>
+<DL>
+<DD>Returns the object this wheel is in contact with or null if no contact
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCollisionLocation(com.jme.math.Vector3f)"><!-- --></A><H3>
+getCollisionLocation</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getCollisionLocation</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>Returns the location where the wheel collides with the ground
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCollisionLocation()"><!-- --></A><H3>
+getCollisionLocation</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getCollisionLocation</B>()</PRE>
+<DL>
+<DD>Returns the location where the wheel collides with the ground
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCollisionNormal(com.jme.math.Vector3f)"><!-- --></A><H3>
+getCollisionNormal</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getCollisionNormal</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>Returns the normal where the wheel collides with the ground
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCollisionNormal()"><!-- --></A><H3>
+getCollisionNormal</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getCollisionNormal</B>()</PRE>
+<DL>
+<DD>Returns the normal where the wheel collides with the ground
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getSkidInfo()"><!-- --></A><H3>
+getSkidInfo</H3>
+<PRE>
+public float <B>getSkidInfo</B>()</PRE>
+<DL>
+<DD>Returns how much the wheel skids on the ground (for skid sounds/smoke etc.)<br>
+ 0.0 = wheels are sliding, 1.0 = wheels have traction.
+<P>
 <DD><DL>
 </DL>
 </DD>
