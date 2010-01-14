@@ -6,7 +6,7 @@ In the "Downloads" section of this project you will find the most current releas
 == Installing ==
 jbullet-jme consists of several jar libraries that you have to add to your programs classpath.
 
-==== Netbeans ====
+=== Netbeans ===
 To add jbullet-jme to your Netbeans project, do the following:
  * Select Tools -> Libraries
  * Press "New Library"
