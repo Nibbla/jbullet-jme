@@ -74,7 +74,7 @@ function windowTitle()
 <A NAME="skip-navbar_top"></A>
 <!-- ========= END OF TOP NAVBAR ========= -->
 
-<A HREF="index-1.html">A</A> <A HREF="index-2.html">B</A> <A HREF="index-3.html">C</A> <A HREF="index-4.html">D</A> <A HREF="index-5.html">E</A> <A HREF="index-6.html">G</A> <A HREF="index-7.html">I</A> <A HREF="index-8.html">J</A> <A HREF="index-9.html">M</A> <A HREF="index-10.html">P</A> <A HREF="index-11.html">R</A> <A HREF="index-12.html">S</A> <A HREF="index-13.html">T</A> <A HREF="index-14.html">U</A> <A HREF="index-15.html">W</A> <HR>
+<A HREF="index-1.html">A</A> <A HREF="index-2.html">B</A> <A HREF="index-3.html">C</A> <A HREF="index-4.html">D</A> <A HREF="index-5.html">E</A> <A HREF="index-6.html">G</A> <A HREF="index-7.html">I</A> <A HREF="index-8.html">J</A> <A HREF="index-9.html">L</A> <A HREF="index-10.html">M</A> <A HREF="index-11.html">P</A> <A HREF="index-12.html">R</A> <A HREF="index-13.html">S</A> <A HREF="index-14.html">T</A> <A HREF="index-15.html">U</A> <A HREF="index-16.html">W</A> <HR>
 <A NAME="_G_"><!-- --></A><H2>
 <B>G</B></H2>
 <DL>
@@ -108,6 +108,18 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#getCharacterController()"><B>getCharacterController()</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsCharacterNode.html" title="class in com.jmex.jbullet.nodes">PhysicsCharacterNode</A>
 <DD>used internally
+<DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionLocation(com.jme.math.Vector3f)"><B>getCollisionLocation(Vector3f)</B></A> - 
+Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
+<DD>Returns the location where the wheel collides with the ground
+<DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionLocation()"><B>getCollisionLocation()</B></A> - 
+Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
+<DD>Returns the location where the wheel collides with the ground
+<DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionNormal(com.jme.math.Vector3f)"><B>getCollisionNormal(Vector3f)</B></A> - 
+Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
+<DD>Returns the normal where the wheel collides with the ground
+<DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#getCollisionNormal()"><B>getCollisionNormal()</B></A> - 
+Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
+<DD>Returns the normal where the wheel collides with the ground
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#getCollisionShape()"><B>getCollisionShape()</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
 <DD>&nbsp;
@@ -189,6 +201,9 @@ Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/Physic
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#getGravity(com.jme.math.Vector3f)"><B>getGravity(Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
 <DD>&nbsp;
+<DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#getGroundObject()"><B>getGroundObject()</B></A> - 
+Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
+<DD>Returns the object this wheel is in contact with or null if no contact
 <DT><A HREF="../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html#getHiLimit()"><B>getHiLimit()</B></A> - 
 Method in class com.jmex.jbullet.joints.motors.<A HREF="../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html" title="class in com.jmex.jbullet.joints.motors">RotationalLimitMotor</A>
 <DD>&nbsp;
@@ -351,6 +366,9 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <DT><A HREF="../com/jmex/jbullet/joints/Physics6DofJoint.html#getRotationalLimitMotor(int)"><B>getRotationalLimitMotor(int)</B></A> - 
 Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/Physics6DofJoint.html" title="class in com.jmex.jbullet.joints">Physics6DofJoint</A>
 <DD>&nbsp;
+<DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#getSkidInfo()"><B>getSkidInfo()</B></A> - 
+Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
+<DD>Returns how much the wheel skids on the ground (for skid sounds/smoke etc.)
 <DT><A HREF="../com/jmex/jbullet/joints/PhysicsSliderJoint.html#getSoftnessDirAng()"><B>getSoftnessDirAng()</B></A> - 
 Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/PhysicsSliderJoint.html" title="class in com.jmex.jbullet.joints">PhysicsSliderJoint</A>
 <DD>&nbsp;
@@ -486,7 +504,7 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <A NAME="skip-navbar_bottom"></A>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
 
-<A HREF="index-1.html">A</A> <A HREF="index-2.html">B</A> <A HREF="index-3.html">C</A> <A HREF="index-4.html">D</A> <A HREF="index-5.html">E</A> <A HREF="index-6.html">G</A> <A HREF="index-7.html">I</A> <A HREF="index-8.html">J</A> <A HREF="index-9.html">M</A> <A HREF="index-10.html">P</A> <A HREF="index-11.html">R</A> <A HREF="index-12.html">S</A> <A HREF="index-13.html">T</A> <A HREF="index-14.html">U</A> <A HREF="index-15.html">W</A> <HR>
+<A HREF="index-1.html">A</A> <A HREF="index-2.html">B</A> <A HREF="index-3.html">C</A> <A HREF="index-4.html">D</A> <A HREF="index-5.html">E</A> <A HREF="index-6.html">G</A> <A HREF="index-7.html">I</A> <A HREF="index-8.html">J</A> <A HREF="index-9.html">L</A> <A HREF="index-10.html">M</A> <A HREF="index-11.html">P</A> <A HREF="index-12.html">R</A> <A HREF="index-13.html">S</A> <A HREF="index-14.html">T</A> <A HREF="index-15.html">U</A> <A HREF="index-16.html">W</A> <HR>
 
 </BODY>
 </HTML>
