@@ -53,9 +53,9 @@ public class PhysicsConeJoint extends PhysicsJoint{
         this.rotA=new Matrix3f();
         this.rotB=new Matrix3f();
         
-        Transform transA=new Transform();
+        Transform transA=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotA,transA.origin);
-        Transform transB=new Transform();
+        Transform transB=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotB,transB.origin);
         constraint=new ConeTwistConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB);
     }

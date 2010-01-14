@@ -31,9 +31,12 @@
  */
 package com.jmex.jbullet.nodes.infos;
 
+import com.bulletphysics.dynamics.RigidBody;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
+import com.jmex.jbullet.collision.CollisionObject;
+import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.nodes.PhysicsVehicleNode;
 import com.jmex.jbullet.util.Converter;
 
@@ -298,6 +301,60 @@ public class WheelInfo {
     public void setBrakeForce(float brakeForce) {
         this.brakeForce = brakeForce;
         applyInfo();
+    }
+
+    /**
+     * Returns the object this wheel is in contact with or null if no contact
+     * @return
+     */
+    public CollisionObject getGroundObject(){
+        if(wheelInfo.raycastInfo.groundObject == null){
+            return null;
+        }
+        else if(wheelInfo.raycastInfo.groundObject instanceof RigidBody){
+            System.out.println("RigidBody");
+            return (PhysicsNode)((RigidBody)wheelInfo.raycastInfo.groundObject).getUserPointer();
+        }
+        else
+            return null;
+    }
+
+    /**
+     * Returns the location where the wheel collides with the ground
+     */
+    public Vector3f getCollisionLocation(Vector3f vec){
+        Converter.convert(wheelInfo.raycastInfo.contactPointWS,vec);
+        return vec;
+    }
+
+    /**
+     * Returns the location where the wheel collides with the ground
+     */
+    public Vector3f getCollisionLocation(){
+        return Converter.convert(wheelInfo.raycastInfo.contactPointWS);
+    }
+
+    /**
+     * Returns the normal where the wheel collides with the ground
+     */
+    public Vector3f getCollisionNormal(Vector3f vec){
+        Converter.convert(wheelInfo.raycastInfo.contactNormalWS,vec);
+        return vec;
+    }
+
+    /**
+     * Returns the normal where the wheel collides with the ground
+     */
+    public Vector3f getCollisionNormal(){
+        return Converter.convert(wheelInfo.raycastInfo.contactNormalWS);
+    }
+
+    /**
+     * Returns how much the wheel skids on the ground (for skid sounds/smoke etc.)<br>
+     * 0.0 = wheels are sliding, 1.0 = wheels have traction.
+     */
+    public float getSkidInfo(){
+        return wheelInfo.skidInfo;
     }
 
 }
