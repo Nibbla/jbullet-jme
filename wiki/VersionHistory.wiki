@@ -8,6 +8,7 @@
  * added wheel contact info (location,skid,object) to WheelInfo
  * added basic CompoundCollisionShape
  * fixed setLocalScale()
+ * added applying of rotation from lookAt and rotateUpTo
 
 ==== 0.9.1 alpha ====
  * made setWorldRotation/Translation protected
