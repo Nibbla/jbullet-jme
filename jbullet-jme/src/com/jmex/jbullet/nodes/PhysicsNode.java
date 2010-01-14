@@ -329,6 +329,24 @@ public class PhysicsNode extends CollisionObject{
         applyRotation();
     }
 
+    @Override
+    public void lookAt(Vector3f position, Vector3f upVector) {
+        super.lookAt(position, upVector);
+        applyRotation();
+    }
+
+    @Override
+    public void lookAt(Vector3f position, Vector3f upVector, boolean takeParentInAccount) {
+        super.lookAt(position, upVector, takeParentInAccount);
+        applyRotation();
+    }
+
+    @Override
+    public void rotateUpTo(Vector3f newUp) {
+        super.rotateUpTo(newUp);
+        applyRotation();
+    }
+
     private void applyRotation() {
         tempRotation.set(getWorldRotation());
         Converter.convert(tempRotation, tempRot);
