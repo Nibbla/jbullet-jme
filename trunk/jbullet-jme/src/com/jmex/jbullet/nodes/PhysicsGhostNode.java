@@ -254,8 +254,9 @@ public class PhysicsGhostNode extends CollisionObject{
     @Override
     public void setLocalScale(float localScale) {
         super.setLocalScale(localScale);
+        updateGeometricState(0, true);
         updateWorldBound();
-        cShape.setScale(new Vector3f(localScale,localScale,localScale));
+        cShape.setScale(getWorldScale());
     }
 
     /**
@@ -265,8 +266,9 @@ public class PhysicsGhostNode extends CollisionObject{
     @Override
     public void setLocalScale(Vector3f localScale) {
         super.setLocalScale(localScale);
+        updateGeometricState(0, true);
         updateWorldBound();
-        cShape.setScale(localScale);
+        cShape.setScale(getWorldScale());
     }
     
     /**
