@@ -375,26 +375,18 @@ public class PhysicsNode extends CollisionObject{
         return localRotation;
     }
 
-    /**
-     * note that the physics body and collision shape get
-     * rebuilt when scaling this PhysicsNode
-     */
     @Override
     public void setLocalScale(float localScale) {
         super.setLocalScale(localScale);
         updateWorldBound();
-        createCollisionShape(collisionShape.getType());
+        collisionShape.setScale(new Vector3f(localScale,localScale,localScale));
     }
 
-    /**
-     * note that the physics body and collision shape get
-     * rebuilt when scaling this PhysicsNode
-     */
     @Override
     public void setLocalScale(Vector3f localScale) {
         super.setLocalScale(localScale);
         updateWorldBound();
-        createCollisionShape(collisionShape.getType());
+        collisionShape.setScale(localScale);
     }
 
     public float getMass() {

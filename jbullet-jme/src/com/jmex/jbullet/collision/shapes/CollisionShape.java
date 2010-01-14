@@ -31,7 +31,8 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
-import javax.vecmath.Vector3f;
+import com.jme.math.Vector3f;
+import com.jmex.jbullet.util.Converter;
 
 /**
  * This Object holds information about a jbullet CollisionShape to be able to reuse
@@ -52,7 +53,7 @@ public abstract class CollisionShape {
     /**
      * used internally, not safe
      */
-    public void calculateLocalInertia(float mass, Vector3f vector){
+    public void calculateLocalInertia(float mass, javax.vecmath.Vector3f vector){
         if(cShape==null) return;
         cShape.calculateLocalInertia(mass, vector);
     }
@@ -69,6 +70,10 @@ public abstract class CollisionShape {
      */
     public void setCShape(com.bulletphysics.collision.shapes.CollisionShape cShape) {
         this.cShape = cShape;
+    }
+
+    public void setScale(Vector3f scale){
+        cShape.setLocalScaling(Converter.convert(scale));
     }
 
     /**
