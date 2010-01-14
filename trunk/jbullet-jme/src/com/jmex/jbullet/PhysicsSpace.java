@@ -227,7 +227,7 @@ public abstract class PhysicsSpace {
                 CollisionObject node=null,node1=null;
                 if(body0 instanceof RigidBody){
                     RigidBody rBody=(RigidBody)body0;
-                    node=physicsNodes.get(rBody);
+                    node=(PhysicsNode)rBody.getUserPointer();
                 }
                 else if(body0 instanceof GhostObject){
                     GhostObject rBody=(GhostObject)body0;
@@ -235,7 +235,7 @@ public abstract class PhysicsSpace {
                 }
                 if(body1 instanceof RigidBody){
                     RigidBody rBody=(RigidBody)body1;
-                    node1=physicsNodes.get(rBody);
+                    node1=(PhysicsNode)rBody.getUserPointer();
                 }
                 else if(body1 instanceof GhostObject){
                     GhostObject rBody=(GhostObject)body1;

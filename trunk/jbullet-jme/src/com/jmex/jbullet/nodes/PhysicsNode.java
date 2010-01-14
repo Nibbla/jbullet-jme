@@ -252,6 +252,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     protected void postRebuild(){
+        rBody.setUserPointer(this);
         if(mass==0.0f){
             rBody.setCollisionFlags( rBody.getCollisionFlags() | CollisionFlags.STATIC_OBJECT );
         }
