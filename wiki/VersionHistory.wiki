@@ -2,13 +2,13 @@
 
 == Versions ==
 
-==== svn trunk ====
+==== 0.9.2 alpha ====
  * use userObject in RigidBody to link PhysicsNode
- * fixed some joint constructors without rotation parameter
  * added wheel contact info (location,skid,object) to WheelInfo
  * added basic CompoundCollisionShape
+ * added applying of rotation from lookAt() and rotateUpTo()
+ * fixed some joint constructors without rotation parameter
  * fixed setLocalScale()
- * added applying of rotation from lookAt and rotateUpTo
 
 ==== 0.9.1 alpha ====
  * made setWorldRotation/Translation protected
