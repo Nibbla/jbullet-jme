@@ -32,8 +32,11 @@
 package jmetest.jbullet;
 
 
+import com.jme.input.InputHandler;
 import com.jme.input.KeyBindingManager;
 import com.jme.input.KeyInput;
+import com.jme.input.action.InputAction;
+import com.jme.input.action.InputActionEvent;
 import java.util.concurrent.Callable;
 
 import com.jme.math.Vector3f;
@@ -56,94 +59,35 @@ import com.jmex.jbullet.nodes.PhysicsNode;
  */
 public class TestPhysicsCharacter {
     private static PhysicsCharacterNode character;
+    private static Vector3f walkDirection=new Vector3f();
 
     public static void setupGame(){
         // creates and initializes the PhysicsSpace
         final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace(PhysicsSpace.BroadphaseTypes.AXIS_SWEEP_3);
-
-        // add some keybindings to control the vehicle
-        KeyBindingManager.getKeyBindingManager().set("key_accelerate",
-                KeyInput.KEY_U);
-        KeyBindingManager.getKeyBindingManager().set("key_brake",
-                KeyInput.KEY_J);
-        KeyBindingManager.getKeyBindingManager().set("key_steer_left",
-                KeyInput.KEY_H);
-        KeyBindingManager.getKeyBindingManager().set("key_steer_right",
-                KeyInput.KEY_K);
-        KeyBindingManager.getKeyBindingManager().set("key_action",
-                KeyInput.KEY_SPACE);
 
         // Create a DebugGameState
         // - override the update method to update/sync physics space
         DebugGameState state = new DebugGameState(){
             CollisionShape shape;
 
-            private boolean stoppedBrake=false;
-            private boolean stoppedAccel=false;
-            private boolean stoppedSteerL=false;
-            private boolean stoppedSteerR=false;
-
-            private boolean appliedBrake=false;
-            private boolean appliedAccel=false;
-            private boolean appliedSteerL=false;
-            private boolean appliedSteerR=false;
+            private boolean isSetup=false;
+            public void setupInputHandler(){
+                if(isSetup) return;
+                input.addAction( accelAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_U, InputHandler.AXIS_NONE, false);
+                input.addAction( brakeAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_J, InputHandler.AXIS_NONE, false);
+                input.addAction( steerLeftAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_H, InputHandler.AXIS_NONE, false);
+                input.addAction( steerRightAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_K, InputHandler.AXIS_NONE, false);
+                input.addAction( spaceAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_SPACE, InputHandler.AXIS_NONE, false);
+                isSetup=true;
+            }
 
             @Override
             public void update(float tpf) {
-                pSpace.update(tpf);
+                //not very elegant: try to setup each update call
+                setupInputHandler();
+                
                 super.update(tpf);
-                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_accelerate", true)) {
-                    if(!appliedAccel){
-                        character.setWalkDirection(Vector3f.UNIT_Z.mult(-.1f));
-                        appliedAccel=true;
-                        stoppedBrake=false;
-                        stoppedAccel=false;
-                    }
-                }
-                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_brake", true)) {
-                    if(!appliedBrake){
-                        character.setWalkDirection(Vector3f.UNIT_Z.mult(.1f));
-                        appliedBrake=true;
-                        stoppedBrake=false;
-                        stoppedAccel=false;
-                    }
-                }
-                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_steer_left", true)) {
-                    if(!appliedSteerL){
-                        character.setWalkDirection(Vector3f.UNIT_X.mult(-.1f));
-                        stoppedSteerL=false;
-                        appliedSteerL=true;
-                    }
-                }
-                else if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_steer_right", true)) {
-                    if(!appliedSteerR){
-                        character.setWalkDirection(Vector3f.UNIT_X.mult(.1f));
-                        stoppedSteerR=false;
-                        appliedSteerR=true;
-                    }
-                }
-                else if(!stoppedSteerL||!stoppedSteerR||!stoppedAccel||!stoppedBrake){
-                    character.setWalkDirection(Vector3f.ZERO);
-                    stoppedSteerL=true;
-                    appliedSteerL=false;
-                    stoppedSteerR=true;
-                    appliedSteerR=false;
-                    stoppedBrake=true;
-                    appliedBrake=false;
-                    appliedAccel=false;
-                    stoppedAccel=true;
-                }
-
-                if (KeyBindingManager.getKeyBindingManager().isValidCommand(
-                        "key_action", false)) {
-//                    character.setWalkDirection(Vector3f.ZERO);
-                    character.jump();
-                }
-
+                pSpace.update(tpf);
             }
             
         };
@@ -184,6 +128,66 @@ public class TestPhysicsCharacter {
         state.setActive(true);
 
     }
+    
+    private static InputAction accelAction = new InputAction() {
+        public void performAction( InputActionEvent evt ) {
+            if(evt.getTriggerPressed()){
+                walkDirection.addLocal(new Vector3f(0,0,-.1f));
+            }
+            else{
+                walkDirection.addLocal(new Vector3f(0,0,.1f));
+            }
+            character.setWalkDirection(walkDirection);
+        }
+    };
+
+    private static InputAction brakeAction = new InputAction() {
+        public void performAction( InputActionEvent evt ) {
+            if(evt.getTriggerPressed()){
+                walkDirection.addLocal(new Vector3f(0,0,.1f));
+            }
+            else{
+                walkDirection.addLocal(new Vector3f(0,0,-.1f));
+            }
+            character.setWalkDirection(walkDirection);
+        }
+    };
+
+    private static InputAction steerLeftAction = new InputAction() {
+        public void performAction( InputActionEvent evt ) {
+            if(evt.getTriggerPressed()){
+                walkDirection.addLocal(new Vector3f(-.1f,0,0));
+            }
+            else{
+                walkDirection.addLocal(new Vector3f(.1f,0,0));
+            }
+            character.setWalkDirection(walkDirection);
+        }
+    };
+
+    private static InputAction steerRightAction = new InputAction() {
+        public void performAction( InputActionEvent evt ) {
+            if(evt.getTriggerPressed()){
+                walkDirection.addLocal(new Vector3f(.1f,0,0));
+            }
+            else{
+                walkDirection.addLocal(new Vector3f(-.1f,0,0));
+            }
+            character.setWalkDirection(walkDirection);
+        }
+    };
+
+    private static InputAction spaceAction = new InputAction() {
+        public void performAction( InputActionEvent evt ) {
+            if(evt.getTriggerPressed()){
+                character.jump();
+            }
+            else{
+
+            }
+        }
+    };
+
 
 	public static void main(String[] args) throws Exception {
 	    // Enable statistics gathering
