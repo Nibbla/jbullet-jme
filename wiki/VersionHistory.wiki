@@ -7,6 +7,7 @@
  * fixed some joint constructors without rotation parameter
  * added wheel contact info (location,skid,object) to WheelInfo
  * added basic CompoundCollisionShape
+ * fixed setLocalScale()
 
 ==== 0.9.1 alpha ====
  * made setWorldRotation/Translation protected
