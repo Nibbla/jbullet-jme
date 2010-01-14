@@ -144,6 +144,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     private void applyTranslation() {
+        super.updateGeometricState(0, true);
         tempLocation.set(getWorldTranslation());
         gObject.getWorldTransform(tempTrans);
         Converter.convert(tempLocation,tempTrans.origin);
@@ -200,6 +201,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     private void applyRotation() {
+        super.updateGeometricState(0, true);
         tempRotation=getWorldRotation();
         Converter.convert(tempRotation, tempRot);
         gObject.getWorldTransform(tempTrans);
