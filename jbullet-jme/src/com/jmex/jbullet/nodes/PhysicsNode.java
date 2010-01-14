@@ -292,6 +292,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     private void applyTranslation() {
+        super.updateGeometricState(0, true);
         tempLocation.set(getWorldTranslation());
         rBody.getWorldTransform(tempTrans);
         Converter.convert(tempLocation,tempTrans.origin);
@@ -348,6 +349,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     private void applyRotation() {
+        super.updateGeometricState(0, true);
         tempRotation.set(getWorldRotation());
         Converter.convert(tempRotation, tempRot);
         rBody.getWorldTransform(tempTrans);
