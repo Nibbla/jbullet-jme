@@ -399,14 +399,18 @@ public class PhysicsNode extends CollisionObject{
     public void setLocalScale(float localScale) {
         super.setLocalScale(localScale);
         updateWorldBound();
-        collisionShape.setScale(new Vector3f(localScale,localScale,localScale));
+        updateGeometricState(0, true);
+        updateWorldBound();
+        collisionShape.setScale(getWorldScale());
     }
 
     @Override
     public void setLocalScale(Vector3f localScale) {
         super.setLocalScale(localScale);
         updateWorldBound();
-        collisionShape.setScale(localScale);
+        updateGeometricState(0, true);
+        updateWorldBound();
+        collisionShape.setScale(getWorldScale());
     }
 
     public float getMass() {

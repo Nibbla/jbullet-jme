@@ -76,7 +76,6 @@ public class MeshCollisionShape extends CollisionShape{
         }
         if(node.getChild(0) instanceof TriMesh){
             TriMesh mesh=(TriMesh)node.getChild(0);
-//            mesh.setL
             createCollisionMesh(mesh);
         }
         else{
@@ -86,6 +85,7 @@ public class MeshCollisionShape extends CollisionShape{
 
     private void createCollisionMesh(TriMesh mesh){
         cShape=new BvhTriangleMeshShape(Converter.convert(mesh),true);
+        cShape.setLocalScaling(Converter.convert(mesh.getWorldScale()));
         type=ShapeTypes.MESH;
     }
 
