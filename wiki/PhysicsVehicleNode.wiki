@@ -3,6 +3,9 @@ This special PhysicsNode represents a vehicle in the physics space and can have 
 ==Adding a wheel==
 When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and its axes/radius etc. then the spatial will act like the wheel of the vehicle.
 
+==Accessing wheels==
+To access a single wheel, for example to set its current friction or steering value, you can use the physicsVehicleNode.getWheelInfo(int wheelNumber) method. You will get a WheelInfo object that you can use to get and set info on the wheel.
+
 ==Links==
 [http://docs.google.com/Doc?docid=0AXVUZ5xw6XpKZGNuZG56a3FfMzU0Z2NyZnF4Zmo&hl=en&pli=1 Some general notes on bullet vehicles (not all applicable to jbullet-jme)]
 
