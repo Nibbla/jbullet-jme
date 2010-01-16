@@ -268,7 +268,7 @@ public abstract class PhysicsSpace {
     /**
      * updates the physics space, uses maxSteps<br>
      * @param time the current time value
-     * @param maxSteps using values bigger than one effectively increases physics speed
+     * @param maxSteps
      */
     public void update(float time, int maxSteps){
         if(getDynamicsWorld()==null) return;
