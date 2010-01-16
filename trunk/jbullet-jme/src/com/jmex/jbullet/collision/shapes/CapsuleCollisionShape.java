@@ -32,6 +32,8 @@
 package com.jmex.jbullet.collision.shapes;
 
 import com.bulletphysics.collision.shapes.CapsuleShape;
+import com.bulletphysics.collision.shapes.CapsuleShapeX;
+import com.bulletphysics.collision.shapes.CapsuleShapeZ;
 import com.jme.bounding.BoundingCapsule;
 import com.jme.math.FastMath;
 import com.jme.scene.Node;
@@ -70,6 +72,27 @@ public class CapsuleCollisionShape extends CollisionShape{
         CapsuleShape capShape=new CapsuleShape(radius,height);
         cShape=capShape;
         type=ShapeTypes.CAPSULE;
+    }
+
+    /**
+     * Creates a capsule shape around the given axis (0=X,1=Y,2=Z)
+     * @param radius
+     * @param height
+     * @param axis
+     */
+    public CapsuleCollisionShape(float radius, float height, int axis) {
+        switch(axis){
+            case 0:
+                cShape=new CapsuleShapeX(radius,height);
+            break;
+            case 1:
+                cShape=new CapsuleShape(radius,height);
+            break;
+            case 2:
+                cShape=new CapsuleShapeZ(radius,height);
+            break;
+        }
+        type=ShapeTypes.CYLINDER;
     }
 
     private void createCollisionCapsule(Node node) {
