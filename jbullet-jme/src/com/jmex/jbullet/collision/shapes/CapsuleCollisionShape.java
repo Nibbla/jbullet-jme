@@ -92,7 +92,7 @@ public class CapsuleCollisionShape extends CollisionShape{
                 cShape=new CapsuleShapeZ(radius,height);
             break;
         }
-        type=ShapeTypes.CYLINDER;
+        type=ShapeTypes.CAPSULE;
     }
 
     private void createCollisionCapsule(Node node) {
