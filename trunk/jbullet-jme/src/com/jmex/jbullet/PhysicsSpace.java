@@ -103,6 +103,7 @@ public abstract class PhysicsSpace {
 
     private Vector3f worldMin = new Vector3f(-10000f,-10000f,-10000f);
     private Vector3f worldMax = new Vector3f(10000f,10000f,10000f);
+    private float accuracy=1f/60f;
 
     /**
      * Get the current PhysicsSpace or create a new standard PhysicsSpace
@@ -277,13 +278,21 @@ public abstract class PhysicsSpace {
         //execute queue
         pQueue.execute();
         //step simulation
-        getDynamicsWorld().stepSimulation(time,maxSteps);
+        getDynamicsWorld().stepSimulation(time,maxSteps,accuracy);
         //sync ghostnodes
         for ( PhysicsGhostNode node : physicsGhostNodes.values() ){
             node.syncPhysics();
         }
         //distribute events
         distributeEvents();
+    }
+
+    public float getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(float accuracy) {
+        this.accuracy = accuracy;
     }
 
     private void distributeEvents() {
