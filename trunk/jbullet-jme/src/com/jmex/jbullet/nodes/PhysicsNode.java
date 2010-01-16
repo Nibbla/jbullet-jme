@@ -488,6 +488,22 @@ public class PhysicsNode extends CollisionObject{
         rBody.setAngularVelocity(Converter.convert(vec));
     }
 
+    public Vector3f getLinearVelocity(){
+        return Converter.convert(rBody.getLinearVelocity(tempVel));
+    }
+
+    public void getLinearVelocity(Vector3f vec){
+        Converter.convert(rBody.getLinearVelocity(tempVel),vec);
+    }
+
+    /**
+     * sets the linear velocity of this PhysicsNode
+     * @param vec the angular velocity of this PhysicsNode
+     */
+    public void setLinearVelocity(Vector3f vec){
+        rBody.setLinearVelocity(Converter.convert(vec));
+    }
+
     /**
      * get the currently applied continuous force
      * @param vec the vector to store the continuous force in
