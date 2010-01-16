@@ -271,8 +271,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the local translation of this node. The physics object will be updated accordingly
-     * in the next global physics update tick.
+     * Sets the local translation of this node.
      * @param arg0
      */
     @Override
@@ -282,8 +281,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the local translation of this node. The physics object will be updated accordingly
-     * in the next global physics update tick.
+     * Sets the local translation of this node.
      */
     @Override
     public void setLocalTranslation(float x, float y, float z) {
@@ -498,7 +496,7 @@ public class PhysicsNode extends CollisionObject{
 
     /**
      * sets the linear velocity of this PhysicsNode
-     * @param vec the angular velocity of this PhysicsNode
+     * @param vec the linear velocity of this PhysicsNode
      */
     public void setLinearVelocity(Vector3f vec){
         rBody.setLinearVelocity(Converter.convert(vec));
