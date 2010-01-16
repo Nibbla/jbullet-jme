@@ -406,7 +406,7 @@ public abstract class PhysicsSpace {
      * @param gravity
      */
     public void setGravity(Vector3f gravity){
-        pSpace.setGravity(gravity);
+        dynamicsWorld.setGravity(Converter.convert(gravity));
     }
 
     /**
