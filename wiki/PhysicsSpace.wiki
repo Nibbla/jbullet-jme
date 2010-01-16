@@ -9,5 +9,12 @@ You can add options to the getPhysicsSpace() method to improve the physics perfo
 == Adding physics objects ==
 In order for [PhysicsNode]s and [PhysicsJoint]s to work, they need to be added to the PhysicsSpace by calling physicsSpace.add(node);
 
+==Physics Speed==
+You can alter the physics speed my multiplying the supplied update time value with an arbitrary number.
+{{{
+public void update(float tpf){
+    physicsSpace.update(tpf*10);
+}
+}}}
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/PhysicsSpace.html
