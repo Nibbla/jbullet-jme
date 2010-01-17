@@ -2,6 +2,15 @@
 
 == Versions ==
 
+==== svn trunk ====
+ * some fixes in scale applying
+ * improved key management in vehicle and character tests
+ * fixed bug in PhysicsSpace.setGravity()
+ * added get/setLinearVelocity
+ * added CapsuleCollisionShape around X and Z axis
+ * added accuracy option to PhysicsSpace
+ * added Physics(Ghost)Node blank constructor
+
 ==== 0.9.2 alpha ====
  * added wheel contact info (location,skid,object) to WheelInfo
  * added basic CompoundCollisionShape
