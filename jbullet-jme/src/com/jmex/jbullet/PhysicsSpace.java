@@ -291,6 +291,10 @@ public abstract class PhysicsSpace {
         return accuracy;
     }
 
+    /**
+     * sets ths accuracy of the physics computation, default=1/60s<br>
+     * @param accuracy
+     */
     public void setAccuracy(float accuracy) {
         this.accuracy = accuracy;
     }
