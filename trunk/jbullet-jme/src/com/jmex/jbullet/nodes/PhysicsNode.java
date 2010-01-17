@@ -120,6 +120,13 @@ public class PhysicsNode extends CollisionObject{
     private boolean applyForce=false;
     private boolean applyTorque=false;
 
+    public PhysicsNode(){
+        motionState=createMotionState();
+        collisionShape=new BoxCollisionShape(new Vector3f(0.5f,0.5f,0.5f));
+        motionState=createMotionState();
+        rebuildRigidBody();
+    }
+
     /**
      * Creates a new PhysicsNode with the supplied child node or geometry and
      * creates the standard sphere collision shape for that PhysicsNode<br>
