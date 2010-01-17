@@ -70,6 +70,11 @@ public class PhysicsGhostNode extends CollisionObject{
     protected com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
     protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
 
+    public PhysicsGhostNode() {
+        cShape=new SphereCollisionShape(0.5f);
+        buildObject();
+    }
+
     public PhysicsGhostNode(Spatial child, int shapeType) {
         this.attachChild(child);
         buildCollisionShape(shapeType);
