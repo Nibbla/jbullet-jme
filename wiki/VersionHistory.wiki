@@ -1,4 +1,5 @@
 #summary The version history of jbullet-jme
+#labels Featured
 
 == Versions ==
 
