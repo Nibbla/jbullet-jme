@@ -82,16 +82,18 @@ public class BoxCollisionShape extends CollisionShape{
         }
         if(!(node.getWorldBound() instanceof BoundingBox)){
             node.setModelBound(new BoundingBox());
-            node.updateGeometricState(0,true);
-            node.updateModelBound();
-            node.updateWorldBound();
         }
+        node.updateGeometricState(0,true);
+        node.updateModelBound();
+        node.updateWorldBound();
         BoundingBox volume=(BoundingBox)node.getWorldBound();
         createCollisionBox(volume);
     }
 
     private void createCollisionBox(BoundingBox volume) {
-        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
+        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent - volume.getCenter().x,
+                volume.yExtent - volume.getCenter().y,
+                volume.zExtent - volume.getCenter().z);
         BoxShape sphere=new BoxShape(halfExtents);
         cShape=sphere;
         type=ShapeTypes.BOX;

@@ -107,7 +107,9 @@ public class CylinderCollisionShape extends CollisionShape{
     }
 
     private void createCollisionCylinder(BoundingBox volume){
-        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent,volume.yExtent,volume.zExtent);
+        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent - volume.getCenter().x,
+                volume.yExtent - volume.getCenter().y,
+                volume.zExtent - volume.getCenter().z);
         CylinderShapeZ capShape=new CylinderShapeZ(halfExtents);
         cShape=capShape;
         type=ShapeTypes.CYLINDER;
