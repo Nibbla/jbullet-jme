@@ -11,6 +11,7 @@
  * added CapsuleCollisionShape around X and Z axis
  * added accuracy option to PhysicsSpace
  * added Physics(Ghost)Node blank constructor
+ * fixed CollisionShape generation from BoundingVolumes with center!=0
 
 ==== 0.9.2 alpha ====
  * added wheel contact info (location,skid,object) to WheelInfo
