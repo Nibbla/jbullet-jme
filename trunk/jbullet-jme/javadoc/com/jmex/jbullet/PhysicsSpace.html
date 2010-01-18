@@ -212,6 +212,14 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#getAccuracy()">getAccuracy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.bulletphysics.dynamics.DynamicsWorld</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#getDynamicsWorld()">getDynamicsWorld</A></B>()</CODE>
 
@@ -280,6 +288,14 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enqueues a Callable in the update queue in the next update call
  (added to avoid loops in update queue)</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#setAccuracy(float)">setAccuracy</A></B>(float&nbsp;accuracy)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets ths accuracy of the physics computation, default=1/60s<br></TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -457,7 +473,31 @@ public void <B>update</B>(float&nbsp;time,
 <DD>updates the physics space, uses maxSteps<br>
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>time</CODE> - the current time value<DD><CODE>maxSteps</CODE> - using values bigger than one effectively increases physics speed</DL>
+<DT><B>Parameters:</B><DD><CODE>time</CODE> - the current time value<DD><CODE>maxSteps</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getAccuracy()"><!-- --></A><H3>
+getAccuracy</H3>
+<PRE>
+public float <B>getAccuracy</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setAccuracy(float)"><!-- --></A><H3>
+setAccuracy</H3>
+<PRE>
+public void <B>setAccuracy</B>(float&nbsp;accuracy)</PRE>
+<DL>
+<DD>sets ths accuracy of the physics computation, default=1/60s<br>
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>accuracy</CODE> - </DL>
 </DD>
 </DL>
 <HR>

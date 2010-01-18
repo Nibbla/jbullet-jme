@@ -188,6 +188,12 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode()">PhysicsNode</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
 
 <BR>
@@ -380,6 +386,22 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLinearVelocity()">getLinearVelocity</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLinearVelocity(com.jme.math.Vector3f)">getLinearVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Quaternion</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalRotation()">getLocalRotation</A></B>()</CODE>
 
@@ -493,6 +515,14 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the gravity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLinearVelocity(com.jme.math.Vector3f)">setLinearVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the linear velocity of this PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -618,6 +648,14 @@ java.lang.Object
 </TR>
 </TABLE>
 
+<A NAME="PhysicsNode()"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>()</PRE>
+<DL>
+</DL>
+<HR>
+
 <A NAME="PhysicsNode(com.jme.scene.Spatial)"><!-- --></A><H3>
 PhysicsNode</H3>
 <PRE>
@@ -721,8 +759,7 @@ setLocalTranslation</H3>
 <PRE>
 public void <B>setLocalTranslation</B>(com.jme.math.Vector3f&nbsp;arg0)</PRE>
 <DL>
-<DD>Sets the local translation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
+<DD>Sets the local translation of this node.
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -740,8 +777,7 @@ public void <B>setLocalTranslation</B>(float&nbsp;x,
                                 float&nbsp;y,
                                 float&nbsp;z)</PRE>
 <DL>
-<DD>Sets the local translation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
+<DD>Sets the local translation of this node.
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -1015,6 +1051,41 @@ public void <B>setAngularVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>vec</CODE> - the angular velocity of this PhysicsNode</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLinearVelocity()"><!-- --></A><H3>
+getLinearVelocity</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getLinearVelocity</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLinearVelocity(com.jme.math.Vector3f)"><!-- --></A><H3>
+getLinearVelocity</H3>
+<PRE>
+public void <B>getLinearVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLinearVelocity(com.jme.math.Vector3f)"><!-- --></A><H3>
+setLinearVelocity</H3>
+<PRE>
+public void <B>setLinearVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>sets the linear velocity of this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the linear velocity of this PhysicsNode</DL>
 </DD>
 </DL>
 <HR>
