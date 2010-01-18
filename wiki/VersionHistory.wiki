@@ -3,7 +3,7 @@
 
 == Versions ==
 
-==== svn trunk ====
+==== 0.9.3 alpha ====
  * some fixes in scale applying
  * improved key management in vehicle and character tests
  * fixed bug in PhysicsSpace.setGravity()
