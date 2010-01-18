@@ -23,6 +23,8 @@ To use the new library in your project:
  * Select jbullet-jme from the list and press OK
 
 == Building ==
+If you want the cutting edge of jbullet-jme development, you can build the current svn version yourself.
+
 Using SVN, you can download the most current development version of jbullet-jme like this:
 {{{
 svn checkout http://jbullet-jme.googlecode.com/svn/trunk/ jbullet-jme-read-only
