@@ -10,7 +10,8 @@ You can add options to the getPhysicsSpace() method to improve the physics perfo
 {{{
 Vector3f worldMin=new Vector3f(-1000,-1000,-1000);
 Vector3f worldMax=new Vector3f(1000,1000,1000);
-PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace(worldMin, worldMax, PhysicsSpace.BroadphaseTypes.AXIS_SWEEP_3);
+PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace(worldMin, worldMax, 
+                        PhysicsSpace.BroadphaseTypes.AXIS_SWEEP_3);
 }}}
 == Updating the PhysicsSpace ==
 To update the physics space you need to call the update(float time) method in your jme gamestate.
