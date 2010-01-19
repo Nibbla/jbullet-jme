@@ -230,7 +230,7 @@ public class TestSimplePhysicsCar{
                 if(physicsCar.getContinuousForce()==null)
                     physicsCar.applyContinuousForce(true, Vector3f.UNIT_Y.mult(10));
                 else
-                    physicsCar.applyContinuousForce(false, Vector3f.UNIT_Y.mult(10));
+                    physicsCar.applyContinuousForce(false);
             }
             else{
 
