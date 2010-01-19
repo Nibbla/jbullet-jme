@@ -248,11 +248,46 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyCentralForce(com.jme.math.Vector3f)">applyCentralForce</A></B>(com.jme.math.Vector3f&nbsp;force)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean)">applyContinuousForce</A></B>(boolean&nbsp;apply)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use to enable/disable continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)">applyContinuousForce</A></B>(boolean&nbsp;apply,
-                     com.jme.math.Vector3f&nbsp;vec)</CODE>
+                     com.jme.math.Vector3f&nbsp;force)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply a continuous force to this PhysicsNode.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f, com.jme.math.Vector3f)">applyContinuousForce</A></B>(boolean&nbsp;apply,
+                     com.jme.math.Vector3f&nbsp;force,
+                     com.jme.math.Vector3f&nbsp;location)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply a continuous force to this PhysicsNode.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean)">applyContinuousTorque</A></B>(boolean&nbsp;apply)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use to enable/disable continuous torque</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -266,11 +301,30 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyForce(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyForce</A></B>(com.jme.math.Vector3f&nbsp;force,
+           com.jme.math.Vector3f&nbsp;location)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A></B>(com.jme.math.Vector3f&nbsp;vec,
              com.jme.math.Vector3f&nbsp;vec2)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply an impulse to the PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyTorque(com.jme.math.Vector3f)">applyTorque</A></B>(com.jme.math.Vector3f&nbsp;torque)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a torque to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousTorque to apply continuous torque</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -351,6 +405,14 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForceLocation()">getContinuousForceLocation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous force location</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -588,7 +650,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setRestitution(float)">setRestitution</A></B>(float&nbsp;restitution)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;best performance if restitution=0</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the "bouncyness" of the PhysicsNode
+ best performance if restitution=0</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -1012,7 +1075,8 @@ setRestitution</H3>
 <PRE>
 public void <B>setRestitution</B>(float&nbsp;restitution)</PRE>
 <DL>
-<DD>best performance if restitution=0
+<DD>the "bouncyness" of the PhysicsNode
+ best performance if restitution=0
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>restitution</CODE> - </DL>
@@ -1118,18 +1182,62 @@ public com.jme.math.Vector3f <B>getContinuousForce</B>()</PRE>
 </DL>
 <HR>
 
+<A NAME="getContinuousForceLocation()"><!-- --></A><H3>
+getContinuousForceLocation</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousForceLocation</B>()</PRE>
+<DL>
+<DD>get the currently applied continuous force location
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>null if no force is applied</DL>
+</DD>
+</DL>
+<HR>
+
 <A NAME="applyContinuousForce(boolean, com.jme.math.Vector3f)"><!-- --></A><H3>
 applyContinuousForce</H3>
 <PRE>
 public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
-                                 com.jme.math.Vector3f&nbsp;vec)</PRE>
+                                 com.jme.math.Vector3f&nbsp;force)</PRE>
 <DL>
 <DD>Apply a continuous force to this PhysicsNode. The force is updated automatically each
  tick so you only need to set it once and then set it to false to stop applying
  the force.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>vec</CODE> - the vector of the force to apply</DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>force</CODE> - the vector of the force to apply</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousForce(boolean, com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyContinuousForce</H3>
+<PRE>
+public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
+                                 com.jme.math.Vector3f&nbsp;force,
+                                 com.jme.math.Vector3f&nbsp;location)</PRE>
+<DL>
+<DD>Apply a continuous force to this PhysicsNode. The force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>force</CODE> - the offset of the force</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousForce(boolean)"><!-- --></A><H3>
+applyContinuousForce</H3>
+<PRE>
+public void <B>applyContinuousForce</B>(boolean&nbsp;apply)</PRE>
+<DL>
+<DD>use to enable/disable continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - set to false to disable</DL>
 </DD>
 </DL>
 <HR>
@@ -1174,6 +1282,62 @@ public void <B>applyContinuousTorque</B>(boolean&nbsp;apply,
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>vec</CODE> - the vector of the force to apply</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousTorque(boolean)"><!-- --></A><H3>
+applyContinuousTorque</H3>
+<PRE>
+public void <B>applyContinuousTorque</B>(boolean&nbsp;apply)</PRE>
+<DL>
+<DD>use to enable/disable continuous torque
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - set to false to disable</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyForce(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyForce</H3>
+<PRE>
+public void <B>applyForce</B>(com.jme.math.Vector3f&nbsp;force,
+                       com.jme.math.Vector3f&nbsp;location)</PRE>
+<DL>
+<DD>apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>force</CODE> - the force<DD><CODE>location</CODE> - the location of the force</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyCentralForce(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyCentralForce</H3>
+<PRE>
+public void <B>applyCentralForce</B>(com.jme.math.Vector3f&nbsp;force)</PRE>
+<DL>
+<DD>apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>force</CODE> - the force</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyTorque(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyTorque</H3>
+<PRE>
+public void <B>applyTorque</B>(com.jme.math.Vector3f&nbsp;torque)</PRE>
+<DL>
+<DD>apply a torque to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousTorque to apply continuous torque
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>torque</CODE> - the torque</DL>
 </DD>
 </DL>
 <HR>

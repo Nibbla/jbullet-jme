@@ -240,6 +240,7 @@ public class WheelInfo {
         wheelInfo.maxSuspensionTravelCm = maxSuspensionTravelCm;
         wheelInfo.wheelsRadius = radius;
         wheelInfo.bIsFrontWheel = frontWheel;
+        wheelInfo.suspensionRestLength1=restLength;
     }
 
     public void syncPhysics(){
@@ -253,9 +254,9 @@ public class WheelInfo {
         tempRotation.set( parent.getWorldRotation()).inverseLocal().multLocal( spatial.getLocalTranslation() );
 
         //SET ROTATION
-        tempRotation2.fromRotationMatrix(tempMatrix);
         Quaternion myRot=spatial.getLocalRotation();
-        tempRotation.set(parent.getWorldRotation()).inverseLocal().mult(tempRotation2,myRot);
+        myRot.fromRotationMatrix(tempMatrix);
+        tempRotation.set(parent.getWorldRotation()).inverseLocal().mult(myRot,myRot);
     }
 
     public float getRadius() {
