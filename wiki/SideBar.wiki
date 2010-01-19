@@ -9,6 +9,7 @@
   * [PhysicsCharacterNode]
   * [PhysicsJoint]
   * [CollisionShapes]
+  * [CenterOfMass]
   * [Terrain]
   * [Multithreading]
  * Examples
