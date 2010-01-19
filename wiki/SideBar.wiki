@@ -5,8 +5,8 @@
  * Manual
   * [PhysicsSpace]
   * [PhysicsNode]
+   * [CollisionShapes]
    * [CenterOfMass]
-  * [CollisionShapes]
   * [PhysicsJoint]
   * [PhysicsVehicleNode]
   * [PhysicsCharacterNode]
