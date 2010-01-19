@@ -1,6 +1,13 @@
 #summary How collision shapes work in jbullet-jme
 
-A CollisionShape defines the physics shape of a PhysicsNode
+A CollisionShape defines the physics shape of a PhysicsNode, possible shapes are:
+
+ * Box
+ * Sphere
+ * Capsule
+ * Cylinder
+ * Compound (combines shapes)
+ * Mesh (world only)
 
 == From scratch ==
 You can create a CollisionShape object and use that when constructing a PhysicsNode, this way it is possible to reuse that CollisionShape
