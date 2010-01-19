@@ -24,6 +24,8 @@ compound.addChildShape(boxCollisionShape2, new Vector3f(0,0,0));
 }}}
 
 ==Notes==
+It is advised to reuse CollisionShapes as often as possible. It is not necessary to create a new collision shape for every 1x1x1 box in your world. You can use just one CollisionShape for multiple PhysicsNodes.
+
 Currently, PhysicsNodes with mesh collision shape do not collide with other mesh PhysicsNodes, so mesh shapes are mostly to be used for static objects (floor/world) while box/sphere etc. shapes should be used for mobile objects.
 
 == JavaDoc ==
