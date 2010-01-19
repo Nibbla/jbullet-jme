@@ -12,6 +12,9 @@ If you want the shape to be different than the auto-generated one, you can set a
 
 to be extended..
 
+== CompoundCollisionShape ==
+A CompoundCollisionShape combines multiple other collision shapes to define more detailed collision shapes.
+
 ==Notes==
 Currently, PhysicsNodes with mesh collision shape do not collide with other mesh PhysicsNodes, so mesh shapes are mostly to be used for static objects (floor/world) while box/sphere etc. shapes should be used for mobile objects.
 
