@@ -6,6 +6,9 @@ When adding a wheel you have to specify the jme spatial that acts as the wheel, 
 ==Accessing wheels==
 To access a single wheel, for example to set its current friction or steering value, you can use the physicsVehicleNode.getWheelInfo(int wheelNumber) method. You will get a WheelInfo object that you can use to get and set info on the wheel.
 
+==Shifting the center of mass==
+See [CenterOfMass]
+
 ==Links==
 [http://docs.google.com/Doc?docid=0AXVUZ5xw6XpKZGNuZG56a3FfMzU0Z2NyZnF4Zmo&hl=en&pli=1 Some general notes on bullet vehicles (not all applicable to jbullet-jme)]
 
