@@ -8,8 +8,8 @@
    * [CollisionShapes]
    * [CenterOfMass]
   * [PhysicsJoint]
-  * [PhysicsVehicleNode]
-  * [PhysicsCharacterNode]
+  * [PhysicsVehicleNode Vehicles]
+  * [PhysicsCharacterNode Characters]
   * [Terrain]
   * [Multithreading]
  * Examples
