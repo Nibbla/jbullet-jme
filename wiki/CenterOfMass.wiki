@@ -12,7 +12,7 @@ http://jbullet-jme.googlecode.com/svn/wiki/images/MassOffset.jpg
 In this example the effective center of mass of the BoxCollisionShape is shifted down 1 unit.
 
 ==Shifting the meshes accordingly==
-Since the center of the PhysicsNode itself is at the center of the whole CompoundCollisionShape, you will have to shift the child spatial (e.g. mesh) that is belonging to the PhysicsNode as well to have it behave correctly.
+Since the center of the CompoundCollisionShape is at the center of the PhysicsNode, you will have to shift the child spatial (e.g. mesh) that is belonging to the PhysicsNode as well to have it behave correctly.
 
 {{{
 mesh.setLocalTranslation(0,1,0);
