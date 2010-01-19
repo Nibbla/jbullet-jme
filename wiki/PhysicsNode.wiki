@@ -7,5 +7,8 @@ Normally, the localTranslation/Rotation of the attached spatial should always be
 
 PhysicsNodes with mass=0 are static and do not move.
 
+==Shifting the center of mass==
+See [CenterOfMass]
+
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsNode.html
