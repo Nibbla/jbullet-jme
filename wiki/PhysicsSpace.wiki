@@ -2,15 +2,22 @@
 The PhysicsSpace defines the basic physics world in jbullet-jme. Things such as global gravity etc. are set here and all [PhysicsNode]s are added here.
 
 == Creating the PhysicsSpace ==
-The PhysicsSpace needs to be started by getting a PhysicsSpace Object with PhysicsSpace.getPhysicsSpace() and updated by calling the update(float time) method.
-
+The PhysicsSpace needs to be started by getting a PhysicsSpace Object with PhysicsSpace.getPhysicsSpace().
 You can add options to the getPhysicsSpace() method to improve the physics performance.
+{{{
+PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+}}}
 
-== Adding physics objects ==
-In order for [PhysicsNode]s and [PhysicsJoint]s to work, they need to be added to the PhysicsSpace by calling physicsSpace.add(node);
+== Updating the PhysicsSpace ==
+To update the physics space you need to call the update(float time) method in your jme gamestate.
+{{{
+public void update(float tpf){
+    physicsSpace.update(tpf*10);
+}
+}}}
 
 ==Physics Speed==
-You can alter the physics speed my multiplying the supplied update time value with an arbitrary number.
+You can alter the physics speed my multiplying the supplied update time value with an arbitrary number (not recommended).
 {{{
 public void update(float tpf){
     physicsSpace.update(tpf*10);
