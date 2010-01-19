@@ -5,11 +5,11 @@
  * Manual
   * [PhysicsSpace]
   * [PhysicsNode]
+   * [CenterOfMass]
+  * [CollisionShapes]
+  * [PhysicsJoint]
   * [PhysicsVehicleNode]
   * [PhysicsCharacterNode]
-  * [PhysicsJoint]
-  * [CollisionShapes]
-  * [CenterOfMass]
   * [Terrain]
   * [Multithreading]
  * Examples
