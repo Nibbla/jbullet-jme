@@ -15,6 +15,7 @@ Still, wrapping jbullet like its done here keeps the possibility of developing a
   * Sphere
   * Capsule
   * Cylinder
+  * Compound
   * Mesh
  * [PhysicsJoint Joints]
   * HingeJoint (incl. motors)
