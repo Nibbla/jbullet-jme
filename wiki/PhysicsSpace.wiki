@@ -22,7 +22,7 @@ public void update(float tpf){
 }}}
 
 ===Physics Settings===
-You can alter the physics accuracy with the physicsSpace.setAccuracy(float acc) method. The standard accuracy is 1f/60f (60 fps). Setting too low values results in 
+You can alter the physics accuracy with the physicsSpace.setAccuracy(float acc) method. The standard accuracy is 1f/60f (60 fps). Setting too low values results in, well.. inaccurate physics :)
 {{{
 //trading lower accuracy for higher performance
 physicsSpace.setAccuracy(1f/30f);
