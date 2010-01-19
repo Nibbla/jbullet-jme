@@ -14,7 +14,7 @@ PhysicsNode physicsSphere=new PhysicsNode(sphere, CollisionShape.ShapeTypes.SPHE
 In order for [PhysicsNode]s and [PhysicsJoint]s to work, they need to be added to the PhysicsSpace and to the jme scenegraph.
 {{{
 //Add sphere to physics space
-pSpace.add(physicsSphere);
+PhysicsSpace.getPhysicsSpace().add(physicsSphere);
 //Add sphere to jme scenegraph
 getRootNode().attachChild(physicsSphere);
 physicsSphere.updateRenderState();
