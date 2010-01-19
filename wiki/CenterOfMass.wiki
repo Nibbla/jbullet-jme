@@ -16,6 +16,6 @@ Since the center of the PhysicsNode itself is at the center of the whole Compoun
 
 {{{
 mesh.setLocalTranslation(0,1,0);
-PhysicsNode pNode=new PhysicsNode(mesh,boxCollisionShape);
+PhysicsNode pNode=new PhysicsNode(mesh, compoundCollisionShape);
 }}}
 http://jbullet-jme.googlecode.com/svn/wiki/images/MassOffset2.jpg
