@@ -22,6 +22,7 @@ public void update(float tpf){
     physicsSpace.update(tpf);
 }
 }}}
+You can alter the physics speed by multiplying the supplied update time value with an arbitrary number (not recommended).
 
 ===Physics Settings===
 You can alter the physics accuracy with the physicsSpace.setAccuracy(float acc) method. The standard accuracy is 1f/60f (60 fps). Setting too low values results in, well.. inaccurate physics :)
@@ -29,8 +30,6 @@ You can alter the physics accuracy with the physicsSpace.setAccuracy(float acc) 
 //trading lower accuracy for higher performance
 physicsSpace.setAccuracy(1f/30f);
 }}}
-
-You can alter the physics speed by multiplying the supplied update time value with an arbitrary number (not recommended).
 
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/PhysicsSpace.html
