@@ -21,6 +21,7 @@ BoxCollisionShape boxCollisionShape=new BoxCollisionShape(new Vector3f(0.5f,0.5f
 BoxCollisionShape boxCollisionShape2=new BoxCollisionShape(new Vector3f(2f,0.5f,2f));
 compound.addChildShape(boxCollisionShape, new Vector3f(0,1,0));
 compound.addChildShape(boxCollisionShape2, new Vector3f(0,0,0));
+PhysicsNode pNode=new PhysicsNode(mesh, compoundCollisionShape);
 }}}
 
 ==Notes==
