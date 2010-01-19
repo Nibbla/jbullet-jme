@@ -1,7 +1,7 @@
 #summary How center of mass is implemented in bullet
 
 ==Shifting the center of mass==
-If you want to shift the center of mass of a PhysicsNode, you will have to create a CompoundCollisionShape and attach the real CollisionShape for the PhysicsNode to it with an offset.
+If you want to shift the center of mass of a PhysicsNode or PhysicsVehicleNode, you will have to create a CompoundCollisionShape and attach the real CollisionShape for the PhysicsNode to it with an offset.
 {{{
 CompoundCollisionShape compoundCollisionShape=new CompoundCollisionShape();
 BoxCollisionShape boxCollisionShape=new BoxCollisionShape(new Vector3f(0.5f,0.5f,0.5f));
