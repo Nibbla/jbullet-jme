@@ -114,6 +114,7 @@ public class PhysicsNode extends CollisionObject{
     protected Transform motionStateTrans=new Transform();
 
     private Vector3f continuousForce=new Vector3f();
+    private Vector3f continuousForceLocation=new Vector3f();
     private Vector3f continuousTorque=new Vector3f();
 
     protected GameTaskQueue pQueue=GameTaskQueueManager.getManager().getQueue("jbullet_update");
@@ -469,6 +470,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
+     * the "bouncyness" of the PhysicsNode
      * best performance if restitution=0
      * @param restitution
      */
@@ -533,24 +535,63 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
+     * get the currently applied continuous force location
+     * @return null if no force is applied
+     */
+    public Vector3f getContinuousForceLocation(){
+        if(applyForce)
+            return continuousForceLocation;
+        else
+            return null;
+    }
+
+    /**
      * Apply a continuous force to this PhysicsNode. The force is updated automatically each
      * tick so you only need to set it once and then set it to false to stop applying
      * the force.
      * @param apply true if the force should be applied each physics tick
-     * @param vec the vector of the force to apply
+     * @param force the vector of the force to apply
      */
-    public void applyContinuousForce(boolean apply, Vector3f vec){
-        if(vec!=null) continuousForce.set(vec);
+    public void applyContinuousForce(boolean apply, Vector3f force){
+        if(force!=null) continuousForce.set(force);
+        continuousForceLocation.set(0,0,0);
         if(!applyForce&&apply)
             pQueue.enqueue(doApplyContinuousForce);
         applyForce=apply;
 
     }
 
+    /**
+     * Apply a continuous force to this PhysicsNode. The force is updated automatically each
+     * tick so you only need to set it once and then set it to false to stop applying
+     * the force.
+     * @param apply true if the force should be applied each physics tick
+     * @param force the offset of the force
+     */
+    public void applyContinuousForce(boolean apply, Vector3f force, Vector3f location){
+        if(force!=null) continuousForce.set(force);
+        if(location!=null) continuousForceLocation.set(location);
+        if(!applyForce&&apply)
+            pQueue.enqueue(doApplyContinuousForce);
+        applyForce=apply;
+
+    }
+
+    /**
+     * use to enable/disable continuous force
+     * @param apply set to false to disable
+     */
+    public void applyContinuousForce(boolean apply){
+        if(!applyForce&&apply)
+            pQueue.enqueue(doApplyContinuousForce);
+        applyForce=apply;
+    }
+
     private Callable doApplyContinuousForce=new Callable(){
         public Object call() throws Exception {
             //TODO: reuse vector
-            rBody.applyCentralForce(Converter.convert(continuousForce));
+            rBody.applyForce(Converter.convert(continuousForce)
+                    ,Converter.convert(continuousForceLocation));
             if(applyForce){
                 PhysicsSpace.getPhysicsSpace().reQueue(doApplyContinuousForce);
             }
@@ -597,6 +638,17 @@ public class PhysicsNode extends CollisionObject{
         applyTorque=apply;
     }
 
+    /**
+     * use to enable/disable continuous torque
+     * @param apply set to false to disable
+     */
+    public void applyContinuousTorque(boolean apply){
+        if(!applyTorque&&apply){
+            pQueue.enqueue(doApplyContinuousTorque);
+        }
+        applyTorque=apply;
+    }
+
     private Callable doApplyContinuousTorque=new Callable(){
         public Object call() throws Exception {
             //TODO: reuse vector
@@ -610,11 +662,43 @@ public class PhysicsNode extends CollisionObject{
     };
 
     /**
+     * apply a force to the PhysicsNode, only applies force in the next physics tick,
+     * use applyContinuousForce to apply continuous force
+     * @param force the force
+     * @param location the location of the force
+     */
+    public void applyForce(Vector3f force, Vector3f location){
+        //TODO: reuse vector!
+        rBody.applyForce(Converter.convert(force), Converter.convert(location));
+    }
+
+    /**
+     * apply a force to the PhysicsNode, only applies force in the next physics tick,
+     * use applyContinuousForce to apply continuous force
+     * @param force the force
+     */
+    public void applyCentralForce(Vector3f force){
+        //TODO: reuse vector!
+        rBody.applyCentralForce(Converter.convert(force));
+    }
+
+    /**
+     * apply a torque to the PhysicsNode, only applies force in the next physics tick,
+     * use applyContinuousTorque to apply continuous torque
+     * @param torque the torque
+     */
+    public void applyTorque(Vector3f torque){
+        //TODO: reuse vector!
+        rBody.applyTorque(Converter.convert(torque));
+    }
+
+    /**
      * apply an impulse to the PhysicsNode
      * @param vec
      * @param vec2
      */
     public void applyImpulse(Vector3f vec, Vector3f vec2){
+        //TODO: reuse vector!
         rBody.applyImpulse(Converter.convert(vec), Converter.convert(vec2));
     }
 
@@ -623,6 +707,7 @@ public class PhysicsNode extends CollisionObject{
      * @param vec
      */
     public void applyTorqueImpulse(Vector3f vec){
+        //TODO: reuse vector!
         rBody.applyTorqueImpulse(Converter.convert(vec));
     }
 
