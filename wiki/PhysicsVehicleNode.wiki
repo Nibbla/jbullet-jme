@@ -17,16 +17,16 @@ Vector3f wheelAxle=new Vector3f(-1,0,0);
 // Create four wheels and add them at their locations
 Sphere wheel=new Sphere("wheel",8,8,0.5f);
 physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,2f),
-      wheelDirection, wheelAxle, 0.2f, 0.5f, true);
+                wheelDirection, wheelAxle, 0.2f, 0.5f, true);
 wheel=new Sphere("wheel",8,8,0.5f);
 physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,2f),
-      wheelDirection, wheelAxle, 0.2f, 0.5f, true);
+                wheelDirection, wheelAxle, 0.2f, 0.5f, true);
 wheel=new Sphere("wheel",8,8,0.5f);
 physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,-2f),
-      wheelDirection, wheelAxle, 0.2f, 0.5f, false);
+                wheelDirection, wheelAxle, 0.2f, 0.5f, false);
 wheel=new Sphere("wheel",8,8,0.5f);
 physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,-2f),
-      wheelDirection, wheelAxle, 0.2f, 0.5f, false);
+                wheelDirection, wheelAxle, 0.2f, 0.5f, false);
 }}}
 
 ==Controlling the vehicle==
