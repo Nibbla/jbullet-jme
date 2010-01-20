@@ -1,10 +1,42 @@
 #summary Special PhysicsNode that represents a vehicle
 The PhysicsVehicleNode is a special PhysicsNode that represents a vehicle in the physics space and can have wheels and be controlled via acceleration, steering etc.
-==Adding a wheel==
-When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and its axes/radius etc. then the spatial will act like the wheel of the vehicle.
+
+==Creating a vehicle==
+Creating a basic Vehicle works like creating a PhysicsNode:
+{{{
+        // Add a physics vehicle to the world
+        Box box=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
+        physicsCar=new PhysicsVehicleNode(box,CollisionShape.ShapeTypes.BOX);
+}}}
+
+==Adding wheels==
+When adding a wheel you have to specify the jme spatial that acts as the wheel, its translation in respect to the car and the axes, rest length and radius of the wheel.
+{{{
+        Vector3f wheelDirection=new Vector3f(0,-1,0);
+        Vector3f wheelAxle=new Vector3f(-1,0,0);
+        // Create four wheels and add them at their locations
+        Sphere wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,2f), wheelDirection, wheelAxle, 0.2f, 0.5f, true);
+        wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,2f), wheelDirection, wheelAxle, 0.2f, 0.5f, true);
+        wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(-1f,-0.5f,-2f), wheelDirection, wheelAxle, 0.2f, 0.5f, false);
+        wheel=new Sphere("wheel",8,8,0.5f);
+        physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,-2f), wheelDirection, wheelAxle, 0.2f, 0.5f, false);
+}}}
+
+==Controlling the vehicle==
+The PhysicsVehicleNode has accelerate(float force) brake(float force) and steer(float angle) methods to control the vehicle. All of these work continuously, so they have to be set only once and the vehicle will accelerate/brake/steer until the value is changed.
 
 ==Accessing wheels==
 To access a single wheel, for example to get its current tracktion, you can use the physicsVehicleNode.getWheelInfo(int wheelNumber) method. You will get a WheelInfo object that you can use to get and set info on the wheel.
+{{{
+//play smoke animation at wheel contact location when wheel is sliding
+WheelInfo wheelInfo=physicsCar.getWheelInfo(0);
+if (wheelInfo.getSkidInfo() < 0.8f) {
+            playSmokeAnimation(wheelInfo.getCollisionLocation());
+}
+}}}
 
 ==Notes==
 ====Raycast Vehicle====
