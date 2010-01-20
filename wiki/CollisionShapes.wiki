@@ -13,6 +13,7 @@ A CollisionShape defines the physics shape of a PhysicsNode, possible shapes are
 You can create a CollisionShape object and use that when constructing a PhysicsNode, this way it is possible to reuse that CollisionShape
 {{{
 BoxCollisionShape boxCollisionShape=new BoxCollisionShape(new Vector3f(0.5f,0.5f,0.5f));
+PhysicsNode pNode=new PhysicsNode(mesh, boxCollisionShape);
 }}}
 
 == From BoundingVolume ==
