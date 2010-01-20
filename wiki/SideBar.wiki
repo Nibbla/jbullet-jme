@@ -4,6 +4,7 @@
  * [InstallingBuilding]
  * Manual
   * [PhysicsSpace]
+   * [CollisionEvents]
   * [PhysicsNode]
    * [CollisionShapes]
    * [CenterOfMass]
