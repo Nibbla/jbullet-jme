@@ -1,7 +1,7 @@
 #summary Developers guide for jbullet-jme
 
 == Introduction ==
-This page is intended for people who want to improve / extend jbullet-jme. To get access, log in with your googlecode account and send a message to normen667.
+This page is intended for people who want to improve / extend jbullet-jme. To get access, send your googlecode account info to normen667.
 
 == JAVA version ==
 jbullet-jme is a pretty straightforward jbullet wrapper that mostly encapsules jbullet objects in similar own objects and makes the methods of the jbullet objects accessible, mostly by mirroring them. So to understand jbullet-jme it is advised to look at jbullet / bullet.
