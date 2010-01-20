@@ -20,4 +20,4 @@ PhysicsSpace.getPhysicsSpace().add(terrainPhysicsNode);
 
 }}}
 
-You can of course use any other TriMesh as terrain or as world objects.
+You can of course use any other TriMesh (such as loaded models) as terrain or as world objects.
