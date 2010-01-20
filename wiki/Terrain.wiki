@@ -1,5 +1,5 @@
 #summary How to use jme terrains with jbullet-jme
-Terrain and World objects are PhysicsNodes with mass=0 and can have meshes as collision shape.
+Terrain and world objects are PhysicsNodes with mass=0 and can have meshes as collision shape.
 
 == Using Terrain ==
 TerrainBlocks are normal TriMeshes in jme so to have physics terrain, you create a PhysicsNode with a MeshCollisionShape and mass=0 for your TerrainBlock.
