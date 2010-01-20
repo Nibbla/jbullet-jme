@@ -1,8 +1,7 @@
 #summary How to use jme terrains with jbullet-jme
-== Introduction ==
+== Using Terrain ==
 TerrainBlocks are normal TriMeshes in jme so to have physics terrain, you create a PhysicsNode with a MeshCollisionShape and mass=0 for your TerrainBlock.
 
-== Example ==
 {{{
 RawHeightMap heightMap = new RawHeightMap(ActionGame.class
                 .getClassLoader().getResource("heights.raw"),
@@ -20,3 +19,5 @@ terrainPhysicsNode.rotateUpTo(new Vector3f(0,1,0));
 PhysicsSpace.getPhysicsSpace().add(terrainPhysicsNode);
 
 }}}
+
+You can of course use any other TriMesh as terrain or as world objects.
