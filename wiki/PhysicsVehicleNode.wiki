@@ -6,11 +6,26 @@ When adding a wheel you have to specify the jme spatial that acts as the wheel, 
 ==Accessing wheels==
 To access a single wheel, for example to get its current tracktion, you can use the physicsVehicleNode.getWheelInfo(int wheelNumber) method. You will get a WheelInfo object that you can use to get and set info on the wheel.
 
-==Shifting the center of mass==
+==Notes==
+====Raycast Vehicle====
+The ray cast vehicle consists works by casting a ray for each wheel.  Using the ray's intersection point, we can calculate the suspension length, and hence the suspension force.
+
+The rays should originate inside the vehicle chassis's CollisionShape.  Otherwise, the wheel can be projected through world geometry.
+
+Because rays are infinitely thin, it is possible for the wheel to fall through cracks in the geometry.
+
+====Shifting the center of mass====
 See [CenterOfMass]
 
-==Links==
-[http://docs.google.com/Doc?docid=0AXVUZ5xw6XpKZGNuZG56a3FfMzU0Z2NyZnF4Zmo&hl=en&pli=1 Some general notes on bullet vehicles (not all applicable to jbullet-jme)]
+====Suspension====
+Suspension is provided by the spring force plus a damping force.  The damping force stops the car from bouncing forever.  There are two coefficients for damping: one for spring compression, and one for spring relaxation.  In a real vehicle, the compression damping is set much lower than the relaxation damping.  This means, when the vehicle hits a bump, it won't be transmitted to the chassis, resulting in a smooth ride.
+Set the suspension damping as a fraction of critical damping: = k * 2.0 * btSqrt(m_suspensionStiffness), where k is the proportion of critical damping.  For more information, see http://en.wikipedia.org/wiki/Damping
+
+====Why are my wheels sinking through the ground?====
+The wheels sink through the ground when the suspension cannot support the weight of the vehicle.  You need to increase the suspension stiffness, max travel or suspension length.
+
+Infos mostly taken from:
+[http://docs.google.com/Doc?docid=0AXVUZ5xw6XpKZGNuZG56a3FfMzU0Z2NyZnF4Zmo&hl=en&pli=1 Some general notes on bullet vehicles by Kester Maddock]
 
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsVehicleNode.html
