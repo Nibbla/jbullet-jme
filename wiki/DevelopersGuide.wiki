@@ -9,7 +9,7 @@ jbullet-jme is a pretty straightforward jbullet wrapper that mostly encapsules j
 Some objects integrate functions of RigidBodys with Constraints, such as PhysicsVehicleNode or PhysicsCharacterNode.
 
 == Native version ==
-The beginnings of a native version are in the branches/bulet-jme-work svn folder.
+The beginnings of a native version are in the branches/bullet-jme-work svn folder.
 
 ====BulletJmeJavaMethods.cpp====
 This file contains the native methods of *all* bullet-jme java classes. Mostly it routes the calls to the created BulletJmePhysicsSpace object.
