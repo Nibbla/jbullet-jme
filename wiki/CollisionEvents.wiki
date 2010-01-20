@@ -4,12 +4,17 @@
 To receive information about collisions happening in the PhysicsSpace, your class has to implement the CollisionListener interface and the collision(CollisionEvent event) method. A CollisionEvent object contains all information about a collision.
 
 {{{
-public class myClass implements CollisionListener {
+public class MyClass implements CollisionListener {
     public void collision(CollisionEvent event){
         //get collision force
         float force=event.getAppliedImpulse();
     }
 }
+}}}
+
+Then you register your CollisionListener at the PhysicsSpace to receive CollisionEvents.
+{{{
+PhysicsSpace.getPhysicsSpace.addCollisionListener(new MyClass());
 }}}
 
 == JavaDoc ==
