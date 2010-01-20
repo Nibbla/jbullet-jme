@@ -2,6 +2,9 @@
 Terrain and world objects are PhysicsNodes with mass=0 and can have meshes as collision shape.
 
 == Using Terrain ==
+You can use any TriMesh (such as loaded models) as terrain or as world objects.
+
+== JME TerrainBlocks ==
 TerrainBlocks are normal TriMeshes in jme so to have physics terrain, you create a PhysicsNode with a MeshCollisionShape and mass=0 for your TerrainBlock.
 
 {{{
@@ -21,5 +24,3 @@ terrainPhysicsNode.rotateUpTo(new Vector3f(0,1,0));
 PhysicsSpace.getPhysicsSpace().add(terrainPhysicsNode);
 
 }}}
-
-You can of course use any other TriMesh (such as loaded models) as terrain or as world objects.
