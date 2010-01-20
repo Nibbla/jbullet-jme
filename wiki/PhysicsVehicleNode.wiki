@@ -30,10 +30,10 @@ physicsCar.addWheel(wheel, new Vector3f(1f,-0.5f,-2f),
 }}}
 
 ==Controlling the vehicle==
-The PhysicsVehicleNode has accelerate(float force) brake(float force) and steer(float angle) methods to control the vehicle. All of these work continuously, so they have to be set only once and the vehicle will accelerate/brake/steer until the value is changed.
+The PhysicsVehicleNode has accelerate(float force) brake(float force) and steer(float angle) methods to control the vehicle. All of these work continuously, so they have to be set only once and the vehicle will accelerate/brake/steer until the value is changed. Single wheels can be accessed through the vehicle methods as well.
 
-==Accessing wheels==
-To access a single wheel, for example to get its current tracktion, you can use the physicsVehicleNode.getWheelInfo(int wheelNumber) method. You will get a WheelInfo object that you can use to get and set info on the wheel.
+==Accessing wheel infos==
+To access a single wheels info, for example to get its current tracktion, you can use the physicsVehicleNode.getWheelInfo(int wheelNumber) method. You will get a WheelInfo object that you can use to get and set info on the wheel.
 {{{
 //play smoke animation at wheel contact location when wheel is sliding
 WheelInfo wheelInfo=physicsCar.getWheelInfo(0);
