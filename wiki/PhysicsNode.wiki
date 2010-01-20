@@ -11,7 +11,7 @@ Sphere sphere=new Sphere("physicssphere",16,16,1f);
 PhysicsNode physicsSphere=new PhysicsNode(sphere, CollisionShape.ShapeTypes.SPHERE);
 }}}
 == Adding physics objects to the PhysicsSpace ==
-In order for [PhysicsNode]s and [PhysicsJoint]s to work, they need to be added to the PhysicsSpace and to the jme scenegraph.
+In order for PhysicsNodes to work, they need to be added to the PhysicsSpace and to the jme scenegraph.
 {{{
 //Add sphere to physics space
 PhysicsSpace.getPhysicsSpace().add(physicsSphere);
