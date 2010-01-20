@@ -2,7 +2,7 @@
 #labels Phase-Design,Featured
 The aim of jbullet-jme is to simplify the use of jbullet and adapt it to jme2. jbullet is a physics library completely written in Java.
 
-jbullet-jme is similar to jmephysics2 in that it completely wraps a physics engine into its own set of objects. These objects integrate into the scenegraph of jme2 and are updated by the physics engine to move according to the physics.
+jbullet-jme is similar to jmephysics2 in that it wraps a physics engine into its own set of objects. These objects integrate into the scenegraph of jme2 and are updated by the physics engine to move according to the physics.
 
 Other than jmephysics2, which aims at integrating different physics engines in one wrapper library, jbullet-jme is pretty much a direct wrapper of jbullet. This allows using some of the special functions of bullet (like vehicles) and adds the possibility of developing a native bullet implementation of jbullet-jme in the future, supporting GPU use etc. (see Native_Version)
 
