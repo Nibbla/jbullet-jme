@@ -28,7 +28,7 @@ Other than jmephysics2, which aims at integrating different physics engines in o
  * [Multithreading GameTaskQueue] for optional multithreading
 
 == Bullet physics ==
-Since this wrapper is based on bullet physics, you might find help for some problems on the bullet phyiscs homepage: http://www.bulletphysics.org
+Since this wrapper is based on bullet physics, you might find help for some problems on the bullet physics homepage: http://www.bulletphysics.org
 
 == This wiki ==
 If you feel like some information is missing and you can put it together, please add a comment to the wiki page you'd like to extend containing the relevant info and it will be added to the wiki.
