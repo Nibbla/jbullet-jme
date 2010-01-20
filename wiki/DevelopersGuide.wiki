@@ -3,12 +3,10 @@
 == Introduction ==
 This page is intended for people who want to improve / extend jbullet-jme
 
+== JAVA version ==
 jbullet-jme is a pretty straightforward jbullet wrapper that mostly encapsules jbullet objects in similar own objects and makes the methods of the jbullet objects accessible, mostly by mirroring them. So to understand jbullet-jme it is advised to look at jbullet / bullet.
 
 Some objects integrate functions of RigidBodys with Constraints, such as PhysicsVehicleNode or PhysicsCharacterNode.
-
-== JAVA version ==
-TODO
 
 == Native version ==
 The beginnings of a native version are in the branches/bulet-jme-work svn folder.
