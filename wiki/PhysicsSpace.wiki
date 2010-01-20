@@ -13,7 +13,7 @@ Vector3f worldMax=new Vector3f(1000,1000,1000);
 PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace(worldMin, worldMax, 
                         PhysicsSpace.BroadphaseTypes.AXIS_SWEEP_3);
 }}}
-Note: after you have created a PhysicsSpace, the extended getPhysicsSpace method does not change the settings of the PhysicsSpace, you have to call physicsSpace.destroy() before to create a new PhysicsSpace with new settings.
+_Note: after you have created a PhysicsSpace, the extended getPhysicsSpace method does not change the settings of the PhysicsSpace, you have to call physicsSpace.destroy() before to create a new PhysicsSpace with new settings._
 
 == Updating the PhysicsSpace ==
 To update the physics space you need to call the update(float time) method in your jme gamestate.
