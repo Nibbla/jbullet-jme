@@ -2,7 +2,7 @@
 *Navigation*
  * [Introduction]
  * [InstallingBuilding]
- * Manual
+ * User Manual
   * [PhysicsSpace]
   * [PhysicsNode]
    * [CollisionShapes]
