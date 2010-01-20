@@ -8,7 +8,7 @@ Other than jmephysics2, which aims at integrating different physics engines in o
 
 ==Implemented Features==
  * [PhysicsNode PhysicsNodes] (RigidBodys)
- * applying forces
+ * Forces
  * CollisionShapes
   * Box
   * Sphere
