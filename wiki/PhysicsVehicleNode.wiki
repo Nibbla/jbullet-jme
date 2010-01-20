@@ -38,7 +38,7 @@ To access a single wheels info, for example to get its current tracktion, you ca
 //play smoke animation at wheel contact location when wheel is sliding
 WheelInfo wheelInfo=physicsCar.getWheelInfo(0);
 if (wheelInfo.getSkidInfo() < 0.8f) {
-            playSmokeAnimation(wheelInfo.getCollisionLocation());
+    playSmokeAnimation(wheelInfo.getCollisionLocation());
 }
 }}}
 
