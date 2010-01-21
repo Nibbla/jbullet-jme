@@ -27,5 +27,8 @@ PhysicsNodes with mass=0 are static and do not move.
 
 To shift the center of mass see [CenterOfMass]
 
+It is not recommended to have PhysicsNodes as child nodes of other PhysicsNodes
+
+getLocalTranslation().set() does not set the physics object location, use setLocalTranslation(), same applies for getLocalRotation()
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsNode.html
