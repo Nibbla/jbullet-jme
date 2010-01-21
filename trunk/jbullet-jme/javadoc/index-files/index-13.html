@@ -83,7 +83,7 @@ Method in class com.jmex.jbullet.joints.motors.<A HREF="../com/jmex/jbullet/join
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/PhysicsSpace.html#setAccuracy(float)"><B>setAccuracy(float)</B></A> - 
 Method in class com.jmex.jbullet.<A HREF="../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>
-<DD>sets ths accuracy of the physics computation, default=1/60s<br>
+<DD>sets the accuracy of the physics computation, default=1/60s<br>
 <DT><A HREF="../com/jmex/jbullet/joints/Physics6DofJoint.html#setAngularLowerLimit(com.jme.math.Vector3f)"><B>setAngularLowerLimit(Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/Physics6DofJoint.html" title="class in com.jmex.jbullet.joints">Physics6DofJoint</A>
 <DD>&nbsp;
@@ -104,7 +104,8 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/joints/PhysicsJoint.html#setCollisionBetweenLinkedBodys(boolean)"><B>setCollisionBetweenLinkedBodys(boolean)</B></A> - 
 Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A>
-<DD>Joint has to be removed from and added to PhyiscsSpace to apply this.
+<DD>toggles collisions between linked bodys<br>
+ joint has to be removed from and added to PhyiscsSpace to apply this.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.shapes.CollisionShape)"><B>setCollisionShape(CollisionShape)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
 <DD>sets a CollisionShape to be used for this PhysicsNode for reusing CollisionShapes
@@ -155,13 +156,13 @@ Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/Physic
 <DD>sets the friction of this physics object
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setFrictionSlip(float)"><B>setFrictionSlip(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
-<DD>The coefficient of friction between the tyre and the ground.
+<DD>the coefficient of friction between the tyre and the ground.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setFrictionSlip(float)"><B>setFrictionSlip(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>Use before adding wheels, this is the default used when adding wheels.
+<DD>use before adding wheels, this is the default used when adding wheels.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setFrictionSlip(int, float)"><B>setFrictionSlip(int, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>The coefficient of friction between the tyre and the ground.
+<DD>the coefficient of friction between the tyre and the ground.
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setFrontWheel(boolean)"><B>setFrontWheel(boolean)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
 <DD>&nbsp;
@@ -200,16 +201,18 @@ Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/Physic
 <DD>sets the linear velocity of this PhysicsNode
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Matrix3f)"><B>setLocalRotation(Matrix3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A>
-<DD>Sets the local rotation of this node.
+<DD>sets the local rotation of this node.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalRotation(com.jme.math.Quaternion)"><B>setLocalRotation(Quaternion)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A>
-<DD>Sets the local rotation of this node.
+<DD>sets the local rotation of this node.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)"><B>setLocalRotation(Matrix3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Sets the local rotation of this node.
+<DD>sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)"><B>setLocalRotation(Quaternion)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Sets the local rotation of this node.
+<DD>sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalScale(float)"><B>setLocalScale(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A>
 <DD>note that the physics body and collision shape get
@@ -226,16 +229,16 @@ Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/Physic
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalTranslation(com.jme.math.Vector3f)"><B>setLocalTranslation(Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A>
-<DD>Sets the local translation of this node.
+<DD>sets the local translation of this node.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html#setLocalTranslation(float, float, float)"><B>setLocalTranslation(float, float, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A>
-<DD>Sets the local translation of this node.
+<DD>sets the local translation of this node.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)"><B>setLocalTranslation(Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Sets the local translation of this node.
+<DD>sets the local translation of this node
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(float, float, float)"><B>setLocalTranslation(float, float, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Sets the local translation of this node.
+<DD>sets the local translation of this node
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setLocation(com.jme.math.Vector3f)"><B>setLocation(Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
 <DD>&nbsp;
@@ -253,7 +256,7 @@ Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/Phys
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#setMass(float)"><B>setMass(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Sets the mass of this PhysicsNode, objects with mass=0 are static.
+<DD>sets the mass of this PhysicsNode, objects with mass=0 are static.
 <DT><A HREF="../com/jmex/jbullet/joints/PhysicsSliderJoint.html#setMaxAngMotorForce(float)"><B>setMaxAngMotorForce(float)</B></A> - 
 Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/PhysicsSliderJoint.html" title="class in com.jmex.jbullet.joints">PhysicsSliderJoint</A>
 <DD>&nbsp;
@@ -271,13 +274,13 @@ Method in class com.jmex.jbullet.joints.motors.<A HREF="../com/jmex/jbullet/join
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setMaxSuspensionTravelCm(float)"><B>setMaxSuspensionTravelCm(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
-<DD>The maximum distance the suspension can be compressed (centimetres)
+<DD>the maximum distance the suspension can be compressed (centimetres)
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setMaxSuspensionTravelCm(float)"><B>setMaxSuspensionTravelCm(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>Use before adding wheels, this is the default used when adding wheels.
+<DD>use before adding wheels, this is the default used when adding wheels.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setMaxSuspensionTravelCm(int, float)"><B>setMaxSuspensionTravelCm(int, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>The maximum distance the suspension can be compressed (centimetres)
+<DD>the maximum distance the suspension can be compressed (centimetres)
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setParent(com.jmex.jbullet.nodes.PhysicsVehicleNode)"><B>setParent(PhysicsVehicleNode)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
 <DD>&nbsp;
@@ -320,10 +323,10 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setRollInfluence(float)"><B>setRollInfluence(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
-<DD>Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+<DD>reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setRollInfluence(int, float)"><B>setRollInfluence(int, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+<DD>reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.html#setScale(com.jme.math.Vector3f)"><B>setScale(Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>
 <DD>&nbsp;
@@ -353,25 +356,25 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionCompression(float)"><B>setSuspensionCompression(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>Use before adding wheels, this is the default used when adding wheels.
+<DD>use before adding wheels, this is the default used when adding wheels.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionCompression(int, float)"><B>setSuspensionCompression(int, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>The damping coefficient for when the suspension is compressed.
+<DD>the damping coefficient for when the suspension is compressed.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionDamping(float)"><B>setSuspensionDamping(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>Use before adding wheels, this is the default used when adding wheels.
+<DD>use before adding wheels, this is the default used when adding wheels.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionDamping(int, float)"><B>setSuspensionDamping(int, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>The damping coefficient for when the suspension is expanding.
+<DD>the damping coefficient for when the suspension is expanding.
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setSuspensionStiffness(float)"><B>setSuspensionStiffness(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
-<DD>The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+<DD>the stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionStiffness(float)"><B>setSuspensionStiffness(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>Use before adding wheels, this is the default used when adding wheels.
+<DD>use before adding wheels, this is the default used when adding wheels.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#setSuspensionStiffness(int, float)"><B>setSuspensionStiffness(int, float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
-<DD>The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+<DD>the stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
 <DT><A HREF="../com/jmex/jbullet/joints/PhysicsSliderJoint.html#setTargetAngMotorVelocity(float)"><B>setTargetAngMotorVelocity(float)</B></A> - 
 Method in class com.jmex.jbullet.joints.<A HREF="../com/jmex/jbullet/joints/PhysicsSliderJoint.html" title="class in com.jmex.jbullet.joints">PhysicsSliderJoint</A>
 <DD>&nbsp;
@@ -419,10 +422,10 @@ Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setWheelsDampingCompression(float)"><B>setWheelsDampingCompression(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
-<DD>The damping coefficient for when the suspension is compressed.
+<DD>the damping coefficient for when the suspension is compressed.
 <DT><A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html#setWheelsDampingRelaxation(float)"><B>setWheelsDampingRelaxation(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.infos.<A HREF="../com/jmex/jbullet/nodes/infos/WheelInfo.html" title="class in com.jmex.jbullet.nodes.infos">WheelInfo</A>
-<DD>The damping coefficient for when the suspension is expanding.
+<DD>the damping coefficient for when the suspension is expanding.
 <DT><A HREF="../com/jmex/jbullet/PhysicsSpace.BroadphaseTypes.html#SIMPLE"><B>SIMPLE</B></A> - 
 Static variable in interface com.jmex.jbullet.<A HREF="../com/jmex/jbullet/PhysicsSpace.BroadphaseTypes.html" title="interface in com.jmex.jbullet">PhysicsSpace.BroadphaseTypes</A>
 <DD>basic Broadphase
@@ -431,13 +434,13 @@ Static variable in interface com.jmex.jbullet.collision.shapes.<A HREF="../com/j
 <DD>&nbsp;
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>SphereCollisionShape</B></A> - Class in <A HREF="../com/jmex/jbullet/collision/shapes/package-summary.html">com.jmex.jbullet.collision.shapes</A><DD>Basic sphere collision shape<DT><A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html#SphereCollisionShape(com.jme.scene.Node)"><B>SphereCollisionShape(Node)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">SphereCollisionShape</A>
-<DD>Creates a collision shape from the bounding volume of the given node
+<DD>creates a collision shape from the bounding volume of the given node
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html#SphereCollisionShape(com.jme.bounding.BoundingSphere)"><B>SphereCollisionShape(BoundingSphere)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">SphereCollisionShape</A>
-<DD>Creates a collision shape from the given bounding volume
+<DD>creates a collision shape from the given bounding volume
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html#SphereCollisionShape(float)"><B>SphereCollisionShape(float)</B></A> - 
 Constructor for class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/SphereCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">SphereCollisionShape</A>
-<DD>Creates a SphereCollisionShape with the given radius
+<DD>creates a SphereCollisionShape with the given radius
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html#steer(float)"><B>steer(float)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A>
 <DD>set the given steering value to all front wheels (0 = forward)

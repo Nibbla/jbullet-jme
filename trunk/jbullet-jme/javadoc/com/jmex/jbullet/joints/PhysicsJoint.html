@@ -102,19 +102,6 @@ java.lang.Object
 
 <P>
 <p>PhysicsJoint - Basic jbullet-jme Phyiscs Joint</p>
- <p>
- This is the basic way of connecting PhysicsNodes. Although bullet calls these "constraints"
- in this implementation I call them "joints" because some bullet constraints are
- used via special PhysicsNodes directly, not via "joints" (e.g. PhysicsVehicleNode).
- </p>
- <p>
- USAGE:<br>
- TODO: extend javadoc
- </p>
- <p>
- TODO:<br>
- - a lot
- </p>
 <P>
 
 <P>
@@ -179,7 +166,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#setCollisionBetweenLinkedBodys(boolean)">setCollisionBetweenLinkedBodys</A></B>(boolean&nbsp;collisionBetweenLinkedBodys)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Joint has to be removed from and added to PhyiscsSpace to apply this.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toggles collisions between linked bodys<br>
+ joint has to be removed from and added to PhyiscsSpace to apply this.</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -255,10 +243,11 @@ setCollisionBetweenLinkedBodys</H3>
 <PRE>
 public void <B>setCollisionBetweenLinkedBodys</B>(boolean&nbsp;collisionBetweenLinkedBodys)</PRE>
 <DL>
-<DD>Joint has to be removed from and added to PhyiscsSpace to apply this.
+<DD>toggles collisions between linked bodys<br>
+ joint has to be removed from and added to PhyiscsSpace to apply this.
 <P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>collisionBetweenLinkedBodys</CODE> - the collisionBetweenLinkedBodys to set</DL>
+<DT><B>Parameters:</B><DD><CODE>collisionBetweenLinkedBodys</CODE> - set to false to have no collisions between linked bodys</DL>
 </DD>
 </DL>
 <HR>

@@ -92,10 +92,21 @@ public class Physics6DofJoint extends PhysicsJoint{
         translationalMotor=new TranslationalLimitMotor(((Generic6DofConstraint)constraint).getTranslationalLimitMotor());
     }
 
+    /**
+     * returns the TranslationalLimitMotor of this 6DofJoint which allows
+     * manipulating the translational axis
+     * @return the TranslationalLimitMotor
+     */
     public TranslationalLimitMotor getTranslationalLimitMotor() {
         return translationalMotor;
     }
 
+    /**
+     * returns one of the three RotationalLimitMotors of this 6DofJoint which
+     * allow manipulating the rotational axes
+     * @param index the index of the RotationalLimitMotor
+     * @return the RotationalLimitMotor at the given index
+     */
     public RotationalLimitMotor getRotationalLimitMotor(int index){
         return rotationalMotors.get(index);
     }

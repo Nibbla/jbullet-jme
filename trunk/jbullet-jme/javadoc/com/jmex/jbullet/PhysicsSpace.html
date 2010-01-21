@@ -99,14 +99,6 @@ java.lang.Object
 
 <P>
 <p>PhysicsSpace - The central jbullet-jme physics space</p>
- <p>
- USAGE:<br>
- The PhysicsSpace needs to be started by getting a <code>PhysicsSpace</code> Object
- by calling <code>PhysicsSpace physics=PhysicsSpace.getPhysicsSpace();</code>
- and updated by calling the <code>update(float time)</code> method.<br>
- Bullet internally works with 60 frames/s...<br>
- TODO: extend
- </p>
 <P>
 
 <P>
@@ -216,7 +208,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#getAccuracy()">getAccuracy</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current accuracy of the physics computation</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -295,7 +287,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../com/jmex/jbullet/PhysicsSpace.html#setAccuracy(float)">setAccuracy</A></B>(float&nbsp;accuracy)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets ths accuracy of the physics computation, default=1/60s<br></TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the accuracy of the physics computation, default=1/60s<br></TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -483,8 +475,11 @@ getAccuracy</H3>
 <PRE>
 public float <B>getAccuracy</B>()</PRE>
 <DL>
+<DD>get the current accuracy of the physics computation
+<P>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the current accuracy</DL>
 </DD>
 </DL>
 <HR>
@@ -494,7 +489,7 @@ setAccuracy</H3>
 <PRE>
 public void <B>setAccuracy</B>(float&nbsp;accuracy)</PRE>
 <DL>
-<DD>sets ths accuracy of the physics computation, default=1/60s<br>
+<DD>sets the accuracy of the physics computation, default=1/60s<br>
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>accuracy</CODE> - </DL>

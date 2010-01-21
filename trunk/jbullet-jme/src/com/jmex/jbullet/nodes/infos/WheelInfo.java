@@ -149,7 +149,7 @@ public class WheelInfo {
     }
 
     /**
-     * The stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
+     * the stiffness constant for the suspension.  10.0 - Offroad buggy, 50.0 - Sports car, 200.0 - F1 Car
      * @param suspensionStiffness
      */
     public void setSuspensionStiffness(float suspensionStiffness) {
@@ -162,7 +162,7 @@ public class WheelInfo {
     }
 
     /**
-     * The damping coefficient for when the suspension is expanding.
+     * the damping coefficient for when the suspension is expanding.
      * See the comments for setWheelsDampingCompression for how to set k.
      * @param wheelsDampingRelaxation
      */
@@ -176,8 +176,8 @@ public class WheelInfo {
     }
 
     /**
-     * The damping coefficient for when the suspension is compressed.
-     * Set to k * 2.0 * btSqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
+     * the damping coefficient for when the suspension is compressed.
+     * Set to k * 2.0 * FastMath.sqrt(m_suspensionStiffness) so k is proportional to critical damping.<br>
      * k = 0.0 undamped & bouncy, k = 1.0 critical damping<br>
      * 0.1 to 0.3 are good values
      * @param wheelsDampingCompression
@@ -192,7 +192,7 @@ public class WheelInfo {
     }
 
     /**
-     * The coefficient of friction between the tyre and the ground.
+     * the coefficient of friction between the tyre and the ground.
      * Should be about 0.8 for realistic cars, but can increased for better handling.
      * Set large (10000.0) for kart racers
      * @param frictionSlip
@@ -207,7 +207,7 @@ public class WheelInfo {
     }
 
     /**
-     * Reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
+     * reduces the rolling torque applied from the wheels that cause the vehicle to roll over.
      * This is a bit of a hack, but it's quite effective. 0.0 = no roll, 1.0 = physical behaviour.
      * If m_frictionSlip is too high, you'll need to reduce this to stop the vehicle rolling over.
      * You should also try lowering the vehicle's centre of mass
@@ -223,7 +223,7 @@ public class WheelInfo {
     }
 
     /**
-     * The maximum distance the suspension can be compressed (centimetres)
+     * the maximum distance the suspension can be compressed (centimetres)
      * @param maxSuspensionTravelCm
      */
     public void setMaxSuspensionTravelCm(float maxSuspensionTravelCm) {
@@ -305,8 +305,8 @@ public class WheelInfo {
     }
 
     /**
-     * Returns the object this wheel is in contact with or null if no contact
-     * @return
+     * returns the object this wheel is in contact with or null if no contact
+     * @return the CollisionObject (PhysicsNode, PhysicsGhostNode)
      */
     public CollisionObject getGroundObject(){
         if(wheelInfo.raycastInfo.groundObject == null){
@@ -321,7 +321,7 @@ public class WheelInfo {
     }
 
     /**
-     * Returns the location where the wheel collides with the ground
+     * returns the location where the wheel collides with the ground
      */
     public Vector3f getCollisionLocation(Vector3f vec){
         Converter.convert(wheelInfo.raycastInfo.contactPointWS,vec);
@@ -329,14 +329,14 @@ public class WheelInfo {
     }
 
     /**
-     * Returns the location where the wheel collides with the ground
+     * returns the location where the wheel collides with the ground
      */
     public Vector3f getCollisionLocation(){
         return Converter.convert(wheelInfo.raycastInfo.contactPointWS);
     }
 
     /**
-     * Returns the normal where the wheel collides with the ground
+     * returns the normal where the wheel collides with the ground
      */
     public Vector3f getCollisionNormal(Vector3f vec){
         Converter.convert(wheelInfo.raycastInfo.contactNormalWS,vec);
@@ -344,14 +344,14 @@ public class WheelInfo {
     }
 
     /**
-     * Returns the normal where the wheel collides with the ground
+     * returns the normal where the wheel collides with the ground
      */
     public Vector3f getCollisionNormal(){
         return Converter.convert(wheelInfo.raycastInfo.contactNormalWS);
     }
 
     /**
-     * Returns how much the wheel skids on the ground (for skid sounds/smoke etc.)<br>
+     * returns how much the wheel skids on the ground (for skid sounds/smoke etc.)<br>
      * 0.0 = wheels are sliding, 1.0 = wheels have traction.
      */
     public float getSkidInfo(){

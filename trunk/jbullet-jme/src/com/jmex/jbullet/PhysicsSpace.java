@@ -71,14 +71,6 @@ import java.util.concurrent.Future;
 
 /**
  * <p>PhysicsSpace - The central jbullet-jme physics space</p>
- * <p>
- * USAGE:<br>
- * The PhysicsSpace needs to be started by getting a <code>PhysicsSpace</code> Object
- * by calling <code>PhysicsSpace physics=PhysicsSpace.getPhysicsSpace();</code>
- * and updated by calling the <code>update(float time)</code> method.<br>
- * Bullet internally works with 60 frames/s...<br>
- * TODO: extend
- * </p>
  * @see com.jmex.jbullet.nodes.PhysicsNode
  * @author normenhansen
  */
@@ -287,12 +279,16 @@ public abstract class PhysicsSpace {
         distributeEvents();
     }
 
+    /**
+     * get the current accuracy of the physics computation
+     * @return the current accuracy
+     */
     public float getAccuracy() {
         return accuracy;
     }
 
     /**
-     * sets ths accuracy of the physics computation, default=1/60s<br>
+     * sets the accuracy of the physics computation, default=1/60s<br>
      * @param accuracy
      */
     public void setAccuracy(float accuracy) {

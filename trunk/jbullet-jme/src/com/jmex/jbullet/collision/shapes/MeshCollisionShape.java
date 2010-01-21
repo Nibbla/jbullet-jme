@@ -46,7 +46,7 @@ import java.util.List;
 public class MeshCollisionShape extends CollisionShape{
 
     /**
-     * Creates a collision shape from the TriMesh leaf in the given node
+     * creates a collision shape from the TriMesh leaf in the given node
      * @param node the node to get the TriMesh from
      */
     public MeshCollisionShape(Node node) {
@@ -54,7 +54,7 @@ public class MeshCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a collision shape from the given TriMesh
+     * creates a collision shape from the given TriMesh
      * @param mesh the TriMesh to use
      */
     public MeshCollisionShape(TriMesh mesh) {
@@ -63,7 +63,7 @@ public class MeshCollisionShape extends CollisionShape{
 
 
     /**
-     * Creates a mesh that represents this node in the physics space. Can only be
+     * creates a mesh that represents this node in the physics space. Can only be
      * used if this Node has one (and only one) TriMesh as a child.<br>
      */
     private void createCollisionMesh(Node node){

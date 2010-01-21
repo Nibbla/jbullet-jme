@@ -45,7 +45,7 @@ import java.util.List;
 public class SphereCollisionShape extends CollisionShape{
 
     /**
-     * Creates a collision shape from the bounding volume of the given node
+     * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
      */
     public SphereCollisionShape(Node node) {
@@ -53,7 +53,7 @@ public class SphereCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a collision shape from the given bounding volume
+     * creates a collision shape from the given bounding volume
      * @param volume the BoundingVolume to use
      */
     public SphereCollisionShape(BoundingSphere volume) {
@@ -61,7 +61,7 @@ public class SphereCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a SphereCollisionShape with the given radius
+     * creates a SphereCollisionShape with the given radius
      * @param radius
      */
     public SphereCollisionShape(float radius) {
@@ -71,7 +71,7 @@ public class SphereCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a sphere in the physics space that represents this Node and all
+     * creates a sphere in the physics space that represents this Node and all
      * children. The radius is computed from the world bound of this Node.
      */
     private void createCollisionSphere(Node node) {

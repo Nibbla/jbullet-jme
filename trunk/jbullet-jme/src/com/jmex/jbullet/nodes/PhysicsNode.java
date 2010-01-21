@@ -129,7 +129,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * creates a new PhysicsNode with the supplied child node or geometry and
      * creates the standard sphere collision shape for that PhysicsNode<br>
      * @param child
      */
@@ -138,7 +138,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * creates a new PhysicsNode with the supplied child node or geometry and
      * also creates a collision shape of the given type for that PhysicsNode
      * @param child
      * @param collisionShapeType
@@ -148,7 +148,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * creates a new PhysicsNode with the supplied child node or geometry and
      * also creates a collision shape of the given type for that PhysicsNode and
      * assigns the given mass.
      * @param child
@@ -163,7 +163,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * creates a new PhysicsNode with the supplied child node or geometry and
      * uses the supplied collision shape for that PhysicsNode<br>
      * @param child
      * @param shape
@@ -173,7 +173,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Creates a new PhysicsNode with the supplied child node or geometry and
+     * creates a new PhysicsNode with the supplied child node or geometry and
      * uses the supplied collision shape for that PhysicsNode<br>
      * @param child
      * @param shape
@@ -270,8 +270,8 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Note that getLocalTranslation().set() will not update the physics object position.
-     * Use setLocalTranslation() instead!
+     * note that getLocalTranslation().set() will not update the physics object position,
+     * use setLocalTranslation() instead!
      */
     @Override
     public Vector3f getLocalTranslation() {
@@ -279,7 +279,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the local translation of this node.
+     * sets the local translation of this node
      * @param arg0
      */
     @Override
@@ -289,7 +289,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the local translation of this node.
+     * sets the local translation of this node
      */
     @Override
     public void setLocalTranslation(float x, float y, float z) {
@@ -306,8 +306,8 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Note that getLocalRotation().set() will not update the physics object position.
-     * Use setLocalRotation() instead!
+     * note that getLocalRotation().set() will not update the physics object position,
+     * use setLocalRotation() instead!
      */
     @Override
     public Quaternion getLocalRotation() {
@@ -315,8 +315,8 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the local rotation of this node. The physics object will be updated accordingly
-     * in the next global physics update tick.
+     * sets the local rotation of this node, the physics object will be updated accordingly
+     * in the next global physics update tick
      * @param arg0
      */
     @Override
@@ -326,8 +326,8 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the local rotation of this node. The physics object will be updated accordingly
-     * in the next global physics update tick.
+     * sets the local rotation of this node, the physics object will be updated accordingly
+     * in the next global physics update tick
      * @param arg0
      */
     @Override
@@ -364,7 +364,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Computes the local translation from the parameter translation and sets it as new
+     * computes the local translation from the parameter translation and sets it as new
      * local translation.<br>
      * This should only be called from the physics thread to update the jme spatial
      * @param translation new world translation of this spatial.
@@ -384,7 +384,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Computes the local rotation from the parameter rot and sets it as new
+     * computes the local rotation from the parameter rot and sets it as new
      * local rotation.<br>
      * This should only be called from the physics thread to update the jme spatial
      * @param rot new world rotation of this spatial.
@@ -424,7 +424,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Sets the mass of this PhysicsNode, objects with mass=0 are static.
+     * sets the mass of this PhysicsNode, objects with mass=0 are static.
      * @param mass
      */
     public void setMass(float mass){
@@ -479,10 +479,18 @@ public class PhysicsNode extends CollisionObject{
         rBody.setRestitution(restitution);
     }
 
+    /**
+     * get the current angular velocity of this PhysicsNode
+     * @return the current linear velocity
+     */
     public Vector3f getAngularVelocity(){
         return Converter.convert(rBody.getAngularVelocity(tempVel));
     }
 
+    /**
+     * get the current angular velocity of this PhysicsNode
+     * @param vec the vector to store the velocity in
+     */
     public void getAngularVelocity(Vector3f vec){
         Converter.convert(rBody.getAngularVelocity(tempVel),vec);
     }
@@ -495,10 +503,18 @@ public class PhysicsNode extends CollisionObject{
         rBody.setAngularVelocity(Converter.convert(vec));
     }
 
+    /**
+     * get the current linear velocity of this PhysicsNode
+     * @return the current linear velocity
+     */
     public Vector3f getLinearVelocity(){
         return Converter.convert(rBody.getLinearVelocity(tempVel));
     }
 
+    /**
+     * get the current linear velocity of this PhysicsNode
+     * @param vec the vector to store the velocity in
+     */
     public void getLinearVelocity(Vector3f vec){
         Converter.convert(rBody.getLinearVelocity(tempVel),vec);
     }
@@ -546,7 +562,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Apply a continuous force to this PhysicsNode. The force is updated automatically each
+     * apply a continuous force to this PhysicsNode, the force is updated automatically each
      * tick so you only need to set it once and then set it to false to stop applying
      * the force.
      * @param apply true if the force should be applied each physics tick
@@ -562,7 +578,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Apply a continuous force to this PhysicsNode. The force is updated automatically each
+     * apply a continuous force to this PhysicsNode, the force is updated automatically each
      * tick so you only need to set it once and then set it to false to stop applying
      * the force.
      * @param apply true if the force should be applied each physics tick
@@ -624,7 +640,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * Apply a continuous torque to this PhysicsNode. The torque is updated automatically each
+     * apply a continuous torque to this PhysicsNode. The torque is updated automatically each
      * tick so you only need to set it once and then set it to false to stop applying
      * the torque.
      * @param apply true if the force should be applied each physics tick
@@ -716,9 +732,9 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * creates a collisionShape from the BoundingVolume of this node.
-     * If no BoundingVolume of the give type exists yet, it will be created.
-     * Otherwise a new BoundingVolume will be created.
+     * creates a collisionShape from the BoundingVolume of this node,
+     * if no BoundingVolume of the give type exists yet, it will be created.
+     * Otherwise the current BoundingVolume will be used.
      * @param type
      */
     public void createCollisionShape(int type){

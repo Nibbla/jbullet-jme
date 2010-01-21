@@ -37,19 +37,6 @@ import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
  * <p>PhysicsJoint - Basic jbullet-jme Phyiscs Joint</p>
- * <p>
- * This is the basic way of connecting PhysicsNodes. Although bullet calls these "constraints"
- * in this implementation I call them "joints" because some bullet constraints are
- * used via special PhysicsNodes directly, not via "joints" (e.g. PhysicsVehicleNode).
- * </p>
- * <p>
- * USAGE:<br>
- * TODO: extend javadoc
- * </p>
- * <p>
- * TODO:<br>
- * - a lot
- * </p>
  * @author normenhansen
  */
 public abstract class PhysicsJoint {
@@ -86,8 +73,9 @@ public abstract class PhysicsJoint {
     }
 
     /**
-     * Joint has to be removed from and added to PhyiscsSpace to apply this.
-     * @param collisionBetweenLinkedBodys the collisionBetweenLinkedBodys to set
+     * toggles collisions between linked bodys<br>
+     * joint has to be removed from and added to PhyiscsSpace to apply this.
+     * @param collisionBetweenLinkedBodys set to false to have no collisions between linked bodys
      */
     public void setCollisionBetweenLinkedBodys(boolean collisionBetweenLinkedBodys) {
         this.collisionBetweenLinkedBodys = collisionBetweenLinkedBodys;

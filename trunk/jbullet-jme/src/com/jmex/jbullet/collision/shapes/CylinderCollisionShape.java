@@ -49,7 +49,7 @@ import java.util.List;
 public class CylinderCollisionShape extends CollisionShape{
 
     /**
-     * Creates a collision shape from the bounding volume of the given node
+     * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
      */
     public CylinderCollisionShape(Node node) {
@@ -57,7 +57,7 @@ public class CylinderCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a collision shape from the given bounding volume
+     * creates a collision shape from the given bounding volume
      * @param volume the BoundingVolume to use
      */
     public CylinderCollisionShape(BoundingBox volume) {
@@ -65,8 +65,8 @@ public class CylinderCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a cylinder shape from the given halfextents
-     * @param halfExtents
+     * creates a cylinder shape from the given halfextents
+     * @param halfExtents the halfextents to use
      */
     public CylinderCollisionShape(Vector3f halfExtents) {
         CylinderShape capShape=new CylinderShapeZ(Converter.convert(halfExtents));
@@ -75,8 +75,9 @@ public class CylinderCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a cylinder shape around the given axis (0=X,1=Y,2=Z) from the given halfextents
-     * @param halfExtents
+     * Creates a cylinder shape around the given axis from the given halfextents
+     * @param halfExtents the halfextents to use
+     * @param axis (0=X,1=Y,2=Z)
      */
     public CylinderCollisionShape(Vector3f halfExtents, int axis) {
         switch(axis){

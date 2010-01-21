@@ -38,7 +38,7 @@ import com.jme.math.Vector3f;
 import com.jmex.jbullet.util.Converter;
 
 /**
- * The CompoundCollisionShape allows combining multiple base shapes
+ * A CompoundCollisionShape allows combining multiple base shapes
  * to generate a more sophisticated shape.
  * @author normenhansen
  */
@@ -48,12 +48,21 @@ public class CompoundCollisionShape extends CollisionShape{
         cShape=new CompoundShape();
     }
 
+    /**
+     * adds a child shape at the given local translation
+     * @param shape the child shape to add
+     * @param location the local location of the child shape
+     */
     public void addChildShape(CollisionShape shape, Vector3f location){
         Transform transA=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(location,transA.origin);
         ((CompoundShape)cShape).addChildShape(transA, shape.getCShape());
     }
 
+    /**
+     * removes a child shape
+     * @param shape the child shape to remove
+     */
     public void removeChildShape(CollisionShape shape){
         ((CompoundShape)cShape).removeChildShape(shape.getCShape());
     }

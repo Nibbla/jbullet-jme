@@ -160,7 +160,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#getRotationalLimitMotor(int)">getRotationalLimitMotor</A></B>(int&nbsp;index)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returns one of the three RotationalLimitMotors of this 6DofJoint which
+ allow manipulating the rotational axes</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -168,7 +169,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#getTranslationalLimitMotor()">getTranslationalLimitMotor</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returns the TranslationalLimitMotor of this 6DofJoint which allows
+ manipulating the translational axis</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -274,8 +276,12 @@ getTranslationalLimitMotor</H3>
 <PRE>
 public <A HREF="../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html" title="class in com.jmex.jbullet.joints.motors">TranslationalLimitMotor</A> <B>getTranslationalLimitMotor</B>()</PRE>
 <DL>
+<DD>returns the TranslationalLimitMotor of this 6DofJoint which allows
+ manipulating the translational axis
+<P>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the TranslationalLimitMotor</DL>
 </DD>
 </DL>
 <HR>
@@ -285,8 +291,12 @@ getRotationalLimitMotor</H3>
 <PRE>
 public <A HREF="../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html" title="class in com.jmex.jbullet.joints.motors">RotationalLimitMotor</A> <B>getRotationalLimitMotor</B>(int&nbsp;index)</PRE>
 <DL>
+<DD>returns one of the three RotationalLimitMotors of this 6DofJoint which
+ allow manipulating the rotational axes
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>index</CODE> - the index of the RotationalLimitMotor
+<DT><B>Returns:</B><DD>the RotationalLimitMotor at the given index</DL>
 </DD>
 </DL>
 <HR>
