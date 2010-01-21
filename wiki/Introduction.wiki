@@ -27,7 +27,7 @@ Other than jmephysics2, which aims at integrating different physics engines in o
  * [PhysicsCharacterNode Character Nodes]
  * [Multithreading GameTaskQueue] for optional multithreading
 
-== Bullet physics http://jbullet-jme.googlecode.com/svn/wiki/images/bouncejme.png==
+== http://bulletphysics.org/wordpress/wp-content/themes/atahualpa333/images/bullet_logo-210-86.png http://jbullet-jme.googlecode.com/svn/wiki/images/bouncejme.png ==
 Since this wrapper is based on bullet physics, you might find help for some problems on the bullet physics homepage: http://www.bulletphysics.org
 
 == This wiki ==
