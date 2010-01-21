@@ -48,7 +48,7 @@ import java.util.List;
 public class CapsuleCollisionShape extends CollisionShape{
 
     /**
-     * Creates a collision shape from the bounding volume of the given node
+     * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
      */
     public CapsuleCollisionShape(Node node) {
@@ -56,7 +56,7 @@ public class CapsuleCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a collision shape from the given bounding volume
+     * creates a collision shape from the given bounding volume
      * @param volume the BoundingVolume to use
      */
     public CapsuleCollisionShape(BoundingCapsule volume) {
@@ -64,9 +64,9 @@ public class CapsuleCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a new CapsuleCollisionShape with the given radius and height
-     * @param radius
-     * @param height
+     * creates a new CapsuleCollisionShape with the given radius and height
+     * @param radius the radius of the capsule
+     * @param height the height of the capsule
      */
     public CapsuleCollisionShape(float radius, float height) {
         CapsuleShape capShape=new CapsuleShape(radius,height);
@@ -75,7 +75,7 @@ public class CapsuleCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a capsule shape around the given axis (0=X,1=Y,2=Z)
+     * creates a capsule shape around the given axis (0=X,1=Y,2=Z)
      * @param radius
      * @param height
      * @param axis

@@ -77,7 +77,7 @@ public abstract class CollisionShape {
     }
 
     /**
-     * Interface that contains all jbullet-jme collision shape types.
+     * interface that contains all jbullet-jme collision shape types.
      */
     public interface ShapeTypes{
         public static final int SPHERE=0;

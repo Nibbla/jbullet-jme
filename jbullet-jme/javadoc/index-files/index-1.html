@@ -89,7 +89,7 @@ Method in class com.jmex.jbullet.<A HREF="../com/jmex/jbullet/PhysicsSpace.html"
 <DD>adds an object to the physics space
 <DT><A HREF="../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#addChildShape(com.jmex.jbullet.collision.shapes.CollisionShape, com.jme.math.Vector3f)"><B>addChildShape(CollisionShape, Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.collision.shapes.<A HREF="../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A>
-<DD>&nbsp;
+<DD>adds a child shape at the given local translation
 <DT><A HREF="../com/jmex/jbullet/PhysicsSpace.html#addCollisionListener(com.jmex.jbullet.collision.CollisionListener)"><B>addCollisionListener(CollisionListener)</B></A> - 
 Method in class com.jmex.jbullet.<A HREF="../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet">PhysicsSpace</A>
 <DD>adds a CollisionListener that will be informed about collision events
@@ -102,16 +102,20 @@ Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/Physic
  use applyContinuousForce to apply continuous force
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)"><B>applyContinuousForce(boolean, Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Apply a continuous force to this PhysicsNode.
+<DD>apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f, com.jme.math.Vector3f)"><B>applyContinuousForce(boolean, Vector3f, Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Apply a continuous force to this PhysicsNode.
+<DD>apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean)"><B>applyContinuousForce(boolean)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
 <DD>use to enable/disable continuous force
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean, com.jme.math.Vector3f)"><B>applyContinuousTorque(boolean, Vector3f)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
-<DD>Apply a continuous torque to this PhysicsNode.
+<DD>apply a continuous torque to this PhysicsNode.
 <DT><A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean)"><B>applyContinuousTorque(boolean)</B></A> - 
 Method in class com.jmex.jbullet.nodes.<A HREF="../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>
 <DD>use to enable/disable continuous torque

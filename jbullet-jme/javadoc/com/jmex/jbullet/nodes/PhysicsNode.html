@@ -197,7 +197,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
  creates the standard sphere collision shape for that PhysicsNode<br></TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
@@ -205,7 +205,7 @@ java.lang.Object
             <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
  uses the supplied collision shape for that PhysicsNode<br></TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
@@ -214,7 +214,7 @@ java.lang.Object
             float&nbsp;mass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
  uses the supplied collision shape for that PhysicsNode<br></TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
@@ -222,7 +222,7 @@ java.lang.Object
             int&nbsp;collisionShapeType)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
@@ -231,7 +231,7 @@ java.lang.Object
             float&nbsp;mass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a new PhysicsNode with the supplied child node or geometry and
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode and
  assigns the given mass.</TD>
 </TR>
@@ -269,7 +269,9 @@ java.lang.Object
                      com.jme.math.Vector3f&nbsp;force)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply a continuous force to this PhysicsNode.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -279,7 +281,9 @@ java.lang.Object
                      com.jme.math.Vector3f&nbsp;location)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply a continuous force to this PhysicsNode.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -296,7 +300,7 @@ java.lang.Object
                       com.jme.math.Vector3f&nbsp;vec)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply a continuous torque to this PhysicsNode.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a continuous torque to this PhysicsNode.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -356,7 +360,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A></B>(int&nbsp;type)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the BoundingVolume of this node.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the BoundingVolume of this node,
+ if no BoundingVolume of the give type exists yet, it will be created.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -372,7 +377,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current angular velocity of this PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -380,7 +385,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity(com.jme.math.Vector3f)">getAngularVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current angular velocity of this PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -452,7 +457,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLinearVelocity()">getLinearVelocity</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current linear velocity of this PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -460,7 +465,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLinearVelocity(com.jme.math.Vector3f)">getLinearVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current linear velocity of this PhysicsNode</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -468,7 +473,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalRotation()">getLocalRotation</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that getLocalRotation().set() will not update the physics object position.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note that getLocalRotation().set() will not update the physics object position,
+ use setLocalRotation() instead!</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -476,7 +482,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalTranslation()">getLocalTranslation</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note that getLocalTranslation().set() will not update the physics object position.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note that getLocalTranslation().set() will not update the physics object position,
+ use setLocalTranslation() instead!</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -592,7 +599,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A></B>(com.jme.math.Matrix3f&nbsp;arg0)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local rotation of this node.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -600,7 +608,8 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A></B>(com.jme.math.Quaternion&nbsp;arg0)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local rotation of this node.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -626,7 +635,7 @@ java.lang.Object
                     float&nbsp;z)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local translation of this node.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local translation of this node</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -634,7 +643,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A></B>(com.jme.math.Vector3f&nbsp;arg0)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the local translation of this node.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local translation of this node</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -642,7 +651,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setMass(float)">setMass</A></B>(float&nbsp;mass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the mass of this PhysicsNode, objects with mass=0 are static.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the mass of this PhysicsNode, objects with mass=0 are static.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -724,7 +733,7 @@ PhysicsNode</H3>
 <PRE>
 public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
 <DL>
-<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
  creates the standard sphere collision shape for that PhysicsNode<br>
 <P>
 <DL>
@@ -738,7 +747,7 @@ PhysicsNode</H3>
 public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
                    int&nbsp;collisionShapeType)</PRE>
 <DL>
-<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode
 <P>
 <DL>
@@ -753,7 +762,7 @@ public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
                    int&nbsp;collisionShapeType,
                    float&nbsp;mass)</PRE>
 <DL>
-<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode and
  assigns the given mass.
 <P>
@@ -768,7 +777,7 @@ PhysicsNode</H3>
 public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
                    <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape)</PRE>
 <DL>
-<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
  uses the supplied collision shape for that PhysicsNode<br>
 <P>
 <DL>
@@ -783,7 +792,7 @@ public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
                    <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
                    float&nbsp;mass)</PRE>
 <DL>
-<DD>Creates a new PhysicsNode with the supplied child node or geometry and
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
  uses the supplied collision shape for that PhysicsNode<br>
 <P>
 <DL>
@@ -805,8 +814,8 @@ getLocalTranslation</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getLocalTranslation</B>()</PRE>
 <DL>
-<DD>Note that getLocalTranslation().set() will not update the physics object position.
- Use setLocalTranslation() instead!
+<DD>note that getLocalTranslation().set() will not update the physics object position,
+ use setLocalTranslation() instead!
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>getLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -822,7 +831,7 @@ setLocalTranslation</H3>
 <PRE>
 public void <B>setLocalTranslation</B>(com.jme.math.Vector3f&nbsp;arg0)</PRE>
 <DL>
-<DD>Sets the local translation of this node.
+<DD>sets the local translation of this node
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -840,7 +849,7 @@ public void <B>setLocalTranslation</B>(float&nbsp;x,
                                 float&nbsp;y,
                                 float&nbsp;z)</PRE>
 <DL>
-<DD>Sets the local translation of this node.
+<DD>sets the local translation of this node
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -856,8 +865,8 @@ getLocalRotation</H3>
 <PRE>
 public com.jme.math.Quaternion <B>getLocalRotation</B>()</PRE>
 <DL>
-<DD>Note that getLocalRotation().set() will not update the physics object position.
- Use setLocalRotation() instead!
+<DD>note that getLocalRotation().set() will not update the physics object position,
+ use setLocalRotation() instead!
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>getLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -873,8 +882,8 @@ setLocalRotation</H3>
 <PRE>
 public void <B>setLocalRotation</B>(com.jme.math.Matrix3f&nbsp;arg0)</PRE>
 <DL>
-<DD>Sets the local rotation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
+<DD>sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -890,8 +899,8 @@ setLocalRotation</H3>
 <PRE>
 public void <B>setLocalRotation</B>(com.jme.math.Quaternion&nbsp;arg0)</PRE>
 <DL>
-<DD>Sets the local rotation of this node. The physics object will be updated accordingly
- in the next global physics update tick.
+<DD>sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick
 <P>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
@@ -991,7 +1000,7 @@ setMass</H3>
 <PRE>
 public void <B>setMass</B>(float&nbsp;mass)</PRE>
 <DL>
-<DD>Sets the mass of this PhysicsNode, objects with mass=0 are static.
+<DD>sets the mass of this PhysicsNode, objects with mass=0 are static.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>mass</CODE> - </DL>
@@ -1089,8 +1098,11 @@ getAngularVelocity</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getAngularVelocity</B>()</PRE>
 <DL>
+<DD>get the current angular velocity of this PhysicsNode
+<P>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the current linear velocity</DL>
 </DD>
 </DL>
 <HR>
@@ -1100,8 +1112,10 @@ getAngularVelocity</H3>
 <PRE>
 public void <B>getAngularVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
+<DD>get the current angular velocity of this PhysicsNode
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the vector to store the velocity in</DL>
 </DD>
 </DL>
 <HR>
@@ -1124,8 +1138,11 @@ getLinearVelocity</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getLinearVelocity</B>()</PRE>
 <DL>
+<DD>get the current linear velocity of this PhysicsNode
+<P>
 <DD><DL>
-</DL>
+
+<DT><B>Returns:</B><DD>the current linear velocity</DL>
 </DD>
 </DL>
 <HR>
@@ -1135,8 +1152,10 @@ getLinearVelocity</H3>
 <PRE>
 public void <B>getLinearVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
+<DD>get the current linear velocity of this PhysicsNode
+<P>
 <DD><DL>
-</DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the vector to store the velocity in</DL>
 </DD>
 </DL>
 <HR>
@@ -1202,7 +1221,7 @@ applyContinuousForce</H3>
 public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
                                  com.jme.math.Vector3f&nbsp;force)</PRE>
 <DL>
-<DD>Apply a continuous force to this PhysicsNode. The force is updated automatically each
+<DD>apply a continuous force to this PhysicsNode, the force is updated automatically each
  tick so you only need to set it once and then set it to false to stop applying
  the force.
 <P>
@@ -1219,7 +1238,7 @@ public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
                                  com.jme.math.Vector3f&nbsp;force,
                                  com.jme.math.Vector3f&nbsp;location)</PRE>
 <DL>
-<DD>Apply a continuous force to this PhysicsNode. The force is updated automatically each
+<DD>apply a continuous force to this PhysicsNode, the force is updated automatically each
  tick so you only need to set it once and then set it to false to stop applying
  the force.
 <P>
@@ -1276,7 +1295,7 @@ applyContinuousTorque</H3>
 public void <B>applyContinuousTorque</B>(boolean&nbsp;apply,
                                   com.jme.math.Vector3f&nbsp;vec)</PRE>
 <DL>
-<DD>Apply a continuous torque to this PhysicsNode. The torque is updated automatically each
+<DD>apply a continuous torque to this PhysicsNode. The torque is updated automatically each
  tick so you only need to set it once and then set it to false to stop applying
  the torque.
 <P>
@@ -1385,9 +1404,9 @@ createCollisionShape</H3>
 <PRE>
 public void <B>createCollisionShape</B>(int&nbsp;type)</PRE>
 <DL>
-<DD>creates a collisionShape from the BoundingVolume of this node.
- If no BoundingVolume of the give type exists yet, it will be created.
- Otherwise a new BoundingVolume will be created.
+<DD>creates a collisionShape from the BoundingVolume of this node,
+ if no BoundingVolume of the give type exists yet, it will be created.
+ Otherwise the current BoundingVolume will be used.
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>type</CODE> - </DL>

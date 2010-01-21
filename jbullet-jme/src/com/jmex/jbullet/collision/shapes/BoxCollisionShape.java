@@ -46,7 +46,7 @@ import java.util.List;
 public class BoxCollisionShape extends CollisionShape{
 
     /**
-     * Creates a collision shape from the bounding volume of the given node
+     * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
      */
     public BoxCollisionShape(Node node) {
@@ -54,7 +54,7 @@ public class BoxCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a collision shape from the given bounding volume
+     * creates a collision shape from the given bounding volume
      * @param volume the BoundingVolume to use
      */
     public BoxCollisionShape(BoundingBox volume) {
@@ -62,7 +62,7 @@ public class BoxCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a collision box from the given halfExtents
+     * creates a collision box from the given halfExtents
      * @param halfExtents the halfExtents of the CollisionBox
      */
     public BoxCollisionShape(Vector3f halfExtents) {
@@ -72,7 +72,7 @@ public class BoxCollisionShape extends CollisionShape{
     }
 
     /**
-     * Creates a box in the physics space that represents this Node and all
+     * creates a box in the physics space that represents this Node and all
      * children. The extents are computed from the world bound of this Node.
      */
     private void createCollisionBox(Node node) {

@@ -120,7 +120,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Note that getLocalTranslation().set() will not update the physics object position.
+     * note that getLocalTranslation().set() will not update the physics object position.
      * Use setLocalTranslation() instead!
      */
     @Override
@@ -129,7 +129,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Sets the local translation of this node. The physics object will be updated accordingly
+     * sets the local translation of this node. The physics object will be updated accordingly
      * in the next global physics update tick.
      * @param arg0
      */
@@ -139,7 +139,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Sets the local translation of this node. The physics object will be updated accordingly
+     * sets the local translation of this node. The physics object will be updated accordingly
      * in the next global physics update tick.
      */
     @Override
@@ -157,7 +157,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Note that getLocalRotation().set() will not update the physics object position.
+     * note that getLocalRotation().set() will not update the physics object position.
      * Use setLocalRotation() instead!
      */
     @Override
@@ -166,7 +166,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Sets the local rotation of this node. The physics object will be updated accordingly
+     * sets the local rotation of this node. The physics object will be updated accordingly
      * in the next global physics update tick.
      * @param arg0
      */
@@ -177,7 +177,7 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Sets the local rotation of this node. The physics object will be updated accordingly
+     * sets the local rotation of this node. The physics object will be updated accordingly
      * in the next global physics update tick.
      * @param arg0
      */
@@ -215,8 +215,8 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Computes the local translation from the parameter translation and sets it as new
-     * local translation.<br>
+     * computes the local translation from the parameter translation and sets it as new
+     * local translation<br>
      * This should only be called from the physics thread to update the jme spatial
      * @param translation new world translation of this spatial.
      * @return the computed local translation
@@ -235,8 +235,8 @@ public class PhysicsGhostNode extends CollisionObject{
     }
 
     /**
-     * Computes the local rotation from the parameter rot and sets it as new
-     * local rotation.<br>
+     * computes the local rotation from the parameter rot and sets it as new
+     * local rotation<br>
      * This should only be called from the physics thread to update the jme spatial
      * @param rot new world rotation of this spatial.
      * @return the computed local rotation
