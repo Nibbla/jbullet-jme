@@ -81,8 +81,8 @@ public class SphereCollisionShape extends CollisionShape{
         }
         if(!(node.getWorldBound() instanceof BoundingSphere)){
             node.setModelBound(new BoundingSphere());
-            node.updateGeometricState(0,true);
             node.updateModelBound();
+            node.updateGeometricState(0,true);
             node.updateWorldBound();
         }
         BoundingSphere volume=(BoundingSphere)node.getWorldBound();
