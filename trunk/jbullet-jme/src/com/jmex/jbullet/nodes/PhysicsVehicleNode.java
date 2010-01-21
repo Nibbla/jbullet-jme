@@ -61,12 +61,6 @@ import java.util.List;
  * The collision detection of the wheels is approximated by ray casts,
  * and the tire friction is a basic anisotropic friction model.
  * </p>
- * <p>
- * USAGE:<br>
- * A PhysicsVehicleNode can be used like a normal PhysicsNode but has some specialties:<br>
- * You can add wheels to the vehicle by calling the addWheel() method. The given jme
- * spatial will be displayed in the wheels location and rotate accordingly.<br>
- * You can accelerate/brake/steer the car with the corresponding methods.
  * @see com.jmex.jbullet.nodes.PhysicsNode
  * @see com.jmex.jbullet.PhysicsSpace
  * @author normenhansen

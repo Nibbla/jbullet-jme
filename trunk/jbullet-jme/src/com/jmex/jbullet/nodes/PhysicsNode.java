@@ -63,30 +63,6 @@ import java.util.concurrent.Callable;
 
 /**
  * <p>PhysicsNode - Basic jbullet-jme physics object</p>
- * <p>
- * A PhysicsNode represents an object in the physics space and in the jme scenegraph.
- * It is derived from <code>com.jme.scene.Node</code> to integrate nicely with the jme2 scenegraph.<br>
- * For bullet, it stores a RigidBody and its CollisionShape including their options (friction, mass etc.)<br>
- * </p>
- * <p>
- * USAGE:<br>
- * To create a PhysicsNode, just create a new PhysicsNode Object like this
- * <p><code>new PhysicsNode(spatial,shapeType);</code></p>
- * and add it to your jme2 scenegraph.<br>
- * Then add the PhyiscsNode to the PhysicsSpace by calling <code>physicsSpace.add(node);</code>
- * The given spatial will be the added as child node or geometry of the PhysicsNode and
- * will thus move with the PhysicsNode.<br>
- * The shapeType is one of <code>CollisionShape.ShapeTypes.XXX</code>
- * and defines what kind of shape the PhysicsNode has in the physics space,
- * the size of the shape is dependent on the BoundingVolume of this PhysicsNode.<br>
- * PhysicsNodes with mass=0 are static and do not move.
- * </p>
- * <p>
- * HINTS:<br>
- * - It is not recommended to have PhysicsNodes as child nodes of other PhysicsNodes<br>
- * - getLocalTranslation().set() does not set the physics object location,
- *   use setLocalTranslation(), same applies for getLocalRotation()<br>
- * </p>
  * @see com.jmex.jbullet.PhysicsSpace
  * @author normenhansen
  */
