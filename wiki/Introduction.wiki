@@ -6,7 +6,7 @@ jbullet-jme is similar to jmephysics2 in that it wraps a physics engine into its
 
 Other than jmephysics2, which aims at integrating different physics engines in one wrapper library, jbullet-jme is pretty much a direct wrapper of jbullet. This allows using some of the special functions of bullet (like vehicles) and adds the possibility of developing a native bullet implementation of jbullet-jme in the future, supporting GPU use etc. (see Native_Version)
 
-==Implemented Features http://jbullet-jme.googlecode.com/svn/wiki/images/bouncejme.png== 
+==Implemented Features== 
  * [PhysicsNode PhysicsNodes] (RigidBodys)
  * Forces
  * CollisionShapes
@@ -27,7 +27,7 @@ Other than jmephysics2, which aims at integrating different physics engines in o
  * [PhysicsCharacterNode Character Nodes]
  * [Multithreading GameTaskQueue] for optional multithreading
 
-== Bullet physics ==
+== Bullet physics http://jbullet-jme.googlecode.com/svn/wiki/images/bouncejme.png==
 Since this wrapper is based on bullet physics, you might find help for some problems on the bullet physics homepage: http://www.bulletphysics.org
 
 == This wiki ==
