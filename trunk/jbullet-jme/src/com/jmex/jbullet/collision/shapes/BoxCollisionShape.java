@@ -83,8 +83,8 @@ public class BoxCollisionShape extends CollisionShape{
         if(!(node.getWorldBound() instanceof BoundingBox)){
             node.setModelBound(new BoundingBox());
         }
-        node.updateGeometricState(0,true);
         node.updateModelBound();
+        node.updateGeometricState(0,true);
         node.updateWorldBound();
         BoundingBox volume=(BoundingBox)node.getWorldBound();
         createCollisionBox(volume);
