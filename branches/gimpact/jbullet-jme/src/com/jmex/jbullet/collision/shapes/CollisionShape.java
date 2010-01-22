@@ -85,7 +85,7 @@ public abstract class CollisionShape {
         public static final int CAPSULE=2;
         public static final int CYLINDER=3;
         public static final int MESH=4;
-        public static final int GMESH=5;
+        public static final int GIMPACT=5;
     }
 
 }

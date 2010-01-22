@@ -89,7 +89,7 @@ public class TestSimplePhysics {
 
         // Add a physics box to the world
         Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
-        PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.ShapeTypes.GMESH);
+        PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.ShapeTypes.GIMPACT);
         physicsBox.setFriction(0.1f);
         physicsBox.setLocalTranslation(new Vector3f(.6f,4,.5f));
         state.getRootNode().attachChild(physicsBox);

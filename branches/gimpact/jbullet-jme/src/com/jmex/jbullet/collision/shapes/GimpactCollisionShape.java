@@ -43,13 +43,13 @@ import java.util.List;
  * Basic mesh collision shape
  * @author normenhansen
  */
-public class DynamicMeshCollisionShape extends CollisionShape{
+public class GimpactCollisionShape extends CollisionShape{
 
     /**
      * creates a collision shape from the TriMesh leaf in the given node
      * @param node the node to get the TriMesh from
      */
-    public DynamicMeshCollisionShape(Node node) {
+    public GimpactCollisionShape(Node node) {
         createCollisionMesh(node);
     }
 
@@ -57,7 +57,7 @@ public class DynamicMeshCollisionShape extends CollisionShape{
      * creates a collision shape from the given TriMesh
      * @param mesh the TriMesh to use
      */
-    public DynamicMeshCollisionShape(TriMesh mesh) {
+    public GimpactCollisionShape(TriMesh mesh) {
         createCollisionMesh(mesh);
     }
 
@@ -88,7 +88,7 @@ public class DynamicMeshCollisionShape extends CollisionShape{
         cShape.setLocalScaling(Converter.convert(mesh.getWorldScale()));
         ((GImpactMeshShape)cShape).updateBound();
         ((GImpactMeshShape)cShape).lockChildShapes();
-        type=ShapeTypes.GMESH;
+        type=ShapeTypes.GIMPACT;
     }
 
 }

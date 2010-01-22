@@ -55,7 +55,7 @@ import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
-import com.jmex.jbullet.collision.shapes.DynamicMeshCollisionShape;
+import com.jmex.jbullet.collision.shapes.GimpactCollisionShape;
 import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
@@ -229,7 +229,7 @@ public class PhysicsNode extends CollisionObject{
     }
 
     protected void preRebuild(){
-        collisionShape.calculateLocalInertia(mass, localInertia);
+//        collisionShape.calculateLocalInertia(mass, localInertia);
         if(constructionInfo==null)
             constructionInfo=new RigidBodyConstructionInfo(mass, motionState, collisionShape.getCShape(), localInertia);
         else
@@ -731,8 +731,8 @@ public class PhysicsNode extends CollisionObject{
             case CollisionShape.ShapeTypes.MESH:
                 collisionShape=new MeshCollisionShape(this);
             break;
-            case CollisionShape.ShapeTypes.GMESH:
-                collisionShape=new DynamicMeshCollisionShape(this);
+            case CollisionShape.ShapeTypes.GIMPACT:
+                collisionShape=new GimpactCollisionShape(this);
             break;
         }
         rebuildRigidBody();
