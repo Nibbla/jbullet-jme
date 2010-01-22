@@ -501,6 +501,7 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setLinearVelocity(Vector3f vec){
         rBody.setLinearVelocity(Converter.convert(vec));
+        rBody.activate();
     }
 
     /**
@@ -584,6 +585,7 @@ public class PhysicsNode extends CollisionObject{
             //TODO: reuse vector
             rBody.applyForce(Converter.convert(continuousForce)
                     ,Converter.convert(continuousForceLocation));
+            rBody.activate();
             if(applyForce){
                 PhysicsSpace.getPhysicsSpace().reQueue(doApplyContinuousForce);
             }
@@ -645,6 +647,7 @@ public class PhysicsNode extends CollisionObject{
         public Object call() throws Exception {
             //TODO: reuse vector
             rBody.applyTorque(Converter.convert(continuousTorque));
+            rBody.activate();
             if(applyTorque){
                 PhysicsSpace.getPhysicsSpace().reQueue(doApplyContinuousTorque);
             }
@@ -662,6 +665,7 @@ public class PhysicsNode extends CollisionObject{
     public void applyForce(Vector3f force, Vector3f location){
         //TODO: reuse vector!
         rBody.applyForce(Converter.convert(force), Converter.convert(location));
+        rBody.activate();
     }
 
     /**
@@ -672,6 +676,7 @@ public class PhysicsNode extends CollisionObject{
     public void applyCentralForce(Vector3f force){
         //TODO: reuse vector!
         rBody.applyCentralForce(Converter.convert(force));
+        rBody.activate();
     }
 
     /**
@@ -682,6 +687,7 @@ public class PhysicsNode extends CollisionObject{
     public void applyTorque(Vector3f torque){
         //TODO: reuse vector!
         rBody.applyTorque(Converter.convert(torque));
+        rBody.activate();
     }
 
     /**
@@ -692,6 +698,7 @@ public class PhysicsNode extends CollisionObject{
     public void applyImpulse(Vector3f vec, Vector3f vec2){
         //TODO: reuse vector!
         rBody.applyImpulse(Converter.convert(vec), Converter.convert(vec2));
+        rBody.activate();
     }
 
     /**
@@ -701,6 +708,7 @@ public class PhysicsNode extends CollisionObject{
     public void applyTorqueImpulse(Vector3f vec){
         //TODO: reuse vector!
         rBody.applyTorqueImpulse(Converter.convert(vec));
+        rBody.activate();
     }
 
     public void clearForces(){
@@ -773,6 +781,23 @@ public class PhysicsNode extends CollisionObject{
         this.collisionShape = collisionShape;
         constructionInfo.collisionShape=collisionShape.getCShape();
         rebuildRigidBody();
+    }
+
+    /**
+     * reactivates this PhysicsNode when it has been deactivated because it was not moving
+     */
+    public void activate(){
+        rBody.activate();
+    }
+
+    /**
+     * sets the sleeping thresholds, these define when the object gets deactivated
+     * to save ressources. Low values keep the object active when it barely moves
+     * @param linear the linear sleeping threshold
+     * @param angular the angular sleeping threshold
+     */
+    public void setSleepingThresholds(float linear, float angular){
+        rBody.setSleepingThresholds(linear, angular);
     }
 
     /**
