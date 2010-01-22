@@ -3,6 +3,17 @@
 
 == Versions ==
 
+==== svn trunk ====
+ * fixed activation of RigidBodys when applying forces
+ * added PhysicsNode.activate() 
+ * added PhysicsNode.setSleepingThresholds()
+ * fixed node update order when creating CollisionShape
+ * added non-centric forces
+ * added non-continuous force applying
+ * added WheelInfo restLength support
+ * preliminary fix for CollisionShape generation from BoundingVolumes with center!=0
+ * lots of javadoc additions
+
 ==== 0.9.3 alpha ====
  * some fixes in scale applying
  * improved key management in vehicle and character tests
