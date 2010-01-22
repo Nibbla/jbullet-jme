@@ -30,5 +30,7 @@ To shift the center of mass see [CenterOfMass]
 It is not recommended to have PhysicsNodes as child nodes of other PhysicsNodes
 
 getLocalTranslation().set() does not set the physics object location, use setLocalTranslation(), same applies for getLocalRotation()
+
+To get informed about collisions of PhysicsNodes, see CollisionEvents
 ==JavaDoc==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/nodes/PhysicsNode.html
