@@ -4,7 +4,7 @@
 == Versions ==
 
 ==== svn trunk ====
- * fixed activation of RigidBodys when applying forces
+ * fixed activation of PhysicsNodes when applying forces
  * added PhysicsNode.activate() 
  * added PhysicsNode.setSleepingThresholds()
  * fixed node update order when creating CollisionShape
