@@ -2,7 +2,7 @@
 
 == Downloading ==
 In the "Downloads" section of this project you will find the most current release version of jbullet-jme
-
+<wiki:gadget url="http://google-code-feed-gadget.googlecode.com/svn/trunk/gadget.xml" up_feeds="feed://code.google.com/feeds/p/jbullet-jme/downloads/basic" width="500px" height="340px" border="0"/>
 == Installing ==
 jbullet-jme consists of several jar libraries that you have to add to your programs classpath.
 
