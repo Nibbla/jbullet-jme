@@ -50,6 +50,7 @@ import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
+import com.bulletphysics.extras.gimpact.GImpactCollisionAlgorithm;
 import com.jme.math.Vector3f;
 import com.jme.util.GameTaskQueue;
 import com.jme.util.GameTaskQueueManager;
@@ -201,7 +202,8 @@ public abstract class PhysicsSpace {
         dynamicsWorld.setGravity( new javax.vecmath.Vector3f( 0, -9.81f, 0 ) );
 
 		broadphase.getOverlappingPairCache().setInternalGhostPairCallback(new GhostPairCallback());
-
+        GImpactCollisionAlgorithm.registerAlgorithm(dispatcher);
+        
         setContactCallbacks();
     }
 
@@ -255,6 +257,10 @@ public abstract class PhysicsSpace {
      * @param time the current time value
      */
     public void update(float time){
+//        int subSteps=1;
+//        if(time>accuracy){
+//            subSteps=(int)(time/accuracy+1);
+//        }
         update(time,1);
     }
 
