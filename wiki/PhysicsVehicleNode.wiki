@@ -58,7 +58,14 @@ See [CenterOfMass]
 ====Suspension====
 Suspension is provided by the spring force plus a damping force.  The damping force stops the car from bouncing forever.  There are two coefficients for damping: one for spring compression, and one for spring relaxation.  In a real vehicle, the compression damping is set much lower than the relaxation damping.  This means, when the vehicle hits a bump, it won't be transmitted to the chassis, resulting in a smooth ride.
 Set the suspension damping as a fraction of critical damping: = k * 2.0 * btSqrt(m_suspensionStiffness), where k is the proportion of critical damping.  For more information, see http://en.wikipedia.org/wiki/Damping
-
+{{{
+float stiffness=60.0f-200.0f;//200=f1 car
+float compValue=0.0f-1.0f; //(lower than damp!)
+float dampValue=0.0f-1.0f;
+vehicle.setSuspensionCompression(compValue*2.0f*FastMath.sqrt(stiffness));
+vehicle.setSuspensionDamping(dampValue*2.0f*FastMath.sqrt(stiffness));
+vehicle.setSuspensionStiffness(stiffness);
+}}}
 ====Why are my wheels sinking through the ground?====
 The wheels sink through the ground when the suspension cannot support the weight of the vehicle.  You need to increase the suspension stiffness, max travel or suspension length.
 
