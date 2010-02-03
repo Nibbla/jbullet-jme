@@ -13,6 +13,7 @@
  * added WheelInfo restLength support
  * preliminary fix for CollisionShape generation from BoundingVolumes with center!=0
  * lots of javadoc additions
+ * added GImpactShape (not working yet)
 
 ==== 0.9.3 alpha (r374) ====
  * some fixes in scale applying
