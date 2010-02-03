@@ -34,8 +34,8 @@
         <delete file="dist/${application.title}-${application.version}.zip"/>
         <delete file="dist/${application.title}-${application.version}-javadoc.zip"/>
         <zip destfile="dist/${application.title}-${application.version}.zip">
-            <zipfileset dir="lib/jbullet" excludes="javadoc.zip"/>
-            <zipfileset dir="dist/" excludes="README.TXT"/>
+            <zipfileset dir="lib/jbullet" excludes="javadoc.zip .svn"/>
+            <zipfileset dir="dist/" includes="jbullet-jme.jar"/>
             <zipfileset dir="licenses/" prefix="licenses/"/>
         </zip>
         <zip destfile="dist/${application.title}-${application.version}-javadoc.zip">
