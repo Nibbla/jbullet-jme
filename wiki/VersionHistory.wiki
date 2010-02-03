@@ -3,7 +3,7 @@
 
 == Versions ==
 
-==== svn trunk ====
+==== 0.9.4 alpha (r476) ====
  * fixed activation of PhysicsNodes when applying forces
  * added PhysicsNode.activate() 
  * added PhysicsNode.setSleepingThresholds()
