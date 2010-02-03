@@ -224,6 +224,14 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#activate()">activate</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reactivates this PhysicsNode when it has been deactivated because it was not moving</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyCentralForce(com.jme.math.Vector3f)">applyCentralForce</A></B>(com.jme.math.Vector3f&nbsp;force)</CODE>
 
 <BR>
@@ -637,6 +645,16 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the "bouncyness" of the PhysicsNode
  best performance if restitution=0</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setSleepingThresholds(float, float)">setSleepingThresholds</A></B>(float&nbsp;linear,
+                      float&nbsp;angular)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the sleeping thresholds, these define when the object gets deactivated
+ to save ressources.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -1427,6 +1445,34 @@ public void <B>setCollisionShape</B>(<A HREF="../../../../com/jmex/jbullet/colli
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>collisionShape</CODE> - the CollisionShape to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="activate()"><!-- --></A><H3>
+activate</H3>
+<PRE>
+public void <B>activate</B>()</PRE>
+<DL>
+<DD>reactivates this PhysicsNode when it has been deactivated because it was not moving
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSleepingThresholds(float, float)"><!-- --></A><H3>
+setSleepingThresholds</H3>
+<PRE>
+public void <B>setSleepingThresholds</B>(float&nbsp;linear,
+                                  float&nbsp;angular)</PRE>
+<DL>
+<DD>sets the sleeping thresholds, these define when the object gets deactivated
+ to save ressources. Low values keep the object active when it barely moves
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>linear</CODE> - the linear sleeping threshold<DD><CODE>angular</CODE> - the angular sleeping threshold</DL>
 </DD>
 </DL>
 <HR>
