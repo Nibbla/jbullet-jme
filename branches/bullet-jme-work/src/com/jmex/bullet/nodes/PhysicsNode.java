@@ -31,11 +31,6 @@
  */
 package com.jmex.bullet.nodes;
 
-//import com.bulletphysics.collision.dispatch.CollisionFlags;
-//import com.bulletphysics.dynamics.RigidBody;
-//import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
-//import com.bulletphysics.linearmath.MotionState;
-//import com.bulletphysics.linearmath.Transform;
 import com.jme.bounding.BoundingBox;
 import com.jme.bounding.BoundingCapsule;
 import com.jme.bounding.BoundingSphere;
@@ -93,7 +88,6 @@ import java.util.concurrent.Callable;
 public class PhysicsNode extends CollisionObject{
     protected long rBody=-1;
 //    private RigidBodyConstructionInfo constructionInfo;
-//    private MotionState motionState;//=new DefaultMotionState();
     private CollisionShape collisionShape;
     private float mass=1f;
 
@@ -150,7 +144,6 @@ public class PhysicsNode extends CollisionObject{
     public PhysicsNode(Spatial child, int collisionShapeType, float mass){
         this.attachChild(child);
         this.mass=mass;
-//        motionState=createMotionState();
         createCollisionShape(collisionShapeType);
     }
 
@@ -174,7 +167,6 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         this.collisionShape=shape;
-//        motionState=createMotionState();
         rebuildRigidBody();
     }
 
@@ -421,12 +413,12 @@ public class PhysicsNode extends CollisionObject{
         rebuildRigidBody();
     }
 
-    private native void setNativeGravity(long body, float x, float y, float z);
-
     public void getGravity(Vector3f gravity){
 //        rBody.getGravity(tempVel);
 //        Converter.convert(tempVel,gravity);
     }
+
+    private native void setNativeGravity(long body, float x, float y, float z);
 
     /**
      * set the gravity of this PhysicsNode
@@ -677,6 +669,38 @@ public class PhysicsNode extends CollisionObject{
         this.collisionShape = collisionShape;
 //        constructionInfo.collisionShape=collisionShape.getCShape();
         rebuildRigidBody();
+    }
+
+    /**
+     * for native access
+     */
+    protected void setTempVector(float x, float y, float z){
+        tempLocation.set(x,y,z);
+    }
+
+    /**
+     * for native access
+     */
+    protected void setTempMatrix(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22){
+        tempMatrix.m00=m00;
+        tempMatrix.m01=m01;
+        tempMatrix.m02=m02;
+        tempMatrix.m10=m10;
+        tempMatrix.m11=m11;
+        tempMatrix.m12=m12;
+        tempMatrix.m20=m20;
+        tempMatrix.m21=m21;
+        tempMatrix.m22=m22;
+    }
+
+    /**
+     * for native access
+     */
+    protected void setTempQuaternion(float w, float x, float y, float z){
+        tempRotation.w=w;
+        tempRotation.x=x;
+        tempRotation.y=y;
+        tempRotation.z=z;
     }
 
     /**
