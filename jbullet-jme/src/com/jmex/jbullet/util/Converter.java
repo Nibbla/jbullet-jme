@@ -148,7 +148,7 @@ public class Converter {
         vertices.rewind();
 
         int verticesLength = mesh.getVertexCount() * 3;
-        jBulletIndexedMesh.numVertices = verticesLength;
+        jBulletIndexedMesh.numVertices = mesh.getVertexCount();
         jBulletIndexedMesh.vertexStride = 12; //3 verts * 4 bytes per.
         for ( int i = 0; i < verticesLength; i++ ) {
             float tempFloat = vertices.get();
