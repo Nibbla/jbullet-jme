@@ -43,6 +43,7 @@ import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
+import com.jmex.jbullet.collision.shapes.GImpactCollisionShape;
 import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
@@ -115,6 +116,9 @@ public class PhysicsGhostNode extends CollisionObject{
             break;
             case CollisionShape.ShapeTypes.MESH:
                 cShape=new MeshCollisionShape(this);
+            break;
+            case CollisionShape.ShapeTypes.GIMPACT:
+                cShape=new GImpactCollisionShape(this);
             break;
         }
     }
