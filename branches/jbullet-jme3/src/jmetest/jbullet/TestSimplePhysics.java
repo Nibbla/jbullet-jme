@@ -32,18 +32,16 @@
 package jmetest.jbullet;
 
 
-import java.util.concurrent.Callable;
+import com.g3d.app.SimpleApplication;
+import com.g3d.asset.TextureKey;
+import com.g3d.material.Material;
 
 import com.g3d.math.Vector3f;
+import com.g3d.renderer.RenderManager;
+import com.g3d.scene.Geometry;
 import com.g3d.scene.shape.Box;
-import com.g3d.scene.shape.Capsule;
-import com.g3d.scene.shape.Cylinder;
 import com.g3d.scene.shape.Sphere;
-import com.g3d.util.GameTaskQueueManager;
-import com.jmex.editors.swing.settings.GameSettingsPanel;
-import com.jmex.game.StandardGame;
-import com.jmex.game.state.DebugGameState;
-import com.jmex.game.state.GameStateManager;
+import com.g3d.texture.Texture;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.nodes.PhysicsNode;
@@ -53,110 +51,96 @@ import com.jmex.jbullet.nodes.PhysicsNode;
  *
  * @author normenhansen
  */
-public class TestSimplePhysics {
+public class TestSimplePhysics extends SimpleApplication{
+    final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 
-    public static void setupGame(){
-        // creates and initializes the PhysicsSpace
-        final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+    public static void main(String[] args){
+        TestSimplePhysics app = new TestSimplePhysics();
+        app.start();
+    }
 
-        // Create a DebugGameState
-        // - override the update method to update/sync physics space
-        DebugGameState state = new DebugGameState(){
+    @Override
+    public void simpleInitApp() {
 
-            @Override
-            public void update(float tpf) {
-                pSpace.update(tpf);
-                super.update(tpf);
-            }
-            
-        };
+        Material mat = new Material(manager, "plain_texture.j3md");
+        TextureKey key = new TextureKey("Monkey.jpg", true);
+        key.setGenerateMips(true);
+        Texture tex = manager.loadTexture(key);
+        tex.setMinFilter(Texture.MinFilter.Trilinear);
+        mat.setTexture("m_ColorMap", tex);
 
         // Add a physics sphere to the world
-        Sphere sphere=new Sphere("physicssphere",16,16,1f);
-        PhysicsNode physicsSphere=new PhysicsNode(sphere,CollisionShape.ShapeTypes.SPHERE);
+        Sphere sphere=new Sphere(16,16,1f);
+        Geometry geom=new Geometry("sphere",sphere);
+        geom.setMaterial(mat);
+        PhysicsNode physicsSphere=new PhysicsNode(geom,CollisionShape.ShapeTypes.SPHERE);
         physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
-        state.getRootNode().attachChild(physicsSphere);
-        physicsSphere.updateRenderState();
+        rootNode.attachChild(physicsSphere);
         pSpace.add(physicsSphere);
 
         // Add a physics sphere to the world using the collision shape from sphere one
-        Sphere sphere2=new Sphere("physicssphere",16,16,1f);
-        PhysicsNode physicsSphere2=new PhysicsNode(sphere2,physicsSphere.getCollisionShape());
+        Sphere sphere2=new Sphere(16,16,1f);
+        Geometry geom2=new Geometry("sphere2",sphere2);
+        geom2.setMaterial(mat);
+        PhysicsNode physicsSphere2=new PhysicsNode(geom2,physicsSphere.getCollisionShape());
         physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
-        state.getRootNode().attachChild(physicsSphere2);
-        physicsSphere2.updateRenderState();
+        rootNode.attachChild(physicsSphere2);
         pSpace.add(physicsSphere2);
 
         // Add a physics box to the world
-        Box boxGeom=new Box("physicsbox",Vector3f.ZERO,1f,1f,1f);
-        PhysicsNode physicsBox=new PhysicsNode(boxGeom,CollisionShape.ShapeTypes.BOX);
+        Box boxGeom=new Box(Vector3f.ZERO,1f,1f,1f);
+        Geometry geom3=new Geometry("box",boxGeom);
+        geom3.setMaterial(mat);
+        PhysicsNode physicsBox=new PhysicsNode(geom3,CollisionShape.ShapeTypes.BOX);
         physicsBox.setFriction(0.1f);
         physicsBox.setLocalTranslation(new Vector3f(.6f,4,.5f));
-        state.getRootNode().attachChild(physicsBox);
-        physicsBox.updateRenderState();
+        rootNode.attachChild(physicsBox);
         pSpace.add(physicsBox);
 
-        Cylinder cylGeom=new Cylinder("physicscyliner",16,16,1f,3f);
-        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.ShapeTypes.CYLINDER);
-        physicsCylinder.setLocalTranslation(new Vector3f(-5,4,0));
-        state.getRootNode().attachChild(physicsCylinder);
-        physicsCylinder.updateRenderState();
-        pSpace.add(physicsCylinder);
-
-        Capsule capGeom=new Capsule("physicscapsule",16,16,16,0.5f,2f);
-        PhysicsNode physicsCapsule=new PhysicsNode(capGeom, CollisionShape.ShapeTypes.CAPSULE);
-        physicsCapsule.setFriction(0.1f);
-        physicsCapsule.setLocalTranslation(new Vector3f(-8,4,0));
-        state.getRootNode().attachChild(physicsCapsule);
-        physicsCapsule.updateRenderState();
-        pSpace.add(physicsCapsule);
+//        Cylinder cylGeom=new Cylinder(16,16,1f,3f);
+//        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.ShapeTypes.CYLINDER);
+//        physicsCylinder.setLocalTranslation(new Vector3f(-5,4,0));
+//        rootNode.attachChild(physicsCylinder);
+//        pSpace.add(physicsCylinder);
+//
+//        Capsule capGeom=new Capsule(16,16,16,0.5f,2f);
+//        PhysicsNode physicsCapsule=new PhysicsNode(capGeom, CollisionShape.ShapeTypes.CAPSULE);
+//        physicsCapsule.setFriction(0.1f);
+//        physicsCapsule.setLocalTranslation(new Vector3f(-8,4,0));
+//        rootNode.attachChild(physicsCapsule);
+//        pSpace.add(physicsCapsule);
 //        physicsCapsule.setMass(10f);
 
         // Join the physics objects with a Point2Point joint
 //        PhysicsPoint2PointJoint joint=new PhysicsPoint2PointJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0));
 //        PhysicsHingeJoint joint=new PhysicsHingeJoint(physicsSphere, physicsBox, new Vector3f(-2,0,0), new Vector3f(2,0,0), Vector3f.UNIT_Z,Vector3f.UNIT_Z);
 //        pSpace.add(joint);
-        
+
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.ShapeTypes.MESH,0);
+        Geometry geom4=new Geometry("node2",new Sphere(16,16,1.2f));
+        geom4.setMaterial(mat);
+        PhysicsNode node2=new PhysicsNode(geom4,CollisionShape.ShapeTypes.MESH,0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
-        state.getRootNode().attachChild(node2);
-        node2.updateRenderState();
+        rootNode.attachChild(node2);
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH,0);
+        Geometry geom5=new Geometry("box2",new Box(Vector3f.ZERO,100f,0.2f,100f));
+        PhysicsNode node3=new PhysicsNode(geom5,CollisionShape.ShapeTypes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
-        state.getRootNode().attachChild(node3);
-        node3.updateRenderState();
+        rootNode.attachChild(node3);
         pSpace.add(node3);
-
-        
-        // Add the gamestate to the manager
-        GameStateManager.getInstance().attachChild(state);
-        // Activate the game state
-        state.setActive(true);
-
     }
 
-	public static void main(String[] args) throws Exception {
-	    // Enable statistics gathering
-	    System.setProperty("jme.stats", "set");
+    @Override
+    public void simpleUpdate(float tpf) {
+        pSpace.update(tpf);
+        System.out.println("update");
+    }
 
-		// Instantiate StandardGame
-		StandardGame game = new StandardGame("A Simple Test");
-		// Show settings screen
-		if (GameSettingsPanel.prompt(game.getSettings())) {
-			// Start StandardGame, it will block until it has initialized successfully, then return
-			game.start();
+    @Override
+    public void simpleRender(RenderManager rm) {
+        //TODO: add render code
+    }
 
-			GameTaskQueueManager.getManager().update(new Callable<Void>() {
-
-				public Void call() throws Exception {
-                    setupGame();
-					return null;
-				}
-			});
-		}
-	}
 }

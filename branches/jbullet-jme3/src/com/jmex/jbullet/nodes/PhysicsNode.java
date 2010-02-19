@@ -37,15 +37,12 @@ import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
 import com.bulletphysics.linearmath.MotionState;
 import com.bulletphysics.linearmath.Transform;
 import com.g3d.bounding.BoundingBox;
-import com.g3d.bounding.BoundingCapsule;
 import com.g3d.bounding.BoundingSphere;
 import com.g3d.bounding.BoundingVolume;
 import com.g3d.math.Matrix3f;
 import com.g3d.math.Quaternion;
 import com.g3d.math.Vector3f;
 import com.g3d.scene.Spatial;
-import com.g3d.util.export.JMEExporter;
-import com.g3d.util.export.JMEImporter;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
@@ -192,7 +189,6 @@ public class PhysicsNode extends CollisionObject{
         Converter.convert(motionStateTrans.basis,tempMatrix);
         tempRotation.fromRotationMatrix(tempMatrix);
         setWorldRotation(tempRotation);
-
     }
 
     /**
@@ -728,9 +724,9 @@ public class PhysicsNode extends CollisionObject{
             case CollisionShape.ShapeTypes.SPHERE:
                 collisionShape=new SphereCollisionShape(this);
             break;
-            case CollisionShape.ShapeTypes.CAPSULE:
-                collisionShape=new CapsuleCollisionShape(this);
-            break;
+//            case CollisionShape.ShapeTypes.CAPSULE:
+//                collisionShape=new CapsuleCollisionShape(this);
+//            break;
             case CollisionShape.ShapeTypes.CYLINDER:
                 collisionShape=new CylinderCollisionShape(this);
             break;
@@ -757,9 +753,9 @@ public class PhysicsNode extends CollisionObject{
         else if(bounds instanceof BoundingSphere){
             collisionShape=new SphereCollisionShape(this);
         }
-        else if(bounds instanceof BoundingCapsule){
-            collisionShape=new CapsuleCollisionShape(this);
-        }
+//        else if(bounds instanceof BoundingCapsule){
+//            collisionShape=new CapsuleCollisionShape(this);
+//        }
         else{
             createCollisionShape(CollisionShape.ShapeTypes.SPHERE);
         }

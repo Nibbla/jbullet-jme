@@ -108,9 +108,9 @@ public class PhysicsGhostNode extends CollisionObject{
             case CollisionShape.ShapeTypes.SPHERE:
                 cShape=new SphereCollisionShape(this);
             break;
-            case CollisionShape.ShapeTypes.CAPSULE:
-                cShape=new CapsuleCollisionShape(this);
-            break;
+//            case CollisionShape.ShapeTypes.CAPSULE:
+//                cShape=new CapsuleCollisionShape(this);
+//            break;
             case CollisionShape.ShapeTypes.CYLINDER:
                 cShape=new CylinderCollisionShape(this);
             break;
