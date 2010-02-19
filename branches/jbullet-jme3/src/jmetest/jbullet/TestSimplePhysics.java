@@ -126,6 +126,7 @@ public class TestSimplePhysics extends SimpleApplication{
 
         // the floor, does not move (mass=0)
         Geometry geom5=new Geometry("box2",new Box(Vector3f.ZERO,100f,0.2f,100f));
+        geom5.setMaterial(mat);
         PhysicsNode node3=new PhysicsNode(geom5,CollisionShape.ShapeTypes.MESH,0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         rootNode.attachChild(node3);
@@ -135,7 +136,6 @@ public class TestSimplePhysics extends SimpleApplication{
     @Override
     public void simpleUpdate(float tpf) {
         pSpace.update(tpf);
-        System.out.println("update");
     }
 
     @Override

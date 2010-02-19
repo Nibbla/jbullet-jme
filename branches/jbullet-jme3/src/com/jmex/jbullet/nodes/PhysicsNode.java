@@ -351,6 +351,7 @@ public class PhysicsNode extends CollisionObject{
         else {
             localTranslation.set( translation );
         }
+        super.setLocalTranslation(localTranslation);
         return localTranslation;
     }
 
@@ -369,6 +370,7 @@ public class PhysicsNode extends CollisionObject{
         else {
             localRotation.set( rot );
         }
+        super.setLocalRotation(localRotation);
         return localRotation;
     }
 
