@@ -8,6 +8,7 @@ A CollisionShape defines the physics shape of a PhysicsNode, possible shapes are
  * Cylinder
  * Compound (combines shapes)
  * Mesh (world only)
+ * GImpact
 
 == From scratch ==
 You can create a CollisionShape object and use that when constructing a PhysicsNode, this way it is possible to reuse that CollisionShape
@@ -35,7 +36,7 @@ PhysicsNode pNode=new PhysicsNode(mesh, compoundCollisionShape);
 ==Notes==
 It is advised to reuse CollisionShapes as often as possible. It is not necessary to create a new collision shape for every 1x1x1 box in your world. You can use just one CollisionShape for multiple PhysicsNodes.
 
-Currently, PhysicsNodes with mesh collision shape do not collide with other mesh PhysicsNodes, so mesh shapes are mostly to be used for static objects (floor/world) while box/sphere etc. shapes should be used for mobile objects.
+Currently, PhysicsNodes with mesh collision shape do not collide with other mesh PhysicsNodes, so mesh shapes are mostly to be used for static objects (floor/world) while box/sphere etc. shapes should be used for mobile objects. You can also use the GImpact shape type for mesh-accurate mobile objects but you will get lower performance.
 
 == JavaDoc ==
 http://jbullet-jme.googlecode.com/svn/trunk/jbullet-jme/javadoc/com/jmex/jbullet/collision/shapes/CollisionShape.html
