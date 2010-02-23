@@ -3,6 +3,11 @@
 
 == Versions ==
 
+==== svn trunk ====
+ * added fix to avoid calling of setLocalInertia() for static meshes (caused assertion error)
+ * fixed mesh conversion, GIMPACT shapes work now
+ * added GIMPACT type to automatic CollisionShape generation
+
 ==== 0.9.4 alpha (r476) ====
  * fixed activation of PhysicsNodes when applying forces
  * added PhysicsNode.activate() 
