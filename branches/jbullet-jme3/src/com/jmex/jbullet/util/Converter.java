@@ -31,6 +31,7 @@
  */
 package com.jmex.jbullet.util;
 
+import com.g3d.math.Vector3f;
 import com.g3d.scene.IndexBuffer;
 import com.g3d.scene.VertexBuffer;
 import java.nio.ByteBuffer;
@@ -128,6 +129,20 @@ public class Converter {
         newMatrix.m21 = oldMatrix.get(2,1);
         newMatrix.m22 = oldMatrix.get(2,2);
     }
+
+    public static void convert(com.g3d.math.Transform in, com.bulletphysics.linearmath.Transform out){
+        convert(in.getTranslation(),out.origin);
+        //TODO: reuse vector
+        convert(in.getRotation().toRotationMatrix(),out.basis);
+    }
+
+//    public static void convert(com.bulletphysics.linearmath.Transform in, com.g3d.math.Transform out){
+//        Vector3f trans
+//        out.setTranslation(Vector3f.ZERO)
+//        convert(in.getTranslation(),out.origin);
+//        //TODO: reuse vector
+//        convert(in.getRotation().toRotationMatrix(),out.basis);
+//    }
 
     public static com.bulletphysics.collision.shapes.TriangleIndexVertexArray convert( com.g3d.scene.Mesh mesh ) {
         com.bulletphysics.collision.shapes.TriangleIndexVertexArray jBulletMeshData

@@ -39,12 +39,7 @@ import com.g3d.math.Quaternion;
 import com.g3d.math.Vector3f;
 import com.g3d.scene.Spatial;
 import com.jmex.jbullet.collision.CollisionObject;
-import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
-import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
-import com.jmex.jbullet.collision.shapes.GImpactCollisionShape;
-import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
 
@@ -76,11 +71,11 @@ public class PhysicsGhostNode extends CollisionObject{
         buildObject();
     }
 
-    public PhysicsGhostNode(Spatial child, int shapeType) {
-        this.attachChild(child);
-        buildCollisionShape(shapeType);
-        buildObject();
-    }
+//    public PhysicsGhostNode(Spatial child, int shapeType) {
+//        this.attachChild(child);
+//        buildCollisionShape(shapeType);
+//        buildObject();
+//    }
 
     public PhysicsGhostNode(Spatial child, CollisionShape shape){
         this.attachChild(child);
@@ -94,34 +89,34 @@ public class PhysicsGhostNode extends CollisionObject{
         gObject.setCollisionShape(cShape.getCShape());
     }
 
-    /**
-     * creates a collisionShape from the BoundingVolume of this node.
-     * If no BoundingVolume of the give type exists yet, it will be created.
-     * Otherwise a new BoundingVolume will be created.
-     * @param type
-     */
-    private void buildCollisionShape(int type){
-        switch(type){
-            case CollisionShape.ShapeTypes.BOX:
-                cShape=new BoxCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.SPHERE:
-                cShape=new SphereCollisionShape(this);
-            break;
-//            case CollisionShape.ShapeTypes.CAPSULE:
-//                cShape=new CapsuleCollisionShape(this);
+//    /**
+//     * creates a collisionShape from the BoundingVolume of this node.
+//     * If no BoundingVolume of the give type exists yet, it will be created.
+//     * Otherwise a new BoundingVolume will be created.
+//     * @param type
+//     */
+//    private void buildCollisionShape(int type){
+//        switch(type){
+//            case CollisionShape.ShapeTypes.BOX:
+//                cShape=new BoxCollisionShape(this);
 //            break;
-            case CollisionShape.ShapeTypes.CYLINDER:
-                cShape=new CylinderCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.MESH:
-                cShape=new MeshCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.GIMPACT:
-                cShape=new GImpactCollisionShape(this);
-            break;
-        }
-    }
+//            case CollisionShape.ShapeTypes.SPHERE:
+//                cShape=new SphereCollisionShape(this);
+//            break;
+////            case CollisionShape.ShapeTypes.CAPSULE:
+////                cShape=new CapsuleCollisionShape(this);
+////            break;
+//            case CollisionShape.ShapeTypes.CYLINDER:
+//                cShape=new CylinderCollisionShape(this);
+//            break;
+//            case CollisionShape.ShapeTypes.MESH:
+//                cShape=new MeshCollisionShape(this);
+//            break;
+//            case CollisionShape.ShapeTypes.GIMPACT:
+//                cShape=new GImpactCollisionShape(this);
+//            break;
+//        }
+//    }
 
     /**
      * note that getLocalTranslation().set() will not update the physics object position.

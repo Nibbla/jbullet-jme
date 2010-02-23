@@ -51,11 +51,9 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
     private Vector3f walkDirection=new Vector3f();
 
 
-    public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
-        super(spat, shapeType);
+    public PhysicsCharacterNode(Spatial spat, CollisionShape shape, float stepHeight) {
+        super(spat, shape);
         this.stepHeight=stepHeight;
-        if(shapeType==CollisionShape.ShapeTypes.MESH)
-            throw (new UnsupportedOperationException("Kinematic character nodes cannot have meshes as collision shape"));
         character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
     }
 

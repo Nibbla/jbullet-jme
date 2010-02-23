@@ -277,29 +277,32 @@ public abstract class PhysicsSpace {
      */
     public void update(float time, int maxSteps){
         if(getDynamicsWorld()==null) return;
+        for (PhysicsNode physicsNode : physicsNodes.values()) {
+            physicsNode.updatePhysicsState();
+        }
         //add recurring events
-        for (Iterator<Callable> it = rQueue.iterator(); it.hasNext();) {
-            Callable callable = it.next();
+        Callable callable = rQueue.poll();
+        while(callable!=null){
             try {
                 callable.call();
             } catch (Exception ex) {
                 Logger.getLogger(PhysicsSpace.class.getName()).log(Level.SEVERE, null, ex);
             }
+            callable=rQueue.poll();
         }
-        for (Iterator<Callable> it = pQueue.iterator(); it.hasNext();) {
-            Callable callable = it.next();
+        callable = pQueue.poll();
+        while(callable!=null){
             try {
                 callable.call();
             } catch (Exception ex) {
                 Logger.getLogger(PhysicsSpace.class.getName()).log(Level.SEVERE, null, ex);
             }
+            callable = pQueue.poll();
         }
-//        rQueue.execute();
-        //execute queue
-//        pQueue.execute();
+        
         //step simulation
         getDynamicsWorld().stepSimulation(time,maxSteps,accuracy);
-        //sync ghostnodes
+        //sync ghostnodes TODO!
         for ( PhysicsGhostNode node : physicsGhostNodes.values() ){
             node.syncPhysics();
         }
@@ -361,7 +364,55 @@ public abstract class PhysicsSpace {
      * adds an object to the physics space
      * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to add
      */
-    public void add(Object obj){
+    public void add(final Object obj){
+        enqueueUpdate(new Callable() {
+            public Object call() throws Exception {
+                if(obj instanceof PhysicsGhostNode){
+                    addGhostNode((PhysicsGhostNode)obj);
+                }
+                else if(obj instanceof PhysicsNode){
+                    addNode((PhysicsNode)obj);
+                }
+                else if(obj instanceof PhysicsJoint){
+                    addJoint((PhysicsJoint)obj);
+                }
+                else{
+                    throw (new UnsupportedOperationException("Cannot add this kind of object to the physics space."));
+                }
+                return null;
+            }
+        });
+    }
+
+    /**
+     * adds an object to the physics space
+     * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to remove
+     */
+    public void remove(final Object obj){
+        enqueueUpdate(new Callable() {
+            public Object call() throws Exception {
+                if(obj instanceof PhysicsGhostNode){
+                    removeGhostNode((PhysicsGhostNode)obj);
+                }
+                else if(obj instanceof PhysicsNode){
+                    removeNode((PhysicsNode)obj);
+                }
+                else if(obj instanceof PhysicsJoint){
+                    removeJoint((PhysicsJoint)obj);
+                }
+                else{
+                    throw (new UnsupportedOperationException("Cannot remove this kind of object from the physics space."));
+                }
+                return null;
+            }
+        });
+    }
+
+    /**
+     * adds an object to the physics space
+     * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to add
+     */
+    public void addDirect(Object obj){
         if(obj instanceof PhysicsGhostNode){
             addGhostNode((PhysicsGhostNode)obj);
         }
@@ -380,7 +431,7 @@ public abstract class PhysicsSpace {
      * adds an object to the physics space
      * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to remove
      */
-    public void remove(Object obj){
+    public void removeDirect(Object obj){
         if(obj instanceof PhysicsGhostNode){
             removeGhostNode((PhysicsGhostNode)obj);
         }
@@ -415,6 +466,7 @@ public abstract class PhysicsSpace {
     }
 
     private void addNode(PhysicsNode node){
+        node.updatePhysicsState();
         physicsNodes.put(node.getRigidBody(),node);
         getDynamicsWorld().addRigidBody(node.getRigidBody());
         if(node instanceof PhysicsVehicleNode)

@@ -71,17 +71,17 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private VehicleRaycaster rayCaster;
     private List<WheelInfo> wheels=new LinkedList<WheelInfo>();
 
-    public PhysicsVehicleNode(Spatial child){
-        super(child, ShapeTypes.BOX);
-    }
-
-    public PhysicsVehicleNode(Spatial child, int collisionShapeType){
-        super(child, collisionShapeType);
-    }
-
-    public PhysicsVehicleNode(Spatial child, int collisionShapeType, float mass){
-        super(child, collisionShapeType, mass);
-    }
+//    public PhysicsVehicleNode(Spatial child){
+//        super(child, ShapeTypes.BOX);
+//    }
+//
+//    public PhysicsVehicleNode(Spatial child, int collisionShapeType){
+//        super(child, collisionShapeType);
+//    }
+//
+//    public PhysicsVehicleNode(Spatial child, int collisionShapeType, float mass){
+//        super(child, collisionShapeType, mass);
+//    }
 
     public PhysicsVehicleNode(Spatial child, CollisionShape shape){
         super(child, shape);
@@ -92,40 +92,52 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     @Override
-    protected MotionState createMotionState(){
-        return new MotionState(){
-
-            public Transform getWorldTransform(Transform out) {
-                if(out==null)
-                    out=new Transform();
-
-                tempRotation.set(getWorldRotation());
-                Converter.convert(tempRotation, tempRot);
-
-                out.basis.set(tempRot);
-                out.origin.set(Converter.convert(getWorldTranslation()));
-                return out;
-            }
-
-            public void setWorldTransform(Transform worldTrans) {
-                motionStateTrans.set(worldTrans);
-                applyMotionState();
-            }
-
-        };
-    }
-
-    private void applyMotionState() {
-        Converter.convert(motionStateTrans.origin,tempLocation);
-        setWorldTranslation(tempLocation);
-
-        Converter.convert(motionStateTrans.basis,tempMatrix);
-        tempRotation.fromRotationMatrix(tempMatrix);
-        setWorldRotation(tempRotation);
-
-        //to set wheel locations
+    public synchronized void updateGeometricState() {
+        super.updateGeometricState();
         syncWheels();
     }
+
+    @Override
+    public synchronized void updatePhysicsState() {
+        super.updatePhysicsState();
+    }
+
+//    @Override
+//    protected MotionState createMotionState(){
+//        return new MotionState(){
+//
+//            public Transform getWorldTransform(Transform out) {
+//                if(out==null)
+//                    out=new Transform();
+//
+//                tempRotation.set(getWorldRotation());
+//                Converter.convert(tempRotation, tempRot);
+//
+//                out.basis.set(tempRot);
+//                out.origin.set(Converter.convert(getWorldTranslation()));
+//                return out;
+//            }
+//
+//            public void setWorldTransform(Transform worldTrans) {
+//                motionStateTrans.set(worldTrans);
+//                applyMotionState();
+//            }
+//
+//        };
+//    }
+//
+//    private void applyMotionState() {
+//        Converter.convert(motionStateTrans.origin,tempLocation);
+//        setWorldTranslation(tempLocation);
+//
+//        Converter.convert(motionStateTrans.basis,tempMatrix);
+//        tempRotation.fromRotationMatrix(tempMatrix);
+//        setWorldRotation(tempRotation);
+//
+//        //to set wheel locations
+//        syncWheels();
+//    }
+
 
     @Override
     protected void postRebuild(){

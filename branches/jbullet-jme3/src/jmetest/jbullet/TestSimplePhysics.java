@@ -32,7 +32,6 @@
 package jmetest.jbullet;
 
 
-import com.g3d.app.SimpleApplication;
 import com.g3d.asset.TextureKey;
 import com.g3d.material.Material;
 
@@ -43,7 +42,10 @@ import com.g3d.scene.shape.Box;
 import com.g3d.scene.shape.Sphere;
 import com.g3d.texture.Texture;
 import com.jmex.jbullet.PhysicsSpace;
-import com.jmex.jbullet.collision.shapes.CollisionShape;
+import com.jmex.jbullet.SimplePhysicsApplication;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
+import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
+import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
@@ -51,7 +53,7 @@ import com.jmex.jbullet.nodes.PhysicsNode;
  *
  * @author normenhansen
  */
-public class TestSimplePhysics extends SimpleApplication{
+public class TestSimplePhysics extends SimplePhysicsApplication{
     final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 
     public static void main(String[] args){
@@ -69,12 +71,13 @@ public class TestSimplePhysics extends SimpleApplication{
         tex.setMinFilter(Texture.MinFilter.Trilinear);
         mat.setTexture("m_ColorMap", tex);
 
-        // Add a physics sphere to the world
+//         Add a physics sphere to the world
         Sphere sphere=new Sphere(16,16,1f);
         Geometry geom=new Geometry("sphere",sphere);
         geom.setMaterial(mat);
-        PhysicsNode physicsSphere=new PhysicsNode(geom,CollisionShape.ShapeTypes.SPHERE);
+        PhysicsNode physicsSphere=new PhysicsNode(geom,new SphereCollisionShape(1),1);
         physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
+        physicsSphere.updateGeometricState();
         rootNode.attachChild(physicsSphere);
         pSpace.add(physicsSphere);
 
@@ -82,8 +85,9 @@ public class TestSimplePhysics extends SimpleApplication{
         Sphere sphere2=new Sphere(16,16,1f);
         Geometry geom2=new Geometry("sphere2",sphere2);
         geom2.setMaterial(mat);
-        PhysicsNode physicsSphere2=new PhysicsNode(geom2,physicsSphere.getCollisionShape());
+        PhysicsNode physicsSphere2=new PhysicsNode(geom2,physicsSphere.getCollisionShape(),1);
         physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
+        physicsSphere2.updateGeometricState();
         rootNode.attachChild(physicsSphere2);
         pSpace.add(physicsSphere2);
 
@@ -91,9 +95,10 @@ public class TestSimplePhysics extends SimpleApplication{
         Box boxGeom=new Box(Vector3f.ZERO,1f,1f,1f);
         Geometry geom3=new Geometry("box",boxGeom);
         geom3.setMaterial(mat);
-        PhysicsNode physicsBox=new PhysicsNode(geom3,CollisionShape.ShapeTypes.BOX);
+        PhysicsNode physicsBox=new PhysicsNode(geom3,new BoxCollisionShape(new Vector3f(1,1,1)),1);
         physicsBox.setFriction(0.1f);
         physicsBox.setLocalTranslation(new Vector3f(.6f,4,.5f));
+        physicsBox.updateGeometricState();
         rootNode.attachChild(physicsBox);
         pSpace.add(physicsBox);
 
@@ -119,7 +124,7 @@ public class TestSimplePhysics extends SimpleApplication{
         // an obstacle mesh, does not move (mass=0)
         Geometry geom4=new Geometry("node2",new Sphere(16,16,1.2f));
         geom4.setMaterial(mat);
-        PhysicsNode node2=new PhysicsNode(geom4,CollisionShape.ShapeTypes.MESH,0);
+        PhysicsNode node2=new PhysicsNode(geom4,new MeshCollisionShape(geom4.getMesh()),0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         rootNode.attachChild(node2);
         pSpace.add(node2);
@@ -127,9 +132,11 @@ public class TestSimplePhysics extends SimpleApplication{
         // the floor, does not move (mass=0)
         Geometry geom5=new Geometry("box2",new Box(Vector3f.ZERO,100f,0.2f,100f));
         geom5.setMaterial(mat);
-        PhysicsNode node3=new PhysicsNode(geom5,CollisionShape.ShapeTypes.MESH,0);
+        geom5.updateGeometricState();
+        PhysicsNode node3=new PhysicsNode(geom5,new MeshCollisionShape(geom5.getMesh()),0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         rootNode.attachChild(node3);
+        node3.updateGeometricState();
         pSpace.add(node3);
     }
 

@@ -55,7 +55,10 @@ public abstract class CollisionShape {
      */
     public void calculateLocalInertia(float mass, javax.vecmath.Vector3f vector){
         if(cShape==null) return;
-        cShape.calculateLocalInertia(mass, vector);
+        if(type!=ShapeTypes.MESH)
+            cShape.calculateLocalInertia(mass, vector);
+        else
+            vector.set(0,0,0);
     }
 
     /**
