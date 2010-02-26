@@ -115,7 +115,8 @@ public abstract class SimplePhysicsApplication extends PhysicsApplication {
                 }
             });
         }
-
+        //start physics
+        startPhysics();
         // call user code
         simpleInitApp();
     }
@@ -145,9 +146,18 @@ public abstract class SimplePhysicsApplication extends PhysicsApplication {
         simpleRender(renderManager);
     }
 
+    @Override
+    public void physicsUpdate(float tpf) {
+        super.physicsUpdate(tpf);
+        simplePhysicsUpdate(tpf);
+    }
+
     public abstract void simpleInitApp();
 
     public void simpleUpdate(float tpf){
+    }
+
+    public void simplePhysicsUpdate(float tpf){
     }
 
     public void simpleRender(RenderManager rm){

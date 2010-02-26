@@ -54,7 +54,7 @@ import com.jmex.jbullet.nodes.PhysicsNode;
  * @author normenhansen
  */
 public class TestSimplePhysics extends SimplePhysicsApplication{
-    final PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
+//    private PhysicsSpace pSpace=PhysicsSpace.getPhysicsSpace();
 
     public static void main(String[] args){
         TestSimplePhysics app = new TestSimplePhysics();
@@ -79,7 +79,7 @@ public class TestSimplePhysics extends SimplePhysicsApplication{
         physicsSphere.setLocalTranslation(new Vector3f(3,6,0));
         physicsSphere.updateGeometricState();
         rootNode.attachChild(physicsSphere);
-        pSpace.add(physicsSphere);
+        getPhysicsSpace().addQueued(physicsSphere);
 
         // Add a physics sphere to the world using the collision shape from sphere one
         Sphere sphere2=new Sphere(16,16,1f);
@@ -89,7 +89,7 @@ public class TestSimplePhysics extends SimplePhysicsApplication{
         physicsSphere2.setLocalTranslation(new Vector3f(4,8,0));
         physicsSphere2.updateGeometricState();
         rootNode.attachChild(physicsSphere2);
-        pSpace.add(physicsSphere2);
+        getPhysicsSpace().addQueued(physicsSphere2);
 
         // Add a physics box to the world
         Box boxGeom=new Box(Vector3f.ZERO,1f,1f,1f);
@@ -100,7 +100,7 @@ public class TestSimplePhysics extends SimplePhysicsApplication{
         physicsBox.setLocalTranslation(new Vector3f(.6f,4,.5f));
         physicsBox.updateGeometricState();
         rootNode.attachChild(physicsBox);
-        pSpace.add(physicsBox);
+        getPhysicsSpace().addQueued(physicsBox);
 
 //        Cylinder cylGeom=new Cylinder(16,16,1f,3f);
 //        PhysicsNode physicsCylinder=new PhysicsNode(cylGeom, CollisionShape.ShapeTypes.CYLINDER);
@@ -127,7 +127,7 @@ public class TestSimplePhysics extends SimplePhysicsApplication{
         PhysicsNode node2=new PhysicsNode(geom4,new MeshCollisionShape(geom4.getMesh()),0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         rootNode.attachChild(node2);
-        pSpace.add(node2);
+        getPhysicsSpace().addQueued(node2);
 
         // the floor, does not move (mass=0)
         Geometry geom5=new Geometry("box2",new Box(Vector3f.ZERO,100f,0.2f,100f));
@@ -137,12 +137,12 @@ public class TestSimplePhysics extends SimplePhysicsApplication{
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         rootNode.attachChild(node3);
         node3.updateGeometricState();
-        pSpace.add(node3);
+        getPhysicsSpace().addQueued(node3);
     }
 
     @Override
     public void simpleUpdate(float tpf) {
-        pSpace.update(tpf);
+        //TODO: add update code
     }
 
     @Override

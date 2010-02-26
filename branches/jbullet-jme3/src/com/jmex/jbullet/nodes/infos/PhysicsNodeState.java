@@ -37,8 +37,10 @@ import com.g3d.math.Matrix3f;
 import com.g3d.math.Quaternion;
 import com.g3d.math.Vector3f;
 import com.g3d.scene.Spatial;
+import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
+import java.util.concurrent.Callable;
 
 /**
  * stores all info about a bullet physics object in a thread-safe manner to
@@ -58,7 +60,6 @@ public class PhysicsNodeState implements MotionState{
     private boolean jmeLocationDirty=true;
     private boolean jmeVelocityDirty=false;
 
-    private boolean physicsStop=false;
     //temp variable for conversion
     private Quaternion tmp_inverseWorldRotation=new Quaternion();
 
@@ -90,6 +91,7 @@ public class PhysicsNodeState implements MotionState{
         Converter.convert(worldTrans.basis, worldRotation);
         worldRotationQuat.fromRotationMatrix(worldRotation);
         physicsLocationDirty=true;
+//        pNode.dirt();
     }
 
     public synchronized boolean getWorldTransform(Vector3f location, Quaternion rot){
@@ -115,13 +117,20 @@ public class PhysicsNodeState implements MotionState{
     }
 
     public synchronized void setWorldTransform(Vector3f location, Quaternion rotation){
-//        System.out.println("set worldtransform from jme");
+        System.out.println("set worldtransform from jme");
         worldLocation.set(location);
         worldRotationQuat.set(rotation);
         worldRotation.set(rotation.toRotationMatrix());
         Converter.convert(worldLocation,motionStateTrans.origin);
         Converter.convert(worldRotation,motionStateTrans.basis);
         setJmeLocationDirty(true);
+        //TODO: move to physics update
+        PhysicsSpace.enqueueUpdate(new Callable(){
+            public Object call() throws Exception {
+                pNode.updatePhysicsState();
+                return null;
+            }
+        });
     }
 
     public synchronized boolean isJmeLocationDirty() {
@@ -148,14 +157,6 @@ public class PhysicsNodeState implements MotionState{
     public synchronized void setAngularVelocity(Vector3f angularVelocity) {
         jmeVelocityDirty=true;
         this.angularVelocity = angularVelocity;
-    }
-
-    public synchronized boolean isPhysicsStop() {
-        return physicsStop;
-    }
-
-    public synchronized void setPhysicsStop(boolean physicsStop) {
-        this.physicsStop = physicsStop;
     }
 
 }

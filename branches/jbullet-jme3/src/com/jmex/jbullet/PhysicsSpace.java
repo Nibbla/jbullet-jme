@@ -51,6 +51,7 @@ import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.constraintsolver.ConstraintSolver;
 import com.bulletphysics.dynamics.constraintsolver.SequentialImpulseConstraintSolver;
 import com.bulletphysics.extras.gimpact.GImpactCollisionAlgorithm;
+import com.g3d.app.AppTask;
 import com.g3d.math.Vector3f;
 //import com.g3d.util.GameTaskQueue;
 //import com.g3d.util.GameTaskQueueManager;
@@ -63,7 +64,6 @@ import com.jmex.jbullet.nodes.PhysicsCharacterNode;
 import com.jmex.jbullet.nodes.PhysicsVehicleNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -79,11 +79,27 @@ import java.util.logging.Logger;
  * @see com.jmex.jbullet.nodes.PhysicsNode
  * @author normenhansen
  */
-public abstract class PhysicsSpace {
-    //TODO: replace with jme3 alternative
-    public static final ConcurrentLinkedQueue<Callable> rQueue = new ConcurrentLinkedQueue<Callable>();
-    public static final ConcurrentLinkedQueue<Callable> pQueue = new ConcurrentLinkedQueue<Callable>();
+public class PhysicsSpace {
+//    public static ThreadLocal<ConcurrentLinkedQueue<AppTask<?>>> rQueueTL  =
+//            new ThreadLocal<ConcurrentLinkedQueue<AppTask<?>>>() {
+//                @Override
+//                protected ConcurrentLinkedQueue<AppTask<?>> initialValue() {
+//                        return new ConcurrentLinkedQueue<AppTask<?>>();
+//                }
+//            };
+//    public static ThreadLocal<ConcurrentLinkedQueue<AppTask<?>>> pQueueTL =
+//            new ThreadLocal<ConcurrentLinkedQueue<AppTask<?>>>() {
+//                @Override
+//                protected ConcurrentLinkedQueue<AppTask<?>> initialValue() {
+//                        return new ConcurrentLinkedQueue<AppTask<?>>();
+//                }
+//            };
 
+    private static ConcurrentLinkedQueue<AppTask<?>> rQueue=new ConcurrentLinkedQueue<AppTask<?>>();
+    private static ConcurrentLinkedQueue<AppTask<?>> pQueue=new ConcurrentLinkedQueue<AppTask<?>>();
+
+    private static ThreadLocal<PhysicsSpace> physicsSpaceTL = new ThreadLocal<PhysicsSpace>();
+    
     private DynamicsWorld dynamicsWorld = null;
     private BroadphaseInterface broadphase;
     private int broadphaseType=0;
@@ -98,69 +114,67 @@ public abstract class PhysicsSpace {
     private List<CollisionListener> collisionListeners=new LinkedList<CollisionListener>();
     private List<CollisionEvent> collisionEvents=new LinkedList<CollisionEvent>();
 
-    private static PhysicsSpace pSpace;
+    private PhysicsSpace pSpace;
 
     private Vector3f worldMin = new Vector3f(-10000f,-10000f,-10000f);
     private Vector3f worldMax = new Vector3f(10000f,10000f,10000f);
     private float accuracy=1f/60f;
 
-    /**
-     * Get the current PhysicsSpace or create a new standard PhysicsSpace
-     * @return the exising or created PhysicsSpace
-     */
+//    /**
+//     * Get the current PhysicsSpace or create a new standard PhysicsSpace
+//     * @return the exising or created PhysicsSpace
+//     */
     public static PhysicsSpace getPhysicsSpace(){
-        if(pSpace!=null){
-            return pSpace;
-        }
-        pSpace=new PhysicsSpace(){};
-        return pSpace;
+        return physicsSpaceTL.get();
+//        pSpace=new PhysicsSpace(){};
+//        return pSpace;
     }
-
-    /**
-     * Get the current PhysicsSpace or create a new PhysicsSpace with
-     * the given Broadphase type.
-     * @param broadphaseType The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
-     * @return the exising or created PhysicsSpace
-     */
-    public static PhysicsSpace getPhysicsSpace(int broadphaseType){
-        if(pSpace!=null){
-            return pSpace;
-        }
-        pSpace=new PhysicsSpace(broadphaseType){};
-        return pSpace;
-    }
-
-    /**
-     * Get the current PhysicsSpace or create a new PhysicsSpace with
-     * the AxisSweep3 Broadphase type and given world size.
-     * @param worldMin the worldMin vector (e.g. -1000,-1000,-1000)
-     * @param worldMax the worldMax vector (e.g. -1000,-1000,-1000)
-     * @return the exising or created PhysicsSpace
-     */
-    public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax){
-        if(pSpace!=null){
-            return pSpace;
-        }
-        pSpace=new PhysicsSpace(worldMin, worldMax){};
-        return pSpace;
-    }
-
-    /**
-     * Get the current PhysicsSpace or create a new PhysicsSpace with
-     * the given Broadphase type and given world size.
-     * @param worldMin the worldMin vector (e.g. -1000,-1000,-1000)
-     * @param worldMax the worldMax vector (e.g. -1000,-1000,-1000)
-     * @param broadphaseType The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
-     * @return the exising or created PhysicsSpace
-     */
-    public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax, int broadphaseType){
-        if(pSpace!=null){
-            return pSpace;
-        }
-        pSpace=new PhysicsSpace(worldMin, worldMax, broadphaseType){};
-        return pSpace;
-    }
-
+//
+//    /**
+//     * Get the current PhysicsSpace or create a new PhysicsSpace with
+//     * the given Broadphase type.
+//     * @param broadphaseType The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
+//     * @return the exising or created PhysicsSpace
+//     */
+//    public static PhysicsSpace getPhysicsSpace(int broadphaseType){
+//        if(pSpace!=null){
+//            return pSpace;
+//        }
+//        pSpace=new PhysicsSpace(broadphaseType){};
+//        return pSpace;
+//    }
+//
+//    /**
+//     * Get the current PhysicsSpace or create a new PhysicsSpace with
+//     * the AxisSweep3 Broadphase type and given world size.
+//     * @param worldMin the worldMin vector (e.g. -1000,-1000,-1000)
+//     * @param worldMax the worldMax vector (e.g. -1000,-1000,-1000)
+//     * @return the exising or created PhysicsSpace
+//     */
+//    public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax){
+//        if(pSpace!=null){
+//            return pSpace;
+//        }
+//        pSpace=new PhysicsSpace(worldMin, worldMax){};
+//        return pSpace;
+//    }
+//
+//    /**
+//     * Get the current PhysicsSpace or create a new PhysicsSpace with
+//     * the given Broadphase type and given world size.
+//     * @param worldMin the worldMin vector (e.g. -1000,-1000,-1000)
+//     * @param worldMax the worldMax vector (e.g. -1000,-1000,-1000)
+//     * @param broadphaseType The PhysicsSpace.BroadphaseTypes.TYPE of the Boradphase to use
+//     * @return the exising or created PhysicsSpace
+//     */
+//    public static PhysicsSpace getPhysicsSpace(Vector3f worldMin, Vector3f worldMax, int broadphaseType){
+//        if(pSpace!=null){
+//            return pSpace;
+//        }
+//        pSpace=new PhysicsSpace(worldMin, worldMax, broadphaseType){};
+//        return pSpace;
+//    }
+//
     public PhysicsSpace(){
         this(new Vector3f(-10000f,-10000f,-10000f),new Vector3f(10000f,10000f,10000f),BroadphaseTypes.SIMPLE);
     }
@@ -210,6 +224,8 @@ public abstract class PhysicsSpace {
 		broadphase.getOverlappingPairCache().setInternalGhostPairCallback(new GhostPairCallback());
         GImpactCollisionAlgorithm.registerAlgorithm(dispatcher);
         
+        pSpace=this;
+        physicsSpaceTL.set(this);
         setContactCallbacks();
     }
 
@@ -277,27 +293,34 @@ public abstract class PhysicsSpace {
      */
     public void update(float time, int maxSteps){
         if(getDynamicsWorld()==null) return;
-        for (PhysicsNode physicsNode : physicsNodes.values()) {
-            physicsNode.updatePhysicsState();
-        }
+//        for (PhysicsNode physicsNode : physicsNodes.values()) {
+//            physicsNode.updatePhysicsState();
+//        }
         //add recurring events
-        Callable callable = rQueue.poll();
-        while(callable!=null){
+        AppTask task = rQueue/*TL.get()*/.poll();
+        while(task!=null){
+            while (task.isCancelled()) {
+                task = rQueue/*TL.get()*/.poll();
+            }
             try {
-                callable.call();
+                task.invoke();
             } catch (Exception ex) {
                 Logger.getLogger(PhysicsSpace.class.getName()).log(Level.SEVERE, null, ex);
             }
-            callable=rQueue.poll();
+            task=rQueue/*TL.get()*/.poll();
         }
-        callable = pQueue.poll();
-        while(callable!=null){
+        //execute task list
+        task = pQueue/*TL.get()*/.poll();
+        while(task!=null){
+            while (task.isCancelled()) {
+                task = rQueue/*TL.get()*/.poll();
+            }
             try {
-                callable.call();
+                task.invoke();
             } catch (Exception ex) {
                 Logger.getLogger(PhysicsSpace.class.getName()).log(Level.SEVERE, null, ex);
             }
-            callable = pQueue.poll();
+            task = pQueue/*TL.get()*/.poll();
         }
         
         //step simulation
@@ -335,14 +358,26 @@ public abstract class PhysicsSpace {
         collisionEvents.clear();
     }
 
+    public static <V> Future<V> enqueueUpdate(Callable<V> callable) {
+        AppTask<V> task = new AppTask<V>(callable);
+        pQueue/*TL.get()*/.add(task);
+        return task;
+    }
+
+    private static <V> Future<V> requeueUpdate(Callable<V> callable) {
+        AppTask<V> task = new AppTask<V>(callable);
+        rQueue/*TL.get()*/.add(task);
+        return task;
+    }
+
     /**
      * enqueues a Callable in the update queue of the physics thread
      * @param callable the Callable to add
      * @return the created Future for the Callable
      */
-    public void enqueueUpdate(Callable callable){
-        pQueue.add(callable);
-    }
+//    public static void enqueueUpdate(Callable callable){
+//        pQueueTL.get().add(callable);
+//    }
 
     /**
      * enqueues a Callable in the update queue in the next update call
@@ -350,13 +385,12 @@ public abstract class PhysicsSpace {
      * @param callable
      * @return the created Future for the requeue Callable
      */
-    public void reQueue(final Callable callable){
-        rQueue.add(new Callable(){
+    public static void reQueue(final Callable callable){
+        requeueUpdate(new Callable(){
             public Object call() throws Exception {
-                pQueue.add(callable);
+                enqueueUpdate(callable);
                 return null;
             }
-
         });
     }
 
@@ -364,7 +398,7 @@ public abstract class PhysicsSpace {
      * adds an object to the physics space
      * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to add
      */
-    public void add(final Object obj){
+    public void addQueued(final Object obj){
         enqueueUpdate(new Callable() {
             public Object call() throws Exception {
                 if(obj instanceof PhysicsGhostNode){
@@ -388,7 +422,7 @@ public abstract class PhysicsSpace {
      * adds an object to the physics space
      * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to remove
      */
-    public void remove(final Object obj){
+    public void removeQueued(final Object obj){
         enqueueUpdate(new Callable() {
             public Object call() throws Exception {
                 if(obj instanceof PhysicsGhostNode){
@@ -412,7 +446,7 @@ public abstract class PhysicsSpace {
      * adds an object to the physics space
      * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to add
      */
-    public void addDirect(Object obj){
+    public void add(Object obj){
         if(obj instanceof PhysicsGhostNode){
             addGhostNode((PhysicsGhostNode)obj);
         }
@@ -431,7 +465,7 @@ public abstract class PhysicsSpace {
      * adds an object to the physics space
      * @param obj the PhyiscsNode, PhysicsGhostNode or PhysicsJoint to remove
      */
-    public void removeDirect(Object obj){
+    public void remove(Object obj){
         if(obj instanceof PhysicsGhostNode){
             removeGhostNode((PhysicsGhostNode)obj);
         }
