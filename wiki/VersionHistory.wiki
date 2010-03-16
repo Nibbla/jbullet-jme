@@ -8,7 +8,7 @@
  * fixed mesh conversion, GIMPACT shapes work now
  * added GIMPACT type to automatic CollisionShape generation
  * added PhysicsCharacterNode constructor with CollisionShape
- * removed applying of rotation for PhysicsCharacterNodes from physics (is always zero anyway)
+ * removed applying of rotation for PhysicsCharacterNodes (is always zero anyway)
 
 ==== 0.9.4 alpha (r476) ====
  * fixed activation of PhysicsNodes when applying forces
