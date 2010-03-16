@@ -34,6 +34,7 @@ package com.jmex.jbullet.nodes;
 import com.bulletphysics.collision.dispatch.CollisionFlags;
 import com.bulletphysics.collision.shapes.ConvexShape;
 import com.bulletphysics.dynamics.character.KinematicCharacterController;
+import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
@@ -66,6 +67,11 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
         this.stepHeight=stepHeight;
         character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
     }
+
+    protected Quaternion setWorldRotation( Quaternion rot ) {
+        return rot;
+    }
+
 
     @Override
     protected void buildObject() {
