@@ -1,10 +1,16 @@
 package com.jmex.jbullet.debug;
 
 import com.bulletphysics.collision.dispatch.CollisionObject;
+import com.bulletphysics.collision.shapes.CollisionShape;
+import com.bulletphysics.collision.shapes.ConcaveShape;
+import com.bulletphysics.collision.shapes.ConvexShape;
+import com.bulletphysics.collision.shapes.PolyhedralConvexShape;
 import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.input.KeyBindingManager;
 import com.jme.input.KeyInput;
+import com.jme.renderer.Renderer;
+import com.jme.system.DisplaySystem;
 import com.jmex.game.state.DebugGameState;
 import com.jmex.jbullet.PhysicsSpace;
 
@@ -22,8 +28,8 @@ public class PhysicsDebugGameState extends DebugGameState
      */
     private enum DrawState
     {
-        PhysicsWireframe( true ),
-        JmeWireframe( true );
+        PhysicsDebug( true ),
+        JmeScene( true );
 
         public boolean draw;
 
@@ -35,32 +41,32 @@ public class PhysicsDebugGameState extends DebugGameState
         /**
          *  Switches the states between the current options:
          *  <ul>
-         *      <li>PhysicsWireframe, no JmeWireframe</li>
-         *      <li>PhysicsWireframe with JmeWireframe</li>
-         *      <li>No PhysicsWireframe with JmeWireframe</li>
+         *      <li>PhysicsDebug, no JmeScene</li>
+         *      <li>PhysicsDebug with JmeScene</li>
+         *      <li>No PhysicsDebug with JmeScene</li>
          *  </ul>
          */
         public static void nextDrawState()
         {
             // Figure out the current state
-            if ( PhysicsWireframe.draw )
+            if ( PhysicsDebug.draw )
             {
-                if ( JmeWireframe.draw )
+                if ( JmeScene.draw )
                 {
                     // Move to state: 'No wireframe with Jme scene'
-                    PhysicsWireframe.draw = false;
+                    PhysicsDebug.draw = false;
                 }
                 else
                 {
                     // Move to state: 'Wireframes with Jme scene'
-                    JmeWireframe.draw = true;
+                    JmeScene.draw = true;
                 }
             }
             else
             {
                 // Move to state: 'Wireframes, no JmeScene'
-                PhysicsWireframe.draw = true;
-                JmeWireframe.draw = false;
+                PhysicsDebug.draw = true;
+                JmeScene.draw = false;
             }
         }
     }
@@ -75,8 +81,8 @@ public class PhysicsDebugGameState extends DebugGameState
         // Create the keybinds to switch between the render states for phyiscs rendering
         setupPhysicsKeyBindings();
 
-        // Force the wireframe drawing of the DebugGameState - DrawState.JmeWireframe
-        wireState.setEnabled( DrawState.JmeWireframe.draw );
+        // Force the wireframe drawing of the DebugGameState - DrawState.JmeScene
+        wireState.setEnabled( DrawState.JmeScene.draw );
     }
 
     /**
@@ -106,7 +112,7 @@ public class PhysicsDebugGameState extends DebugGameState
             DrawState.nextDrawState();
 
             // Force the wireframe drawing of the DebugGameState
-            wireState.setEnabled( DrawState.JmeWireframe.draw );
+            wireState.setEnabled( DrawState.JmeScene.draw );
 
             rootNode.updateRenderState();
         }
@@ -115,72 +121,66 @@ public class PhysicsDebugGameState extends DebugGameState
     @Override
     public void render( float tpf )
     {
-        super.render( tpf );
+        // Do we render the JME scene?
+        if ( DrawState.JmeScene.draw )
+        {
+            super.render( tpf );
+        }
 
         // Draw the physics wireframes?
-        if ( DrawState.PhysicsWireframe.draw )
+        if ( DrawState.PhysicsDebug.draw )
         {
-//            		DisplaySystem.getDisplaySystem().getRenderer().draw()
-
-            drawPhysicsElements();
+            drawWireframes( DisplaySystem.getDisplaySystem().getRenderer() );
         }
     }
-    //TODO convert below this line to use only JME rendering?
-    /*
-     *  Everything below here is tied to rendering using the Lwjgl copied from bullet.
-     */
-    private final Transform transform = new Transform();
 
-    private final javax.vecmath.Vector3f wireColour = new javax.vecmath.Vector3f();
-
-    private static final LwjglGL gl = new LwjglGL();
-
-    public void drawPhysicsElements()
+    public void drawWireframes( Renderer renderer )
     {
         DynamicsWorld dynamicsWorld = PhysicsSpace.getPhysicsSpace().getDynamicsWorld();
 
         if ( dynamicsWorld != null )
         {
-            // Red colour
-            wireColour.set( 1f, 0f, 0f );
-
             for ( CollisionObject collisionObject : dynamicsWorld.getCollisionObjectArray() )
             {
+                // Get the world translation of the object - determines translation, rotation and scale
                 collisionObject.getWorldTransform( transform );
 
-                //TODO remove the below code, as setting as identity removed rotations!
+                CollisionShape shape = collisionObject.getCollisionShape();
 
-                //TODO figure out why the world transform for PhysicsCharacterNodes is wrong
-                // A hack to get around the PhysicsCharacter node having a blank basis (scaling)
-               /* float x = transform.origin.x;
-                float y = transform.origin.y;
-                float z = transform.origin.z;
-
-                transform.setIdentity();
-
-                transform.origin.x = x;
-                transform.origin.y = y;
-                transform.origin.z = z;
-                 */
-
-                // Yellow Colour
-                wireColour.set( 1f, 1f, 0f ); // wants deactivation
-
-                // Is the object is active
-                if ( collisionObject.getActivationState() == 1 ) // active
+                //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
+                // indicies and vertices
+                if ( shape.isConvex() )
                 {
-                    // Cyan Colour
-                    wireColour.set( 0f, 1f, 1f );
-                }
-                // Is the object asleep / deactivated
-                else if ( collisionObject.getActivationState() == 2 ) // ISLAND_SLEEPING
-                {
-                    // Light Blue Colour
-                    wireColour.set( 0.5f, 0.5f, 1f );
-                }
+                    // Assert the CollisionShape is of the appropiate type
+                    assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
+                    ConvexShape convexShape = (ConvexShape) shape;
 
-                GLShapeDrawer.drawWireframeObject( gl, transform, collisionObject.getCollisionShape(), wireColour );
+                    PhysicsDebugger.drawWireframe( renderer, convexShape, transform );
+                }
+                else if ( shape.isConcave() )
+                {
+                    // Assert the CollisionShape is of the appropiate type
+                    assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
+                    ConcaveShape concaveShape = (ConcaveShape) shape;
+
+                    PhysicsDebugger.drawWireframe( renderer, concaveShape, transform );
+                }
+                else if ( shape.isPolyhedral() )
+                {
+                    //TODO why bother with polyhedral,  as it's a child of ConvexShape
+
+                    // Assert the CollisionShape is of the appropiate type
+                    assert shape instanceof PolyhedralConvexShape : "Expecting CollisionShape to be a PolyhedralConvexShape";
+                    PolyhedralConvexShape polyhedralShape = (PolyhedralConvexShape) shape;
+
+                    PhysicsDebugger.drawWireframe( renderer, polyhedralShape, transform );
+                }
+                //TODO deal with infinite shape?
+                //TODO what happens to composite shapes?
             }
         }
     }
+    //TODO commnet
+    private final Transform transform = new Transform();
+
 }

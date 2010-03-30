@@ -84,7 +84,7 @@ public class TestPhysicsDebugGameState
         boxNode.updateRenderState();
         pSpace.add( boxNode );
 
-  // an obstacle mesh, does not move (mass=0)
+        // an obstacle mesh, does not move (mass=0)
         PhysicsNode node3 = new PhysicsNode( new Sphere( "physicsobstaclemesh", Vector3f.ZERO, 32, 32, 1 ), CollisionShape.ShapeTypes.CAPSULE, 0 );
         node3.setLocalTranslation( new Vector3f( 4f, -4f, 0f ) );
         state.getRootNode().attachChild( node3 );
