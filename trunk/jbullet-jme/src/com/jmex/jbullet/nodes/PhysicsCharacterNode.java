@@ -104,6 +104,14 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
         character.jump();
     }
 
+    public void setGravity(float gravity){
+        character.setGravity(gravity);
+    }
+
+    public float getGravity(){
+        return character.getGravity();
+    }
+
     /**
      * used internally
      */
