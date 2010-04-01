@@ -32,11 +32,18 @@
 package com.jmex.jbullet.collision.shapes;
 
 import com.bulletphysics.collision.shapes.BvhTriangleMeshShape;
+import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.scene.TriMesh;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.util.Converter;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -45,6 +52,9 @@ import java.util.List;
  */
 public class MeshCollisionShape extends CollisionShape{
 
+	
+	private TriMesh mesh;
+	
     /**
      * creates a collision shape from the TriMesh leaf in the given node
      * @param node the node to get the TriMesh from
@@ -53,6 +63,11 @@ public class MeshCollisionShape extends CollisionShape{
         createCollisionMesh(node);
     }
 
+    public MeshCollisionShape() {
+       
+    }
+    
+    
     /**
      * creates a collision shape from the given TriMesh
      * @param mesh the TriMesh to use
@@ -87,6 +102,33 @@ public class MeshCollisionShape extends CollisionShape{
         cShape=new BvhTriangleMeshShape(Converter.convert(mesh),true);
         cShape.setLocalScaling(Converter.convert(mesh.getWorldScale()));
         type=ShapeTypes.MESH;
+        this.mesh=mesh;
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		mesh = (TriMesh) capsule.readSavable("mesh", null);
+		cShape=new BvhTriangleMeshShape(Converter.convert(mesh),true);
+		Vector3f scale = (Vector3f) capsule.readSavable("scale", new Vector3f(1,1,1));
+        cShape.setLocalScaling(Converter.convert(scale));
+        type=ShapeTypes.MESH;
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		BvhTriangleMeshShape shape = (BvhTriangleMeshShape)cShape;
+		capsule.write(mesh, "mesh", null);
+		javax.vecmath.Vector3f scale = new javax.vecmath.Vector3f();
+		shape.getLocalScaling(scale);
+		capsule.write(Converter.convert(scale), "scale", new Vector3f(1,1,1));
+	}
 
 }

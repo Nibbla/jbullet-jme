@@ -31,6 +31,10 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import com.bulletphysics.collision.shapes.BoxShape;
+import com.bulletphysics.collision.shapes.CapsuleShape;
+import com.bulletphysics.collision.shapes.CapsuleShapeX;
+import com.bulletphysics.collision.shapes.CapsuleShapeZ;
 import com.bulletphysics.collision.shapes.CylinderShape;
 import com.bulletphysics.collision.shapes.CylinderShapeX;
 import com.bulletphysics.collision.shapes.CylinderShapeZ;
@@ -38,8 +42,14 @@ import com.jme.bounding.BoundingBox;
 import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.util.Converter;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -48,6 +58,15 @@ import java.util.List;
  */
 public class CylinderCollisionShape extends CollisionShape{
 
+	public CylinderCollisionShape() {
+       
+    }
+	
+	public CylinderCollisionShape(CylinderShape shape) {
+	       cShape=shape;
+	       type = ShapeTypes.CYLINDER;
+    }
+	
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
@@ -115,5 +134,49 @@ public class CylinderCollisionShape extends CollisionShape{
         cShape=capShape;
         type=ShapeTypes.CYLINDER;
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return CylinderCollisionShape.class;
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		
+		Vector3f halfExtents = (Vector3f) capsule.readSavable("halfExtends", Vector3f.ZERO);
+		int axis = capsule.readInt("axis", 1);
+		switch(axis){
+        case 0:
+            cShape=new CylinderShapeX(Converter.convert(halfExtents));
+        break;
+        case 1:
+            cShape=new CylinderShape(Converter.convert(halfExtents));
+        break;
+        case 2:
+            cShape=new CylinderShapeZ(Converter.convert(halfExtents));
+        break;
+    }
+    type=ShapeTypes.CYLINDER;
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		
+		if(cShape instanceof CylinderShapeX ){
+			capsule.write(0, "axis", 1);
+		}else if (cShape instanceof CylinderShapeZ){
+			capsule.write(2, "axis", 1);
+		}else{ // CylinderShape
+			capsule.write(1, "axis", 1);
+		}
+		javax.vecmath.Vector3f halfExtends = new javax.vecmath.Vector3f();
+		//@ With margin or without ?
+		((CylinderShape)cShape).getHalfExtentsWithoutMargin(halfExtends);
+		capsule.write(Converter.convert(halfExtends), "halfExtends", Vector3f.ZERO);
+		
+	}
 
 }

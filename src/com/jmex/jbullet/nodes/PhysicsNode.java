@@ -46,8 +46,10 @@ import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jme.util.GameTaskQueue;
 import com.jme.util.GameTaskQueueManager;
+import com.jme.util.export.InputCapsule;
 import com.jme.util.export.JMEExporter;
 import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
@@ -58,14 +60,18 @@ import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
 import com.jmex.jbullet.collision.shapes.GImpactCollisionShape;
 import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
+import com.jmex.jbullet.joints.PhysicsJoint;
 import com.jmex.jbullet.util.Converter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.Callable;
 
 /**
  * <p>PhysicsNode - Basic jbullet-jme physics object</p>
  * @see com.jmex.jbullet.PhysicsSpace
- * @author normenhansen
+ * @author normenhansen paugonzalez
+ * 
  */
 public class PhysicsNode extends CollisionObject{
     protected RigidBody rBody;
@@ -75,6 +81,7 @@ public class PhysicsNode extends CollisionObject{
     private float mass=1f;
 
     private boolean physicsEnabled=true;
+    
 
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
@@ -98,11 +105,14 @@ public class PhysicsNode extends CollisionObject{
     private boolean applyForce=false;
     private boolean applyTorque=false;
 
+    /**
+     * Internal use only. Use others constructors
+     * @param space
+     */
+   
+    
     public PhysicsNode(){
-        motionState=createMotionState();
-        collisionShape=new BoxCollisionShape(new Vector3f(0.5f,0.5f,0.5f));
-        motionState=createMotionState();
-        rebuildRigidBody();
+
     }
 
     /**
@@ -227,6 +237,8 @@ public class PhysicsNode extends CollisionObject{
             PhysicsSpace.getPhysicsSpace().add(this);
         }
     }
+    
+    
 
     protected void preRebuild(){
         collisionShape.calculateLocalInertia(mass, localInertia);
@@ -820,12 +832,77 @@ public class PhysicsNode extends CollisionObject{
 
     @Override
     public void write(JMEExporter e) throws IOException {
-        throw (new UnsupportedOperationException("Not implemented yet."));
+    	super.write(e);
+        OutputCapsule capsule = e.getCapsule( this );
+        capsule.write( getMass(), "mass", 1.0f );
+        Vector3f store = new Vector3f();
+        getGravity(store);
+        capsule.write(store, "gravity", Vector3f.ZERO);
+        capsule.write(getFriction(), "friction", 0);
+        capsule.write(getRestitution(), "restitution", 0);
+        capsule.write( constructionInfo.linearDamping, "linearDamping", 0);
+        capsule.write( constructionInfo.angularDamping, "angularDamping", 0);
+        
+        capsule.write(physicsEnabled, "enabled", false);
+        capsule.write(continuousForce, "continuousForce", Vector3f.ZERO);
+        capsule.write(continuousForceLocation, "continuousForceLocation", Vector3f.ZERO);
+        capsule.write(continuousTorque, "continuousTorque", Vector3f.ZERO);
+        capsule.write(applyForce, "applyForce", false);
+        capsule.write(applyTorque, "applyTorque", false); 
+        
+        capsule.write(collisionShape, "collisionShape", null);
+        
+        ArrayList<PhysicsJoint> connectedJoints = new ArrayList<PhysicsJoint>();
+        for (PhysicsJoint joint : PhysicsSpace.getPhysicsSpace().getPhysicsJoints()) {
+			if(joint.getNodeA().equals(this)){
+				connectedJoints.add(joint);
+			}
+			if(joint.getNodeA().equals(this)){
+				connectedJoints.add(joint);
+			}
+		}
+        capsule.writeSavableArrayList(connectedJoints, "joints", null);
+        
     }
 
-    @Override
-    public void read(JMEImporter e) throws IOException {
-        throw (new UnsupportedOperationException("Not implemented yet."));
-    }
+	@Override
+	public void read(JMEImporter e) throws IOException {
+		super.read(e);
+
+		InputCapsule capsule = e.getCapsule(this);
+		float mass = capsule.readFloat("mass", 1.0f);
+		this.mass=mass;
+
+		CollisionShape shape = (CollisionShape) capsule.readSavable("collisionShape", new BoxCollisionShape(this));
+		collisionShape = shape;
+		motionState = createMotionState();
+		preRebuild();
+		rebuildRigidBody();
+		setGravity((Vector3f) capsule.readSavable("gravity", Vector3f.ZERO));
+		setFriction(capsule.readFloat("friction", 0));
+		float linearDamping = capsule.readFloat("linearDamping", 0);
+		float angularDamping = capsule.readFloat("angularDamping", 0);
+		setDamping(linearDamping, angularDamping);
+		float restitution = capsule.readFloat("restitution", 0);
+		setRestitution(restitution);
+		
+		physicsEnabled = capsule.readBoolean("enabled", true);
+		Vector3f continuousForce = (Vector3f) capsule.readSavable("continuousForce", Vector3f.ZERO);
+		Vector3f continuousForceLocation = (Vector3f) capsule.readSavable("continuousForceLocation", Vector3f.ZERO);
+		boolean applyForce = capsule.readBoolean("applyForce", false);
+		applyContinuousForce(applyForce, continuousForce,continuousForceLocation);
+		
+		Vector3f continuousTorque = (Vector3f) capsule.readSavable("continuousTorque", Vector3f.ZERO);
+		boolean applyTorque = capsule.readBoolean("applyTorque", false);
+		applyContinuousTorque(applyTorque, continuousTorque);
+		
+		PhysicsSpace.getPhysicsSpace().add(this);
+	
+		ArrayList<PhysicsJoint> joints =capsule.readSavableArrayList("joints", null);
+		for (PhysicsJoint physicsJoint : joints) {
+			PhysicsSpace.getPhysicsSpace().add(physicsJoint);
+		}
+		
+	}
 
 }

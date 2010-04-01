@@ -35,7 +35,13 @@ import com.bulletphysics.collision.shapes.SphereShape;
 import com.jme.bounding.BoundingSphere;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -44,6 +50,14 @@ import java.util.List;
  */
 public class SphereCollisionShape extends CollisionShape{
 
+	public SphereCollisionShape() {
+       
+    }
+
+	public SphereCollisionShape(SphereShape shape) {
+		 cShape=shape;
+	       type=ShapeTypes.SPHERE;
+    }
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
@@ -94,5 +108,26 @@ public class SphereCollisionShape extends CollisionShape{
         cShape=sphere;
         type=ShapeTypes.SPHERE;
     }
+
+	@Override
+	public Class getClassTag() {
+		return SphereCollisionShape.class ;
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		float radius = capsule.readFloat("radius", 0);
+		SphereShape sphere=new SphereShape(radius);
+        cShape=sphere;
+        type=ShapeTypes.SPHERE;
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		capsule.write(((SphereShape)cShape).getRadius(), "radius", 0);
+		
+	}
 
 }

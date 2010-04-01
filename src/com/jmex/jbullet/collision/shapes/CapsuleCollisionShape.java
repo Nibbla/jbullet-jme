@@ -38,7 +38,13 @@ import com.jme.bounding.BoundingCapsule;
 import com.jme.math.FastMath;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -46,7 +52,14 @@ import java.util.List;
  * @author normenhansen
  */
 public class CapsuleCollisionShape extends CollisionShape{
-
+	public CapsuleCollisionShape() {
+		
+    }
+	
+	public CapsuleCollisionShape(CapsuleShape shape) {
+		cShape=shape;
+	       type = ShapeTypes.CYLINDER;
+    }
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
@@ -71,6 +84,7 @@ public class CapsuleCollisionShape extends CollisionShape{
     public CapsuleCollisionShape(float radius, float height) {
         CapsuleShape capShape=new CapsuleShape(radius,height);
         cShape=capShape;
+        
         type=ShapeTypes.CAPSULE;
     }
 
@@ -120,5 +134,48 @@ public class CapsuleCollisionShape extends CollisionShape{
         cShape=capShape;
         type=ShapeTypes.CAPSULE;
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return CapsuleCollisionShape.class;
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		float height = capsule.readFloat("height", 0);
+		float radius = capsule.readFloat("radius", 0);
+		int axis = capsule.readInt("axis", 1);
+		 switch(axis){
+         case 0:
+             cShape=new CapsuleShapeX(radius,height);
+         break;
+         case 1:
+             cShape=new CapsuleShape(radius,height);
+         break;
+         case 2:
+             cShape=new CapsuleShapeZ(radius,height);
+         break;
+     }
+     type=ShapeTypes.CAPSULE;
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		
+		if(cShape instanceof CapsuleShapeX ){
+			capsule.write(0, "axis", 1);
+		}else if (cShape instanceof CapsuleShapeZ){
+			capsule.write(2, "axis", 1);
+		}else{ // CapsuleShape
+			capsule.write(1, "axis", 1);
+		}
+		//TODO halfheight x2 ?
+		capsule.write(((CapsuleShape)cShape).getHalfHeight(), "height", 0);
+		capsule.write(((CapsuleShape)cShape).getRadius(), "radius", 0);
+		
+	}
 
 }

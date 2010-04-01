@@ -36,7 +36,13 @@ import com.jme.bounding.BoundingBox;
 import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.util.Converter;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -44,7 +50,14 @@ import java.util.List;
  * @author normenhansen
  */
 public class BoxCollisionShape extends CollisionShape{
-
+	public BoxCollisionShape() {
+        
+    }
+	
+	public BoxCollisionShape(BoxShape shape) {
+       cShape=shape;
+       type=ShapeTypes.BOX;
+    }
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
@@ -98,5 +111,33 @@ public class BoxCollisionShape extends CollisionShape{
         cShape=sphere;
         type=ShapeTypes.BOX;
     }
+
+	@Override
+	public Class getClassTag() {
+		
+		return BoxCollisionShape.class;
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		
+		Vector3f halfExtends = (Vector3f) capsule.readSavable("halfExtends", Vector3f.ZERO);
+		 BoxShape sphere=new BoxShape(Converter.convert(halfExtends));
+	     cShape=sphere;
+	     type=ShapeTypes.BOX;
+		
+		
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		javax.vecmath.Vector3f halfExtends = new javax.vecmath.Vector3f();
+		//@ With margin or without ?
+		((BoxShape)cShape).getHalfExtentsWithMargin(halfExtends);
+		capsule.write(Converter.convert(halfExtends), "halfExtends", Vector3f.ZERO);
+		
+	}
 
 }

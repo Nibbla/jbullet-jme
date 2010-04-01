@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/jBullet/asm-all-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jBullet/javadoc.zip"/>
+	<classpathentry kind="lib" path="lib/jBullet/jbullet.jar"/>
+	<classpathentry kind="lib" path="lib/jBullet/stack-alloc.jar"/>
+	<classpathentry kind="lib" path="lib/jBullet/vecmath.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-audio.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-awt.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-collada.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-colladabinding.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-editors.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-effects.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-font.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-gamestates.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-model.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-ogrexml.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-scene.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-terrain.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jorbis-0.0.17.jar"/>
+	<classpathentry kind="lib" path="lib/junit_4/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="lib/LWJGL/jinput.jar"/>
+	<classpathentry kind="lib" path="lib/LWJGL/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/LWJGL/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="importexport/lib/LWJGL/native"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

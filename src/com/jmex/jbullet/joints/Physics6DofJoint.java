@@ -35,10 +35,14 @@ import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
 import com.jmex.jbullet.joints.motors.RotationalLimitMotor;
 import com.jmex.jbullet.joints.motors.TranslationalLimitMotor;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
+
+import java.io.IOException;
 import java.util.LinkedList;
 
 /**
@@ -127,4 +131,19 @@ public class Physics6DofJoint extends PhysicsJoint{
         ((Generic6DofConstraint)constraint).setAngularLowerLimit(Converter.convert(vector));
     }
     
+    @Override
+	public Class getClassTag() {
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		throw (new UnsupportedOperationException("Not implemented yet."));
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		throw (new UnsupportedOperationException("Not implemented yet."));
+		
+	}
 }

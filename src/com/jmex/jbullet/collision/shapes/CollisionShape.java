@@ -32,6 +32,7 @@
 package com.jmex.jbullet.collision.shapes;
 
 import com.jme.math.Vector3f;
+import com.jme.util.export.Savable;
 import com.jmex.jbullet.util.Converter;
 
 /**
@@ -39,7 +40,7 @@ import com.jmex.jbullet.util.Converter;
  * CollisionShapes (as suggested in bullet manuals)
  * @author normenhansen
  */
-public abstract class CollisionShape {
+public abstract class CollisionShape implements Savable {
     protected int type=0;
     protected com.bulletphysics.collision.shapes.CollisionShape cShape;
 
