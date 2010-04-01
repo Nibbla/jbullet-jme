@@ -31,10 +31,25 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bulletphysics.collision.shapes.BoxShape;
+import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CompoundShape;
+import com.bulletphysics.collision.shapes.CompoundShapeChild;
+import com.bulletphysics.collision.shapes.CylinderShape;
+import com.bulletphysics.collision.shapes.CylinderShapeX;
+import com.bulletphysics.collision.shapes.SphereShape;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jmex.jbullet.util.CompoundCollisionShapeChild;
 import com.jmex.jbullet.util.Converter;
 
 /**
@@ -67,5 +82,62 @@ public class CompoundCollisionShape extends CollisionShape{
     public void removeChildShape(CollisionShape shape){
         ((CompoundShape)cShape).removeChildShape(shape.getCShape());
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		
+		ArrayList<CompoundCollisionShapeChild> childs = capsule.readSavableArrayList("childs", null);
+		for (int i = 0; i < childs.size(); i++) {
+			
+			 ((CompoundShape)cShape).addChildShape(childs.get(0).getTransform().convert(), childs.get(i).getShape().getCShape());
+		}
+		
+		//throw (new UnsupportedOperationException("Not implemented yet."));
+	}
+	
+	private CollisionShape transform(com.bulletphysics.collision.shapes.CollisionShape shape){
+		if(shape instanceof BoxShape){
+			return new BoxCollisionShape((BoxShape) shape);
+		}
+		if(shape instanceof SphereShape){
+			return new SphereCollisionShape((SphereShape) shape);
+		}
+		if(shape instanceof CylinderShape){
+			return new CylinderCollisionShape((CylinderShape) shape);
+		}
+		if(shape instanceof CapsuleShape){
+			return new CapsuleCollisionShape((CapsuleShape) shape);
+		}
+	
+		return null;
+	}
+	
+	
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		CompoundShape cshape = ((CompoundShape)cShape);
+		List<CompoundShapeChild> list= cshape.getChildList();
+		ArrayList<CompoundCollisionShapeChild> childs = new ArrayList<CompoundCollisionShapeChild>();
+		for (int i = 0; i < list.size(); i++) {
+			CompoundShapeChild csc = list.get(i);
+			CollisionShape shape = transform(csc.childShape);
+			com.jmex.jbullet.util.Transform transform = new com.jmex.jbullet.util.Transform(csc.transform);
+			CompoundCollisionShapeChild child = new CompoundCollisionShapeChild(shape, transform);
+			childs.add(child);
+		}
+		
+		capsule.writeSavableArrayList(childs, "childs", null);
+		
+		//throw (new UnsupportedOperationException("Not implemented yet."));
+	}
 
 }

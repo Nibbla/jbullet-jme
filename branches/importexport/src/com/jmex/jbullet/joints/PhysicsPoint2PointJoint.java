@@ -31,8 +31,14 @@
  */
 package com.jmex.jbullet.joints;
 
+import java.io.IOException;
+
 import com.bulletphysics.dynamics.constraintsolver.Point2PointConstraint;
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
@@ -45,9 +51,31 @@ import com.jmex.jbullet.util.Converter;
  */
 public class PhysicsPoint2PointJoint extends PhysicsJoint{
 
+	public PhysicsPoint2PointJoint(){
+		
+	}
+	
     public PhysicsPoint2PointJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
         super(nodeA, nodeB, pivotA, pivotB);
         constraint=new Point2PointConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), Converter.convert(pivotA), Converter.convert(pivotB));
     }
+    
+    @Override
+	public Class getClassTag() {
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		super.read(im);
+		constraint=new Point2PointConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), Converter.convert(pivotA), Converter.convert(pivotB));
+	    PhysicsSpace.getPhysicsSpace().add(this);
+		
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		super.write(ex);
+	}
 
 }

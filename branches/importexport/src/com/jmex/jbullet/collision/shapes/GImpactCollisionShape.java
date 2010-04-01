@@ -31,12 +31,20 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import com.bulletphysics.collision.shapes.BvhTriangleMeshShape;
 import com.bulletphysics.extras.gimpact.GImpactMeshShape;
+import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.scene.TriMesh;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.util.Converter;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -45,12 +53,18 @@ import java.util.List;
  */
 public class GImpactCollisionShape extends CollisionShape{
 
+	private TriMesh mesh;
+	
     /**
      * creates a collision shape from the TriMesh leaf in the given node
      * @param node the node to get the TriMesh from
      */
     public GImpactCollisionShape(Node node) {
         createCollisionMesh(node);
+    }
+    
+    public GImpactCollisionShape() {
+        
     }
 
     /**
@@ -90,5 +104,31 @@ public class GImpactCollisionShape extends CollisionShape{
         ((GImpactMeshShape)cShape).lockChildShapes();
         type=ShapeTypes.GIMPACT;
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		mesh = (TriMesh) capsule.readSavable("mesh", null);
+		cShape=new GImpactMeshShape(Converter.convert(mesh));
+		Vector3f scale = (Vector3f) capsule.readSavable("scale", new Vector3f(1,1,1));
+        cShape.setLocalScaling(Converter.convert(scale));
+        type=ShapeTypes.GIMPACT;
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule( this );
+		GImpactMeshShape shape = (GImpactMeshShape)cShape;
+		capsule.write(mesh, "mesh", null);
+		javax.vecmath.Vector3f scale = new javax.vecmath.Vector3f();
+		shape.getLocalScaling(scale);
+		capsule.write(Converter.convert(scale), "scale", new Vector3f(1,1,1));
+	}
 
 }

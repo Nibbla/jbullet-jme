@@ -31,10 +31,15 @@
  */
 package com.jmex.jbullet.joints;
 
+import java.io.IOException;
+
 import com.bulletphysics.dynamics.constraintsolver.SliderConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
@@ -294,5 +299,38 @@ public class PhysicsSliderJoint extends PhysicsJoint{
     public void setMaxAngMotorForce(float maxAngMotorForce) {
         ((SliderConstraint)constraint).setMaxAngMotorForce(maxAngMotorForce);
     }
+    
+    @Override
+	public Class getClassTag() {
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		throw (new UnsupportedOperationException("Not implemented yet."));
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		super.write(ex);
+		OutputCapsule capsule = ex.getCapsule(this);
+		SliderConstraint slider = (SliderConstraint)constraint;
+		capsule.write(slider.getLowerLinLimit(), "LowerLinLimit", 0);
+		capsule.write(slider.getUpperLinLimit(), "UpperLinLimit", 0);
+		capsule.write(slider.getLowerAngLimit(), "LowerAngLimit", 0);
+		capsule.write(slider.getUpperAngLimit(), "UpperAngLimit", 0);
+		capsule.write(slider.getSoftnessDirAng(), "SoftnessDirAng", 0);
+		capsule.write(slider.getSoftnessDirLin(), "SoftnessDirLin", 0);
+		capsule.write(slider.getRestitutionDirLin(), "RestitutionDirLin", 0);
+		capsule.write(slider.getDampingDirLin(), "DampingDirLin", 0);
+		capsule.write(slider.getRestitutionDirAng(), "RestitutionDirAng", 0);
+		capsule.write(slider.getDampingDirAng(), "DampingDirAng", 0);
+		capsule.write(slider.getLowerLinLimit(), "LowerLinLimit", 0);
+		capsule.write(slider.getLowerLinLimit(), "LowerLinLimit", 0);
+		capsule.write(slider.getLowerLinLimit(), "LowerLinLimit", 0);
+		capsule.write(slider.getLowerLinLimit(), "LowerLinLimit", 0);
+		//...
+		throw (new UnsupportedOperationException("Not implemented yet."));
+	}
 
 }

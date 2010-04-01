@@ -109,6 +109,10 @@ public abstract class PhysicsSpace {
         pSpace=new PhysicsSpace(){};
         return pSpace;
     }
+    
+    
+    
+    
 
     /**
      * Get the current PhysicsSpace or create a new PhysicsSpace with
@@ -411,7 +415,15 @@ public abstract class PhysicsSpace {
         getDynamicsWorld().addConstraint(joint.getConstraint(), !joint.isCollisionBetweenLinkedBodys());
     }
 
-    private void removeJoint(PhysicsJoint joint){
+    public List<PhysicsJoint> getPhysicsJoints() {
+		return physicsJoints;
+	}
+
+
+
+
+
+	private void removeJoint(PhysicsJoint joint){
         physicsJoints.remove(joint);
         getDynamicsWorld().removeConstraint(joint.getConstraint());
     }

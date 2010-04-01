@@ -31,10 +31,14 @@
  */
 package com.jmex.jbullet.joints;
 
+import java.io.IOException;
+
 import com.bulletphysics.dynamics.constraintsolver.ConeTwistConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
@@ -79,5 +83,21 @@ public class PhysicsConeJoint extends PhysicsJoint{
     public void setLimit(float swingSpan1, float swingSpan2, float twistSpan) {
         ((ConeTwistConstraint)constraint).setLimit(swingSpan1, swingSpan2, twistSpan);
     }
+    
+    @Override
+	public Class getClassTag() {
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		throw (new UnsupportedOperationException("Not implemented yet."));
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		throw (new UnsupportedOperationException("Not implemented yet."));
+		
+	}
 
 }
