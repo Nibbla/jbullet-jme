@@ -16,6 +16,13 @@ import com.jmex.jbullet.PhysicsSpace;
 
 /**
  * Specialisation on the DebugGame state to provide the option of rendering the details of the physics simulation.
+ *  <p/>
+ *  With default key binding the option to rotate through the various render choices is done via backslash key '\'.
+ *  <ul>
+ *      <li>Render the both JME scene and the physics debug scene.</li>
+ *      <li>Render the only the physics debug scene.</li>
+ *      <li>Render only the JME scene.</li>
+ * </ul>
  *
  * @author CJ Hare
  */
@@ -24,52 +31,60 @@ public class PhysicsDebugGameState extends DebugGameState
     private static final String DRAW_STATE_SWITCH_COMMAND = "physics_switch_between_draw_states";
 
     /**
-     *  Store for the various render options that the PhysicsDebugGameState can switch between.
+     *  Provides the various draw states avaiiable to the PhysicsDebugGameState, as the option
+     *  to not render the JME scene is available.
      */
     private enum DrawState
     {
-        PhysicsDebug( true ),
-        JmeScene( true );
+        Both( true, true ),
+        PhysicsDebugOnly( true, false ),
+        NoPhysicsDebug( false, true );
 
-        public boolean draw;
+        public final boolean drawPhysicsScene;
 
-        DrawState( boolean drawByDefault )
+        public final boolean drawJmeScene;
+
+        DrawState( boolean drawPhysicsScene, boolean drawJmeScene )
         {
-            this.draw = drawByDefault;
+            this.drawPhysicsScene = drawPhysicsScene;
+            this.drawJmeScene = drawJmeScene;
         }
 
         /**
          *  Switches the states between the current options:
          *  <ul>
-         *      <li>PhysicsDebug, no JmeScene</li>
-         *      <li>PhysicsDebug with JmeScene</li>
-         *      <li>No PhysicsDebug with JmeScene</li>
+         *      <li>Both : PhysicsDebug with JmeScene</li>
+         *      <li>PhysicsDebugOnly: Physics Debug, no JmeScene</li>
+         *      <li>NoPhysicsDebug: Only the normal JmeScene</li>
          *  </ul>
+         *
+         *  @param current the current draw state.
+         *  @return the next draw state combination.
          */
-        public static void nextDrawState()
+        public static DrawState nextDrawState( DrawState current )
         {
-            // Figure out the current state
-            if ( PhysicsDebug.draw )
+            DrawState nextState = null;
+
+            switch ( current )
             {
-                if ( JmeScene.draw )
-                {
-                    // Move to state: 'No wireframe with Jme scene'
-                    PhysicsDebug.draw = false;
-                }
-                else
-                {
-                    // Move to state: 'Wireframes with Jme scene'
-                    JmeScene.draw = true;
-                }
+                case Both:
+                    nextState = PhysicsDebugOnly;
+                    break;
+                case PhysicsDebugOnly:
+                    nextState = NoPhysicsDebug;
+                    break;
+                case NoPhysicsDebug:
+                    nextState = Both;
+                    break;
+                default:
+                    throw new IllegalStateException( "Given a DrawState that is uncatered for" );
             }
-            else
-            {
-                // Move to state: 'Wireframes, no JmeScene'
-                PhysicsDebug.draw = true;
-                JmeScene.draw = false;
-            }
+
+            return nextState;
         }
     }
+    /** The state is used to decided what will be drawn in the render().*/
+    private DrawState drawState;
 
     /**
      *  Creates the PhysicsDebugGameState that handles input in the same ways as the default DebugGameState.
@@ -82,7 +97,8 @@ public class PhysicsDebugGameState extends DebugGameState
         setupPhysicsKeyBindings();
 
         // Force the wireframe drawing of the DebugGameState - DrawState.JmeScene
-        wireState.setEnabled( DrawState.JmeScene.draw );
+        drawState = DrawState.Both;
+        wireState.setEnabled( true );
     }
 
     /**
@@ -109,10 +125,7 @@ public class PhysicsDebugGameState extends DebugGameState
         if ( KeyBindingManager.getKeyBindingManager().isValidCommand(
                 DRAW_STATE_SWITCH_COMMAND, false ) )
         {
-            DrawState.nextDrawState();
-
-            // Force the wireframe drawing of the DebugGameState
-            wireState.setEnabled( DrawState.JmeScene.draw );
+            drawState = DrawState.nextDrawState( drawState );
 
             rootNode.updateRenderState();
         }
@@ -122,13 +135,13 @@ public class PhysicsDebugGameState extends DebugGameState
     public void render( float tpf )
     {
         // Do we render the JME scene?
-        if ( DrawState.JmeScene.draw )
+        if ( drawState.drawJmeScene )
         {
             super.render( tpf );
         }
 
         // Draw the physics wireframes?
-        if ( DrawState.PhysicsDebug.draw )
+        if ( drawState.drawPhysicsScene )
         {
             drawWireframes( DisplaySystem.getDisplaySystem().getRenderer() );
         }
