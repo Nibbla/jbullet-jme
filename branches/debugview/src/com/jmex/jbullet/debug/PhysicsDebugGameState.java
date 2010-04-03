@@ -1,18 +1,9 @@
 package com.jmex.jbullet.debug;
 
-import com.bulletphysics.collision.dispatch.CollisionObject;
-import com.bulletphysics.collision.shapes.CollisionShape;
-import com.bulletphysics.collision.shapes.ConcaveShape;
-import com.bulletphysics.collision.shapes.ConvexShape;
-import com.bulletphysics.collision.shapes.PolyhedralConvexShape;
-import com.bulletphysics.dynamics.DynamicsWorld;
-import com.bulletphysics.linearmath.Transform;
 import com.jme.input.KeyBindingManager;
 import com.jme.input.KeyInput;
-import com.jme.renderer.Renderer;
 import com.jme.system.DisplaySystem;
 import com.jmex.game.state.DebugGameState;
-import com.jmex.jbullet.PhysicsSpace;
 
 /**
  * Specialisation on the DebugGame state to provide the option of rendering the details of the physics simulation.
@@ -143,57 +134,7 @@ public class PhysicsDebugGameState extends DebugGameState
         // Draw the physics wireframes?
         if ( drawState.drawPhysicsScene )
         {
-            drawWireframes( DisplaySystem.getDisplaySystem().getRenderer() );
+            PhysicsDebugger.drawWireframes( DisplaySystem.getDisplaySystem().getRenderer() );
         }
     }
-
-    public void drawWireframes( Renderer renderer )
-    {
-        DynamicsWorld dynamicsWorld = PhysicsSpace.getPhysicsSpace().getDynamicsWorld();
-
-        if ( dynamicsWorld != null )
-        {
-            for ( CollisionObject collisionObject : dynamicsWorld.getCollisionObjectArray() )
-            {
-                // Get the world translation of the object - determines translation, rotation and scale
-                collisionObject.getWorldTransform( transform );
-
-                CollisionShape shape = collisionObject.getCollisionShape();
-
-                //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
-                // indicies and vertices
-                if ( shape.isConvex() )
-                {
-                    // Assert the CollisionShape is of the appropiate type
-                    assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
-                    ConvexShape convexShape = (ConvexShape) shape;
-
-                    PhysicsDebugger.drawWireframe( renderer, convexShape, transform );
-                }
-                else if ( shape.isConcave() )
-                {
-                    // Assert the CollisionShape is of the appropiate type
-                    assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
-                    ConcaveShape concaveShape = (ConcaveShape) shape;
-
-                    PhysicsDebugger.drawWireframe( renderer, concaveShape, transform );
-                }
-                else if ( shape.isPolyhedral() )
-                {
-                    //TODO why bother with polyhedral,  as it's a child of ConvexShape
-
-                    // Assert the CollisionShape is of the appropiate type
-                    assert shape instanceof PolyhedralConvexShape : "Expecting CollisionShape to be a PolyhedralConvexShape";
-                    PolyhedralConvexShape polyhedralShape = (PolyhedralConvexShape) shape;
-
-                    PhysicsDebugger.drawWireframe( renderer, polyhedralShape, transform );
-                }
-                //TODO deal with infinite shape?
-                //TODO what happens to composite shapes?
-            }
-        }
-    }
-    //TODO commnet
-    private final Transform transform = new Transform();
-
 }

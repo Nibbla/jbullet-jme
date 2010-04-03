@@ -4,6 +4,8 @@ import com.jme.input.InputHandler;
 import com.jme.input.KeyInput;
 import com.jme.input.action.InputAction;
 import com.jme.input.action.InputActionEvent;
+import com.jme.math.FastMath;
+import com.jme.math.Quaternion;
 import java.util.concurrent.Callable;
 
 import com.jme.math.Vector3f;
@@ -111,6 +113,17 @@ public class TestPhysicsDebugGameState
         state.getRootNode().attachChild( node5 );
         node5.updateRenderState();
         pSpace.add( node5 );
+
+        // Add a Rotated Box - static
+        PhysicsNode node6 = new PhysicsNode( new Box( "physicsobstaclemesh", Vector3f.ZERO, 5f, 10f, 1f ), CollisionShape.ShapeTypes.BOX, 0f );
+        node6.setLocalTranslation( new Vector3f( -10f, 4f, -6f ) );
+        Quaternion rotation = new Quaternion();
+        rotation.fromAngleNormalAxis( FastMath.DEG_TO_RAD * 34f, Vector3f.UNIT_Y );
+        node6.setLocalRotation( rotation );
+        state.getRootNode().attachChild( node6 );
+        node6.updateRenderState();
+        node6.updateGeometricState( 0f, true );
+        pSpace.add( node6 );
 
         // Add the gamestate to the manager
         GameStateManager.getInstance().attachChild( state );
