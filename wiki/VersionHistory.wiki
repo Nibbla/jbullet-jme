@@ -3,6 +3,9 @@
 
 == Versions ==
 
+==== svn trunk ====
+ * added debug view
+
 ==== 0.9.5 alpha (r509) ====
  * added fix to avoid calling of setLocalInertia() for static meshes (caused assertion error)
  * fixed mesh conversion, GIMPACT shapes work now
