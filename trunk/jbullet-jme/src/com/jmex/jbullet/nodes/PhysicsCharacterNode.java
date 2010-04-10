@@ -76,7 +76,7 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
     @Override
     protected void buildObject() {
         super.buildObject();
-        gObject.setCollisionFlags(CollisionFlags.CHARACTER_OBJECT);
+        gObject.setCollisionFlags(gObject.getCollisionFlags() | CollisionFlags.CHARACTER_OBJECT);
     }
 
     public void warp(Vector3f location){

@@ -73,6 +73,7 @@ public class PhysicsNode extends CollisionObject{
     private MotionState motionState;//=new DefaultMotionState();
     private CollisionShape collisionShape;
     private float mass=1f;
+    private boolean kinematic=false;
 
     private boolean physicsEnabled=true;
 
@@ -394,6 +395,22 @@ public class PhysicsNode extends CollisionObject{
         updateGeometricState(0, true);
         updateWorldBound();
         collisionShape.setScale(getWorldScale());
+    }
+
+    public void setKinematic(boolean kinematic){
+        this.kinematic=kinematic;
+        if(kinematic){
+            rBody.setCollisionFlags(rBody.getCollisionFlags() | CollisionFlags.KINEMATIC_OBJECT);
+            rBody.setActivationState(com.bulletphysics.collision.dispatch.CollisionObject.DISABLE_DEACTIVATION);
+        }
+        else{
+            rBody.setCollisionFlags(rBody.getCollisionFlags() & ~CollisionFlags.KINEMATIC_OBJECT);
+            rBody.setActivationState(com.bulletphysics.collision.dispatch.CollisionObject.ACTIVE_TAG);
+        }
+    }
+
+    public boolean isKinematic(){
+        return kinematic;
     }
 
     public float getMass() {
