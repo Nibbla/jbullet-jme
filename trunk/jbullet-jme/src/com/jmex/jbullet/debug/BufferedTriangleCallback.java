@@ -20,7 +20,7 @@ public class BufferedTriangleCallback implements TriangleCallback
         vertices = new ArrayList<Vector3f>();
     }
 
-    @Override
+//    @Override
     public void processTriangle( Vector3f[] triangle, int partId, int triangleIndex )
     {
         // Three sets of individual lines
