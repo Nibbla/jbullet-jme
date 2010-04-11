@@ -15,13 +15,16 @@ import com.jme.bounding.BoundingBox;
 import com.jme.math.Quaternion;
 import com.jme.renderer.Renderer;
 import com.jme.scene.Line;
+import com.jme.scene.Spatial;
 import com.jme.scene.state.ZBufferState;
 import com.jme.system.DisplaySystem;
 import com.jmex.jbullet.PhysicsSpace;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.vecmath.Matrix3f;
 import javax.vecmath.Vector3f;
 
@@ -34,6 +37,9 @@ import javax.vecmath.Vector3f;
  */
 public class PhysicsDebugger
 {
+    /** The smallest float increment to deal with, for translation && rotations.*/
+    private static final float SMALLEST_FLOAT_CHANGE = 0.001f;
+
     /** Temporary Transform, used to store the bullet object's transform.*/
     private static final Transform transform = new Transform();
 
@@ -42,6 +48,9 @@ public class PhysicsDebugger
 
     /** The standard ordering of objects by their z order, keeps things correctly in perspective.*/
     private static final ZBufferState zOrdered;
+
+    /** The collision object assigned to a physics body mapped to a JME Spatial representation.*/
+    private static final Map<CollisionObject, Spatial> bulletObjects = new HashMap<CollisionObject, Spatial>();
 
     // Static initialisation
     static
@@ -74,6 +83,7 @@ public class PhysicsDebugger
         {
             CollisionShape shape;
             Vector3f worldTranslation;
+            Spatial wireframe;
 
             for ( CollisionObject collisionObject : dynamicsWorld.getCollisionObjectArray() )
             {
@@ -98,43 +108,73 @@ public class PhysicsDebugger
 
                 worldTranslation = transform.origin;
 
-                //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
-                // indicies and vertices
-                if ( shape.isConvex() )
+                // Does the object already have a Jme Spatial
+                wireframe = bulletObjects.get( collisionObject );
+
+                // If there's not a Spatial of the collision object - one needs creating!
+                if ( wireframe == null )
                 {
-                    // Assert the CollisionShape is of the appropiate type
-                    assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
-                    ConvexShape convexShape = (ConvexShape) shape;
+                    //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
+                    // indicies and vertices
+                    if ( shape.isConvex() )
+                    {
+                        // Assert the CollisionShape is of the appropiate type
+                        assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
+                        ConvexShape convexShape = (ConvexShape) shape;
 
-                    drawWireframe( renderer, convexShape, worldTranslation, worldRotation );
+                        wireframe = createWireframe( renderer, convexShape, worldTranslation, worldRotation );
+                    }
+                    else if ( shape.isConcave() )
+                    {
+                        // Assert the CollisionShape is of the appropiate type
+                        assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
+                        ConcaveShape concaveShape = (ConcaveShape) shape;
+
+                        wireframe = createWireframe( renderer, concaveShape, worldTranslation, worldRotation );
+                    }
+                    else if ( shape.isPolyhedral() )
+                    {
+                        //TODO why bother with polyhedral,  as it's a child of ConvexShape
+
+                        // Assert the CollisionShape is of the appropiate type
+                        assert shape instanceof PolyhedralConvexShape : "Expecting CollisionShape to be a PolyhedralConvexShape";
+                        PolyhedralConvexShape polyhedralShape = (PolyhedralConvexShape) shape;
+
+                        wireframe = createWireframe( renderer, polyhedralShape, worldTranslation, worldRotation );
+                    }
+
+                    // Store the created wireframe, so we don't have to recreate it
+                    bulletObjects.put( collisionObject, wireframe );
+
+                    //TODO deal with infinite shape?
+                    //TODO what happens to composite shapes?
                 }
-                else if ( shape.isConcave() )
+
+                // Check if the worldTranslation of the object has changed
+                if ( isNotEqual( worldTranslation, wireframe.getWorldTranslation() ) )
                 {
-                    // Assert the CollisionShape is of the appropiate type
-                    assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
-                    ConcaveShape concaveShape = (ConcaveShape) shape;
-
-                    drawWireframe( renderer, concaveShape, worldTranslation, worldRotation );
+                    // The physics object has moved since last render - update the world translation of the Spatial
+                    wireframe.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
+                    wireframe.updateWorldVectors();
                 }
-                else if ( shape.isPolyhedral() )
+
+                // Check if the worldRotation of the object has changed
+                if ( isNotEqual( worldRotation, wireframe.getWorldRotation() ) )
                 {
-                    //TODO why bother with polyhedral,  as it's a child of ConvexShape
-
-                    // Assert the CollisionShape is of the appropiate type
-                    assert shape instanceof PolyhedralConvexShape : "Expecting CollisionShape to be a PolyhedralConvexShape";
-                    PolyhedralConvexShape polyhedralShape = (PolyhedralConvexShape) shape;
-
-                    drawWireframe( renderer, polyhedralShape, worldTranslation, worldRotation );
+                    // The physics object has rotated since last render - update the world rotation of the Spatial
+                    wireframe.getLocalRotation().set( worldRotation );
+                    wireframe.updateWorldVectors();
                 }
-                //TODO deal with infinite shape?
-                //TODO what happens to composite shapes?
+
+                //TODO check whether this does frustum culling?
+                //TODO need only to create objects once
+                wireframe.draw( renderer );
             }
         }
-
     }
 
     //TODO colour
-    public static final void drawWireframe(
+    private static Line createWireframe(
             Renderer renderer, PolyhedralConvexShape polyhedralShape, Vector3f worldTranslation, Quaternion worldRotation )
     {
         ObjectPool<Vector3f> vectorsPool = ObjectPool.get( Vector3f.class );
@@ -150,9 +190,7 @@ public class PhysicsDebugger
 
         FloatBuffer colour = ByteBuffer.allocateDirect( colourSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
 
-        for ( int i = 0;
-                i < numberOfEdges;
-                i++ )
+        for ( int i = 0; i < numberOfEdges; i++ )
         {
             polyhedralShape.getEdge( i, a, b );
 
@@ -167,48 +205,19 @@ public class PhysicsDebugger
             colour.put( 1f ).put( 0f ).put( 1f ).put( 1 );
             colour.put( 0f ).put( 1f ).put( 0f ).put( 1 );
         }
-        Line line = new Line();
-
-        line.setVertexBuffer( vertices );
-
-        line.setColorBuffer( colour );
-
-        line.setLineWidth( 2f );
-
-        line.generateIndices();
-
-        line.setModelBound( new BoundingBox() );
-
-        line.updateModelBound();
-        line.updateRenderState();
-
-        // Translate the Spatial to the correct location in the world
-        line.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
-
-        // Set the local rotation, without the Spatial keeping a reference to my worldRotation
-        line.getLocalRotation().set( worldRotation );
-
-        line.setRenderState( zOrdered );
-
-        // The rotation change needs picking up (as the rotation was set directly)
-        line.updateWorldVectors();
-
-        // The render state needs updating to pickup the change in colour
-        line.updateRenderState();
-
-
-        //TODO check whether this does frustum culling?
-        //TODO need only to create objects once
-        line.draw( renderer );
+        Line line = createLine( vertices, colour, worldTranslation, worldRotation );
 
         vectorsPool.release( a );
         vectorsPool.release( b );
+
+        return line;
     }
 
-    public static final void drawWireframe(
+    private static Line createWireframe(
             Renderer renderer, ConcaveShape concaveShape, Vector3f worldTranslation, Quaternion worldRotation )
     {
-        //TODO refactor
+        //TODO refactor?
+        //TODO figure out the purpose of an extremely large bounding box, how is it used? can the values be hard coded?
         ObjectPool<Vector3f> vectorsPool = ObjectPool.get( Vector3f.class );
         Vector3f aabbMax = vectorsPool.get();
         aabbMax.set(
@@ -221,40 +230,12 @@ public class PhysicsDebugger
 
         concaveShape.processAllTriangles( triangleProcessor, aabbMin, aabbMax );
 
-        Line line = new Line();
-        line.setVertexBuffer( triangleProcessor.getVertices() );
-        line.setColorBuffer( triangleProcessor.getColour() );
-        line.setLineWidth(
-                2f );
-        line.generateIndices();
-
-        line.setModelBound(
-                new BoundingBox() );
-        line.updateModelBound();
-
-        line.updateRenderState();
-
-        // Translate the Spatial to the correct location in the world
-        line.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
-
-        // Set the local rotation, without the Spatial keeping a reference to my worldRotation
-        line.getLocalRotation().set( worldRotation );
-
-        line.setRenderState( zOrdered );
-
-        // The rotation change needs picking up (as the rotation was set directly)
-        line.updateWorldVectors();
-
-        // The render state needs updating to pickup the change in colour
-        line.updateRenderState();
-
-
-        //TODO check whether this does frustum culling?
-        //TODO need only to create objects once
-        line.draw( renderer );
+        FloatBuffer vertices = triangleProcessor.getVertices();
+        FloatBuffer colour = triangleProcessor.getColour();
+        return createLine( vertices, colour, worldTranslation, worldRotation );
     }
 
-    public static final void drawWireframe(
+    private static Line createWireframe(
             Renderer renderer, ConvexShape convexShape, Vector3f worldTranslation, Quaternion worldRotation )
     {
         // Check there is a hull shape to render
@@ -316,6 +297,11 @@ public class PhysicsDebugger
             }
         }
 
+        return createLine( vertices, colour, worldTranslation, worldRotation );
+    }
+
+    private static Line createLine( FloatBuffer vertices, FloatBuffer colour, Vector3f worldTranslation, Quaternion worldRotation )
+    {
         Line line = new Line();
         line.setVertexBuffer( vertices );
         line.setColorBuffer( colour );
@@ -341,8 +327,59 @@ public class PhysicsDebugger
         // The render state needs updating to pickup the change in colour
         line.updateRenderState();
 
-        //TODO check whether this does frustum culling?
-        //TODO need only to create objects once
-        line.draw( renderer );
+        return line;
+    }
+
+    /**
+     * Is there equality between the values held by the Quaternions?
+     * <p/>
+     *  The measure of equality for this inline method is whether there is a difference of greater then
+     * SMALLEST_FLOAT_CHANGE between the two floats.
+     *
+     * @param a the first Quaternion.
+     * @param b the second Quaternion.
+     * @return <code>true</code> the difference in value between the vectors values is greater then acceptable,
+     *      <code>false</code> otherwise.
+     */
+    private static final boolean isNotEqual( Quaternion a, Quaternion b )
+    {
+        return isNotEqual( a.x, b.x )
+                || isNotEqual( a.y, b.y )
+                || isNotEqual( a.z, b.z )
+                || isNotEqual( a.w, b.w );
+    }
+
+    /**
+     *  Is there equality between the values held by the vectors?
+     * <p/>
+     *  The measure of equality for this inline method is whether there is a difference of greater then
+     * SMALLEST_FLOAT_CHANGE between the two floats.
+     *
+     * @param a the first vector.
+     * @param b the second vector.
+     * @return <code>true</code> the difference in value between the vectors values is greater then acceptable,
+     *      <code>false</code> otherwise.
+     */
+    private static final boolean isNotEqual( Vector3f a, com.jme.math.Vector3f b )
+    {
+        return isNotEqual( a.x, b.x )
+                || isNotEqual( a.y, b.y )
+                || isNotEqual( a.z, b.z );
+    }
+
+    /**
+     *  Are the two floats considered equal?
+     * <p/>
+     *  The measure of equality for this inline method is whether there is a difference of greater then
+     * SMALLEST_FLOAT_CHANGE between the two floats.
+     *
+     * @param a the first float.
+     * @param b the second float.
+     * @return <code>true</code> the difference in value between the floats is greater then acceptable,
+     *      <code>false</code> otherwise.
+     */
+    private static final boolean isNotEqual( float a, float b )
+    {
+        return a > b + SMALLEST_FLOAT_CHANGE || b > a + SMALLEST_FLOAT_CHANGE;
     }
 }
