@@ -34,10 +34,23 @@ import javax.vecmath.Vector3f;
  */
 public class PhysicsDebugger
 {
-    //TODO commnet
+    /** Temporary Transform, used to store the bullet object's transform.*/
     private static final Transform transform = new Transform();
 
+    /** Temporary Quaternion, used to covert between transform.basis and JME WorldRotation. */
     private static final Quaternion worldRotation = new Quaternion();
+
+    /** The standard ordering of objects by their z order, keeps things correctly in perspective.*/
+    private static final ZBufferState zOrdered;
+
+    // Static initialisation
+    static
+    {
+        zOrdered = DisplaySystem.getDisplaySystem().getRenderer().createZBufferState();
+        zOrdered.setWritable( true );
+        zOrdered.setEnabled( true );
+        zOrdered.setFunction( ZBufferState.TestFunction.LessThanOrEqualTo );
+    }
 
     /**
      *  Determines whether the given collision object is a GhostObject.<p/>
@@ -52,6 +65,7 @@ public class PhysicsDebugger
         return collisionObject.getInternalType() == CollisionObjectType.GHOST_OBJECT;
     }
 
+    //TODO commnet
     public static void drawWireframes( Renderer renderer )
     {
         DynamicsWorld dynamicsWorld = PhysicsSpace.getPhysicsSpace().getDynamicsWorld();
@@ -174,15 +188,7 @@ public class PhysicsDebugger
         // Set the local rotation, without the Spatial keeping a reference to my worldRotation
         line.getLocalRotation().set( worldRotation );
 
-        // Create & Init z-buffer state
-        ZBufferState zBufferState = DisplaySystem.getDisplaySystem().getRenderer().createZBufferState();
-        zBufferState.setWritable(
-                true );
-        zBufferState.setEnabled(
-                true );
-        zBufferState.setFunction( ZBufferState.TestFunction.LessThanOrEqualTo );
-
-        line.setRenderState( zBufferState );
+        line.setRenderState( zOrdered );
 
         // The rotation change needs picking up (as the rotation was set directly)
         line.updateWorldVectors();
@@ -234,15 +240,7 @@ public class PhysicsDebugger
         // Set the local rotation, without the Spatial keeping a reference to my worldRotation
         line.getLocalRotation().set( worldRotation );
 
-        // Create & Init z-buffer state
-        ZBufferState zBufferState = DisplaySystem.getDisplaySystem().getRenderer().createZBufferState();
-        zBufferState.setWritable(
-                true );
-        zBufferState.setEnabled(
-                true );
-        zBufferState.setFunction( ZBufferState.TestFunction.LessThanOrEqualTo );
-
-        line.setRenderState( zBufferState );
+        line.setRenderState( zOrdered );
 
         // The rotation change needs picking up (as the rotation was set directly)
         line.updateWorldVectors();
@@ -335,13 +333,7 @@ public class PhysicsDebugger
         // Set the local rotation, without the Spatial keeping a reference to my worldRotation
         line.getLocalRotation().set( worldRotation );
 
-        // Create & Init z-buffer state
-        ZBufferState zBufferState = DisplaySystem.getDisplaySystem().getRenderer().createZBufferState();
-        zBufferState.setWritable( true );
-        zBufferState.setEnabled( true );
-        zBufferState.setFunction( ZBufferState.TestFunction.LessThanOrEqualTo );
-
-        line.setRenderState( zBufferState );
+        line.setRenderState( zOrdered );
 
         // The rotation change needs picking up (as the rotation was set directly)
         line.updateWorldVectors();
