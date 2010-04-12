@@ -37,8 +37,11 @@ import com.bulletphysics.dynamics.constraintsolver.ConeTwistConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
 import com.jme.util.export.JMEExporter;
 import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
@@ -51,6 +54,7 @@ import com.jmex.jbullet.util.Converter;
  */
 public class PhysicsConeJoint extends PhysicsJoint{
     private Matrix3f rotA, rotB;
+    private float swingSpan1, swingSpan2, twistSpan;
 
     public PhysicsConeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB) {
         super(nodeA, nodeB, pivotA, pivotB);
@@ -91,12 +95,38 @@ public class PhysicsConeJoint extends PhysicsJoint{
 
 	@Override
 	public void read(JMEImporter im) throws IOException {
-		throw (new UnsupportedOperationException("Not implemented yet."));
+		super.read(im);
+		InputCapsule capsule= im.getCapsule(this);
+		rotA = (Matrix3f) capsule.readSavable("rotA", null);
+		rotB = (Matrix3f) capsule.readSavable("rotB", null);
+		
+		Transform transA=new Transform(Converter.convert(rotA));
+        Converter.convert(pivotA,transA.origin);
+        Converter.convert(rotA,transA.basis);
+
+        Transform transB=new Transform(Converter.convert(rotB));
+        Converter.convert(pivotB,transB.origin);
+        Converter.convert(rotB,transB.basis);
+        
+        constraint=new ConeTwistConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB);
+        swingSpan1 = capsule.readFloat("swingSpan1", 0);
+        swingSpan1 = capsule.readFloat("swingSpan1", 0);
+        twistSpan = capsule.readFloat("twistSpan", 0);
+        setLimit(swingSpan1, swingSpan2, twistSpan);
+        PhysicsSpace.getPhysicsSpace().add(this);
+		//throw (new UnsupportedOperationException("Not implemented yet."));
 	}
 
 	@Override
 	public void write(JMEExporter ex) throws IOException {
-		throw (new UnsupportedOperationException("Not implemented yet."));
+		super.write(ex);
+		OutputCapsule capsule = ex.getCapsule(this);
+		capsule.write(rotA, "rotA", null);
+		capsule.write(rotB, "rotB", null);
+		capsule.write(swingSpan1, "swingSpan1", 0);
+		capsule.write(swingSpan2, "swingSpan2", 0);
+		capsule.write(twistSpan, "twistSpan", 0);
+		//throw (new UnsupportedOperationException("Not implemented yet."));
 		
 	}
 
