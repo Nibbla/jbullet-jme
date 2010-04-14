@@ -125,9 +125,9 @@ public class PhysicsHingeJoint extends PhysicsJoint{
 		enableMotor(enableMotor, vel, impl);
 		
 		
+		//moved to PhysicNode
+		//PhysicsSpace.getPhysicsSpace().add(this);
 		
-		PhysicsSpace.getPhysicsSpace().add(this);
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 	}
 
 	@Override
@@ -146,7 +146,6 @@ public class PhysicsHingeJoint extends PhysicsJoint{
 		capsule.write(hinge.getEnableAngularMotor(), "enableMotor", false);
 		capsule.write(hinge.getMotorTargetVelosity(), "velocity", 0);
 		capsule.write(hinge.getMaxMotorImpulse(), "maximpulse", 0);
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 		
 	}
 

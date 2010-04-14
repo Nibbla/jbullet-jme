@@ -69,7 +69,7 @@ public class PhysicsPoint2PointJoint extends PhysicsJoint{
 	public void read(JMEImporter im) throws IOException {
 		super.read(im);
 		constraint=new Point2PointConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), Converter.convert(pivotA), Converter.convert(pivotB));
-	    PhysicsSpace.getPhysicsSpace().add(this);
+	    //PhysicsSpace.getPhysicsSpace().add(this);
 		
 	}
 

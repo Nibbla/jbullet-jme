@@ -113,8 +113,8 @@ public class PhysicsConeJoint extends PhysicsJoint{
         swingSpan1 = capsule.readFloat("swingSpan1", 0);
         twistSpan = capsule.readFloat("twistSpan", 0);
         setLimit(swingSpan1, swingSpan2, twistSpan);
-        PhysicsSpace.getPhysicsSpace().add(this);
-		//throw (new UnsupportedOperationException("Not implemented yet."));
+       // PhysicsSpace.getPhysicsSpace().add(this);
+		
 	}
 
 	@Override
@@ -126,7 +126,6 @@ public class PhysicsConeJoint extends PhysicsJoint{
 		capsule.write(swingSpan1, "swingSpan1", 0);
 		capsule.write(swingSpan2, "swingSpan2", 0);
 		capsule.write(twistSpan, "twistSpan", 0);
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 		
 	}
 
