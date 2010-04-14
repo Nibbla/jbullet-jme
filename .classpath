@@ -19,14 +19,14 @@
 	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-ogrexml.jar"/>
 	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-scene.jar"/>
 	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme-terrain.jar"/>
-	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme.jar"/>
+	<classpathentry kind="lib" path="lib/jMonkeyEngine/jme.jar" sourcepath="/jme"/>
 	<classpathentry kind="lib" path="lib/jMonkeyEngine/jorbis-0.0.17.jar"/>
 	<classpathentry kind="lib" path="lib/junit_4/junit-4.5.jar"/>
 	<classpathentry kind="lib" path="lib/LWJGL/jinput.jar"/>
 	<classpathentry kind="lib" path="lib/LWJGL/lwjgl_util.jar"/>
 	<classpathentry kind="lib" path="lib/LWJGL/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="importexport/lib/LWJGL/native"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Jbullet-jme/lib/LWJGL/native"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

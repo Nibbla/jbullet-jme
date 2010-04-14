@@ -31,14 +31,21 @@
  */
 package com.jmex.jbullet.joints.motors;
 
+import java.io.IOException;
+
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jme.util.export.Savable;
 import com.jmex.jbullet.util.Converter;
 
 /**
  *
  * @author normenhansen
  */
-public class TranslationalLimitMotor {
+public class TranslationalLimitMotor implements Savable {
     private com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor motor;
 
     public TranslationalLimitMotor(com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor motor) {
@@ -96,5 +103,37 @@ public class TranslationalLimitMotor {
     public void setRestitution(float restitution) {
         motor.restitution = restitution;
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter i) throws IOException {
+		if(motor==null){
+			throw new NullPointerException("Motor is Null.");
+		}
+		InputCapsule capsule = i.getCapsule(this);
+		setDamping(capsule.readFloat("damping", 0));
+		setLimitSoftness(capsule.readFloat("limitSoftness", 0));
+		setRestitution(capsule.readFloat("restituition", 0));
+		setLowerLimit((Vector3f) capsule.readSavable("loweLimit", Vector3f.ZERO));
+		setUpperLimit((Vector3f)capsule.readSavable("upperLimit", Vector3f.ZERO));
+		setAccumulatedImpulse((Vector3f)capsule.readSavable("accumulatedImpule", Vector3f.ZERO));
+		
+	}
+
+	@Override
+	public void write(JMEExporter e) throws IOException {
+		OutputCapsule capsule = e.getCapsule(this);
+		capsule.write(motor.damping, "damping", 0);
+		capsule.write(motor.limitSoftness, "limitSoftness", 0);
+		capsule.write(motor.restitution, "restitution", 0);
+		capsule.write(getLowerLimit(), "lowerLimit", Vector3f.ZERO);
+		capsule.write(getUpperLimit(), "upperLimit", Vector3f.ZERO);
+		capsule.write(getAccumulatedImpulse(), "accumulatedImpulse", Vector3f.ZERO);
+	}
 
 }

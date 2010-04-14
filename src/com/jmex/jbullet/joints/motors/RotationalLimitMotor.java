@@ -31,11 +31,21 @@
  */
 package com.jmex.jbullet.joints.motors;
 
+import java.io.IOException;
+
+import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jme.util.export.Savable;
+import com.jme.util.export.binary.BinaryLoaderModule;
+
 /**
  *
  * @author normenhansen
  */
-public class RotationalLimitMotor {
+public class RotationalLimitMotor implements Savable {
     private com.bulletphysics.dynamics.constraintsolver.RotationalLimitMotor motor;
 
     public RotationalLimitMotor(com.bulletphysics.dynamics.constraintsolver.RotationalLimitMotor motor) {
@@ -125,5 +135,47 @@ public class RotationalLimitMotor {
     public void setEnableMotor(boolean enableMotor) {
         motor.enableMotor = enableMotor;
     }
+
+	@Override
+	public Class getClassTag() {
+		// TODO Auto-generated method stub
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter arg0) throws IOException {
+		InputCapsule capsule = arg0.getCapsule(this);
+		if(motor==null){
+			throw new NullPointerException("Motor is Null.");
+		}
+		setDamping(capsule.readFloat("damping", 0));
+		setLimitSoftness(capsule.readFloat("limitSoftness", 0));
+		setBounce(capsule.readFloat("bounce", 0));
+		setERP(capsule.readFloat("ERP", 0));
+		setHiLimit(capsule.readFloat("hiLimit", 0));
+		setTargetVelocity(capsule.readFloat("targetVelocity", 0));
+		setLoLimit(capsule.readFloat("loLimit", 0));
+		setMaxLimitForce(capsule.readFloat("maxLimitForce", 0));
+		setMaxMotorForce(capsule.readFloat("maxMotorForce", 0));
+		setEnableMotor(capsule.readBoolean("enabled", false));
+	}
+
+	@Override
+	public void write(JMEExporter e) throws IOException {
+		OutputCapsule capsule = e.getCapsule(this);
+		capsule.write(motor.damping, "damping", 0);
+		capsule.write(motor.limitSoftness, "limitSoftness", 0);
+		capsule.write(motor.bounce, "bounce", 0);
+		capsule.write(motor.ERP, "ERP", 0);
+		capsule.write(motor.hiLimit, "hiLimit", 0);
+		capsule.write(motor.targetVelocity, "targetVelocity", 0);
+		capsule.write(motor.loLimit, "loLimit", 0);
+		capsule.write(motor.maxLimitForce, "maxLimitForce", 0);
+		capsule.write(motor.maxMotorForce, "maxMotorForce", 0);
+		capsule.write(isEnableMotor(), "enabled", false);
+		
+	}
+
+	
     
 }
