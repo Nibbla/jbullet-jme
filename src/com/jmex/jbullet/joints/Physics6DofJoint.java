@@ -69,13 +69,14 @@ public class Physics6DofJoint extends PhysicsJoint{
     private LinkedList<RotationalLimitMotor> rotationalMotors=new LinkedList<RotationalLimitMotor>();
     private TranslationalLimitMotor translationalMotor;
 
+    private boolean useLinearReferenceFrameA;
     
     public Physics6DofJoint(){
     	
     }
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
         Converter.convert(rotA,transA.basis);
@@ -90,7 +91,7 @@ public class Physics6DofJoint extends PhysicsJoint{
 
     public Physics6DofJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         Transform transA=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotA,transA.origin);
 
@@ -152,7 +153,6 @@ public class Physics6DofJoint extends PhysicsJoint{
 	@Override
 	public void read(JMEImporter im) throws IOException {
 		super.read(im);
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 		InputCapsule capsule = im.getCapsule(this);
 		
 		Matrix3f rotA = (Matrix3f) capsule.readSavable("rotA", null);
@@ -170,7 +170,8 @@ public class Physics6DofJoint extends PhysicsJoint{
         if(rotB!=null){
        	 Converter.convert(rotB,transB.basis);
        }
-        constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, false);
+        useLinearReferenceFrameA= capsule.readBoolean("useLinearReferenceFrameA", false);
+        constraint=new Generic6DofConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
         
         for (int i = 0; i < 3; i++) {
         	RotationalLimitMotorModule module = new RotationalLimitMotorModule(((Generic6DofConstraint)constraint).getRotationalLimitMotor(i));
@@ -184,16 +185,14 @@ public class Physics6DofJoint extends PhysicsJoint{
         BinaryClassLoader.registerModule(module);
         translationalMotor=(TranslationalLimitMotor) capsule.readSavable("translationalMotor", null);
         BinaryClassLoader.unregisterModule(module);
-        PhysicsSpace.getPhysicsSpace().add(this);
+        
 	}
 
 	@Override
 	public void write(JMEExporter ex) throws IOException {
 		super.write(ex);
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 		OutputCapsule capsule = ex.getCapsule(this);
 		Transform trans = new Transform();
-		//TODO rotA & rotB are getCalculatedTransform?
 		((Generic6DofConstraint)constraint).getFrameOffsetA(trans);
 		capsule.write(Converter.convert(trans.basis), "rotA", null);
 		((Generic6DofConstraint)constraint).getFrameOffsetB(trans);
@@ -202,6 +201,6 @@ public class Physics6DofJoint extends PhysicsJoint{
 		capsule.write(getRotationalLimitMotor(0), "rotationalMotor0", null);
 		capsule.write(getRotationalLimitMotor(1), "rotationalMotor1", null);
 		capsule.write(getRotationalLimitMotor(2), "rotationalMotor2", null);
-		//TODO useLinearReferenceFrameA
+		capsule.write(useLinearReferenceFrameA, "useLinearReferenceFrameA", false);
 	}
 }
