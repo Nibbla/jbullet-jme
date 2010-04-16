@@ -113,8 +113,7 @@ public class PhysicsConeJoint extends PhysicsJoint{
         swingSpan1 = capsule.readFloat("swingSpan1", 0);
         twistSpan = capsule.readFloat("twistSpan", 0);
         setLimit(swingSpan1, swingSpan2, twistSpan);
-       // PhysicsSpace.getPhysicsSpace().add(this);
-		
+      
 	}
 
 	@Override

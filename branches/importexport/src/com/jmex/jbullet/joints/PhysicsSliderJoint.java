@@ -52,13 +52,15 @@ import com.jmex.jbullet.util.Converter;
  */
 public class PhysicsSliderJoint extends PhysicsJoint{
 	
+	private boolean useLinearReferenceFrameA;
+	
 	public PhysicsSliderJoint(){
 		
 	}
     
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
         Converter.convert(rotA,transA.basis);
@@ -72,7 +74,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         Transform transA=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotA,transA.origin);
 
@@ -328,9 +330,13 @@ public class PhysicsSliderJoint extends PhysicsJoint{
         Converter.convert(pivotB,transB.origin);
         Converter.convert(rotB,transB.basis);
        
-       
+        useLinearReferenceFrameA= capsule.readBoolean("useLinearReferenceFrameA", false);
         
-        constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, false);
+        constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
+        
+        //TODO setOptions
+        setLowerLinLimit(capsule.readFloat("LowerLinLimit", 0));
+        //...
 	}
 
 	@Override
@@ -367,13 +373,13 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 		capsule.write(getMaxLinMotorForce(), "MaxLinMotorForce", 0);
 		
 		Transform trans = new Transform();
-		//TODO rotA & rotB are getCalculatedTransform?
+		
 		((SliderConstraint)constraint).getFrameOffsetA(trans);
 		capsule.write(Converter.convert(trans.basis), "rotA", null);
 		((SliderConstraint)constraint).getFrameOffsetB(trans);
 		capsule.write(Converter.convert(trans.basis), "rotB", null);
 		
-		//TODO uselinarreference
+		capsule.write(useLinearReferenceFrameA, "useLinearReferenceFrameA", false);
 		
 	}
 
