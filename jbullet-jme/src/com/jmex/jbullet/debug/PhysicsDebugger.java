@@ -16,6 +16,7 @@ import com.jme.math.Quaternion;
 import com.jme.renderer.Renderer;
 import com.jme.scene.Line;
 import com.jme.scene.Spatial;
+import com.jme.scene.VBOInfo;
 import com.jme.scene.state.ZBufferState;
 import com.jme.system.DisplaySystem;
 import com.jmex.jbullet.PhysicsSpace;
@@ -122,7 +123,7 @@ public class PhysicsDebugger
                         assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
                         ConvexShape convexShape = (ConvexShape) shape;
 
-                        wireframe = createWireframe( renderer, convexShape, worldTranslation, worldRotation );
+                        wireframe = createWireframe( convexShape, worldTranslation, worldRotation );
                     }
                     else if ( shape.isConcave() )
                     {
@@ -130,7 +131,7 @@ public class PhysicsDebugger
                         assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
                         ConcaveShape concaveShape = (ConcaveShape) shape;
 
-                        wireframe = createWireframe( renderer, concaveShape, worldTranslation, worldRotation );
+                        wireframe = createWireframe( concaveShape, worldTranslation, worldRotation );
                     }
                     else if ( shape.isPolyhedral() )
                     {
@@ -140,7 +141,7 @@ public class PhysicsDebugger
                         assert shape instanceof PolyhedralConvexShape : "Expecting CollisionShape to be a PolyhedralConvexShape";
                         PolyhedralConvexShape polyhedralShape = (PolyhedralConvexShape) shape;
 
-                        wireframe = createWireframe( renderer, polyhedralShape, worldTranslation, worldRotation );
+                        wireframe = createWireframe( polyhedralShape, worldTranslation, worldRotation );
                     }
 
                     // Store the created wireframe, so we don't have to recreate it
@@ -175,7 +176,7 @@ public class PhysicsDebugger
 
     //TODO colour
     private static Line createWireframe(
-            Renderer renderer, PolyhedralConvexShape polyhedralShape, Vector3f worldTranslation, Quaternion worldRotation )
+            PolyhedralConvexShape polyhedralShape, Vector3f worldTranslation, Quaternion worldRotation )
     {
         ObjectPool<Vector3f> vectorsPool = ObjectPool.get( Vector3f.class );
         Vector3f a = vectorsPool.get(), b = vectorsPool.get();
@@ -214,7 +215,7 @@ public class PhysicsDebugger
     }
 
     private static Line createWireframe(
-            Renderer renderer, ConcaveShape concaveShape, Vector3f worldTranslation, Quaternion worldRotation )
+            ConcaveShape concaveShape, Vector3f worldTranslation, Quaternion worldRotation )
     {
         //TODO refactor?
         //TODO figure out the purpose of an extremely large bounding box, how is it used? can the values be hard coded?
@@ -236,7 +237,7 @@ public class PhysicsDebugger
     }
 
     private static Line createWireframe(
-            Renderer renderer, ConvexShape convexShape, Vector3f worldTranslation, Quaternion worldRotation )
+            ConvexShape convexShape, Vector3f worldTranslation, Quaternion worldRotation )
     {
         // Check there is a hull shape to render
         if ( convexShape.getUserPointer() == null )
@@ -326,6 +327,10 @@ public class PhysicsDebugger
 
         // The render state needs updating to pickup the change in colour
         line.updateRenderState();
+
+        // Use Vertex Buffering to achieve substainally better rendering with high poly objects
+        VBOInfo vbo = new VBOInfo( true );
+        line.setVBOInfo( vbo );
 
         return line;
     }
