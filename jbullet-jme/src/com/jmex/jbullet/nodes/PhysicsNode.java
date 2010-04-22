@@ -71,8 +71,8 @@ public class PhysicsNode extends CollisionObject{
     protected RigidBody rBody;
     private RigidBodyConstructionInfo constructionInfo;
     private MotionState motionState;//=new DefaultMotionState();
-    private CollisionShape collisionShape;
-    private float mass=1f;
+    protected CollisionShape collisionShape;
+    protected float mass=1f;
     private boolean kinematic=false;
 
     private boolean physicsEnabled=true;
