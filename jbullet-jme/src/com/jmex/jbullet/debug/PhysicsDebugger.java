@@ -151,25 +151,27 @@ public class PhysicsDebugger
                     //TODO what happens to composite shapes?
                 }
 
-                // Check if the worldTranslation of the object has changed
-                if ( isNotEqual( worldTranslation, wireframe.getWorldTranslation() ) )
+                // TODO this null check is a short term hack - compound & infinite shapes will be null
+                if ( wireframe != null )
                 {
-                    // The physics object has moved since last render - update the world translation of the Spatial
-                    wireframe.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
-                    wireframe.updateWorldVectors();
-                }
+                    // Check if the worldTranslation of the object has changed
+                    if ( isNotEqual( worldTranslation, wireframe.getWorldTranslation() ) )
+                    {
+                        // The physics object has moved since last render - update the world translation of the Spatial
+                        wireframe.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
+                        wireframe.updateWorldVectors();
+                    }
 
-                // Check if the worldRotation of the object has changed
-                if ( isNotEqual( worldRotation, wireframe.getWorldRotation() ) )
-                {
-                    // The physics object has rotated since last render - update the world rotation of the Spatial
-                    wireframe.getLocalRotation().set( worldRotation );
-                    wireframe.updateWorldVectors();
-                }
+                    // Check if the worldRotation of the object has changed
+                    if ( isNotEqual( worldRotation, wireframe.getWorldRotation() ) )
+                    {
+                        // The physics object has rotated since last render - update the world rotation of the Spatial
+                        wireframe.getLocalRotation().set( worldRotation );
+                        wireframe.updateWorldVectors();
+                    }
 
-                //TODO check whether this does frustum culling?
-                //TODO need only to create objects once
-                wireframe.draw( renderer );
+                    wireframe.draw( renderer );
+                }
             }
         }
     }
