@@ -81,7 +81,7 @@ public class PhysicsNode extends CollisionObject{
     private float mass=1f;
 
     private boolean physicsEnabled=true;
-    
+    private boolean kinematic=false;
 
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
@@ -407,6 +407,24 @@ public class PhysicsNode extends CollisionObject{
         updateWorldBound();
         collisionShape.setScale(getWorldScale());
     }
+
+     public void setKinematic(boolean kinematic){
+        this.kinematic=kinematic;
+        if(kinematic){
+            rBody.setCollisionFlags(rBody.getCollisionFlags() | CollisionFlags.KINEMATIC_OBJECT);
+            rBody.setActivationState(com.bulletphysics.collision.dispatch.CollisionObject.DISABLE_DEACTIVATION);
+        }
+        else{
+            rBody.setCollisionFlags(rBody.getCollisionFlags() & ~CollisionFlags.KINEMATIC_OBJECT);
+            rBody.setActivationState(com.bulletphysics.collision.dispatch.CollisionObject.ACTIVE_TAG);
+        }
+    }
+
+
+    public boolean isKinematic(){
+        return kinematic;
+    }
+
 
     public float getMass() {
         return mass;
@@ -830,6 +848,8 @@ public class PhysicsNode extends CollisionObject{
         rBody.destroy();
     }
 
+
+
     @Override
     public void write(JMEExporter e) throws IOException {
     	super.write(e);
@@ -844,6 +864,7 @@ public class PhysicsNode extends CollisionObject{
         capsule.write( constructionInfo.angularDamping, "angularDamping", 0);
         
         capsule.write(physicsEnabled, "enabled", false);
+         capsule.write(kinematic, "kinematic", false);
         capsule.write(continuousForce, "continuousForce", Vector3f.ZERO);
         capsule.write(continuousForceLocation, "continuousForceLocation", Vector3f.ZERO);
         capsule.write(continuousTorque, "continuousTorque", Vector3f.ZERO);
@@ -864,6 +885,12 @@ public class PhysicsNode extends CollisionObject{
         capsule.writeSavableArrayList(connectedJoints, "joints", null);
         
     }
+
+    @Override
+	public Class getClassTag() {
+
+		return PhysicsNode.class;
+	}
 
 	@Override
 	public void read(JMEImporter e) throws IOException {
@@ -887,6 +914,8 @@ public class PhysicsNode extends CollisionObject{
 		setRestitution(restitution);
 		
 		physicsEnabled = capsule.readBoolean("enabled", true);
+                kinematic = capsule.readBoolean("kinematic", false);
+                setKinematic(kinematic);
 		Vector3f continuousForce = (Vector3f) capsule.readSavable("continuousForce", Vector3f.ZERO);
 		Vector3f continuousForceLocation = (Vector3f) capsule.readSavable("continuousForceLocation", Vector3f.ZERO);
 		boolean applyForce = capsule.readBoolean("applyForce", false);
@@ -895,7 +924,8 @@ public class PhysicsNode extends CollisionObject{
 		Vector3f continuousTorque = (Vector3f) capsule.readSavable("continuousTorque", Vector3f.ZERO);
 		boolean applyTorque = capsule.readBoolean("applyTorque", false);
 		applyContinuousTorque(applyTorque, continuousTorque);
-		
+
+
 		PhysicsSpace.getPhysicsSpace().add(this);
 	
 		ArrayList<PhysicsJoint> joints =capsule.readSavableArrayList("joints", null);

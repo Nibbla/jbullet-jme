@@ -38,6 +38,10 @@ import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
@@ -47,6 +51,7 @@ import com.jmex.jbullet.collision.shapes.GImpactCollisionShape;
 import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
+import java.io.IOException;
 
 /**
  * <i>From Bullet manual:</i><br>
@@ -305,5 +310,29 @@ public class PhysicsGhostNode extends CollisionObject{
         tempRotation.fromRotationMatrix(tempMatrix);
         setWorldRotation(tempRotation);
     }
+
+      @Override
+    public void write(JMEExporter e) throws IOException {
+    	super.write(e);
+        OutputCapsule capsule = e.getCapsule( this );
+        capsule.write(cShape, "shape", null);
+
+      }
+
+      @Override
+	public void read(JMEImporter e) throws IOException {
+            super.read(e);
+            InputCapsule capsule = e.getCapsule(this);
+            cShape= (CollisionShape) capsule.readSavable("shape", null);
+            buildObject();
+            applyTranslation();
+            applyRotation();
+      }
+
+       @Override
+	public Class getClassTag() {
+
+		return PhysicsGhostNode.class;
+	}
 
 }
