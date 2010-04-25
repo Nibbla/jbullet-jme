@@ -131,6 +131,11 @@ public class PhysicsDebugGameState extends DebugGameState
         {
             super.render( tpf );
         }
+        else
+        {
+            // Render the text node anyway (it's part of: super.super.render() which is not being invoked)
+            DisplaySystem.getDisplaySystem().getRenderer().draw( textNode );
+        }
 
         // Draw the physics wireframes?
         if ( drawState.drawPhysicsScene )

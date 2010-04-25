@@ -170,7 +170,7 @@ public class PhysicsDebugger
                         wireframe.updateWorldVectors();
                     }
 
-                    wireframe.draw( renderer );
+                    renderer.draw( wireframe );
                 }
             }
         }
