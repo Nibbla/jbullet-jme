@@ -81,8 +81,8 @@ public class TestPhysicsDebugCustomKey
         Sphere highPoly = new Sphere( "SphereShape", Vector3f.ZERO, 32, 32, 4f );
         PhysicsNode highPolyNode = new PhysicsNode( highPoly, CollisionShape.ShapeTypes.MESH );
         highPolyNode.setLocalTranslation( 0, -1, 0 );
-        highPolyNode.updateRenderState();
         state.getRootNode().attachChild( highPolyNode );
+        highPolyNode.updateRenderState();
         pSpace.add( highPolyNode );
 
         // The floor, which does not move (mass=0)
