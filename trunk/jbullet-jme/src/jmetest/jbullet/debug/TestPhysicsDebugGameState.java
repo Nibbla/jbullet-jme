@@ -101,7 +101,7 @@ public class TestPhysicsDebugGameState
                 pSpace.update( tpf );
             }
         };
-        state.setText( "u,h,j,k = move character / space = jump" );
+        state.setText( "Press 'F5' to see the phyiscs bounds" );
 
         Sphere caps = new Sphere( "character", 8, 8, 2f );
         character = new PhysicsCharacterNode( caps, CollisionShape.ShapeTypes.SPHERE, .1f );

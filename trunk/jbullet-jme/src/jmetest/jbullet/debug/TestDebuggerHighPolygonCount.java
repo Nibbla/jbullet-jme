@@ -37,7 +37,6 @@ import com.jme.scene.shape.Sphere;
 import com.jme.util.GameTaskQueueManager;
 import com.jmex.editors.swing.settings.GameSettingsPanel;
 import com.jmex.game.StandardGame;
-import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
@@ -65,7 +64,7 @@ public class TestDebuggerHighPolygonCount
 
         // Create a DebugGameState
         // - override the update method to update/sync physics space
-        DebugGameState state = new PhysicsDebugGameState()
+        PhysicsDebugGameState state = new PhysicsDebugGameState()
         {
             @Override
             public void update( float tpf )
@@ -76,6 +75,9 @@ public class TestDebuggerHighPolygonCount
         };
 
         state.setText( "The UV Sphere has 128 zSamples and 128 radialSamples ~ 32K triangles" );
+
+        // Only render the physics bounds
+        state.setDrawState( PhysicsDebugGameState.DrawState.PhysicsDebugOnly );
 
         // High poly count shape
         Sphere highPoly = new Sphere( "SphereShape", Vector3f.ZERO, 128, 128, 4f );
