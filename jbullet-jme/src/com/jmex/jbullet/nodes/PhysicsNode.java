@@ -132,7 +132,7 @@ public class PhysicsNode extends CollisionObject{
     public PhysicsNode(Spatial child, int collisionShapeType, float mass){
         this.attachChild(child);
         this.mass=mass;
-        motionState=createMotionState();
+        createMotionState();
         createCollisionShape(collisionShapeType);
     }
 
@@ -156,12 +156,12 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         this.collisionShape=shape;
-        motionState=createMotionState();
+        createMotionState();
         rebuildRigidBody();
     }
 
-    protected MotionState createMotionState(){
-        return new MotionState(){
+    protected void createMotionState(){
+        motionState = new MotionState(){
 
             public Transform getWorldTransform(Transform out) {
                 if(out==null)
