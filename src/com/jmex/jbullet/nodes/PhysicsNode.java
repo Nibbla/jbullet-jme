@@ -112,7 +112,7 @@ public class PhysicsNode extends CollisionObject{
    
     
     public PhysicsNode(){
-
+        motionState=createMotionState();
     }
 
     /**
@@ -902,8 +902,6 @@ public class PhysicsNode extends CollisionObject{
 
 		CollisionShape shape = (CollisionShape) capsule.readSavable("collisionShape", new BoxCollisionShape(this));
 		collisionShape = shape;
-		motionState = createMotionState();
-		preRebuild();
 		rebuildRigidBody();
 		setGravity((Vector3f) capsule.readSavable("gravity", Vector3f.ZERO));
 		setFriction(capsule.readFloat("friction", 0));
