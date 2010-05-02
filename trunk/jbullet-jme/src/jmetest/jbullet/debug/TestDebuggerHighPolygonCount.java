@@ -74,16 +74,16 @@ public class TestDebuggerHighPolygonCount
             }
         };
 
-        state.setText( "The UV Sphere has 128 zSamples and 128 radialSamples ~ 32K triangles" );
+        state.setText( "Each UV Sphere has 256 zSamples and 256 radialSamples ~ 130K triangles (~130K in bullet)" );
 
         // Only render the physics bounds
         state.setDrawState( PhysicsDebugGameState.DrawState.PhysicsDebugOnly );
 
         // High poly count shape
-        Sphere highPoly = new Sphere( "SphereShape", Vector3f.ZERO, 128, 128, 4f );
+        Sphere highPoly = new Sphere( "SphereShape", Vector3f.ZERO, 256, 256, 8f );
         // Using a MESH creates a physics object with the same number of triangles as the shape
-        PhysicsNode highPolyNode = new PhysicsNode( highPoly, CollisionShape.ShapeTypes.MESH );
-        highPolyNode.setLocalTranslation( 0, -1, 0 );
+        PhysicsNode highPolyNode = new PhysicsNode( highPoly, CollisionShape.ShapeTypes.MESH, 0f );
+        highPolyNode.setLocalTranslation( 0, 0, 0 );
         highPolyNode.updateRenderState();
         state.getRootNode().attachChild( highPolyNode );
         pSpace.add( highPolyNode );
