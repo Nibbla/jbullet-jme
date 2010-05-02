@@ -61,6 +61,17 @@ public class CompoundCollisionShape extends CollisionShape{
     }
 
     /**
+     * adds a child shape at the given local translation
+     * @param shape the child shape to add
+     * @param location the local location of the child shape
+     */
+    public void addChildShape(CollisionShape shape, Vector3f location, Matrix3f rotation){
+        Transform transA=new Transform(Converter.convert(rotation));
+        Converter.convert(location,transA.origin);
+        ((CompoundShape)cShape).addChildShape(transA, shape.getCShape());
+    }
+
+    /**
      * removes a child shape
      * @param shape the child shape to remove
      */
