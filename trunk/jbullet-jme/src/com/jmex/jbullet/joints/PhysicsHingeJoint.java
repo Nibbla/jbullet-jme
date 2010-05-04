@@ -44,7 +44,8 @@ import com.jmex.jbullet.util.Converter;
  * The user can specify limits and motor for the hinge.
  * @author normenhansen
  */
-public class PhysicsHingeJoint extends PhysicsJoint{
+public class PhysicsHingeJoint extends PhysicsJoint {
+
     protected Vector3f axisA;
     protected Vector3f axisB;
 
@@ -55,23 +56,27 @@ public class PhysicsHingeJoint extends PhysicsJoint{
      */
     public PhysicsHingeJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Vector3f axisA, Vector3f axisB) {
         super(nodeA, nodeB, pivotA, pivotB);
-        this.axisA=axisA;
-        this.axisB=axisB;
-        constraint=new HingeConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(),
+        this.axisA = axisA;
+        this.axisB = axisB;
+        constraint = new HingeConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(),
                 Converter.convert(pivotA), Converter.convert(pivotB),
                 Converter.convert(axisA), Converter.convert(axisB));
     }
 
-    public void enableMotor(boolean enable, float targetVelocity, float maxMotorImpulse){
-        ((HingeConstraint)constraint).enableAngularMotor(enable, targetVelocity, maxMotorImpulse);
+    public void enableMotor(boolean enable, float targetVelocity, float maxMotorImpulse) {
+        ((HingeConstraint) constraint).enableAngularMotor(enable, targetVelocity, maxMotorImpulse);
     }
 
-	public void setLimit(float low, float high) {
-        ((HingeConstraint)constraint).setLimit(low,high);
+    public void setLimit(float low, float high) {
+        ((HingeConstraint) constraint).setLimit(low, high);
     }
 
-	public void setLimit(float low, float high, float _softness, float _biasFactor, float _relaxationFactor) {
-        ((HingeConstraint)constraint).setLimit(low, high, _softness, _biasFactor, _relaxationFactor);
+    public void setLimit(float low, float high, float _softness, float _biasFactor, float _relaxationFactor) {
+        ((HingeConstraint) constraint).setLimit(low, high, _softness, _biasFactor, _relaxationFactor);
+    }
+
+    public float getHingeAngle(){
+        return ((HingeConstraint) constraint).getHingeAngle();
     }
 
 }
