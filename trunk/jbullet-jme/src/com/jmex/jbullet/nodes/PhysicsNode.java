@@ -807,6 +807,10 @@ public class PhysicsNode extends CollisionObject{
         rBody.activate();
     }
 
+    public boolean isActive(){
+        return rBody.isActive();
+    }
+    
     /**
      * sets the sleeping thresholds, these define when the object gets deactivated
      * to save ressources. Low values keep the object active when it barely moves
