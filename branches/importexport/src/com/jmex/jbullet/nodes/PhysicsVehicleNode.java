@@ -92,8 +92,8 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     @Override
-    protected MotionState createMotionState(){
-        return new MotionState(){
+    protected void createMotionState(){
+        motionState = new MotionState(){
 
             public Transform getWorldTransform(Transform out) {
                 if(out==null)

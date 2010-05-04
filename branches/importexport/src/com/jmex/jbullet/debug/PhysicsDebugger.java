@@ -3,27 +3,37 @@ package com.jmex.jbullet.debug;
 import com.bulletphysics.collision.dispatch.CollisionObject;
 import com.bulletphysics.collision.dispatch.CollisionObjectType;
 import com.bulletphysics.collision.shapes.CollisionShape;
+import com.bulletphysics.collision.shapes.CompoundShape;
+import com.bulletphysics.collision.shapes.CompoundShapeChild;
 import com.bulletphysics.collision.shapes.ConcaveShape;
 import com.bulletphysics.collision.shapes.ConvexShape;
-import com.bulletphysics.collision.shapes.PolyhedralConvexShape;
 import com.bulletphysics.collision.shapes.ShapeHull;
 import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.linearmath.Transform;
 import com.bulletphysics.util.IntArrayList;
-import com.bulletphysics.util.ObjectPool;
 import com.jme.bounding.BoundingBox;
+import com.jme.light.DirectionalLight;
 import com.jme.math.Quaternion;
+import com.jme.renderer.ColorRGBA;
 import com.jme.renderer.Renderer;
-import com.jme.scene.Line;
+import com.jme.scene.Node;
 import com.jme.scene.Spatial;
+import com.jme.scene.TriMesh;
 import com.jme.scene.VBOInfo;
+import com.jme.scene.state.LightState;
+import com.jme.scene.state.MaterialState;
+import com.jme.scene.state.WireframeState;
 import com.jme.scene.state.ZBufferState;
 import com.jme.system.DisplaySystem;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.util.Converter;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.vecmath.Matrix3f;
@@ -38,6 +48,24 @@ import javax.vecmath.Vector3f;
  */
 public class PhysicsDebugger
 {
+    //TODO refactor out the wireframe stuff into a new class - extend TriMesh
+    private enum StateColour
+    {
+        A( ColorRGBA.red ), B( ColorRGBA.blue );
+
+        public final MaterialState colour;
+
+        StateColour( ColorRGBA stateColour )
+        {
+            colour = DisplaySystem.getDisplaySystem().getRenderer().createMaterialState();
+            colour.setDiffuse( stateColour );
+            colour.setAmbient( stateColour );
+            colour.setEmissive( stateColour );
+            colour.setSpecular( stateColour );
+            colour.setEnabled( true );
+            colour.setMaterialFace( MaterialState.MaterialFace.FrontAndBack );
+        }
+    }
     /** The smallest float increment to deal with, for translation && rotations.*/
     private static final float SMALLEST_FLOAT_CHANGE = 0.001f;
 
@@ -50,6 +78,12 @@ public class PhysicsDebugger
     /** The standard ordering of objects by their z order, keeps things correctly in perspective.*/
     private static final ZBufferState zOrdered;
 
+    /** The wireframe state shared that makes the renderer draw wireframes, not fill in the triangles.*/
+    private static final WireframeState wireframeState;
+
+    /** The single light state applied to all the physics bounds meshes, get the MaterialState to work (saves on geometry colours)*/
+    private static final LightState lighting;
+
     /** The collision object assigned to a physics body mapped to a JME Spatial representation.*/
     private static final Map<CollisionObject, Spatial> bulletObjects = new HashMap<CollisionObject, Spatial>();
 
@@ -60,6 +94,19 @@ public class PhysicsDebugger
         zOrdered.setWritable( true );
         zOrdered.setEnabled( true );
         zOrdered.setFunction( ZBufferState.TestFunction.LessThanOrEqualTo );
+
+        wireframeState = DisplaySystem.getDisplaySystem().getRenderer().createWireframeState();
+        wireframeState.setEnabled( true );
+        wireframeState.setLineWidth( 1f );
+        wireframeState.setAntialiased( false );
+
+        lighting = DisplaySystem.getDisplaySystem().getRenderer().createLightState();
+        lighting.setGlobalAmbient( ColorRGBA.white );
+        DirectionalLight light = new DirectionalLight();
+        light.setDirection( new com.jme.math.Vector3f( 0f, 1f, 0f ) );
+        light.setAmbient( ColorRGBA.white );
+        light.setDiffuse( ColorRGBA.white );
+        lighting.attach( light );
     }
 
     /**
@@ -74,6 +121,8 @@ public class PhysicsDebugger
     {
         return collisionObject.getInternalType() == CollisionObjectType.GHOST_OBJECT;
     }
+
+
 
     //TODO commnet
     public static void drawWireframes( Renderer renderer )
@@ -115,33 +164,80 @@ public class PhysicsDebugger
                 // If there's not a Spatial of the collision object - one needs creating!
                 if ( wireframe == null )
                 {
-                    //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
-                    // indicies and vertices
-                    if ( shape.isConvex() )
-                    {
-                        // Assert the CollisionShape is of the appropiate type
-                        assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
-                        ConvexShape convexShape = (ConvexShape) shape;
+                    if(shape instanceof CompoundShape){
+                        CompoundShape cShape = (CompoundShape) shape;
+                        List<CompoundShapeChild> childs = cShape.getChildList();
+                        wireframe = new Node();
+                        for (Iterator it = childs.iterator(); it.hasNext();) {
+                            CompoundShapeChild object = (CompoundShapeChild) it.next();
+                            //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
+                        // indicies and vertices
+                        if ( object.childShape.isConvex() )
+                        {
+                            // Assert the CollisionShape is of the appropiate type
+                            assert object.childShape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
+                            ConvexShape convexShape = (ConvexShape) object.childShape;
 
-                        wireframe = createWireframe( convexShape, worldTranslation, worldRotation );
+                            // Create a wireframe for the Convex Shape
+                            Spatial wireChild = createWireframe( convexShape );
+                            com.jme.math.Vector3f v = Converter.convert(object.transform.origin);
+                            Quaternion rot = new Quaternion();
+                            rot.fromRotationMatrix(Converter.convert(object.transform.basis));
+                            wireChild.setLocalTranslation(v);
+                            wireChild.setLocalRotation(rot);
+                            ((Node)wireframe).attachChild(wireChild);
+
+                        }
+                        else if ( object.childShape.isConcave() )
+                        {
+                            // Assert the CollisionShape is of the appropiate type
+                            assert object.childShape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
+                            ConcaveShape concaveShape = (ConcaveShape) object.childShape;
+
+                            // Create a wireframe for the Concave Shape
+                            Spatial wireChild = createWireframe( concaveShape );
+                            com.jme.math.Vector3f v = Converter.convert(object.transform.origin);
+                            Quaternion rot = new Quaternion();
+                            rot.fromRotationMatrix(Converter.convert(object.transform.basis));
+                            wireChild.setLocalTranslation(v);
+                            wireChild.setLocalRotation(rot);
+                            ((Node)wireframe).attachChild(wireChild);
+                        }
+                        }
+                    }else{
+
+                        //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
+                        // indicies and vertices
+                        if ( shape.isConvex() )
+                        {
+                            // Assert the CollisionShape is of the appropiate type
+                            assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
+                            ConvexShape convexShape = (ConvexShape) shape;
+
+                            // Create a wireframe for the Convex Shape
+                            wireframe = createWireframe( convexShape );
+                        }
+                        else if ( shape.isConcave() )
+                        {
+                            // Assert the CollisionShape is of the appropiate type
+                            assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
+                            ConcaveShape concaveShape = (ConcaveShape) shape;
+
+                            // Create a wireframe for the Concave Shape
+                            wireframe = createWireframe( concaveShape );
+                        }
                     }
-                    else if ( shape.isConcave() )
+                    //TODO null check is a hack
+                    if ( wireframe != null )
                     {
-                        // Assert the CollisionShape is of the appropiate type
-                        assert shape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
-                        ConcaveShape concaveShape = (ConcaveShape) shape;
+                        // Translate the Spatial to the correct location in the world
+                        wireframe.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
 
-                        wireframe = createWireframe( concaveShape, worldTranslation, worldRotation );
-                    }
-                    else if ( shape.isPolyhedral() )
-                    {
-                        //TODO why bother with polyhedral,  as it's a child of ConvexShape
+                        // Set the local rotation, without the Spatial keeping a reference to my worldRotation
+                        wireframe.getLocalRotation().set( worldRotation );
 
-                        // Assert the CollisionShape is of the appropiate type
-                        assert shape instanceof PolyhedralConvexShape : "Expecting CollisionShape to be a PolyhedralConvexShape";
-                        PolyhedralConvexShape polyhedralShape = (PolyhedralConvexShape) shape;
-
-                        wireframe = createWireframe( polyhedralShape, worldTranslation, worldRotation );
+                        // The rotation change needs picking up (as the rotation was set directly)
+                        wireframe.updateWorldVectors(true);
                     }
 
                     // Store the created wireframe, so we don't have to recreate it
@@ -159,7 +255,7 @@ public class PhysicsDebugger
                     {
                         // The physics object has moved since last render - update the world translation of the Spatial
                         wireframe.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
-                        wireframe.updateWorldVectors();
+                        wireframe.updateWorldVectors(true);
                     }
 
                     // Check if the worldRotation of the object has changed
@@ -167,79 +263,47 @@ public class PhysicsDebugger
                     {
                         // The physics object has rotated since last render - update the world rotation of the Spatial
                         wireframe.getLocalRotation().set( worldRotation );
-                        wireframe.updateWorldVectors();
+                        wireframe.updateWorldVectors(true);
                     }
+
+                    //TODO If CompoundShape Check if childs have moved
 
                     renderer.draw( wireframe );
                 }
             }
         }
     }
+    /** The maximum corner for the aabb used for triangles to include in ConcaveShape processing.*/
+    private static final Vector3f aabbMax = new Vector3f( 1e30f, 1e30f, 1e30f );
 
-    //TODO colour
-    private static Line createWireframe(
-            PolyhedralConvexShape polyhedralShape, Vector3f worldTranslation, Quaternion worldRotation )
+    /** The minimum corner for the aabb used for triangles to include in ConcaveShape processing.*/
+    private static final Vector3f aabbMin = new Vector3f( -1e30f, -1e30f, -1e30f );
+
+    /**
+     *  Creates a wireframe object based on the given Concave Shape.
+     *
+     * @param concaveShape the shape that'll determine what the wireframe object will look like.
+     * @return the wireframe Spatial that can be manipulated just like any other!
+     */
+    private static Spatial createWireframe( ConcaveShape concaveShape )
     {
-        ObjectPool<Vector3f> vectorsPool = ObjectPool.get( Vector3f.class );
-        Vector3f a = vectorsPool.get(), b = vectorsPool.get();
-
-        int numberOfEdges = polyhedralShape.getNumEdges();
-
-        int size = 3 * numberOfEdges * Float.SIZE;
-
-        FloatBuffer vertices = ByteBuffer.allocateDirect( size ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
-
-        int colourSize = 4 * numberOfEdges * Float.SIZE;
-
-        FloatBuffer colour = ByteBuffer.allocateDirect( colourSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
-
-        for ( int i = 0; i < numberOfEdges; i++ )
-        {
-            polyhedralShape.getEdge( i, a, b );
-
-            vertices.put( a.x );
-            vertices.put( a.y );
-            vertices.put( a.z );
-
-            vertices.put( b.x );
-            vertices.put( b.y );
-            vertices.put( b.z );
-
-            colour.put( 1f ).put( 0f ).put( 1f ).put( 1 );
-            colour.put( 0f ).put( 1f ).put( 0f ).put( 1 );
-        }
-        Line line = createLine( vertices, colour, worldTranslation, worldRotation );
-
-        vectorsPool.release( a );
-        vectorsPool.release( b );
-
-        return line;
-    }
-
-    private static Line createWireframe(
-            ConcaveShape concaveShape, Vector3f worldTranslation, Quaternion worldRotation )
-    {
-        //TODO refactor?
-        //TODO figure out the purpose of an extremely large bounding box, how is it used? can the values be hard coded?
-        ObjectPool<Vector3f> vectorsPool = ObjectPool.get( Vector3f.class );
-        Vector3f aabbMax = vectorsPool.get();
-        aabbMax.set(
-                1e30f, 1e30f, 1e30f );
-        Vector3f aabbMin = vectorsPool.get();
-        aabbMin.set(
-                -1e30f, -1e30f, -1e30f );
-
+        // Create the call back that'll create the vertex buffer
         BufferedTriangleCallback triangleProcessor = new BufferedTriangleCallback();
-
         concaveShape.processAllTriangles( triangleProcessor, aabbMin, aabbMax );
 
+        // Retrieve the vextex and index buffers
         FloatBuffer vertices = triangleProcessor.getVertices();
-        FloatBuffer colour = triangleProcessor.getColour();
-        return createLine( vertices, colour, worldTranslation, worldRotation );
+
+        return createTriMeshWireframe( vertices );
     }
 
-    private static Line createWireframe(
-            ConvexShape convexShape, Vector3f worldTranslation, Quaternion worldRotation )
+    /**
+     *  Creates a wireframe from a Convex shape.
+     *
+     * @param convexShape the shape that the wireframe will be created from, define what shape the wireframe will take.
+     * @return the wireframe Spatial that can be manipulated just like any other!
+     */
+    private static Spatial createWireframe( ConvexShape convexShape )
     {
         // Check there is a hull shape to render
         if ( convexShape.getUserPointer() == null )
@@ -259,82 +323,90 @@ public class PhysicsDebugger
         assert hull.numTriangles() > 0 : "Expecting the Hull shape to have triangles";
         int numberOfTriangles = hull.numTriangles();
 
-        int size = 3 * 3 * numberOfTriangles * Float.SIZE;
-        FloatBuffer vertices = ByteBuffer.allocateDirect( size ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
+        // The number of bytes needed is: (floats in a vertex) * (vertices in a triangle) * (# of triangles) * (size of float in bytes)
+        final int numberOfFloats = 3 * 3 * numberOfTriangles;
+        final int byteBufferSize = numberOfFloats * Float.SIZE;
+        FloatBuffer vertices = ByteBuffer.allocateDirect( byteBufferSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
 
-        int colourSize = 4 * 3 * numberOfTriangles * Float.SIZE;
-        FloatBuffer colour = ByteBuffer.allocateDirect( colourSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
+        // Force the limit, set the cap - most number of floats we will use the buffer for
+        vertices.limit( numberOfFloats );
 
         // Loop variables
         final IntArrayList hullIndicies = hull.getIndexPointer();
         final List<Vector3f> hullVertices = hull.getVertexPointer();
         Vector3f vertexA, vertexB, vertexC;
-        int indexA, indexB, indexC;
         int index = 0;
 
-        for ( int i = 0; i
-                < numberOfTriangles; i++ )
+        for ( int i = 0; i < numberOfTriangles; i++ )
         {
-            indexA = index++;
-            indexB = index++;
-            indexC = index++;
-
             // Grab the data for this triangle from the hull
-            vertexA = hullVertices.get( hullIndicies.get( indexA ) );
-            vertexB = hullVertices.get( hullIndicies.get( indexB ) );
-            vertexC = hullVertices.get( hullIndicies.get( indexC ) );
+            vertexA = hullVertices.get( hullIndicies.get( index++ ) );
+            vertexB = hullVertices.get( hullIndicies.get( index++ ) );
+            vertexC = hullVertices.get( hullIndicies.get( index++ ) );
 
+            // Put the verticies into the vertex buffer
             vertices.put( vertexA.x ).put( vertexA.y ).put( vertexA.z );
             vertices.put( vertexB.x ).put( vertexB.y ).put( vertexB.z );
-
-            vertices.put( vertexB.x ).put( vertexB.y ).put( vertexB.z );
             vertices.put( vertexC.x ).put( vertexC.y ).put( vertexC.z );
-
-            vertices.put( vertexC.x ).put( vertexC.y ).put( vertexC.z );
-            vertices.put( vertexA.x ).put( vertexA.y ).put( vertexA.z );
-
-            for ( int six = 0; six
-                    < 6; six++ )
-            {
-                colour.put( 1f ).put( 0f ).put( 1f ).put( 1f );
-            }
         }
 
-        return createLine( vertices, colour, worldTranslation, worldRotation );
+        return createTriMeshWireframe( vertices );
     }
 
-    private static Line createLine( FloatBuffer vertices, FloatBuffer colour, Vector3f worldTranslation, Quaternion worldRotation )
+    /**
+     *  Creates a TriMesh setting it up so that it is rendered as a wireframe.
+     *
+     * @param vertices the vextex buffer that the index buffer refers to.
+     * @return The create Spatial that is a wireframe with the shared states of all PhysicsDebugger wireframe objects.
+     */
+    private static Spatial createTriMeshWireframe( FloatBuffer vertices )
     {
-        Line line = new Line();
-        line.setVertexBuffer( vertices );
-        line.setColorBuffer( colour );
-        line.setLineWidth( 2f );
-        line.generateIndices();
+        TriMesh mesh = new TriMesh();
+        mesh.setVertexBuffer( vertices );
+        mesh.setIndexBuffer( generateIndicies( vertices ) );
 
-        line.setModelBound( new BoundingBox() );
-        line.updateModelBound();
+        // Create the model bounds for frustum culling
+        mesh.setModelBound( new BoundingBox() );
+        mesh.updateModelBound();
 
-        line.updateRenderState();
-
-        // Translate the Spatial to the correct location in the world
-        line.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
-
-        // Set the local rotation, without the Spatial keeping a reference to my worldRotation
-        line.getLocalRotation().set( worldRotation );
-
-        line.setRenderState( zOrdered );
-
-        // The rotation change needs picking up (as the rotation was set directly)
-        line.updateWorldVectors();
+        // Apply the shared state for wireframe, drawing order and starting colour
+        mesh.setRenderState( StateColour.A.colour );
+        mesh.setRenderState( wireframeState );
+        mesh.setRenderState( zOrdered );
+        mesh.setRenderState( lighting );
 
         // The render state needs updating to pickup the change in colour
-        line.updateRenderState();
+        mesh.updateRenderState();
 
         // Use Vertex Buffering to achieve substainally better rendering with high poly objects
-        VBOInfo vbo = new VBOInfo( true );
-        line.setVBOInfo( vbo );
+        mesh.setVBOInfo( new VBOInfo( true ) );
 
-        return line;
+        return mesh;
+    }
+
+    /**
+     *  Generates a normally ordered index buffer for the given number of triangles.<br/>
+     *  Basically when a array of vertex are ordered where each three vertex make a triangle generateIndicies()
+     *  will generate the correct index to match (needed for TriMesh).
+     *
+     * @param vertices the vertex buffer, for which the index buffer is being created.
+     * @return the normally ordered index buffer (0,1,2,3,4....etc)
+     */
+    private static IntBuffer generateIndicies( FloatBuffer vertices )
+    {
+        // Number of indices needed: (3 vertex in triangle) * (# of triangles)
+        final int numberOfIndicies = vertices.limit() / 3;
+        IntBuffer indicies = ByteBuffer.allocateDirect( numberOfIndicies * Integer.SIZE ).order( ByteOrder.nativeOrder() ).asIntBuffer();
+
+        // Restrict the potential size of the buffer
+        indicies.limit( numberOfIndicies );
+
+        for ( int i = 0; i < numberOfIndicies; i++ )
+        {
+            indicies.put( i );
+        }
+
+        return indicies;
     }
 
     /**
