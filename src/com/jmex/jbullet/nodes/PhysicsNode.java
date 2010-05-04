@@ -76,12 +76,12 @@ import java.util.concurrent.Callable;
 public class PhysicsNode extends CollisionObject{
     protected RigidBody rBody;
     private RigidBodyConstructionInfo constructionInfo;
-    private MotionState motionState;//=new DefaultMotionState();
-    private CollisionShape collisionShape;
-    private float mass=1f;
+    protected MotionState motionState;//=new DefaultMotionState();
+    protected CollisionShape collisionShape;
+    protected float mass=1f;
+    private boolean kinematic=false;
 
     private boolean physicsEnabled=true;
-    private boolean kinematic=false;
 
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
@@ -112,7 +112,7 @@ public class PhysicsNode extends CollisionObject{
    
     
     public PhysicsNode(){
-        motionState=createMotionState();
+       createMotionState();
     }
 
     /**
@@ -145,7 +145,7 @@ public class PhysicsNode extends CollisionObject{
     public PhysicsNode(Spatial child, int collisionShapeType, float mass){
         this.attachChild(child);
         this.mass=mass;
-        motionState=createMotionState();
+        createMotionState();
         createCollisionShape(collisionShapeType);
     }
 
@@ -169,12 +169,12 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         this.collisionShape=shape;
-        motionState=createMotionState();
+        createMotionState();
         rebuildRigidBody();
     }
 
-    protected MotionState createMotionState(){
-        return new MotionState(){
+    protected void createMotionState(){
+        motionState= new MotionState(){
 
             public Transform getWorldTransform(Transform out) {
                 if(out==null)
@@ -813,7 +813,9 @@ public class PhysicsNode extends CollisionObject{
      */
     public void setCollisionShape(CollisionShape collisionShape) {
         this.collisionShape = collisionShape;
-        constructionInfo.collisionShape=collisionShape.getCShape();
+        if(constructionInfo!=null){
+             constructionInfo.collisionShape=collisionShape.getCShape();
+        }
         rebuildRigidBody();
     }
 
@@ -822,6 +824,10 @@ public class PhysicsNode extends CollisionObject{
      */
     public void activate(){
         rBody.activate();
+    }
+
+    public boolean isActive(){
+        return rBody.isActive();
     }
 
     /**
@@ -899,7 +905,6 @@ public class PhysicsNode extends CollisionObject{
 		InputCapsule capsule = e.getCapsule(this);
 		float mass = capsule.readFloat("mass", 1.0f);
 		this.mass=mass;
-
 		CollisionShape shape = (CollisionShape) capsule.readSavable("collisionShape", new BoxCollisionShape(this));
 		collisionShape = shape;
 		rebuildRigidBody();

@@ -26,7 +26,7 @@ public class PhysicsDebugGameState extends DebugGameState
      *  Provides the various draw states avaiiable to the PhysicsDebugGameState, as the option
      *  to not render the JME scene is available.
      */
-    private enum DrawState
+    public enum DrawState
     {
         Both( true, true ),
         PhysicsDebugOnly( true, false ),
@@ -53,7 +53,7 @@ public class PhysicsDebugGameState extends DebugGameState
          *  @param current the current draw state.
          *  @return the next draw state combination.
          */
-        public static DrawState nextDrawState( DrawState current )
+        private static DrawState nextDrawState( DrawState current )
         {
             DrawState nextState = null;
 
@@ -88,9 +88,8 @@ public class PhysicsDebugGameState extends DebugGameState
         // Create the keybinds to switch between the render states for phyiscs rendering
         setupPhysicsKeyBindings();
 
-        // Force the wireframe drawing of the DebugGameState - DrawState.JmeScene
-        drawState = DrawState.Both;
-        wireState.setEnabled( true );
+        // Start off without the physics being drawn
+        drawState = DrawState.NoPhysicsDebug;
     }
 
     /**
@@ -157,6 +156,19 @@ public class PhysicsDebugGameState extends DebugGameState
         // Remove the existing binding, then Set the new one
         KeyBindingManager.getKeyBindingManager().remove( DRAW_STATE_SWITCH_COMMAND );
         KeyBindingManager.getKeyBindingManager().set( DRAW_STATE_SWITCH_COMMAND, switchKey );
+    }
 
+    /**
+     *  Sets the current draw state to that given.
+     *  <p/>
+     *  The draw state determines whether the the JME scene is rendered and
+     *  whether the PhysicsBounds scene is rendered.
+     *
+     * @param desired the desired state, should not be <code>null</code>.
+     */
+    public void setDrawState( DrawState desired )
+    {
+        assert desired != null : "You are not allowed to set null as the DrawState";
+        drawState = desired;
     }
 }

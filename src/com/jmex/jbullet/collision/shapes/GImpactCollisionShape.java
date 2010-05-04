@@ -103,6 +103,7 @@ public class GImpactCollisionShape extends CollisionShape{
         ((GImpactMeshShape)cShape).updateBound();
         ((GImpactMeshShape)cShape).lockChildShapes();
         type=ShapeTypes.GIMPACT;
+        this.mesh=mesh;
     }
 
 	@Override

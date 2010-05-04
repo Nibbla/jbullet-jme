@@ -13,6 +13,7 @@ import javax.vecmath.Vector3f;
  */
 public class BufferedTriangleCallback implements TriangleCallback
 {
+    //TODO comment
     private ArrayList<Vector3f> vertices;
 
     public BufferedTriangleCallback()
@@ -20,17 +21,14 @@ public class BufferedTriangleCallback implements TriangleCallback
         vertices = new ArrayList<Vector3f>();
     }
 
-//    @Override
+    @Override
     public void processTriangle( Vector3f[] triangle, int partId, int triangleIndex )
     {
         // Three sets of individual lines
         // The new Vector is needed as the given triangle reference is from a pool
         vertices.add( new Vector3f( triangle[0] ) );
         vertices.add( new Vector3f( triangle[1] ) );
-        vertices.add( new Vector3f( triangle[1] ) );
         vertices.add( new Vector3f( triangle[2] ) );
-        vertices.add( new Vector3f( triangle[2] ) );
-        vertices.add( new Vector3f( triangle[0] ) );
     }
 
     public void reset()
@@ -41,8 +39,12 @@ public class BufferedTriangleCallback implements TriangleCallback
     public FloatBuffer getVertices()
     {
         // There are 3 floats needed for each vertex (x,y,z)
-        int bufferSize = vertices.size() * 3 * Float.SIZE;
-        FloatBuffer verticesBuffer = ByteBuffer.allocateDirect( bufferSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
+        final int numberOfFloats = vertices.size() * 3;
+        final int byteBufferSize = numberOfFloats * Float.SIZE;
+        FloatBuffer verticesBuffer = ByteBuffer.allocateDirect( byteBufferSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
+
+        // Force the limit, set the cap - most number of floats we will use the buffer for
+        verticesBuffer.limit( numberOfFloats );
 
         // Copy the values from the list to the direct float buffer
         for ( Vector3f v : vertices )
@@ -51,21 +53,5 @@ public class BufferedTriangleCallback implements TriangleCallback
         }
 
         return verticesBuffer;
-    }
-
-    public FloatBuffer getColour()
-    {
-        // There are four floats needed for each vertex (r.g.b.a)
-        int bufferSize = vertices.size() * 4 * Float.SIZE;
-        FloatBuffer colour = ByteBuffer.allocateDirect( bufferSize ).order( ByteOrder.nativeOrder() ).asFloatBuffer();
-
-        // Create a buffer full of the colour blue
-        for ( int i = 0; i < vertices.size(); i++ )
-        {
-            colour.put( 0f ).put( 0f ).put( 1f ).put( 1f );
-        }
-
-        return colour;
-
     }
 }

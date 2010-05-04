@@ -76,6 +76,17 @@ public class CompoundCollisionShape extends CollisionShape{
     }
 
     /**
+     * adds a child shape at the given local translation
+     * @param shape the child shape to add
+     * @param location the local location of the child shape
+     */
+    public void addChildShape(CollisionShape shape, Vector3f location, Matrix3f rotation){
+        Transform transA=new Transform(Converter.convert(rotation));
+        Converter.convert(location,transA.origin);
+        ((CompoundShape)cShape).addChildShape(transA, shape.getCShape());
+    }
+
+    /**
      * removes a child shape
      * @param shape the child shape to remove
      */
@@ -99,7 +110,6 @@ public class CompoundCollisionShape extends CollisionShape{
 			 ((CompoundShape)cShape).addChildShape(childs.get(0).getTransform().convert(), childs.get(i).getShape().getCShape());
 		}
 		
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 	}
 	
 	private CollisionShape transform(com.bulletphysics.collision.shapes.CollisionShape shape){
@@ -137,7 +147,6 @@ public class CompoundCollisionShape extends CollisionShape{
 		
 		capsule.writeSavableArrayList(childs, "childs", null);
 		
-		//throw (new UnsupportedOperationException("Not implemented yet."));
 	}
 
 }
