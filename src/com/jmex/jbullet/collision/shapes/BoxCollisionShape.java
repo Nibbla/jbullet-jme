@@ -53,11 +53,7 @@ public class BoxCollisionShape extends CollisionShape{
 	public BoxCollisionShape() {
         
     }
-	
-	public BoxCollisionShape(BoxShape shape) {
-       cShape=shape;
-       type=ShapeTypes.BOX;
-    }
+
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from

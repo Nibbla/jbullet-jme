@@ -61,12 +61,7 @@ public class CylinderCollisionShape extends CollisionShape{
 	public CylinderCollisionShape() {
        
     }
-	
-	public CylinderCollisionShape(CylinderShape shape) {
-	       cShape=shape;
-	       type = ShapeTypes.CYLINDER;
-    }
-	
+
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
@@ -137,7 +132,6 @@ public class CylinderCollisionShape extends CollisionShape{
 
 	@Override
 	public Class getClassTag() {
-		// TODO Auto-generated method stub
 		return CylinderCollisionShape.class;
 	}
 
