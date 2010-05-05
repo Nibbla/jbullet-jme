@@ -31,6 +31,7 @@
  */
 package com.jmex.jbullet.nodes;
 
+import com.bulletphysics.collision.dispatch.CollisionFlags;
 import com.bulletphysics.collision.dispatch.GhostObject;
 import com.bulletphysics.collision.dispatch.PairCachingGhostObject;
 import com.bulletphysics.linearmath.Transform;
@@ -56,23 +57,22 @@ import com.jmex.jbullet.util.Converter;
  * collision sensors/triggers, explosions etc.<br>
  * @author normenhansen
  */
-public class PhysicsGhostNode extends CollisionObject{
-	protected PairCachingGhostObject gObject;
+public class PhysicsGhostNode extends CollisionObject {
+
+    protected PairCachingGhostObject gObject;
     protected CollisionShape cShape;
-
-    private boolean physicsEnabled=true;
-
+    private boolean physicsEnabled = true;
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
-    private Transform tempTrans=new Transform();
-    private javax.vecmath.Quat4f tempRot=new javax.vecmath.Quat4f();
-    protected com.jme.math.Vector3f tempLocation=new com.jme.math.Vector3f();
-    protected com.jme.math.Quaternion tempRotation=new com.jme.math.Quaternion();
-    protected com.jme.math.Quaternion tempRotation2=new com.jme.math.Quaternion();
-    protected com.jme.math.Matrix3f tempMatrix=new com.jme.math.Matrix3f();
+    private Transform tempTrans = new Transform();
+    private javax.vecmath.Quat4f tempRot = new javax.vecmath.Quat4f();
+    protected com.jme.math.Vector3f tempLocation = new com.jme.math.Vector3f();
+    protected com.jme.math.Quaternion tempRotation = new com.jme.math.Quaternion();
+    protected com.jme.math.Quaternion tempRotation2 = new com.jme.math.Quaternion();
+    protected com.jme.math.Matrix3f tempMatrix = new com.jme.math.Matrix3f();
 
     public PhysicsGhostNode() {
-        cShape=new SphereCollisionShape(0.5f);
+        cShape = new SphereCollisionShape(0.5f);
         buildObject();
     }
 
@@ -82,15 +82,17 @@ public class PhysicsGhostNode extends CollisionObject{
         buildObject();
     }
 
-    public PhysicsGhostNode(Spatial child, CollisionShape shape){
+    public PhysicsGhostNode(Spatial child, CollisionShape shape) {
         this.attachChild(child);
-        cShape=shape;
+        cShape = shape;
         buildObject();
     }
 
     protected void buildObject() {
-        if(gObject==null)
-            gObject=new PairCachingGhostObject();
+        if (gObject == null) {
+            gObject = new PairCachingGhostObject();
+            gObject.setCollisionFlags(gObject.getCollisionFlags() | CollisionFlags.NO_CONTACT_RESPONSE);
+        }
         gObject.setCollisionShape(cShape.getCShape());
     }
 
@@ -100,26 +102,26 @@ public class PhysicsGhostNode extends CollisionObject{
      * Otherwise a new BoundingVolume will be created.
      * @param type
      */
-    private void buildCollisionShape(int type){
-        switch(type){
+    private void buildCollisionShape(int type) {
+        switch (type) {
             case CollisionShape.ShapeTypes.BOX:
-                cShape=new BoxCollisionShape(this);
-            break;
+                cShape = new BoxCollisionShape(this);
+                break;
             case CollisionShape.ShapeTypes.SPHERE:
-                cShape=new SphereCollisionShape(this);
-            break;
+                cShape = new SphereCollisionShape(this);
+                break;
             case CollisionShape.ShapeTypes.CAPSULE:
-                cShape=new CapsuleCollisionShape(this);
-            break;
+                cShape = new CapsuleCollisionShape(this);
+                break;
             case CollisionShape.ShapeTypes.CYLINDER:
-                cShape=new CylinderCollisionShape(this);
-            break;
+                cShape = new CylinderCollisionShape(this);
+                break;
             case CollisionShape.ShapeTypes.MESH:
-                cShape=new MeshCollisionShape(this);
-            break;
+                cShape = new MeshCollisionShape(this);
+                break;
             case CollisionShape.ShapeTypes.GIMPACT:
-                cShape=new GImpactCollisionShape(this);
-            break;
+                cShape = new GImpactCollisionShape(this);
+                break;
         }
     }
 
@@ -156,7 +158,7 @@ public class PhysicsGhostNode extends CollisionObject{
         super.updateGeometricState(0, true);
         tempLocation.set(getWorldTranslation());
         gObject.getWorldTransform(tempTrans);
-        Converter.convert(tempLocation,tempTrans.origin);
+        Converter.convert(tempLocation, tempTrans.origin);
         gObject.setWorldTransform(tempTrans);
     }
 
@@ -211,7 +213,7 @@ public class PhysicsGhostNode extends CollisionObject{
 
     private void applyRotation() {
         super.updateGeometricState(0, true);
-        tempRotation=getWorldRotation();
+        tempRotation = getWorldRotation();
         Converter.convert(tempRotation, tempRot);
         gObject.getWorldTransform(tempTrans);
         tempTrans.setRotation(tempRot);
@@ -225,15 +227,14 @@ public class PhysicsGhostNode extends CollisionObject{
      * @param translation new world translation of this spatial.
      * @return the computed local translation
      */
-    protected Vector3f setWorldTranslation( Vector3f translation ) {
+    protected Vector3f setWorldTranslation(Vector3f translation) {
         Vector3f localTranslation = this.getLocalTranslation();
-        if ( parent != null ) {
-            localTranslation.set( translation ).subtractLocal(parent.getWorldTranslation() );
-            localTranslation.divideLocal( parent.getWorldScale() );
-            tmp_inverseWorldRotation.set( parent.getWorldRotation()).inverseLocal().multLocal( localTranslation );
-        }
-        else {
-            localTranslation.set( translation );
+        if (parent != null) {
+            localTranslation.set(translation).subtractLocal(parent.getWorldTranslation());
+            localTranslation.divideLocal(parent.getWorldScale());
+            tmp_inverseWorldRotation.set(parent.getWorldRotation()).inverseLocal().multLocal(localTranslation);
+        } else {
+            localTranslation.set(translation);
         }
         return localTranslation;
     }
@@ -245,13 +246,12 @@ public class PhysicsGhostNode extends CollisionObject{
      * @param rot new world rotation of this spatial.
      * @return the computed local rotation
      */
-    protected Quaternion setWorldRotation( Quaternion rot ) {
+    protected Quaternion setWorldRotation(Quaternion rot) {
         Quaternion localRotation = getLocalRotation();
-        if ( parent != null ) {
-            tmp_inverseWorldRotation.set( parent.getWorldRotation()).inverseLocal().mult( rot, localRotation );
-        }
-        else {
-            localRotation.set( rot );
+        if (parent != null) {
+            tmp_inverseWorldRotation.set(parent.getWorldRotation()).inverseLocal().mult(rot, localRotation);
+        } else {
+            localRotation.set(rot);
         }
         return localRotation;
     }
@@ -279,31 +279,32 @@ public class PhysicsGhostNode extends CollisionObject{
         updateWorldBound();
         cShape.setScale(getWorldScale());
     }
-    
+
     /**
      * used internally
      */
-    public GhostObject getGhostObject(){
+    public GhostObject getGhostObject() {
         return gObject;
     }
 
     /**
      * destroys this PhysicsGhostNode and removes it from memory
      */
-    public void destroy(){
+    public void destroy() {
     }
 
-    public void syncPhysics(){
-        if(gObject==null) return;
+    public void syncPhysics() {
+        if (gObject == null) {
+            return;
+        }
 
         gObject.getWorldTransform(tempTrans);
 
-        Converter.convert(tempTrans.origin,tempLocation);
+        Converter.convert(tempTrans.origin, tempLocation);
         setWorldTranslation(tempLocation);
 
-        Converter.convert(tempTrans.basis,tempMatrix);
+        Converter.convert(tempTrans.basis, tempMatrix);
         tempRotation.fromRotationMatrix(tempMatrix);
         setWorldRotation(tempRotation);
     }
-
 }
