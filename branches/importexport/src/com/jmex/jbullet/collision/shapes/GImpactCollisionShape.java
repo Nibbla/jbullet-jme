@@ -108,7 +108,6 @@ public class GImpactCollisionShape extends CollisionShape{
 
 	@Override
 	public Class getClassTag() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -56,10 +56,6 @@ public class CapsuleCollisionShape extends CollisionShape{
 		
     }
 	
-	public CapsuleCollisionShape(CapsuleShape shape) {
-		cShape=shape;
-	       type = ShapeTypes.CAPSULE;
-    }
     /**
      * creates a collision shape from the bounding volume of the given node
      * @param node the node to get the BoundingVolume from
@@ -137,7 +133,6 @@ public class CapsuleCollisionShape extends CollisionShape{
 
 	@Override
 	public Class getClassTag() {
-		// TODO Auto-generated method stub
 		return CapsuleCollisionShape.class;
 	}
 

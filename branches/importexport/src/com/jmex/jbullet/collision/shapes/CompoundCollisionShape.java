@@ -37,10 +37,12 @@ import java.util.List;
 
 import com.bulletphysics.collision.shapes.BoxShape;
 import com.bulletphysics.collision.shapes.CapsuleShape;
+import com.bulletphysics.collision.shapes.CapsuleShapeX;
 import com.bulletphysics.collision.shapes.CompoundShape;
 import com.bulletphysics.collision.shapes.CompoundShapeChild;
 import com.bulletphysics.collision.shapes.CylinderShape;
 import com.bulletphysics.collision.shapes.CylinderShapeX;
+import com.bulletphysics.collision.shapes.CylinderShapeZ;
 import com.bulletphysics.collision.shapes.SphereShape;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
@@ -96,7 +98,6 @@ public class CompoundCollisionShape extends CollisionShape{
 
 	@Override
 	public Class getClassTag() {
-		// TODO Auto-generated method stub
 		return this.getClass();
 	}
 
@@ -114,17 +115,43 @@ public class CompoundCollisionShape extends CollisionShape{
 	
 	private CollisionShape transform(com.bulletphysics.collision.shapes.CollisionShape shape){
 		if(shape instanceof BoxShape){
-			return new BoxCollisionShape((BoxShape) shape);
+                    BoxShape originalBox = (BoxShape)shape;
+                    javax.vecmath.Vector3f vec = new javax.vecmath.Vector3f();
+                    originalBox.getHalfExtentsWithMargin(vec);
+                    Vector3f vec2 = Converter.convert(vec);
+                    BoxCollisionShape box = new BoxCollisionShape(vec2);
+			return box;
 		}
 		if(shape instanceof SphereShape){
-			return new SphereCollisionShape((SphereShape) shape);
+                    SphereShape originalSphere = (SphereShape)shape;
+                    SphereCollisionShape sphere = new SphereCollisionShape(originalSphere.getRadius());
+			return sphere;
 		}
 		if(shape instanceof CylinderShape){
-			return new CylinderCollisionShape((CylinderShape) shape);
+                     CylinderShape originalCyl = (CylinderShape)shape;
+                    if(shape instanceof CylinderShapeX){
+                        CylinderCollisionShape cyl = new CylinderCollisionShape(Converter.convert(originalCyl.getHalfExtentsWithMargin(null)),0);
+                    return cyl;
+                    }else if( shape instanceof CylinderShapeZ){
+                        CylinderCollisionShape cyl = new CylinderCollisionShape(Converter.convert(originalCyl.getHalfExtentsWithMargin(null)),2);
+                    return cyl;
+                    }
+                    CylinderCollisionShape cyl = new CylinderCollisionShape(Converter.convert(originalCyl.getHalfExtentsWithMargin(null)),1);
+                    return cyl;
 		}
 		if(shape instanceof CapsuleShape){
-			return new CapsuleCollisionShape((CapsuleShape) shape);
+			CapsuleShape originalCap = (CapsuleShape)shape;
+                        if(shape instanceof CapsuleShapeX){
+                        CapsuleCollisionShape cap = new CapsuleCollisionShape(originalCap.getRadius(),originalCap.getRadius(),0);
+                         return cap;
+                    }else if( shape instanceof CapsuleShapeX){
+                        CapsuleCollisionShape cap = new CapsuleCollisionShape(originalCap.getRadius(),originalCap.getRadius(),2);
+                          return cap;
+                    }
+                        CapsuleCollisionShape cap = new CapsuleCollisionShape(originalCap.getRadius(),originalCap.getRadius(),1);
+                          return cap;
 		}
+                //TODO GImpact and MeshShape
 	
 		return null;
 	}

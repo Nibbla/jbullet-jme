@@ -106,7 +106,6 @@ public class TranslationalLimitMotor implements Savable {
 
 	@Override
 	public Class getClassTag() {
-		// TODO Auto-generated method stub
 		return this.getClass();
 	}
 
