@@ -33,6 +33,7 @@ package jmetest.jbullet.debug;
 
 import com.jme.input.InputHandler;
 import com.jme.input.KeyInput;
+import com.jme.input.MouseInput;
 import com.jme.input.action.InputAction;
 import com.jme.input.action.InputActionEvent;
 import com.jme.math.FastMath;
@@ -48,7 +49,9 @@ import com.jmex.game.StandardGame;
 import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
+import com.jmex.jbullet.collision.shapes.CompoundCollisionShape;
 import com.jmex.jbullet.debug.PhysicsDebugGameState;
 import com.jmex.jbullet.nodes.PhysicsCharacterNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
@@ -68,7 +71,7 @@ public class TestPhysicsDebugGameState
     {
         // creates and initializes the PhysicsSpace
         final PhysicsSpace pSpace = PhysicsSpace.getPhysicsSpace( PhysicsSpace.BroadphaseTypes.AXIS_SWEEP_3 );
-
+        MouseInput.get().setCursorVisible(true);
         // Create a DebugGameState
         // - override the update method to update/sync physics space
         DebugGameState state = new PhysicsDebugGameState()
@@ -139,13 +142,18 @@ public class TestPhysicsDebugGameState
         pSpace.add( node4 );
 
         // Add a falling Sphere - dynamic
-        PhysicsNode node5 = new PhysicsNode( new Sphere( "physicsobstaclemesh", Vector3f.ZERO, 32, 32, 1 ), CollisionShape.ShapeTypes.SPHERE );
+        CompoundCollisionShape compoundCollisionShape=new CompoundCollisionShape();
+        BoxCollisionShape boxCollisionShape=new BoxCollisionShape(new Vector3f(1f,1f,1f));
+        compoundCollisionShape.addChildShape(boxCollisionShape, new Vector3f(0,0,0));
+        PhysicsNode node5 = new PhysicsNode( new Sphere( "physicsobstaclemesh", Vector3f.ZERO, 32, 32, 1 ), compoundCollisionShape, 1);
         node5.setLocalTranslation( new Vector3f( -5f, 0f, -4f ) );
         state.getRootNode().attachChild( node5 );
         node5.updateRenderState();
         pSpace.add( node5 );
 
         // Add a Rotated Box - static
+
+
         PhysicsNode node6 = new PhysicsNode( new Box( "physicsobstaclemesh", Vector3f.ZERO, 5f, 10f, 1f ), CollisionShape.ShapeTypes.BOX, 0f );
         node6.setLocalTranslation( new Vector3f( -10f, 4f, -6f ) );
         Quaternion rotation = new Quaternion();
