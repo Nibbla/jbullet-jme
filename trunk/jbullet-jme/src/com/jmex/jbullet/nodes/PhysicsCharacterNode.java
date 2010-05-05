@@ -44,42 +44,42 @@ import com.jmex.jbullet.util.Converter;
  *
  * @author normenhansen
  */
-public class PhysicsCharacterNode extends PhysicsGhostNode{
-	private KinematicCharacterController character;
+public class PhysicsCharacterNode extends PhysicsGhostNode {
 
+    private KinematicCharacterController character;
     private float stepHeight;
-
-    private Vector3f walkDirection=new Vector3f();
-
+    private Vector3f walkDirection = new Vector3f();
 
     public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
         super(spat, shapeType);
-        this.stepHeight=stepHeight;
-        if(shapeType==CollisionShape.ShapeTypes.MESH)
+        this.stepHeight = stepHeight;
+        if (shapeType == CollisionShape.ShapeTypes.MESH) {
             throw (new UnsupportedOperationException("Kinematic character nodes cannot have meshes as collision shape"));
-        character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
+        }
+        character = new KinematicCharacterController(gObject, (ConvexShape) cShape.getCShape(), stepHeight);
     }
 
     public PhysicsCharacterNode(Spatial spat, CollisionShape shape, float stepHeight) {
         super(spat, shape);
-        if(!(shape.getCShape() instanceof ConvexShape))
+        if (!(shape.getCShape() instanceof ConvexShape)) {
             throw (new UnsupportedOperationException("Kinematic character nodes can only have convex collision shapes"));
-        this.stepHeight=stepHeight;
-        character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
+        }
+        this.stepHeight = stepHeight;
+        character = new KinematicCharacterController(gObject, (ConvexShape) cShape.getCShape(), stepHeight);
     }
 
-    protected Quaternion setWorldRotation( Quaternion rot ) {
+    protected Quaternion setWorldRotation(Quaternion rot) {
         return rot;
     }
-
 
     @Override
     protected void buildObject() {
         super.buildObject();
+        gObject.setCollisionFlags(gObject.getCollisionFlags() & ~CollisionFlags.NO_CONTACT_RESPONSE);
         gObject.setCollisionFlags(gObject.getCollisionFlags() | CollisionFlags.CHARACTER_OBJECT);
     }
 
-    public void warp(Vector3f location){
+    public void warp(Vector3f location) {
         character.warp(Converter.convert(location));
     }
 
@@ -87,16 +87,16 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
      * set the walk direction, works continuously
      * @param vec the walk direction to set
      */
-    public void setWalkDirection(Vector3f vec){
+    public void setWalkDirection(Vector3f vec) {
         walkDirection.set(vec);
         character.setWalkDirection(Converter.convert(walkDirection));
     }
 
-    public void setUpAxis(int axis){
+    public void setUpAxis(int axis) {
         character.setUpAxis(axis);
     }
 
-    public void setMaxJumpHeight(float height){
+    public void setMaxJumpHeight(float height) {
         character.setMaxJumpHeight(height);
     }
 
@@ -104,11 +104,11 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
         character.jump();
     }
 
-    public void setGravity(float gravity){
+    public void setGravity(float gravity) {
         character.setGravity(gravity);
     }
 
-    public float getGravity(){
+    public float getGravity() {
         return character.getGravity();
     }
 
@@ -123,5 +123,4 @@ public class PhysicsCharacterNode extends PhysicsGhostNode{
     public void destroy() {
         super.destroy();
     }
-
 }
