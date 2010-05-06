@@ -445,6 +445,9 @@ public abstract class PhysicsSpace {
      */
     public void destroy(){
         dynamicsWorld.destroy();
+        physicsNodes.clear();
+        physicsGhostNodes.clear();
+        physicsJoints.clear();
         dynamicsWorld=null;
         pSpace=null;
     }
