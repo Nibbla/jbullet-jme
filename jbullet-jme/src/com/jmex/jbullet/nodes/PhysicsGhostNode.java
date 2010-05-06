@@ -142,6 +142,7 @@ public class PhysicsGhostNode extends CollisionObject {
     @Override
     public void setLocalTranslation(Vector3f arg0) {
         super.setLocalTranslation(arg0);
+        applyTranslation();
     }
 
     /**
