@@ -117,6 +117,7 @@ public class PhysicsNode extends CollisionObject{
      * @param child
      * @param collisionShapeType
      */
+    @Deprecated
     public PhysicsNode(Spatial child, int collisionShapeType){
         this(child,collisionShapeType,1.0f);
     }
@@ -129,6 +130,7 @@ public class PhysicsNode extends CollisionObject{
      * @param collisionShapeType
      * @param mass
      */
+    @Deprecated
     public PhysicsNode(Spatial child, int collisionShapeType, float mass){
         this.attachChild(child);
         this.mass=mass;

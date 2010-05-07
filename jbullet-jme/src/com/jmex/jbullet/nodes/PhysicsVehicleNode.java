@@ -75,10 +75,12 @@ public class PhysicsVehicleNode extends PhysicsNode{
         super(child, ShapeTypes.BOX);
     }
 
+    @Deprecated
     public PhysicsVehicleNode(Spatial child, int collisionShapeType){
         super(child, collisionShapeType);
     }
 
+    @Deprecated
     public PhysicsVehicleNode(Spatial child, int collisionShapeType, float mass){
         super(child, collisionShapeType, mass);
     }

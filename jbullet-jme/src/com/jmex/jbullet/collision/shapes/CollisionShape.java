@@ -82,6 +82,7 @@ public abstract class CollisionShape {
     /**
      * interface that contains all jbullet-jme collision shape types.
      */
+    @Deprecated
     public interface ShapeTypes{
         public static final int SPHERE=0;
         public static final int BOX=1;

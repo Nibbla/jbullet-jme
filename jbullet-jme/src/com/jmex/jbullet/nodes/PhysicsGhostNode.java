@@ -76,6 +76,7 @@ public class PhysicsGhostNode extends CollisionObject {
         buildObject();
     }
 
+    @Deprecated
     public PhysicsGhostNode(Spatial child, int shapeType) {
         this.attachChild(child);
         buildCollisionShape(shapeType);
