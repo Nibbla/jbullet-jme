@@ -7,14 +7,15 @@
 PhysicsDebugGameState
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.debug.PhysicsDebugGameState class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="PhysicsDebugGameState";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PhysicsDebugGameState";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -23,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->
@@ -53,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/jmex/jbullet/debug/BufferedTriangleCallback.html" title="class in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugger.html" title="class in com.jmex.jbullet.debug"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/debug/PhysicsDebugGameState.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="PhysicsDebugGameState.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -73,7 +75,7 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_class_summary">NESTED</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
@@ -104,7 +106,7 @@ java.lang.Object
 <P>
 Specialisation on the DebugGame state to provide the option of rendering the details of the physics simulation.
   <p/>
-  With default key binding the option to rotate through the various render choices is done via backslash key '\'.
+  With default key binding the option to rotate through the various render choices is done via F5 key 'F5'.
   <ul>
       <li>Render the both JME scene and the physics debug scene.</li>
       <li>Render the only the physics debug scene.</li>
@@ -116,7 +118,25 @@ Specialisation on the DebugGame state to provide the option of rendering the det
 <HR>
 
 <P>
+<!-- ======== NESTED CLASS SUMMARY ======== -->
 
+<A NAME="nested_class_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Nested Class Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug">PhysicsDebugGameState.DrawState</A></B></CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provides the various draw states avaiiable to the PhysicsDebugGameState, as the option
+  to not render the JME scene is available.</TD>
+</TR>
+</TABLE>
+&nbsp;
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 
 <A NAME="constructor_summary"><!-- --></A>
@@ -148,6 +168,23 @@ Specialisation on the DebugGame state to provide the option of rendering the det
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.html#setDrawState(com.jmex.jbullet.debug.PhysicsDebugGameState.DrawState)">setDrawState</A></B>(<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug">PhysicsDebugGameState.DrawState</A>&nbsp;desired)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sets the current draw state to that given.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.html#setStateDrawingSwitchKey(int)">setStateDrawingSwitchKey</A></B>(int&nbsp;switchKey)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Changes the existing key binding for the switching between draw states to 
+  that given.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -261,6 +298,38 @@ public void <B>render</B>(float&nbsp;tpf)</PRE>
 </DL>
 </DD>
 </DL>
+<HR>
+
+<A NAME="setStateDrawingSwitchKey(int)"><!-- --></A><H3>
+setStateDrawingSwitchKey</H3>
+<PRE>
+public void <B>setStateDrawingSwitchKey</B>(int&nbsp;switchKey)</PRE>
+<DL>
+<DD>Changes the existing key binding for the switching between draw states to 
+  that given.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>switchKey</CODE> - the new key binding. WARNING: no checks are made on the
+      given int, or whether an existing command is already bound to that key -
+      so be careful!</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDrawState(com.jmex.jbullet.debug.PhysicsDebugGameState.DrawState)"><!-- --></A><H3>
+setDrawState</H3>
+<PRE>
+public void <B>setDrawState</B>(<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug">PhysicsDebugGameState.DrawState</A>&nbsp;desired)</PRE>
+<DL>
+<DD>Sets the current draw state to that given.
+  <p/>
+  The draw state determines whether the the JME scene is rendered and
+  whether the PhysicsBounds scene is rendered.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>desired</CODE> - the desired state, should not be <code>null</code>.</DL>
+</DD>
+</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -293,7 +362,7 @@ public void <B>render</B>(float&nbsp;tpf)</PRE>
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;<A HREF="../../../../com/jmex/jbullet/debug/BufferedTriangleCallback.html" title="class in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugger.html" title="class in com.jmex.jbullet.debug"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/debug/PhysicsDebugGameState.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="PhysicsDebugGameState.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -313,7 +382,7 @@ public void <B>render</B>(float&nbsp;tpf)</PRE>
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;<A HREF="#nested_class_summary">NESTED</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>

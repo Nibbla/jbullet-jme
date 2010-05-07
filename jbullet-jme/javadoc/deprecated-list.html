@@ -13,7 +13,9 @@ Deprecated List
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="Deprecated List";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="Deprecated List";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -22,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->
@@ -81,8 +84,78 @@ function windowTitle()
 </CENTER>
 <HR SIZE="4" NOSHADE>
 <B>Contents</B><UL>
+<LI><A HREF="#interface">Deprecated Interfaces</A>
+<LI><A HREF="#method">Deprecated Methods</A>
+<LI><A HREF="#constructor">Deprecated Constructors</A>
 </UL>
 
+<A NAME="interface"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Deprecated Interfaces</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/collision/shapes/CollisionShape.ShapeTypes.html" title="interface in com.jmex.jbullet.collision.shapes">com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+<A NAME="method"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Deprecated Methods</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/collision/shapes/CollisionShape.html#getType()">com.jmex.jbullet.collision.shapes.CollisionShape.getType()</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+<A NAME="constructor"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Deprecated Constructors</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/nodes/PhysicsCharacterNode.html#PhysicsCharacterNode(com.jme.scene.Spatial, int, float)">com.jmex.jbullet.nodes.PhysicsCharacterNode(Spatial, int, float)</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/nodes/PhysicsGhostNode.html#PhysicsGhostNode(com.jme.scene.Spatial, int)">com.jmex.jbullet.nodes.PhysicsGhostNode(Spatial, int)</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int)">com.jmex.jbullet.nodes.PhysicsNode(Spatial, int)</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int, float)">com.jmex.jbullet.nodes.PhysicsNode(Spatial, int, float)</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/nodes/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial, int)">com.jmex.jbullet.nodes.PhysicsVehicleNode(Spatial, int)</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="com/jmex/jbullet/nodes/PhysicsVehicleNode.html#PhysicsVehicleNode(com.jme.scene.Spatial, int, float)">com.jmex.jbullet.nodes.PhysicsVehicleNode(Spatial, int, float)</A>
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
 <HR>
 
 

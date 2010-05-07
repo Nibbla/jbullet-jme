@@ -7,14 +7,15 @@
 CompoundCollisionShape
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.collision.shapes.CompoundCollisionShape class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="CompoundCollisionShape";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="CompoundCollisionShape";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -23,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->
@@ -163,6 +165,16 @@ A CompoundCollisionShape allows combining multiple base shapes
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#addChildShape(com.jmex.jbullet.collision.shapes.CollisionShape, com.jme.math.Vector3f, com.jme.math.Matrix3f)">addChildShape</A></B>(<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+              com.jme.math.Vector3f&nbsp;location,
+              com.jme.math.Matrix3f&nbsp;rotation)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adds a child shape at the given local translation</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#removeChildShape(com.jmex.jbullet.collision.shapes.CollisionShape)">removeChildShape</A></B>(<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape)</CODE>
 
 <BR>
@@ -222,6 +234,21 @@ addChildShape</H3>
 <PRE>
 public void <B>addChildShape</B>(<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
                           com.jme.math.Vector3f&nbsp;location)</PRE>
+<DL>
+<DD>adds a child shape at the given local translation
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>shape</CODE> - the child shape to add<DD><CODE>location</CODE> - the local location of the child shape</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="addChildShape(com.jmex.jbullet.collision.shapes.CollisionShape, com.jme.math.Vector3f, com.jme.math.Matrix3f)"><!-- --></A><H3>
+addChildShape</H3>
+<PRE>
+public void <B>addChildShape</B>(<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+                          com.jme.math.Vector3f&nbsp;location,
+                          com.jme.math.Matrix3f&nbsp;rotation)</PRE>
 <DL>
 <DD>adds a child shape at the given local translation
 <P>
