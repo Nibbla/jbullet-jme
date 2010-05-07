@@ -105,7 +105,7 @@ public class TestPhysicsDebugCustomKey
         System.setProperty( "jme.stats", "set" );
 
         // Instantiate StandardGame
-        StandardGame game = new StandardGame( "Performance Test: High poly count" );
+        StandardGame game = new StandardGame( "KeyBinding Test: Debugger key changed to 'y'");
         // Show settings screen
         if ( GameSettingsPanel.prompt( game.getSettings() ) )
         {
