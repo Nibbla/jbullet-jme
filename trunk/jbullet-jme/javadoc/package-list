@@ -8,3 +8,4 @@ com.jmex.jbullet.nodes
 com.jmex.jbullet.nodes.infos
 com.jmex.jbullet.util
 jmetest.jbullet
+jmetest.jbullet.debug

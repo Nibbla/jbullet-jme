@@ -7,14 +7,15 @@
 PhysicsDebugger
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.debug.PhysicsDebugger class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="PhysicsDebugger";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PhysicsDebugger";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -23,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->
@@ -52,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.html" title="class in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/debug/PhysicsDebugger.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -135,39 +137,6 @@ Deals with the rendering of the JME objects representation in Bullet.
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>static&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugger.html#drawWireframe(com.jme.renderer.Renderer, com.bulletphysics.collision.shapes.ConcaveShape, javax.vecmath.Vector3f, com.jme.math.Quaternion)">drawWireframe</A></B>(com.jme.renderer.Renderer&nbsp;renderer,
-              com.bulletphysics.collision.shapes.ConcaveShape&nbsp;concaveShape,
-              javax.vecmath.Vector3f&nbsp;worldTranslation,
-              com.jme.math.Quaternion&nbsp;worldRotation)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugger.html#drawWireframe(com.jme.renderer.Renderer, com.bulletphysics.collision.shapes.ConvexShape, javax.vecmath.Vector3f, com.jme.math.Quaternion)">drawWireframe</A></B>(com.jme.renderer.Renderer&nbsp;renderer,
-              com.bulletphysics.collision.shapes.ConvexShape&nbsp;convexShape,
-              javax.vecmath.Vector3f&nbsp;worldTranslation,
-              com.jme.math.Quaternion&nbsp;worldRotation)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugger.html#drawWireframe(com.jme.renderer.Renderer, com.bulletphysics.collision.shapes.PolyhedralConvexShape, javax.vecmath.Vector3f, com.jme.math.Quaternion)">drawWireframe</A></B>(com.jme.renderer.Renderer&nbsp;renderer,
-              com.bulletphysics.collision.shapes.PolyhedralConvexShape&nbsp;polyhedralShape,
-              javax.vecmath.Vector3f&nbsp;worldTranslation,
-              com.jme.math.Quaternion&nbsp;worldRotation)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>static&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugger.html#drawWireframes(com.jme.renderer.Renderer)">drawWireframes</A></B>(com.jme.renderer.Renderer&nbsp;renderer)</CODE>
 
 <BR>
@@ -222,48 +191,6 @@ public static void <B>drawWireframes</B>(com.jme.renderer.Renderer&nbsp;renderer
 </DL>
 </DD>
 </DL>
-<HR>
-
-<A NAME="drawWireframe(com.jme.renderer.Renderer, com.bulletphysics.collision.shapes.PolyhedralConvexShape, javax.vecmath.Vector3f, com.jme.math.Quaternion)"><!-- --></A><H3>
-drawWireframe</H3>
-<PRE>
-public static final void <B>drawWireframe</B>(com.jme.renderer.Renderer&nbsp;renderer,
-                                       com.bulletphysics.collision.shapes.PolyhedralConvexShape&nbsp;polyhedralShape,
-                                       javax.vecmath.Vector3f&nbsp;worldTranslation,
-                                       com.jme.math.Quaternion&nbsp;worldRotation)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="drawWireframe(com.jme.renderer.Renderer, com.bulletphysics.collision.shapes.ConcaveShape, javax.vecmath.Vector3f, com.jme.math.Quaternion)"><!-- --></A><H3>
-drawWireframe</H3>
-<PRE>
-public static final void <B>drawWireframe</B>(com.jme.renderer.Renderer&nbsp;renderer,
-                                       com.bulletphysics.collision.shapes.ConcaveShape&nbsp;concaveShape,
-                                       javax.vecmath.Vector3f&nbsp;worldTranslation,
-                                       com.jme.math.Quaternion&nbsp;worldRotation)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="drawWireframe(com.jme.renderer.Renderer, com.bulletphysics.collision.shapes.ConvexShape, javax.vecmath.Vector3f, com.jme.math.Quaternion)"><!-- --></A><H3>
-drawWireframe</H3>
-<PRE>
-public static final void <B>drawWireframe</B>(com.jme.renderer.Renderer&nbsp;renderer,
-                                       com.bulletphysics.collision.shapes.ConvexShape&nbsp;convexShape,
-                                       javax.vecmath.Vector3f&nbsp;worldTranslation,
-                                       com.jme.math.Quaternion&nbsp;worldRotation)</PRE>
-<DL>
-<DD><DL>
-</DL>
-</DD>
-</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -295,7 +222,7 @@ public static final void <B>drawWireframe</B>(com.jme.renderer.Renderer&nbsp;ren
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.html" title="class in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/PhysicsDebugGameState.DrawState.html" title="enum in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;NEXT CLASS</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/debug/PhysicsDebugger.html" target="_top"><B>FRAMES</B></A>  &nbsp;

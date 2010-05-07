@@ -13,7 +13,9 @@ Uses of Package com.jmex.jbullet.nodes
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="Uses of Package com.jmex.jbullet.nodes";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="Uses of Package com.jmex.jbullet.nodes";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -22,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->

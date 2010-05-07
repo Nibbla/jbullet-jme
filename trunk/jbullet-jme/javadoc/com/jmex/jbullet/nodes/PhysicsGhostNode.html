@@ -7,14 +7,15 @@
 PhysicsGhostNode
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.nodes.PhysicsGhostNode class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="PhysicsGhostNode";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PhysicsGhostNode";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -23,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->
@@ -184,7 +186,7 @@ java.lang.Object
                  int&nbsp;shapeType)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -376,9 +378,12 @@ public <B>PhysicsGhostNode</B>()</PRE>
 <A NAME="PhysicsGhostNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
 PhysicsGhostNode</H3>
 <PRE>
-public <B>PhysicsGhostNode</B>(com.jme.scene.Spatial&nbsp;child,
-                        int&nbsp;shapeType)</PRE>
+<FONT SIZE="-1">@Deprecated
+</FONT>public <B>PhysicsGhostNode</B>(com.jme.scene.Spatial&nbsp;child,
+                                   int&nbsp;shapeType)</PRE>
 <DL>
+<DD><B>Deprecated.</B>&nbsp;
+<P>
 </DL>
 <HR>
 

@@ -7,14 +7,15 @@
 TestSimplePhysicsCar
 </TITLE>
 
-<META NAME="keywords" CONTENT="jmetest.jbullet.TestSimplePhysicsCar class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="TestSimplePhysicsCar";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="TestSimplePhysicsCar";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -23,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->

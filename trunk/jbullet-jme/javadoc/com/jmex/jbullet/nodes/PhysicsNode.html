@@ -7,14 +7,15 @@
 PhysicsNode
 </TITLE>
 
-<META NAME="keywords" CONTENT="com.jmex.jbullet.nodes.PhysicsNode class">
 
 <LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
 
 <SCRIPT type="text/javascript">
 function windowTitle()
 {
-    parent.document.title="PhysicsNode";
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PhysicsNode";
+    }
 }
 </SCRIPT>
 <NOSCRIPT>
@@ -23,6 +24,7 @@ function windowTitle()
 </HEAD>
 
 <BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
 
 
 <!-- ========= START OF TOP NAVBAR ======= -->
@@ -198,8 +200,7 @@ java.lang.Object
             int&nbsp;collisionShapeType)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
- also creates a collision shape of the given type for that PhysicsNode</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int, float)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
@@ -207,9 +208,7 @@ java.lang.Object
             float&nbsp;mass)</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
- also creates a collision shape of the given type for that PhysicsNode and
- assigns the given mass.</TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -495,6 +494,22 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#isActive()">isActive</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#isKinematic()">isKinematic</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#lookAt(com.jme.math.Vector3f, com.jme.math.Vector3f)">lookAt</A></B>(com.jme.math.Vector3f&nbsp;position,
        com.jme.math.Vector3f&nbsp;upVector)</CODE>
@@ -568,6 +583,14 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the gravity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setKinematic(boolean)">setKinematic</A></B>(boolean&nbsp;kinematic)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -738,9 +761,12 @@ public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
 <A NAME="PhysicsNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
 PhysicsNode</H3>
 <PRE>
-public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
-                   int&nbsp;collisionShapeType)</PRE>
+<FONT SIZE="-1">@Deprecated
+</FONT>public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                              int&nbsp;collisionShapeType)</PRE>
 <DL>
+<DD><B>Deprecated.</B>&nbsp;
+<P>
 <DD>creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode
 <P>
@@ -752,10 +778,13 @@ public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
 <A NAME="PhysicsNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
 PhysicsNode</H3>
 <PRE>
-public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
-                   int&nbsp;collisionShapeType,
-                   float&nbsp;mass)</PRE>
+<FONT SIZE="-1">@Deprecated
+</FONT>public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                              int&nbsp;collisionShapeType,
+                              float&nbsp;mass)</PRE>
 <DL>
+<DD><B>Deprecated.</B>&nbsp;
+<P>
 <DD>creates a new PhysicsNode with the supplied child node or geometry and
  also creates a collision shape of the given type for that PhysicsNode and
  assigns the given mass.
@@ -972,6 +1001,28 @@ public void <B>setLocalScale</B>(com.jme.math.Vector3f&nbsp;localScale)</PRE>
 <DD><DL>
 <DT><B>Overrides:</B><DD><CODE>setLocalScale</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setKinematic(boolean)"><!-- --></A><H3>
+setKinematic</H3>
+<PRE>
+public void <B>setKinematic</B>(boolean&nbsp;kinematic)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isKinematic()"><!-- --></A><H3>
+isKinematic</H3>
+<PRE>
+public boolean <B>isKinematic</B>()</PRE>
+<DL>
 <DD><DL>
 </DL>
 </DD>
@@ -1456,6 +1507,17 @@ public void <B>activate</B>()</PRE>
 <DL>
 <DD>reactivates this PhysicsNode when it has been deactivated because it was not moving
 <P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isActive()"><!-- --></A><H3>
+isActive</H3>
+<PRE>
+public boolean <B>isActive</B>()</PRE>
+<DL>
 <DD><DL>
 </DL>
 </DD>
