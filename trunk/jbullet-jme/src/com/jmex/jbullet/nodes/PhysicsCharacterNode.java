@@ -50,6 +50,7 @@ public class PhysicsCharacterNode extends PhysicsGhostNode {
     private float stepHeight;
     private Vector3f walkDirection = new Vector3f();
 
+    @Deprecated
     public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
         super(spat, shapeType);
         this.stepHeight = stepHeight;
