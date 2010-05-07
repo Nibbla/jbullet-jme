@@ -46,6 +46,7 @@ public abstract class CollisionShape {
     public CollisionShape() {
     }
 
+    @Deprecated
     public int getType() {
         return type;
     }
