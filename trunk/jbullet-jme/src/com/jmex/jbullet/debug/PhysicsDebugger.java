@@ -122,8 +122,6 @@ public class PhysicsDebugger
         return collisionObject.getInternalType() == CollisionObjectType.GHOST_OBJECT;
     }
 
-
-
     //TODO commnet
     public static void drawWireframes( Renderer renderer )
     {
@@ -164,47 +162,51 @@ public class PhysicsDebugger
                 // If there's not a Spatial of the collision object - one needs creating!
                 if ( wireframe == null )
                 {
-                    if(shape instanceof CompoundShape){
+                    if ( shape instanceof CompoundShape )
+                    {
                         CompoundShape cShape = (CompoundShape) shape;
                         List<CompoundShapeChild> childs = cShape.getChildList();
                         wireframe = new Node();
-                        for (Iterator it = childs.iterator(); it.hasNext();) {
+                        for ( Iterator it = childs.iterator(); it.hasNext(); )
+                        {
                             CompoundShapeChild object = (CompoundShapeChild) it.next();
                             //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
-                        // indicies and vertices
-                        if ( object.childShape.isConvex() )
-                        {
-                            // Assert the CollisionShape is of the appropiate type
-                            assert object.childShape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
-                            ConvexShape convexShape = (ConvexShape) object.childShape;
+                            // indicies and vertices
+                            if ( object.childShape.isConvex() )
+                            {
+                                // Assert the CollisionShape is of the appropiate type
+                                assert object.childShape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
+                                ConvexShape convexShape = (ConvexShape) object.childShape;
 
-                            // Create a wireframe for the Convex Shape
-                            Spatial wireChild = createWireframe( convexShape );
-                            com.jme.math.Vector3f v = Converter.convert(object.transform.origin);
-                            Quaternion rot = new Quaternion();
-                            rot.fromRotationMatrix(Converter.convert(object.transform.basis));
-                            wireChild.setLocalTranslation(v);
-                            wireChild.setLocalRotation(rot);
-                            ((Node)wireframe).attachChild(wireChild);
+                                // Create a wireframe for the Convex Shape
+                                Spatial wireChild = createWireframe( convexShape );
+                                com.jme.math.Vector3f v = Converter.convert( object.transform.origin );
+                                Quaternion rot = new Quaternion();
+                                rot.fromRotationMatrix( Converter.convert( object.transform.basis ) );
+                                wireChild.setLocalTranslation( v );
+                                wireChild.setLocalRotation( rot );
+                                ((Node) wireframe).attachChild( wireChild );
 
-                        }
-                        else if ( object.childShape.isConcave() )
-                        {
-                            // Assert the CollisionShape is of the appropiate type
-                            assert object.childShape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
-                            ConcaveShape concaveShape = (ConcaveShape) object.childShape;
+                            }
+                            else if ( object.childShape.isConcave() )
+                            {
+                                // Assert the CollisionShape is of the appropiate type
+                                assert object.childShape instanceof ConcaveShape : "Expecting CollisionShape to be a ConcaveShape";
+                                ConcaveShape concaveShape = (ConcaveShape) object.childShape;
 
-                            // Create a wireframe for the Concave Shape
-                            Spatial wireChild = createWireframe( concaveShape );
-                            com.jme.math.Vector3f v = Converter.convert(object.transform.origin);
-                            Quaternion rot = new Quaternion();
-                            rot.fromRotationMatrix(Converter.convert(object.transform.basis));
-                            wireChild.setLocalTranslation(v);
-                            wireChild.setLocalRotation(rot);
-                            ((Node)wireframe).attachChild(wireChild);
+                                // Create a wireframe for the Concave Shape
+                                Spatial wireChild = createWireframe( concaveShape );
+                                com.jme.math.Vector3f v = Converter.convert( object.transform.origin );
+                                Quaternion rot = new Quaternion();
+                                rot.fromRotationMatrix( Converter.convert( object.transform.basis ) );
+                                wireChild.setLocalTranslation( v );
+                                wireChild.setLocalRotation( rot );
+                                ((Node) wireframe).attachChild( wireChild );
+                            }
                         }
-                        }
-                    }else{
+                    }
+                    else
+                    {
 
                         //TODO shapes can be polyhedral as well as being other types - the convex & concave shapes have access
                         // indicies and vertices
@@ -237,7 +239,7 @@ public class PhysicsDebugger
                         wireframe.getLocalRotation().set( worldRotation );
 
                         // The rotation change needs picking up (as the rotation was set directly)
-                        wireframe.updateWorldVectors(true);
+                        wireframe.updateGeometricState( 0f, true );
                     }
 
                     // Store the created wireframe, so we don't have to recreate it
@@ -255,7 +257,7 @@ public class PhysicsDebugger
                     {
                         // The physics object has moved since last render - update the world translation of the Spatial
                         wireframe.setLocalTranslation( worldTranslation.x, worldTranslation.y, worldTranslation.z );
-                        wireframe.updateWorldVectors(true);
+                        wireframe.updateGeometricState( 0f, true );
                     }
 
                     // Check if the worldRotation of the object has changed
@@ -263,11 +265,11 @@ public class PhysicsDebugger
                     {
                         // The physics object has rotated since last render - update the world rotation of the Spatial
                         wireframe.getLocalRotation().set( worldRotation );
-                        wireframe.updateWorldVectors(true);
+                        wireframe.updateGeometricState( 0f, true );
                     }
 
-                    //TODO If CompoundShape Check if childs have moved
 
+                    //TODO If CompoundShape Check if childs have moved
                     renderer.draw( wireframe );
                 }
             }
@@ -368,6 +370,9 @@ public class PhysicsDebugger
         // Create the model bounds for frustum culling
         mesh.setModelBound( new BoundingBox() );
         mesh.updateModelBound();
+
+        // Cull only when not inside || intersecting with frustum
+        mesh.setCullHint( Spatial.CullHint.Dynamic );
 
         // Apply the shared state for wireframe, drawing order and starting colour
         mesh.setRenderState( StateColour.A.colour );
