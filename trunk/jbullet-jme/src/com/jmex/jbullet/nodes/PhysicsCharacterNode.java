@@ -38,6 +38,7 @@ import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
+import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
 
 /**
@@ -54,16 +55,16 @@ public class PhysicsCharacterNode extends PhysicsGhostNode {
     public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
         super(spat, shapeType);
         this.stepHeight = stepHeight;
-        if (shapeType == CollisionShape.ShapeTypes.MESH) {
-            throw (new UnsupportedOperationException("Kinematic character nodes cannot have meshes as collision shape"));
+        if (shapeType != CollisionShape.ShapeTypes.SPHERE) {
+            throw (new UnsupportedOperationException("Kinematic character nodes can only have sphere collision shapes"));
         }
         character = new KinematicCharacterController(gObject, (ConvexShape) cShape.getCShape(), stepHeight);
     }
 
     public PhysicsCharacterNode(Spatial spat, CollisionShape shape, float stepHeight) {
         super(spat, shape);
-        if (!(shape.getCShape() instanceof ConvexShape)) {
-            throw (new UnsupportedOperationException("Kinematic character nodes can only have convex collision shapes"));
+        if (!(shape instanceof SphereCollisionShape)) {
+            throw (new UnsupportedOperationException("Kinematic character nodes can only have sphere collision shapes"));
         }
         this.stepHeight = stepHeight;
         character = new KinematicCharacterController(gObject, (ConvexShape) cShape.getCShape(), stepHeight);
