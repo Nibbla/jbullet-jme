@@ -245,6 +245,20 @@ public class PhysicsNode extends CollisionObject{
         }
     }
 
+    @Override
+    public int attachChild(Spatial child) {
+        if(child instanceof PhysicsNode)
+            throw(new IllegalArgumentException("PhysicsNodes cannot have other PhysicsNodes as children!"));
+        return super.attachChild(child);
+    }
+
+    @Override
+    public int attachChildAt(Spatial child, int index) {
+        if(child instanceof PhysicsNode)
+            throw(new IllegalArgumentException("PhysicsNodes cannot have other PhysicsNodes as children!"));
+        return super.attachChildAt(child, index);
+    }
+
     /**
      * note that getLocalTranslation().set() will not update the physics object position,
      * use setLocalTranslation() instead!
