@@ -144,9 +144,6 @@ public abstract class TriMeshWireframe extends TriMesh
 
         // The render state needs updating to pickup the change in colour
         updateRenderState();
-
-        // Use Vertex Buffering to achieve substainally better rendering with high poly objects
-        setVBOInfo( new VBOInfo( true ) );
     }
 
     /**
