@@ -72,6 +72,14 @@ public abstract class PhysicsJoint {
         return collisionBetweenLinkedBodys;
     }
 
+    public PhysicsNode getNodeA() {
+        return nodeA;
+    }
+
+    public PhysicsNode getNodeB() {
+        return nodeB;
+    }
+    
     /**
      * toggles collisions between linked bodys<br>
      * joint has to be removed from and added to PhyiscsSpace to apply this.
