@@ -10,6 +10,7 @@
  * add rotation for CompoundCollisionShape children
  * add getHingeAngle()
  * add CompoundCollisionShape to debug view
+ * add methods to set fall speed etc. to PhysicsCharacterNode
 
 ==== 0.9.5 alpha (r509) ====
  * added fix to avoid calling of setLocalInertia() for static meshes (caused assertion error)
