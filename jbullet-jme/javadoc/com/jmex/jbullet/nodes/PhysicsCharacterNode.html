@@ -210,6 +210,14 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#getMaxSlope()">getMaxSlope</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#jump()">jump</A></B>()</CODE>
 
@@ -218,8 +226,32 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#onGround()">onGround</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setGravity(float)">setGravity</A></B>(float&nbsp;gravity)</CODE>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setFallSpeed(float)">setFallSpeed</A></B>(float&nbsp;fallSpeed)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setGravity(float)">setGravity</A></B>(float&nbsp;value)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setJumpSpeed(float)">setJumpSpeed</A></B>(float&nbsp;jumpSpeed)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -228,6 +260,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setMaxJumpHeight(float)">setMaxJumpHeight</A></B>(float&nbsp;height)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#setMaxSlope(float)">setMaxSlope</A></B>(float&nbsp;slopeRadians)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -393,10 +433,21 @@ public void <B>setMaxJumpHeight</B>(float&nbsp;height)</PRE>
 </DL>
 <HR>
 
-<A NAME="jump()"><!-- --></A><H3>
-jump</H3>
+<A NAME="setFallSpeed(float)"><!-- --></A><H3>
+setFallSpeed</H3>
 <PRE>
-public void <B>jump</B>()</PRE>
+public void <B>setFallSpeed</B>(float&nbsp;fallSpeed)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setJumpSpeed(float)"><!-- --></A><H3>
+setJumpSpeed</H3>
+<PRE>
+public void <B>setJumpSpeed</B>(float&nbsp;jumpSpeed)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -407,7 +458,7 @@ public void <B>jump</B>()</PRE>
 <A NAME="setGravity(float)"><!-- --></A><H3>
 setGravity</H3>
 <PRE>
-public void <B>setGravity</B>(float&nbsp;gravity)</PRE>
+public void <B>setGravity</B>(float&nbsp;value)</PRE>
 <DL>
 <DD><DL>
 </DL>
@@ -419,6 +470,50 @@ public void <B>setGravity</B>(float&nbsp;gravity)</PRE>
 getGravity</H3>
 <PRE>
 public float <B>getGravity</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMaxSlope(float)"><!-- --></A><H3>
+setMaxSlope</H3>
+<PRE>
+public void <B>setMaxSlope</B>(float&nbsp;slopeRadians)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMaxSlope()"><!-- --></A><H3>
+getMaxSlope</H3>
+<PRE>
+public float <B>getMaxSlope</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="onGround()"><!-- --></A><H3>
+onGround</H3>
+<PRE>
+public boolean <B>onGround</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="jump()"><!-- --></A><H3>
+jump</H3>
+<PRE>
+public void <B>jump</B>()</PRE>
 <DL>
 <DD><DL>
 </DL>
