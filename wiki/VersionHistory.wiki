@@ -3,7 +3,7 @@
 
 == Versions ==
 
-==== svn trunk ====
+==== 0.9.6 alpha (r569) ====
  * added debug view
  * added kinematic PhysicsNodes
  * add blank constructor for PhysicsNode
