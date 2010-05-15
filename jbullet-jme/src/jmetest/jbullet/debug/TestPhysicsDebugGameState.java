@@ -129,6 +129,7 @@ public class TestPhysicsDebugGameState
 
         // an obstacle mesh, does not move (mass=0)
         PhysicsNode node2 = new PhysicsNode( new Box( "physicsobstaclemesh", Vector3f.ZERO, 2, 2, 2 ), CollisionShape.ShapeTypes.BOX, 0 );
+        node2.setKinematic( true ); // No practical purpose other then to render a kinematic object
         node2.setLocalTranslation( new Vector3f( 0f, -4, 0f ) );
         state.getRootNode().attachChild( node2 );
         node2.updateRenderState();

@@ -62,4 +62,11 @@ public interface RigidBodyWireframe
      * @param renderer the jme renderer to draw the rigid body wireframe onto (if it's in view).
      */
     public void render( Renderer renderer );
+
+    /**
+     *  Updates the activity state, colour that the wireframe is rendered as.
+     *
+     * @param bulletState the current state of the wireframe's paired broadphase rigid body.
+     */
+    public void updateActivityState( WireframeActivityState bulletState );
 }

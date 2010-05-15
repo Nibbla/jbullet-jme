@@ -40,6 +40,7 @@ import com.jme.math.Quaternion;
 import com.jme.renderer.Renderer;
 import com.jme.scene.Node;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.vecmath.Matrix3f;
@@ -127,6 +128,17 @@ public class CompoundWireframe extends Node implements RigidBodyWireframe
             // The physics object has rotated since last render - update the world rotation of the Spatial
             getLocalRotation().set( bulletRotation );
             updateGeometricState( 0f, true );
+        }
+    }
+
+    @Override
+    public void updateActivityState( WireframeActivityState bulletState )
+    {
+        Iterator<TriMeshWireframe> it = bulletObjects.values().iterator();
+
+        while ( it.hasNext() )
+        {
+            it.next().updateActivityState( bulletState );
         }
     }
 

@@ -37,9 +37,8 @@ import com.jme.math.Quaternion;
 import com.jme.renderer.ColorRGBA;
 import com.jme.scene.Spatial;
 import com.jme.scene.TriMesh;
-import com.jme.scene.VBOInfo;
 import com.jme.scene.state.LightState;
-import com.jme.scene.state.MaterialState;
+import com.jme.scene.state.RenderState.StateType;
 import com.jme.scene.state.WireframeState;
 import com.jme.scene.state.ZBufferState;
 import com.jme.system.DisplaySystem;
@@ -94,28 +93,6 @@ public abstract class TriMeshWireframe extends TriMesh
     }
 
     /**
-     *  The available bullet states that rigid body can be in at any time.
-     */
-    private enum ActivityState
-    {
-        //TODO find out all the possible states
-        A( ColorRGBA.red ), B( ColorRGBA.blue );
-
-        public final MaterialState colour;
-
-        ActivityState( ColorRGBA stateColour )
-        {
-            colour = DisplaySystem.getDisplaySystem().getRenderer().createMaterialState();
-            colour.setDiffuse( stateColour );
-            colour.setAmbient( stateColour );
-            colour.setEmissive( stateColour );
-            colour.setSpecular( stateColour );
-            colour.setEnabled( true );
-            colour.setMaterialFace( MaterialState.MaterialFace.FrontAndBack );
-        }
-    }
-
-    /**
      *  Creates a TriMesh setting it up so that it is rendered as a wireframe.
      *
      * @param vertices the vextex buffer that the index buffer refers to.
@@ -133,9 +110,8 @@ public abstract class TriMeshWireframe extends TriMesh
         // Cull only when not inside || intersecting with frustum
         setCullHint( Spatial.CullHint.Dynamic );
 
-        // TODO default state?
         // The default bullet state when objects are added is: ????
-        setRenderState( ActivityState.A.colour );
+        setRenderState( WireframeActivityState.Default.colour );
 
         // Apply the shared state for wireframe, drawing order and starting colour
         setRenderState( wireframeState );
@@ -200,6 +176,21 @@ public abstract class TriMeshWireframe extends TriMesh
             // The physics object has rotated since last render - update the world rotation of the Spatial
             getLocalRotation().set( bulletRotation );
             updateGeometricState( 0f, true );
+        }
+    }
+
+    /**
+     *  Updates the activity state, colour that the wireframe is rendered as.
+     *
+     * @param bulletState the current state of the wireframe's paired broadphase rigid body.
+     */
+    public void updateActivityState( WireframeActivityState bulletState )
+    {
+        // Check if the state is the same (same reference)
+        if ( bulletState.colour != getRenderState( StateType.Material ) )
+        {
+            setRenderState( bulletState.colour );
+            updateRenderState();
         }
     }
 
