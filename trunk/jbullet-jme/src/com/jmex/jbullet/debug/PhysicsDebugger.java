@@ -41,8 +41,6 @@ import com.bulletphysics.dynamics.DynamicsWorld;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Quaternion;
 import com.jme.renderer.Renderer;
-import com.jme.scene.Spatial;
-import com.jme.util.geom.Debugger;
 import com.jmex.jbullet.PhysicsSpace;
 import java.util.HashMap;
 import java.util.Map;
@@ -117,6 +115,7 @@ public class PhysicsDebugger
                 {
                     wireframe.updateWorldTranslation( worldTranslation );
                     wireframe.updateWorldRotation( worldRotation );
+                    wireframe.updateActivityState( WireframeActivityState.getActivityState( collisionObject ) );
                     wireframe.render( renderer );
                 }
             }
