@@ -34,6 +34,7 @@ package com.jmex.jbullet.debug;
 import com.bulletphysics.collision.shapes.CollisionShape;
 import com.bulletphysics.collision.shapes.CompoundShape;
 import com.bulletphysics.collision.shapes.CompoundShapeChild;
+import com.bulletphysics.collision.shapes.ConcaveShape;
 import com.bulletphysics.collision.shapes.ConvexShape;
 import com.jme.bounding.BoundingBox;
 import com.jme.math.Quaternion;
@@ -213,10 +214,13 @@ public class CompoundWireframe extends Node implements RigidBodyWireframe
 
         // Assert the CollisionShape is of the appropiate type
         assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
-        ConvexShape convexShape = (ConvexShape) shape;
-
-        // Create a wireframe for the Convex Shape
-        wireframe = new ConvexWireframe( convexShape );
+        if (shape instanceof ConvexShape) {
+	        // Create a wireframe for the Convex Shape
+	        wireframe = new ConvexWireframe( (ConvexShape) shape );
+        } else if (shape instanceof ConcaveShape) {
+        	// Create a wireframe for the Concave Shape
+        	wireframe = new ConcaveWireframe( (ConcaveShape) shape );
+        }
 
         //TODO hack - either all child shapes are convex or they could be anything - find out which
         if ( wireframe == null )
