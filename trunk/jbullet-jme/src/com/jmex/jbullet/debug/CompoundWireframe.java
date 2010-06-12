@@ -213,7 +213,7 @@ public class CompoundWireframe extends Node implements RigidBodyWireframe
         TriMeshWireframe wireframe = null;
 
         // Assert the CollisionShape is of the appropiate type
-        assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
+//        assert shape instanceof ConvexShape : "Expecting CollisionShape to be a ConvexShape";
         if (shape instanceof ConvexShape) {
 	        // Create a wireframe for the Convex Shape
 	        wireframe = new ConvexWireframe( (ConvexShape) shape );
