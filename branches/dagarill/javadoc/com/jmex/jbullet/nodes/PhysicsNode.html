@@ -1,0 +1,1709 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+PhysicsNode
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PhysicsNode";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PhysicsNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.jmex.jbullet.nodes</FONT>
+<BR>
+Class PhysicsNode</H2>
+<PRE>
+java.lang.Object
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Spatial
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Node
+          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">com.jmex.jbullet.collision.CollisionObject</A>
+              <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.nodes.PhysicsNode</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable, java.io.Serializable</DD>
+</DL>
+<DL>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes">PhysicsVehicleNode</A></DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>PhysicsNode</B><DT>extends <A HREF="../../../../com/jmex/jbullet/collision/CollisionObject.html" title="class in com.jmex.jbullet.collision">CollisionObject</A></DL>
+</PRE>
+
+<P>
+<p>PhysicsNode - Basic jbullet-jme physics object</p>
+<P>
+
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../com/jmex/jbullet/PhysicsSpace.html" title="class in com.jmex.jbullet"><CODE>PhysicsSpace</CODE></A>, 
+<A HREF="../../../../serialized-form.html#com.jmex.jbullet.nodes.PhysicsNode">Serialized Form</A></DL>
+<HR>
+
+<P>
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+
+<A NAME="nested_class_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Nested Class Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="nested_classes_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Nested classes/interfaces inherited from class com.jme.scene.Spatial</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>com.jme.scene.Spatial.CullHint, com.jme.scene.Spatial.LightCombineMode, com.jme.scene.Spatial.NormalsMode, com.jme.scene.Spatial.TextureCombineMode</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class com.jme.scene.Spatial</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>LOCKED_BOUNDS, LOCKED_BRANCH, LOCKED_MESH_DATA, LOCKED_NONE, LOCKED_SHADOWS, LOCKED_TRANSFORMS, queueDistance</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode()">PhysicsNode</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
+ creates the standard sphere collision shape for that PhysicsNode<br></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+            <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape, float)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+            <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+            float&nbsp;mass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br></TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+            int&nbsp;collisionShapeType)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int, float)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
+            int&nbsp;collisionShapeType,
+            float&nbsp;mass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#activate()">activate</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reactivates this PhysicsNode when it has been deactivated because it was not moving</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyCentralForce(com.jme.math.Vector3f)">applyCentralForce</A></B>(com.jme.math.Vector3f&nbsp;force)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean)">applyContinuousForce</A></B>(boolean&nbsp;apply)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use to enable/disable continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f)">applyContinuousForce</A></B>(boolean&nbsp;apply,
+                     com.jme.math.Vector3f&nbsp;force)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousForce(boolean, com.jme.math.Vector3f, com.jme.math.Vector3f)">applyContinuousForce</A></B>(boolean&nbsp;apply,
+                     com.jme.math.Vector3f&nbsp;force,
+                     com.jme.math.Vector3f&nbsp;location)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean)">applyContinuousTorque</A></B>(boolean&nbsp;apply)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;use to enable/disable continuous torque</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyContinuousTorque(boolean, com.jme.math.Vector3f)">applyContinuousTorque</A></B>(boolean&nbsp;apply,
+                      com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a continuous torque to this PhysicsNode.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyForce(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyForce</A></B>(com.jme.math.Vector3f&nbsp;force,
+           com.jme.math.Vector3f&nbsp;location)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)">applyImpulse</A></B>(com.jme.math.Vector3f&nbsp;vec,
+             com.jme.math.Vector3f&nbsp;vec2)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply an impulse to the PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyTorque(com.jme.math.Vector3f)">applyTorque</A></B>(com.jme.math.Vector3f&nbsp;torque)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a torque to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousTorque to apply continuous torque</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#applyTorqueImpulse(com.jme.math.Vector3f)">applyTorqueImpulse</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply a toque impulse to the PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#attachChild(com.jme.scene.Spatial)">attachChild</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;int</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#attachChildAt(com.jme.scene.Spatial, int)">attachChildAt</A></B>(com.jme.scene.Spatial&nbsp;child,
+              int&nbsp;index)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#clearForces()">clearForces</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape()">createCollisionShape</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the current BoundingVolume of this node.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A></B>(int&nbsp;type)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the BoundingVolume of this node,
+ if no BoundingVolume of the give type exists yet, it will be created.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#destroy()">destroy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destroys this PhysicsNode and removes it from memory</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity()">getAngularVelocity</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current angular velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getAngularVelocity(com.jme.math.Vector3f)">getAngularVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current angular velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getCollisionShape()">getCollisionShape</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForce()">getContinuousForce</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForce(com.jme.math.Vector3f)">getContinuousForce</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous force</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousForceLocation()">getContinuousForceLocation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous force location</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousTorque()">getContinuousTorque</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous torque</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getContinuousTorque(com.jme.math.Vector3f)">getContinuousTorque</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the currently applied continuous torque</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getFriction()">getFriction</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getGravity(com.jme.math.Vector3f)">getGravity</A></B>(com.jme.math.Vector3f&nbsp;gravity)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLinearVelocity()">getLinearVelocity</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current linear velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLinearVelocity(com.jme.math.Vector3f)">getLinearVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current linear velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Quaternion</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalRotation()">getLocalRotation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note that getLocalRotation().set() will not update the physics object position,
+ use setLocalRotation() instead!</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getLocalTranslation()">getLocalTranslation</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;note that getLocalTranslation().set() will not update the physics object position,
+ use setLocalTranslation() instead!</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getMass()">getMass</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;float</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getRestitution()">getRestitution</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;com.bulletphysics.dynamics.RigidBody</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getRigidBody()">getRigidBody</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used internally</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#isActive()">isActive</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;boolean</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#isKinematic()">isKinematic</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#lookAt(com.jme.math.Vector3f, com.jme.math.Vector3f)">lookAt</A></B>(com.jme.math.Vector3f&nbsp;position,
+       com.jme.math.Vector3f&nbsp;upVector)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#lookAt(com.jme.math.Vector3f, com.jme.math.Vector3f, boolean)">lookAt</A></B>(com.jme.math.Vector3f&nbsp;position,
+       com.jme.math.Vector3f&nbsp;upVector,
+       boolean&nbsp;takeParentInAccount)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;e)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#rotateUpTo(com.jme.math.Vector3f)">rotateUpTo</A></B>(com.jme.math.Vector3f&nbsp;newUp)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setAngularVelocity(com.jme.math.Vector3f)">setAngularVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the angular velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setCollisionShape(com.jmex.jbullet.collision.shapes.CollisionShape)">setCollisionShape</A></B>(<A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;collisionShape)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets a CollisionShape to be used for this PhysicsNode for reusing CollisionShapes</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setDamping(float, float)">setDamping</A></B>(float&nbsp;linearDamping,
+           float&nbsp;angularDamping)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setFriction(float)">setFriction</A></B>(float&nbsp;friction)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the friction of this physics object</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setGravity(com.jme.math.Vector3f)">setGravity</A></B>(com.jme.math.Vector3f&nbsp;gravity)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the gravity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setKinematic(boolean)">setKinematic</A></B>(boolean&nbsp;kinematic)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLinearVelocity(com.jme.math.Vector3f)">setLinearVelocity</A></B>(com.jme.math.Vector3f&nbsp;vec)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the linear velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Matrix3f)">setLocalRotation</A></B>(com.jme.math.Matrix3f&nbsp;arg0)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalRotation(com.jme.math.Quaternion)">setLocalRotation</A></B>(com.jme.math.Quaternion&nbsp;arg0)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalScale(float)">setLocalScale</A></B>(float&nbsp;localScale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalScale(com.jme.math.Vector3f)">setLocalScale</A></B>(com.jme.math.Vector3f&nbsp;localScale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(float, float, float)">setLocalTranslation</A></B>(float&nbsp;x,
+                    float&nbsp;y,
+                    float&nbsp;z)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local translation of this node</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setLocalTranslation(com.jme.math.Vector3f)">setLocalTranslation</A></B>(com.jme.math.Vector3f&nbsp;arg0)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the local translation of this node</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setMass(float)">setMass</A></B>(float&nbsp;mass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the mass of this PhysicsNode, objects with mass=0 are static.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setRestitution(float)">setRestitution</A></B>(float&nbsp;restitution)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the "bouncyness" of the PhysicsNode
+ best performance if restitution=0</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#setSleepingThresholds(float, float)">setSleepingThresholds</A></B>(float&nbsp;linear,
+                      float&nbsp;angular)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sets the sleeping thresholds, these define when the object gets deactivated
+ to save ressources.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;e)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Node"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Node</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, setCollisionMask, setCollisionMask, setModelBound, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>equals, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.util.export.Savable"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface com.jme.util.export.Savable</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>getClassTag</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="PhysicsNode()"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>()</PRE>
+<DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
+<DL>
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
+ creates the standard sphere collision shape for that PhysicsNode<br>
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - </DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+<FONT SIZE="-1">@Deprecated
+</FONT>public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                              int&nbsp;collisionShapeType)</PRE>
+<DL>
+<DD><B>Deprecated.</B>&nbsp;
+<P>
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
+ also creates a collision shape of the given type for that PhysicsNode
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - </DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+<FONT SIZE="-1">@Deprecated
+</FONT>public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                              int&nbsp;collisionShapeType,
+                              float&nbsp;mass)</PRE>
+<DL>
+<DD><B>Deprecated.</B>&nbsp;
+<P>
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
+ also creates a collision shape of the given type for that PhysicsNode and
+ assigns the given mass.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - <DD><CODE>mass</CODE> - </DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                   <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape)</PRE>
+<DL>
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br>
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>shape</CODE> - </DL>
+</DL>
+<HR>
+
+<A NAME="PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape, float)"><!-- --></A><H3>
+PhysicsNode</H3>
+<PRE>
+public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
+                   <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+                   float&nbsp;mass)</PRE>
+<DL>
+<DD>creates a new PhysicsNode with the supplied child node or geometry and
+ uses the supplied collision shape for that PhysicsNode<br>
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>shape</CODE> - </DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="attachChild(com.jme.scene.Spatial)"><!-- --></A><H3>
+attachChild</H3>
+<PRE>
+public int <B>attachChild</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>attachChild</CODE> in class <CODE>com.jme.scene.Node</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="attachChildAt(com.jme.scene.Spatial, int)"><!-- --></A><H3>
+attachChildAt</H3>
+<PRE>
+public int <B>attachChildAt</B>(com.jme.scene.Spatial&nbsp;child,
+                         int&nbsp;index)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>attachChildAt</CODE> in class <CODE>com.jme.scene.Node</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLocalTranslation()"><!-- --></A><H3>
+getLocalTranslation</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getLocalTranslation</B>()</PRE>
+<DL>
+<DD>note that getLocalTranslation().set() will not update the physics object position,
+ use setLocalTranslation() instead!
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>getLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalTranslation(com.jme.math.Vector3f)"><!-- --></A><H3>
+setLocalTranslation</H3>
+<PRE>
+public void <B>setLocalTranslation</B>(com.jme.math.Vector3f&nbsp;arg0)</PRE>
+<DL>
+<DD>sets the local translation of this node
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalTranslation(float, float, float)"><!-- --></A><H3>
+setLocalTranslation</H3>
+<PRE>
+public void <B>setLocalTranslation</B>(float&nbsp;x,
+                                float&nbsp;y,
+                                float&nbsp;z)</PRE>
+<DL>
+<DD>sets the local translation of this node
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalTranslation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLocalRotation()"><!-- --></A><H3>
+getLocalRotation</H3>
+<PRE>
+public com.jme.math.Quaternion <B>getLocalRotation</B>()</PRE>
+<DL>
+<DD>note that getLocalRotation().set() will not update the physics object position,
+ use setLocalRotation() instead!
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>getLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalRotation(com.jme.math.Matrix3f)"><!-- --></A><H3>
+setLocalRotation</H3>
+<PRE>
+public void <B>setLocalRotation</B>(com.jme.math.Matrix3f&nbsp;arg0)</PRE>
+<DL>
+<DD>sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalRotation(com.jme.math.Quaternion)"><!-- --></A><H3>
+setLocalRotation</H3>
+<PRE>
+public void <B>setLocalRotation</B>(com.jme.math.Quaternion&nbsp;arg0)</PRE>
+<DL>
+<DD>sets the local rotation of this node, the physics object will be updated accordingly
+ in the next global physics update tick
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalRotation</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>arg0</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="lookAt(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+lookAt</H3>
+<PRE>
+public void <B>lookAt</B>(com.jme.math.Vector3f&nbsp;position,
+                   com.jme.math.Vector3f&nbsp;upVector)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>lookAt</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="lookAt(com.jme.math.Vector3f, com.jme.math.Vector3f, boolean)"><!-- --></A><H3>
+lookAt</H3>
+<PRE>
+public void <B>lookAt</B>(com.jme.math.Vector3f&nbsp;position,
+                   com.jme.math.Vector3f&nbsp;upVector,
+                   boolean&nbsp;takeParentInAccount)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>lookAt</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="rotateUpTo(com.jme.math.Vector3f)"><!-- --></A><H3>
+rotateUpTo</H3>
+<PRE>
+public void <B>rotateUpTo</B>(com.jme.math.Vector3f&nbsp;newUp)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>rotateUpTo</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalScale(float)"><!-- --></A><H3>
+setLocalScale</H3>
+<PRE>
+public void <B>setLocalScale</B>(float&nbsp;localScale)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalScale</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLocalScale(com.jme.math.Vector3f)"><!-- --></A><H3>
+setLocalScale</H3>
+<PRE>
+public void <B>setLocalScale</B>(com.jme.math.Vector3f&nbsp;localScale)</PRE>
+<DL>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE>setLocalScale</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setKinematic(boolean)"><!-- --></A><H3>
+setKinematic</H3>
+<PRE>
+public void <B>setKinematic</B>(boolean&nbsp;kinematic)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isKinematic()"><!-- --></A><H3>
+isKinematic</H3>
+<PRE>
+public boolean <B>isKinematic</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getMass()"><!-- --></A><H3>
+getMass</H3>
+<PRE>
+public float <B>getMass</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setMass(float)"><!-- --></A><H3>
+setMass</H3>
+<PRE>
+public void <B>setMass</B>(float&nbsp;mass)</PRE>
+<DL>
+<DD>sets the mass of this PhysicsNode, objects with mass=0 are static.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>mass</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getGravity(com.jme.math.Vector3f)"><!-- --></A><H3>
+getGravity</H3>
+<PRE>
+public void <B>getGravity</B>(com.jme.math.Vector3f&nbsp;gravity)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setGravity(com.jme.math.Vector3f)"><!-- --></A><H3>
+setGravity</H3>
+<PRE>
+public void <B>setGravity</B>(com.jme.math.Vector3f&nbsp;gravity)</PRE>
+<DL>
+<DD>set the gravity of this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>gravity</CODE> - the gravity vector to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getFriction()"><!-- --></A><H3>
+getFriction</H3>
+<PRE>
+public float <B>getFriction</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setFriction(float)"><!-- --></A><H3>
+setFriction</H3>
+<PRE>
+public void <B>setFriction</B>(float&nbsp;friction)</PRE>
+<DL>
+<DD>sets the friction of this physics object
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>friction</CODE> - the friction of this physics object</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setDamping(float, float)"><!-- --></A><H3>
+setDamping</H3>
+<PRE>
+public void <B>setDamping</B>(float&nbsp;linearDamping,
+                       float&nbsp;angularDamping)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRestitution()"><!-- --></A><H3>
+getRestitution</H3>
+<PRE>
+public float <B>getRestitution</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setRestitution(float)"><!-- --></A><H3>
+setRestitution</H3>
+<PRE>
+public void <B>setRestitution</B>(float&nbsp;restitution)</PRE>
+<DL>
+<DD>the "bouncyness" of the PhysicsNode
+ best performance if restitution=0
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>restitution</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getAngularVelocity()"><!-- --></A><H3>
+getAngularVelocity</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getAngularVelocity</B>()</PRE>
+<DL>
+<DD>get the current angular velocity of this PhysicsNode
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the current linear velocity</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getAngularVelocity(com.jme.math.Vector3f)"><!-- --></A><H3>
+getAngularVelocity</H3>
+<PRE>
+public void <B>getAngularVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>get the current angular velocity of this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the vector to store the velocity in</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setAngularVelocity(com.jme.math.Vector3f)"><!-- --></A><H3>
+setAngularVelocity</H3>
+<PRE>
+public void <B>setAngularVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>sets the angular velocity of this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the angular velocity of this PhysicsNode</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLinearVelocity()"><!-- --></A><H3>
+getLinearVelocity</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getLinearVelocity</B>()</PRE>
+<DL>
+<DD>get the current linear velocity of this PhysicsNode
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the current linear velocity</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getLinearVelocity(com.jme.math.Vector3f)"><!-- --></A><H3>
+getLinearVelocity</H3>
+<PRE>
+public void <B>getLinearVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>get the current linear velocity of this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the vector to store the velocity in</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setLinearVelocity(com.jme.math.Vector3f)"><!-- --></A><H3>
+setLinearVelocity</H3>
+<PRE>
+public void <B>setLinearVelocity</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>sets the linear velocity of this PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the linear velocity of this PhysicsNode</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContinuousForce(com.jme.math.Vector3f)"><!-- --></A><H3>
+getContinuousForce</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousForce</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>get the currently applied continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the vector to store the continuous force in
+<DT><B>Returns:</B><DD>null if no force is applied</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContinuousForce()"><!-- --></A><H3>
+getContinuousForce</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousForce</B>()</PRE>
+<DL>
+<DD>get the currently applied continuous force
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>null if no force is applied</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContinuousForceLocation()"><!-- --></A><H3>
+getContinuousForceLocation</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousForceLocation</B>()</PRE>
+<DL>
+<DD>get the currently applied continuous force location
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>null if no force is applied</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousForce(boolean, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyContinuousForce</H3>
+<PRE>
+public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
+                                 com.jme.math.Vector3f&nbsp;force)</PRE>
+<DL>
+<DD>apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>force</CODE> - the vector of the force to apply</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousForce(boolean, com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyContinuousForce</H3>
+<PRE>
+public void <B>applyContinuousForce</B>(boolean&nbsp;apply,
+                                 com.jme.math.Vector3f&nbsp;force,
+                                 com.jme.math.Vector3f&nbsp;location)</PRE>
+<DL>
+<DD>apply a continuous force to this PhysicsNode, the force is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the force.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>force</CODE> - the offset of the force</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousForce(boolean)"><!-- --></A><H3>
+applyContinuousForce</H3>
+<PRE>
+public void <B>applyContinuousForce</B>(boolean&nbsp;apply)</PRE>
+<DL>
+<DD>use to enable/disable continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - set to false to disable</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContinuousTorque()"><!-- --></A><H3>
+getContinuousTorque</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousTorque</B>()</PRE>
+<DL>
+<DD>get the currently applied continuous torque
+<P>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>null if no torque is applied</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getContinuousTorque(com.jme.math.Vector3f)"><!-- --></A><H3>
+getContinuousTorque</H3>
+<PRE>
+public com.jme.math.Vector3f <B>getContinuousTorque</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>get the currently applied continuous torque
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - the vector to store the continuous torque in
+<DT><B>Returns:</B><DD>null if no torque is applied</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousTorque(boolean, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyContinuousTorque</H3>
+<PRE>
+public void <B>applyContinuousTorque</B>(boolean&nbsp;apply,
+                                  com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>apply a continuous torque to this PhysicsNode. The torque is updated automatically each
+ tick so you only need to set it once and then set it to false to stop applying
+ the torque.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - true if the force should be applied each physics tick<DD><CODE>vec</CODE> - the vector of the force to apply</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyContinuousTorque(boolean)"><!-- --></A><H3>
+applyContinuousTorque</H3>
+<PRE>
+public void <B>applyContinuousTorque</B>(boolean&nbsp;apply)</PRE>
+<DL>
+<DD>use to enable/disable continuous torque
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>apply</CODE> - set to false to disable</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyForce(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyForce</H3>
+<PRE>
+public void <B>applyForce</B>(com.jme.math.Vector3f&nbsp;force,
+                       com.jme.math.Vector3f&nbsp;location)</PRE>
+<DL>
+<DD>apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>force</CODE> - the force<DD><CODE>location</CODE> - the location of the force</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyCentralForce(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyCentralForce</H3>
+<PRE>
+public void <B>applyCentralForce</B>(com.jme.math.Vector3f&nbsp;force)</PRE>
+<DL>
+<DD>apply a force to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousForce to apply continuous force
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>force</CODE> - the force</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyTorque(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyTorque</H3>
+<PRE>
+public void <B>applyTorque</B>(com.jme.math.Vector3f&nbsp;torque)</PRE>
+<DL>
+<DD>apply a torque to the PhysicsNode, only applies force in the next physics tick,
+ use applyContinuousTorque to apply continuous torque
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>torque</CODE> - the torque</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyImpulse(com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
+applyImpulse</H3>
+<PRE>
+public void <B>applyImpulse</B>(com.jme.math.Vector3f&nbsp;vec,
+                         com.jme.math.Vector3f&nbsp;vec2)</PRE>
+<DL>
+<DD>apply an impulse to the PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - <DD><CODE>vec2</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="applyTorqueImpulse(com.jme.math.Vector3f)"><!-- --></A><H3>
+applyTorqueImpulse</H3>
+<PRE>
+public void <B>applyTorqueImpulse</B>(com.jme.math.Vector3f&nbsp;vec)</PRE>
+<DL>
+<DD>apply a toque impulse to the PhysicsNode
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>vec</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="clearForces()"><!-- --></A><H3>
+clearForces</H3>
+<PRE>
+public void <B>clearForces</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="createCollisionShape(int)"><!-- --></A><H3>
+createCollisionShape</H3>
+<PRE>
+public void <B>createCollisionShape</B>(int&nbsp;type)</PRE>
+<DL>
+<DD>creates a collisionShape from the BoundingVolume of this node,
+ if no BoundingVolume of the give type exists yet, it will be created.
+ Otherwise the current BoundingVolume will be used.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>type</CODE> - </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="createCollisionShape()"><!-- --></A><H3>
+createCollisionShape</H3>
+<PRE>
+public void <B>createCollisionShape</B>()</PRE>
+<DL>
+<DD>creates a collisionShape from the current BoundingVolume of this node.
+ If no BoundingVolume of a proper type (box, sphere, cyliner, capsule) exists,
+ a sphere will be created.
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getCollisionShape()"><!-- --></A><H3>
+getCollisionShape</H3>
+<PRE>
+public <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A> <B>getCollisionShape</B>()</PRE>
+<DL>
+<DD><DL>
+
+<DT><B>Returns:</B><DD>the CollisionShape of this PhysicsNode, to be able to reuse it with
+ other physics nodes (increases performance)</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setCollisionShape(com.jmex.jbullet.collision.shapes.CollisionShape)"><!-- --></A><H3>
+setCollisionShape</H3>
+<PRE>
+public void <B>setCollisionShape</B>(<A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;collisionShape)</PRE>
+<DL>
+<DD>sets a CollisionShape to be used for this PhysicsNode for reusing CollisionShapes
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>collisionShape</CODE> - the CollisionShape to set</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="activate()"><!-- --></A><H3>
+activate</H3>
+<PRE>
+public void <B>activate</B>()</PRE>
+<DL>
+<DD>reactivates this PhysicsNode when it has been deactivated because it was not moving
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="isActive()"><!-- --></A><H3>
+isActive</H3>
+<PRE>
+public boolean <B>isActive</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setSleepingThresholds(float, float)"><!-- --></A><H3>
+setSleepingThresholds</H3>
+<PRE>
+public void <B>setSleepingThresholds</B>(float&nbsp;linear,
+                                  float&nbsp;angular)</PRE>
+<DL>
+<DD>sets the sleeping thresholds, these define when the object gets deactivated
+ to save ressources. Low values keep the object active when it barely moves
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>linear</CODE> - the linear sleeping threshold<DD><CODE>angular</CODE> - the angular sleeping threshold</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getRigidBody()"><!-- --></A><H3>
+getRigidBody</H3>
+<PRE>
+public com.bulletphysics.dynamics.RigidBody <B>getRigidBody</B>()</PRE>
+<DL>
+<DD>used internally
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="destroy()"><!-- --></A><H3>
+destroy</H3>
+<PRE>
+public void <B>destroy</B>()</PRE>
+<DL>
+<DD>destroys this PhysicsNode and removes it from memory
+<P>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;e)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE>write</CODE> in class <CODE>com.jme.scene.Node</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;e)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE>read</CODE> in class <CODE>com.jme.scene.Node</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsNode.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsVehicleNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PhysicsNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.Spatial">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Spatial">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>
