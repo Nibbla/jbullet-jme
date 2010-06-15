@@ -70,7 +70,18 @@ public class CompoundWireframe extends Node implements RigidBodyWireframe
      */
     public CompoundWireframe( CompoundShape compound )
     {
-        // Get the convex children that comprise the compound shape
+        processCompoundShape(compound);
+        updateGeometricState( 0f, true );
+        setModelBound( new BoundingBox() );
+        updateModelBound();
+    }
+    
+    /**
+     * Process the CompoundShape to create the wireframe of their childs
+     * @param compound the compound to process
+     */
+    private void processCompoundShape(CompoundShape compound) {
+    	 // Get the convex children that comprise the compound shape
         List<CompoundShapeChild> childShapes = compound.getChildList();
         assert childShapes != null : "The list of children was null - cannot create a compound shape from nothng";
         assert childShapes.size() > 0 : "The list of children was empty - cannot create a compound shape from nothing";
@@ -82,30 +93,31 @@ public class CompoundWireframe extends Node implements RigidBodyWireframe
 
         for ( CompoundShapeChild child : childShapes )
         {
-            // Create the chid wireframe shape
-            wireframe = createChildWireframe( child.childShape );
-
-            // Initialise the translation / rotation           
-            Matrix3f matrix = child.transform.basis;
-            bulletRotation.fromRotationMatrix( matrix.m00, matrix.m01, matrix.m02,
-                    matrix.m10, matrix.m11, matrix.m12,
-                    matrix.m20, matrix.m21, matrix.m22 );
-            bulletTranslation = child.transform.origin;
-
-            wireframe.updateWorldTranslation( bulletTranslation );
-            wireframe.updateWorldRotation( bulletRotation );
-            wireframe.updateGeometricState( 0f, true );
-
-            // Store in the child listing
-            bulletObjects.put( child, wireframe );
-
-            // Store for rendering
-            attachChild( wireframe );
+        	if (child.childShape instanceof CompoundShape) {
+        		//Recursive call to this method with the childShape
+        		processCompoundShape( (CompoundShape) child.childShape);
+        	} else {
+	            // Create the chid wireframe shape
+	            wireframe = createChildWireframe( child.childShape );
+	
+	            // Initialise the translation / rotation           
+	            Matrix3f matrix = child.transform.basis;
+	            bulletRotation.fromRotationMatrix( matrix.m00, matrix.m01, matrix.m02,
+	                    matrix.m10, matrix.m11, matrix.m12,
+	                    matrix.m20, matrix.m21, matrix.m22 );
+	            bulletTranslation = child.transform.origin;
+	
+	            wireframe.updateWorldTranslation( bulletTranslation );
+	            wireframe.updateWorldRotation( bulletRotation );
+	            wireframe.updateGeometricState( 0f, true );
+	
+	            // Store in the child listing
+	            bulletObjects.put( child, wireframe );
+	
+	            // Store for rendering
+	            attachChild( wireframe );
+        	}
         }
-
-        updateGeometricState( 0f, true );
-        setModelBound( new BoundingBox() );
-        updateModelBound();
     }
 
     @Override
