@@ -245,6 +245,26 @@ public class PhysicsNode extends CollisionObject{
         }
     }
 
+    public void setCcdSweptSphereRadius(float radius){
+        rBody.setCcdSweptSphereRadius(radius);
+    }
+
+    public void setCcdMotionThreshold(float threshold){
+        rBody.setCcdMotionThreshold(threshold);
+    }
+
+    public float getCcdSweptSphereRadius(){
+        return rBody.getCcdSweptSphereRadius();
+    }
+
+    public float getCcdMotionThreshold(){
+        return rBody.getCcdMotionThreshold();
+    }
+
+    public float getCcdSquareMotionThreshold(){
+        return rBody.getCcdSquareMotionThreshold();
+    }
+
     @Override
     public int attachChild(Spatial child) {
         if(child instanceof PhysicsNode)
