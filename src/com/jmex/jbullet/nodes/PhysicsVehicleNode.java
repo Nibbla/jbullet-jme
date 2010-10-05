@@ -141,6 +141,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
             tuning=new VehicleTuning();
         rayCaster=new DefaultVehicleRaycaster(PhysicsSpace.getPhysicsSpace().getDynamicsWorld());
         vehicle=new RaycastVehicle(tuning, rBody, rayCaster);
+        vehicle.setCoordinateSystem(0, 1, 2);
         if(wheels!=null)
         for(WheelInfo wheel:wheels){
             wheel.setWheelInfo(vehicle.addWheel(Converter.convert(wheel.getLocation()), Converter.convert(wheel.getDirection()), Converter.convert(wheel.getAxle()),

@@ -47,9 +47,9 @@ import com.jmex.jbullet.util.Converter;
  */
 public class PhysicsCharacterNode extends PhysicsGhostNode {
 
-    private KinematicCharacterController character;
-    private float stepHeight;
-    private Vector3f walkDirection = new Vector3f();
+    protected KinematicCharacterController character;
+    protected float stepHeight;
+    protected Vector3f walkDirection = new Vector3f();
 
     @Deprecated
     public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
