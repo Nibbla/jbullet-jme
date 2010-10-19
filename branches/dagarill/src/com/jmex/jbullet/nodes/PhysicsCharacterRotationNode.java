@@ -61,7 +61,7 @@ import com.jmex.jbullet.collision.shapes.CollisionShape;
  * </p>
  * 
  * <p>
- * <b>Important</b>: Dont allow repeats in your Keyboard controller for handle
+ * <b>Important</b>: Don't allow repeats in your Keyboard controller for handle
  * this actions, except when the default rotation mode has been changed, in this
  * case, allow repeats only for <code>turnLeft()</code> and
  * </code>turnRight()</code> actions methods.
@@ -72,8 +72,6 @@ import com.jmex.jbullet.collision.shapes.CollisionShape;
  */
 public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 
-	/** The associated Spatial, for make the rotations. */
-	protected Spatial spatial;
 	/** The direction vector. */
 	private final Vector3f walkDirection = new Vector3f();
 	/**
@@ -83,6 +81,24 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	private boolean rotationEnabled = false;
 	/** The default rotation speed when the default rotation mode changes. */
 	private float rotationSpeed = 0.1f;
+	
+	/** Amount of rotation when user turn left.*/
+	private Quaternion rotationAmountLeft = null;
+	/** Amount of rotation when user turn right.*/
+	private Quaternion rotationAmountRight = null;
+	/** Left direction vector for absolute mode rotations.*/
+	private static final Vector3f TURN_LEFT = new Vector3f(-.1f, 0, 0);
+	/** Right direction vector for absolute mode rotations.*/
+	private static final Vector3f TURN_RIGHT = new Vector3f(.1f, 0, 0);
+	/** Forward direction vector for absolute mode rotations.*/
+	private static final Vector3f MOVE_FORWARD = new Vector3f(0, 0, -.1f);
+	/** Backward direction vector for absolute mode rotations.*/
+	private static final Vector3f MOVE_BACKWARD = new Vector3f(0, 0, .1f);
+	
+	/** Aux vector for optimize the walkDirection call when default rotation mode change.*/
+	private Vector3f walkDirectionAux = null;
+	/** Aux quaternion for optimize the rotation of spatial in the default rotation mode.*/
+	private Quaternion rotationAux = new Quaternion();
 
 	/**
 	 * Build the object
@@ -96,7 +112,6 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	 */
 	public PhysicsCharacterRotationNode(Spatial spat, CollisionShape shape, float stepHeight) {
 		super(spat, shape, stepHeight);
-		this.spatial = spat;
 	}
 
 	/**
@@ -109,10 +124,10 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	public void turnLeft(boolean active) {
 		if (rotationEnabled) {
 			if (active) {
-				spatial.getLocalRotation().multLocal(new Quaternion().fromAngleAxis(rotationSpeed, Vector3f.UNIT_Y));
+				setLocalRotation(getLocalRotation().mult(rotationAmountLeft));
 			}
 		} else {
-			final Vector3f vector = active ? new Vector3f(.1f, 0, 0) : new Vector3f(-.1f, 0, 0);
+			final Vector3f vector = active ? TURN_LEFT : TURN_RIGHT;
 			walkDirection.addLocal(vector);
 		}
 		setWalkDirection(walkDirection);
@@ -128,10 +143,10 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	public void turnRight(boolean active) {
 		if (rotationEnabled) {
 			if (active) {
-				spatial.getLocalRotation().multLocal(new Quaternion().fromAngleAxis(-rotationSpeed, Vector3f.UNIT_Y));
+				setLocalRotation(getLocalRotation().mult(rotationAmountRight));
 			}
 		} else {
-			final Vector3f vector = active ? new Vector3f(-.1f, 0, 0) : new Vector3f(.1f, 0, 0);
+			final Vector3f vector = active ? TURN_RIGHT : TURN_LEFT;
 			walkDirection.addLocal(vector);
 		}
 		setWalkDirection(walkDirection);
@@ -146,7 +161,7 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	 *            is the action key pressed?
 	 */
 	public void moveForward(boolean active) {
-		final Vector3f vector = active ? new Vector3f(0, 0, .1f) : new Vector3f(0, 0, -.1f);
+		final Vector3f vector = active ? MOVE_FORWARD : MOVE_BACKWARD;
 		walkDirection.addLocal(vector);
 		setWalkDirection(walkDirection);
 	}
@@ -160,7 +175,7 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	 *            is the action key pressed?
 	 */
 	public void moveBackward(boolean active) {
-		final Vector3f vector = active ? new Vector3f(0, 0, -.1f) : new Vector3f(0, 0, .1f);
+		final Vector3f vector = active ? MOVE_BACKWARD : MOVE_FORWARD;
 		walkDirection.addLocal(vector);
 		setWalkDirection(walkDirection);
 	}
@@ -168,7 +183,7 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	@Override
 	public void setWalkDirection(Vector3f vec) {
 		if (rotationEnabled) {
-			super.setWalkDirection(spatial.getLocalRotation().mult(vec));
+			super.setWalkDirection(getLocalRotation().mult(vec, walkDirectionAux).negate());
 		} else {
 			super.setWalkDirection(vec);
 		}
@@ -177,7 +192,7 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 			if (vec.x < 0) {
 				direction = -1;
 			}
-			spatial.setLocalRotation(new Quaternion().fromAngles(0, vec.normalize().angleBetween(Vector3f.UNIT_Z)
+			setLocalRotation(rotationAux.fromAngles(0, vec.normalize().angleBetween(Vector3f.UNIT_Z)
 					* direction, 0));
 		}
 	}
@@ -190,6 +205,9 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	 */
 	public void setRotationEnabled(boolean enableRotation) {
 		this.rotationEnabled = enableRotation;
+		if (enableRotation) {
+			setRotationSpeed(rotationSpeed);
+		}
 	}
 
 	/**
@@ -202,5 +220,21 @@ public class PhysicsCharacterRotationNode extends PhysicsCharacterNode {
 	 */
 	public void setRotationSpeed(float rotationSpeed) {
 		this.rotationSpeed = rotationSpeed;
+		
+		if (rotationAmountLeft == null) {
+			rotationAmountLeft = new Quaternion().fromAngleNormalAxis(rotationSpeed, Vector3f.UNIT_Y);
+		} else {
+			rotationAmountLeft.fromAngleNormalAxis(rotationSpeed, Vector3f.UNIT_Y);
+		}
+		
+		if (rotationAmountRight == null) {
+			rotationAmountRight = new Quaternion().fromAngleNormalAxis(-rotationSpeed, Vector3f.UNIT_Y);
+		} else {
+			rotationAmountRight.fromAngleNormalAxis(-rotationSpeed, Vector3f.UNIT_Y);
+		}
+		
+		if (walkDirectionAux == null) {
+			walkDirectionAux = new Vector3f();
+		}
 	}
 }
