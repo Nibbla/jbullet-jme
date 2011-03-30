@@ -47,6 +47,9 @@ import javax.vecmath.Vector3f;
  */
 public class ConcaveWireframe extends TriMeshWireframe implements RigidBodyWireframe
 {
+    /** Serialisation ID*/
+    public static final long serialVersionUID = 1l;
+
     /** The maximum corner for the aabb used for triangles to include in ConcaveShape processing.*/
     private static final Vector3f aabbMax = new Vector3f( 1e30f, 1e30f, 1e30f );
 
@@ -94,7 +97,7 @@ public class ConcaveWireframe extends TriMeshWireframe implements RigidBodyWiref
  *
  * @author CJ Hare
  */
-class BufferedTriangleCallback implements TriangleCallback
+class BufferedTriangleCallback extends TriangleCallback
 {
     private ArrayList<Vector3f> vertices;
 
@@ -135,4 +138,3 @@ class BufferedTriangleCallback implements TriangleCallback
         return verticesBuffer;
     }
 }
-
