@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+ConcaveWireframe
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="ConcaveWireframe";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ConcaveWireframe.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/CompoundWireframe.html" title="class in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/ConvexWireframe.html" title="class in com.jmex.jbullet.debug"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?com/jmex/jbullet/debug/ConcaveWireframe.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ConcaveWireframe.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.TriMesh">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Geometry">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.jmex.jbullet.debug</FONT>
+<BR>
+Class ConcaveWireframe</H2>
+<PRE>
+java.lang.Object
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Spatial
+      <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.Geometry
+          <IMG SRC="../../../../resources/inherit.gif" ALT="extended by ">com.jme.scene.TriMesh
+              <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/debug/TriMeshWireframe.html" title="class in com.jmex.jbullet.debug">com.jmex.jbullet.debug.TriMeshWireframe</A>
+                  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.debug.ConcaveWireframe</B>
+</PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable, <A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html" title="interface in com.jmex.jbullet.debug">RigidBodyWireframe</A>, java.io.Serializable</DD>
+</DL>
+<HR>
+<DL>
+<DT><PRE>public class <B>ConcaveWireframe</B><DT>extends <A HREF="../../../../com/jmex/jbullet/debug/TriMeshWireframe.html" title="class in com.jmex.jbullet.debug">TriMeshWireframe</A><DT>implements <A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html" title="interface in com.jmex.jbullet.debug">RigidBodyWireframe</A></DL>
+</PRE>
+
+<P>
+The rigid body wireframe for a concave shape.
+<P>
+
+<P>
+<DL>
+<DT><B>See Also:</B><DD><A HREF="../../../../serialized-form.html#com.jmex.jbullet.debug.ConcaveWireframe">Serialized Form</A></DL>
+<HR>
+
+<P>
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+
+<A NAME="nested_class_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Nested Class Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="nested_classes_inherited_from_class_com.jme.scene.TriMesh"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Nested classes/interfaces inherited from class com.jme.scene.TriMesh</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>com.jme.scene.TriMesh.Mode</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<A NAME="nested_classes_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Nested classes/interfaces inherited from class com.jme.scene.Spatial</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>com.jme.scene.Spatial.CullHint, com.jme.scene.Spatial.LightCombineMode, com.jme.scene.Spatial.NormalsMode, com.jme.scene.Spatial.TextureCombineMode</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- =========== FIELD SUMMARY =========== -->
+
+<A NAME="field_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Field Summary</B></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_com.jme.scene.Geometry"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class com.jme.scene.Geometry</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>states</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="fields_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Fields inherited from class com.jme.scene.Spatial</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>LOCKED_BOUNDS, LOCKED_BRANCH, LOCKED_MESH_DATA, LOCKED_NONE, LOCKED_SHADOWS, LOCKED_TRANSFORMS, queueDistance</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+<A NAME="constructor_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/ConcaveWireframe.html#ConcaveWireframe(com.bulletphysics.collision.shapes.ConcaveShape)">ConcaveWireframe</A></B>(com.bulletphysics.collision.shapes.ConcaveShape&nbsp;concaveShape)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Creates a wireframe object based on the given Concave Shape.</TD>
+</TR>
+</TABLE>
+&nbsp;
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/ConcaveWireframe.html#render(com.jme.renderer.Renderer)">render</A></B>(com.jme.renderer.Renderer&nbsp;renderer)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure that frustum culling test is performed prior to rendering.</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.debug.TriMeshWireframe"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.debug.<A HREF="../../../../com/jmex/jbullet/debug/TriMeshWireframe.html" title="class in com.jmex.jbullet.debug">TriMeshWireframe</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/jmex/jbullet/debug/TriMeshWireframe.html#createRigidBodyWireframe(java.nio.FloatBuffer)">createRigidBodyWireframe</A>, <A HREF="../../../../com/jmex/jbullet/debug/TriMeshWireframe.html#updateWorldRotation(com.jme.math.Quaternion)">updateWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/debug/TriMeshWireframe.html#updateWorldTranslation(javax.vecmath.Vector3f)">updateWorldTranslation</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.TriMesh"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jme.scene.TriMesh</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>clearBuffers, draw, findCollisions, findTriangleCollision, findTrianglePick, getIndexBuffer, getMaxIndex, getMeshAsTriangles, getMeshAsTrianglesVertices, getMode, getTriangle, getTriangle, getTriangleCount, getTriangleIndices, hasCollision, hasTriangleCollision, hasTriangleCollision, randomPointOnTriangles, read, reconstruct, setIndexBuffer, setMode, setTriangleQuantity, write</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Geometry"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Geometry</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>addTextureCoordinates, addTextureCoordinates, clearTextureBuffers, copyTextureCoordinates, copyTextureCoordinates, findPick, getBinormalBuffer, getColorBuffer, getDefaultColor, getDisplayListID, getFogBuffer, getLightState, getModelBound, getNormalBuffer, getNumberOfUnits, getTangentBuffer, getTextureCoords, getTextureCoords, getVBOInfo, getVertexBuffer, getVertexCount, getWorldCoords, getWorldNormals, hasDirtyVertices, isCastsShadows, lockMeshes, postdraw, predraw, randomVertex, reconstruct, resizeTextureIds, rotateNormals, rotatePoints, scaleTextureCoordinates, scaleTextureCoordinates, setBinormalBuffer, setCastsShadows, setColorBuffer, setDefaultColor, setDisplayListID, setFogCoordBuffer, setHasDirtyVertices, setLightState, setModelBound, setNormalBuffer, setRandomColors, setSolidColor, setTangentBuffer, setTextureCoords, setTextureCoords, setTextureCoords, setVBOInfo, setVertexBuffer, setVertexCount, sortLights, translatePoints, translatePoints, unlockMeshes, updateModelBound, updateWorldBound</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalRotation, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocalTranslation, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBounds, lockBranch, lockMeshes, lockShadows, lockTransforms, lookAt, lookAt, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, rotateUpTo, setCollisionMask, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocalRotation, setLocalRotation, setLocalScale, setLocalScale, setLocalTranslation, setLocalTranslation, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBounds, unlockBranch, unlockMeshes, unlockShadows, unlockTransforms, updateGeometricState, updateRenderState, updateWorldData, updateWorldVectors, updateWorldVectors, worldToLocal</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>equals, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.debug.RigidBodyWireframe"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface com.jmex.jbullet.debug.<A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html" title="interface in com.jmex.jbullet.debug">RigidBodyWireframe</A></B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html#updateWorldRotation(com.jme.math.Quaternion)">updateWorldRotation</A>, <A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html#updateWorldTranslation(javax.vecmath.Vector3f)">updateWorldTranslation</A></CODE></TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_com.jme.util.export.Savable"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from interface com.jme.util.export.Savable</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>getClassTag</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+<A NAME="constructor_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Constructor Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="ConcaveWireframe(com.bulletphysics.collision.shapes.ConcaveShape)"><!-- --></A><H3>
+ConcaveWireframe</H3>
+<PRE>
+public <B>ConcaveWireframe</B>(com.bulletphysics.collision.shapes.ConcaveShape&nbsp;concaveShape)</PRE>
+<DL>
+<DD>Creates a wireframe object based on the given Concave Shape.
+<P>
+<DL>
+<DT><B>Parameters:</B><DD><CODE>concaveShape</CODE> - the shape that'll determine what the wireframe object will look like.</DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="render(com.jme.renderer.Renderer)"><!-- --></A><H3>
+render</H3>
+<PRE>
+public void <B>render</B>(com.jme.renderer.Renderer&nbsp;renderer)</PRE>
+<DL>
+<DD><B>Description copied from interface: <CODE><A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html#render(com.jme.renderer.Renderer)">RigidBodyWireframe</A></CODE></B></DD>
+<DD>Ensure that frustum culling test is performed prior to rendering.
+<P>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html#render(com.jme.renderer.Renderer)">render</A></CODE> in interface <CODE><A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html" title="interface in com.jmex.jbullet.debug">RigidBodyWireframe</A></CODE></DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>renderer</CODE> - the jme renderer to draw the rigid body wireframe onto (if it's in view).</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/ConcaveWireframe.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/CompoundWireframe.html" title="class in com.jmex.jbullet.debug"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/debug/ConvexWireframe.html" title="class in com.jmex.jbullet.debug"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?com/jmex/jbullet/debug/ConcaveWireframe.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="ConcaveWireframe.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jme.scene.TriMesh">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_com.jme.scene.Geometry">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>
