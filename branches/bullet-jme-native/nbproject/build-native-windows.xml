@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : build-include.xml
+    Created on : 5. Januar 2010, 16:38
+    Author     : normenhansen
+    Description: target to build windows native library
+
+    TODO: check windows executable, help at http://ant-contrib.sourceforge.net/cpptasks/antdocs/CCTask.html
+-->
+
+<project basedir=".." default="default" name="bullet-jme-native-windows">
+
+    <target name="_nativelib_windows" if="isWindows">
+        <cc name="${native.windows.compiler}" warnings="severe" debug="${compile.debug}" link="shared" outfile="${build.native.dir}\${library.name}" objdir="${build.native.dir}">
+           <fileset dir="${source.dir}">
+               <include name="*.cpp">
+               </include>
+           </fileset>
+           <includepath path="${native.java.include}"/>
+           <includepath path="${native.java.include}\win32"/>
+           <includepath path="${native.bullet.include}"/>
+           <includepath path="${build.headers.dir}"/>
+           <!--compilerarg value="-m32"/-->
+           <linker name="${native.windows.compiler}">
+               <libset dir="${bullet.folder}\src\BulletMultiThreaded" libs="BulletMultiThreaded"/>
+               <libset dir="${bullet.folder}\src\BulletDynamics" libs="BulletDynamics"/>
+               <libset dir="${bullet.folder}\src\BulletCollision" libs="BulletCollision"/>
+               <libset dir="${bullet.folder}\src\LinearMath" libs="LinearMath"/>
+           </linker>
+        </cc>
+        <move file="${build.native.dir}\lib${library.name}.so" tofile="${build.native.dir}\${library.name}.dll" failonerror="false" verbose="false"/>
+        <copy file="${build.native.dir}\${library.name}.dll" tofile="${dist.dir}\${library.name}.dll" failonerror="true" verbose="true"/>
+    </target>
+
+</project>
