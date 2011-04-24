@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".." name="bullet_jme-IDE">
+    <!-- TODO: edit the following target according to your needs -->
+    <!-- (more info: http://www.netbeans.org/kb/articles/freeform-config.html#runsingle) -->
+    <target name="run-selected-file-in-src">
+        <fail unless="run.class">Must set property 'run.class'</fail>
+        <!--ant antfile="build.xml" inheritall="false" target="dist"/-->
+        <java classname="${run.class}" failonerror="true" fork="true">
+            <classpath>
+                <pathelement path="../jbullet-jme/lib/jMonkeyEngine/jme-audio.jar:../jbullet-jme/lib/jMonkeyEngine/jme-awt.jar:../jbullet-jme/lib/jMonkeyEngine/jme-collada.jar:../jbullet-jme/lib/jMonkeyEngine/jme-colladabinding.jar:../jbullet-jme/lib/jMonkeyEngine/jme-editors.jar:../jbullet-jme/lib/jMonkeyEngine/jme-effects.jar:../jbullet-jme/lib/jMonkeyEngine/jme-font.jar:../jbullet-jme/lib/jMonkeyEngine/jme-gamestates.jar:../jbullet-jme/lib/jMonkeyEngine/jme-model.jar:../jbullet-jme/lib/jMonkeyEngine/jme-ogrexml.jar:../jbullet-jme/lib/jMonkeyEngine/jme-scene.jar:../jbullet-jme/lib/jMonkeyEngine/jme-terrain.jar:../jbullet-jme/lib/jMonkeyEngine/jme.jar:../jbullet-jme/lib/jMonkeyEngine/jorbis-0.0.17.jar:../jbullet-jme/lib/LWJGL/AppleJavaExtensions.jar:../jbullet-jme/lib/LWJGL/jinput.jar:../jbullet-jme/lib/LWJGL/lwjgl-debug.jar:../jbullet-jme/lib/LWJGL/lwjgl.jar:../jbullet-jme/lib/LWJGL/lwjgl_test.jar:../jbullet-jme/lib/LWJGL/lwjgl_util.jar:../jbullet-jme/lib/LWJGL/lwjgl_util_applet.jar:../jbullet-jme/lib/LWJGL/lzma.jar"/>
+                <pathelement location="build"/>
+                <pathelement location="dist/bullet-jme.jar"/>
+                <pathelement location="dist/libbullet_jme.jnilib"/>
+            </classpath>
+        </java>
+    </target>
+</project>

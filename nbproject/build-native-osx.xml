@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : build-include.xml
+    Created on : 5. Januar 2010, 16:38
+    Author     : normenhansen
+    Description: target to build osx native library
+
+    MacOSX target, creates Universal intel/ppc 32/64bit binaries
+    Notes:
+    - Changed the included cpptasks to accept -arch flag to create universal binaries
+    - Although there is no 64bit ppc java from Apple, ppc64 is created as it is possible to install one
+-->
+
+<project basedir=".." default="default" name="bullet-jme-native-osx">
+
+    <target name="_nativelib_osx" if="isMac">
+        <cc name="${native.osx.compiler}" warnings="none" debug="${compile.debug}" link="shared" outfile="${build.native.dir}/${library.name}" objdir="${build.native.dir}">
+           <fileset dir="${source.dir}">
+               <include name="*.cpp">
+               </include>
+           </fileset>
+           <includepath path="${native.java.include}"/>
+           <includepath path="${native.bullet.include}"/>
+           <includepath path="${build.headers.dir}"/>
+           <compilerarg value="-syslibroot ${native.osx.syslibroot}"/>
+           <compilerarg value="-arch"/>
+           <compilerarg value="ppc"/>
+           <compilerarg value="-arch"/>
+           <compilerarg value="i386"/>
+           <compilerarg value="-arch"/>
+           <compilerarg value="ppc64"/>
+           <compilerarg value="-arch"/>
+           <compilerarg value="x86_64"/>
+           <linker name="${native.osx.compiler}">
+                <libset dir="${bullet.folder}/src/BulletMultiThreaded" libs="BulletMultiThreaded"/>
+                <libset dir="${bullet.folder}/src/BulletDynamics" libs="BulletDynamics"/>
+                <libset dir="${bullet.folder}/src/BulletCollision" libs="BulletCollision"/>
+                <libset dir="${bullet.folder}/src/LinearMath" libs="LinearMath"/>
+                <linkerarg value="-arch"/>
+                <linkerarg value="ppc"/>
+                <linkerarg value="-arch"/>
+                <linkerarg value="i386"/>
+                <linkerarg value="-arch"/>
+                <linkerarg value="ppc64"/>
+                <linkerarg value="-arch"/>
+                <linkerarg value="x86_64"/>
+           </linker>
+        </cc>
+    <copy file="${build.native.dir}/lib${library.name}.dylib" tofile="${dist.dir}/lib${library.name}.jnilib" failonerror="true" verbose="true"/>
+    </target>
+
+</project>

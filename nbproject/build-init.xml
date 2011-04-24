@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : build-include.xml
+    Created on : 5. Januar 2010, 16:38
+    Author     : normenhansen
+    Description: some initializing for the bullet-jme ant build process
+-->
+
+<project basedir=".." default="default" name="bullet-jme-init">
+    <!-- import properties file -->
+    <property file="build.properties"/>
+    <!-- condition for mac platform check -->
+    <condition property="isMac">
+        <and>
+            <os family="mac" />
+            <os family="unix" />
+        </and>
+    </condition>
+    <!-- condition for windows platform check -->
+    <condition property="isWindows">
+      <os family="windows" />
+    </condition>
+    <!-- condition for linux platform check -->
+    <condition property="isLinux">
+        <and>
+            <os family="unix"/>
+            <not>
+                <os family="mac"/>
+            </not>
+        </and>
+    </condition>
+    <!-- condition for x86_64 check -->
+    <condition property="isx86_64">
+      <os arch="x86_64" />
+    </condition>
+    <!-- load cpp compiler ant task -->
+    <taskdef resource="cpptasks.tasks" classpath="lib${file.separator}cpptasks${file.separator}cpptasks.jar"/>
+    <!-- create a filesets and paths from libraries -->
+    <fileset id="lib.jars" dir="${lib.dir}">
+        <include name="**/*.jar"/>
+    </fileset>
+    <fileset id="lib.jme.jars" dir="${lib.jme.dir}">
+        <include name="**/*.jar"/>
+    </fileset>
+    <fileset id="lib.lwjgl.jars" dir="${lib.lwjgl.dir}">
+        <include name="**/*.jar"/>
+    </fileset>
+    <path id="lib.path">
+        <fileset refid="lib.jars"/>
+        <fileset refid="lib.jme.jars"/>
+    </path>
+    <pathconvert property="lib.importpath">
+        <fileset refid="lib.jars"/>
+        <fileset refid="lib.jme.jars"/>
+        <fileset refid="lib.lwjgl.jars"/>
+    </pathconvert>
+</project>
