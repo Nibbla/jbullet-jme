@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <project name="bullet-jme" default="install" basedir=".">
+
     <!-- import init script -->
     <import file="nbproject/build-init.xml"/>
     
