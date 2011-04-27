@@ -10,9 +10,8 @@
 -->
 
 <project basedir=".." default="default" name="bullet-jme-native-windows">
-	
     <target name="_nativelib_windows" if="isWindows">
-        <cc name="${native.windows.compiler}" warnings="severe" debug="${compile.debug}" link="shared" outfile="${build.native.dir}\${library.name}" objdir="${build.native.dir}">
+        <cc name="${native.windows.compiler}" warnings="severe" debug="${compile.debug}" outtype="shared" outfile="${build.native.dir}\${library.name}" objdir="${build.native.dir}">
            <fileset dir="${source.dir}">
                <include name="*.cpp">
                </include>
@@ -23,10 +22,7 @@
            <includepath path="${build.headers.dir}"/>
            <!--compilerarg value="-m32"/-->
            <linker name="${native.windows.compiler}">
-               <libset dir="${bullet.folder}\src\BulletMultiThreaded" libs="BulletMultiThreaded"/>
-               <libset dir="${bullet.folder}\src\BulletDynamics" libs="BulletDynamics"/>
-               <libset dir="${bullet.folder}\src\BulletCollision" libs="BulletCollision"/>
-               <libset dir="${bullet.folder}\src\LinearMath" libs="LinearMath"/>
+               <libset dir="${bullet.folder}\lib" libs="BulletDynamics,BulletMultiThreaded,BulletCollision,LinearMath"/>
            </linker>
         </cc>
         <move file="${build.native.dir}\lib${library.name}.so" tofile="${build.native.dir}\${library.name}.dll" failonerror="false" verbose="false"/>
