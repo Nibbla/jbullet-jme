@@ -35,7 +35,7 @@ Requirements:
 - CMake: http://www.cmake.org/ (or via http://www.macports.org)
 
 Commands:
-> cd bullet-2.75
+> cd bullet-2.77
 > cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON \
               -DCMAKE_OSX_ARCHITECTURES='ppc;i386;ppc64;x86_64' \
               -DBUILD_EXTRAS=off -DBUILD_DEMOS=off -DCMAKE_BUILD_TYPE=Release
@@ -57,13 +57,15 @@ Building on WINDOWS (MinGW/GCC)
 -----------------------------------
 Requirements:
 - GNU C++ Compiler: http://www.mingw.org/
+                    http://mingw-w64.sourceforge.net/
 - CMake: http://www.cmake.org/
 
+- copy the GLUT32.dll from bullet into the MinGW/lib directory
+
 Commands:
-> cd bullet-2.75
-> cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON \
-              -DBUILD_EXTRAS=off -DBUILD_DEMOS=off -DCMAKE_BUILD_TYPE=Release
-> make
+> cd bullet-2.77
+> cmake . -G "MinGW Makefiles"
+> mingw32-make
 
 -----------------------------------
 Building bullet on LINUX
@@ -78,7 +80,7 @@ to compile correctly:
     SpuNarrowPhaseCollisionTask/SpuMinkowskiPenetrationDepthSolver.h
 
 Commands:
-> cd bullet-2.75
+> cd bullet-2.77
 > cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON \
               -DBUILD_EXTRAS=off -DBUILD_DEMOS=off -DCMAKE_BUILD_TYPE=Release
 > make
@@ -106,7 +108,7 @@ Requirements
 -----------------------------------
 Preparation
 -----------------------------------
-- copy/link bullet-2.75 folder into the same folder where the bullet-jme folder is:
+- copy/link bullet-2.77 folder into the same folder where the bullet-jme folder is:
 
 disk
  |
@@ -116,7 +118,7 @@ disk
     |
     +-bullet-jme
     |
-    +-bullet-2.75
+    +-bullet-2.77
 
 - You can alter options in the "bullet-jme/build.properties" file, such as the used bullet
   version, native compilation options etc. (see below)
@@ -169,5 +171,5 @@ the source in the Netbeans IDE.
 To have correct syntax highlighting in .cpp/.h files:
 
 - in Netbeans Settings -> C/C++ -> Code Assistance -> C++
-  - add bullet-2.75/src as include directories for c++
+  - add bullet-2.77/src as include directories for c++
   - add JAVA_HOME/include as include directories for c++
