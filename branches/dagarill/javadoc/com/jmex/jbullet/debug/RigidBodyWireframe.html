@@ -126,6 +126,14 @@ The behavioural contract for a wireframe of a Rigid Body shape from bullet physi
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html#updateActivityState(com.jmex.jbullet.debug.WireframeActivityState)">updateActivityState</A></B>(<A HREF="../../../../com/jmex/jbullet/debug/WireframeActivityState.html" title="enum in com.jmex.jbullet.debug">WireframeActivityState</A>&nbsp;bulletState)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updates the activity state, colour that the wireframe is rendered as.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/debug/RigidBodyWireframe.html#updateWorldRotation(com.jme.math.Quaternion)">updateWorldRotation</A></B>(com.jme.math.Quaternion&nbsp;bulletRotation)</CODE>
 
 <BR>
@@ -188,6 +196,19 @@ void <B>render</B>(com.jme.renderer.Renderer&nbsp;renderer)</PRE>
 <P>
 <DD><DL>
 <DT><B>Parameters:</B><DD><CODE>renderer</CODE> - the jme renderer to draw the rigid body wireframe onto (if it's in view).</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="updateActivityState(com.jmex.jbullet.debug.WireframeActivityState)"><!-- --></A><H3>
+updateActivityState</H3>
+<PRE>
+void <B>updateActivityState</B>(<A HREF="../../../../com/jmex/jbullet/debug/WireframeActivityState.html" title="enum in com.jmex.jbullet.debug">WireframeActivityState</A>&nbsp;bulletState)</PRE>
+<DL>
+<DD>Updates the activity state, colour that the wireframe is rendered as.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>bulletState</CODE> - the current state of the wireframe's paired broadphase rigid body.</DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

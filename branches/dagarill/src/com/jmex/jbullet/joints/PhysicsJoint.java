@@ -31,15 +31,22 @@
  */
 package com.jmex.jbullet.joints;
 
+import java.io.IOException;
+
 import com.bulletphysics.dynamics.constraintsolver.TypedConstraint;
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jme.util.export.Savable;
 import com.jmex.jbullet.nodes.PhysicsNode;
 
 /**
  * <p>PhysicsJoint - Basic jbullet-jme Phyiscs Joint</p>
  * @author normenhansen
  */
-public abstract class PhysicsJoint {
+public abstract class PhysicsJoint implements Savable {
     protected TypedConstraint constraint;
     protected PhysicsNode nodeA;
     protected PhysicsNode nodeB;
@@ -47,6 +54,10 @@ public abstract class PhysicsJoint {
     protected Vector3f pivotB;
     protected boolean collisionBetweenLinkedBodys=true;
 
+    public PhysicsJoint(){
+    	
+    }
+    
     /**
      * @param pivotA local translation of the joint connection point in node A
      * @param pivotB local translation of the joint connection point in node A
@@ -71,14 +82,6 @@ public abstract class PhysicsJoint {
     public boolean isCollisionBetweenLinkedBodys() {
         return collisionBetweenLinkedBodys;
     }
-
-    public PhysicsNode getNodeA() {
-        return nodeA;
-    }
-
-    public PhysicsNode getNodeB() {
-        return nodeB;
-    }
     
     /**
      * toggles collisions between linked bodys<br>
@@ -91,4 +94,38 @@ public abstract class PhysicsJoint {
 
     public void destroy(){
     }
+    
+   
+
+	public PhysicsNode getNodeA() {
+		return nodeA;
+	}
+
+	public PhysicsNode getNodeB() {
+		return nodeB;
+	}
+
+	@Override
+	public abstract Class getClassTag();
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		InputCapsule capsule = im.getCapsule(this);
+		nodeA = (PhysicsNode) capsule.readSavable("nodeA", null);
+		nodeB = (PhysicsNode) capsule.readSavable("nodeB", null);
+		pivotA = (Vector3f) capsule.readSavable("pivotA", null);
+		pivotB = (Vector3f) capsule.readSavable("pivotB", null);
+		collisionBetweenLinkedBodys =capsule.readBoolean("collisionBetweenLinkedBodys", true);
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		OutputCapsule capsule = ex.getCapsule(this);
+		capsule.write(nodeA, "nodeA", null);
+		capsule.write(nodeB, "nodeB", null);
+		capsule.write(pivotA, "pivotA", null);
+		capsule.write(pivotB, "pivotB", null);
+		capsule.write(collisionBetweenLinkedBodys, "collisionBetweenLinkedBodys", true);
+		
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 Normen Hansen
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -13,7 +13,7 @@
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
  *
- * * Neither the name of 'Normen Hansen' nor the names of its contributors
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
  *   may be used to endorse or promote products derived from this software
  *   without specific prior written permission.
  *
@@ -31,35 +31,43 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import java.io.IOException;
+
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jme.util.export.Savable;
 import com.jmex.jbullet.util.Converter;
 
 /**
  * This Object holds information about a jbullet CollisionShape to be able to reuse
  * CollisionShapes (as suggested in bullet manuals)
+ * TODO: add static methods to create shapes from nodes (like jbullet-jme constructor)
  * @author normenhansen
  */
-public abstract class CollisionShape {
-    protected int type=0;
+public abstract class CollisionShape implements Savable {
+
     protected com.bulletphysics.collision.shapes.CollisionShape cShape;
+    protected Vector3f scale = new Vector3f(1, 1, 1);
+    protected float margin = 0.0f;
 
     public CollisionShape() {
-    }
-
-    @Deprecated
-    public int getType() {
-        return type;
     }
 
     /**
      * used internally, not safe
      */
-    public void calculateLocalInertia(float mass, javax.vecmath.Vector3f vector){
-        if(cShape==null) return;
-        if(type!=ShapeTypes.MESH)
+    public void calculateLocalInertia(float mass, javax.vecmath.Vector3f vector) {
+        if (cShape == null) {
+            return;
+        }
+        if (this instanceof MeshCollisionShape) {
+            vector.set(0, 0, 0);
+        } else {
             cShape.calculateLocalInertia(mass, vector);
-        else
-            vector.set(0,0,0);
+        }
     }
 
     /**
@@ -76,22 +84,33 @@ public abstract class CollisionShape {
         this.cShape = cShape;
     }
 
-    public void setScale(Vector3f scale){
+    public void setScale(Vector3f scale) {
+        this.scale.set(scale);
         cShape.setLocalScaling(Converter.convert(scale));
     }
 
-    /**
-     * interface that contains all jbullet-jme collision shape types.
-     */
-    @Deprecated
-    public interface ShapeTypes{
-        public static final int SPHERE=0;
-        public static final int BOX=1;
-        public static final int CAPSULE=2;
-        public static final int CYLINDER=3;
-        public static final int MESH=4;
-        public static final int GIMPACT=5;
-        public static final int COMPOUND=10;
+    public float getMargin() {
+        return cShape.getMargin();
     }
 
+    public void setMargin(float margin) {
+        cShape.setMargin(margin);
+        this.margin = margin;
+    }
+
+    public Vector3f getScale() {
+        return scale;
+    }
+
+    public void write(JMEExporter ex) throws IOException {
+        OutputCapsule capsule = ex.getCapsule(this);
+        capsule.write(scale, "scale", new Vector3f(1, 1, 1));
+        capsule.write(getMargin(), "margin", 0.0f);
+    }
+
+    public void read(JMEImporter im) throws IOException {
+        InputCapsule capsule = im.getCapsule(this);
+        this.scale = (Vector3f) capsule.readSavable("scale", new Vector3f(1, 1, 1));
+        this.margin = capsule.readFloat("margin", 0.0f);
+    }
 }

@@ -95,11 +95,14 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.PhysicsJoint</B>
 </PRE>
 <DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
+<DL>
 <DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html" title="class in com.jmex.jbullet.joints">Physics6DofJoint</A>, <A HREF="../../../../com/jmex/jbullet/joints/PhysicsConeJoint.html" title="class in com.jmex.jbullet.joints">PhysicsConeJoint</A>, <A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html" title="class in com.jmex.jbullet.joints">PhysicsHingeJoint</A>, <A HREF="../../../../com/jmex/jbullet/joints/PhysicsPoint2PointJoint.html" title="class in com.jmex.jbullet.joints">PhysicsPoint2PointJoint</A>, <A HREF="../../../../com/jmex/jbullet/joints/PhysicsSliderJoint.html" title="class in com.jmex.jbullet.joints">PhysicsSliderJoint</A></DD>
 </DL>
 <HR>
 <DL>
-<DT><PRE>public abstract class <B>PhysicsJoint</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public abstract class <B>PhysicsJoint</B><DT>extends java.lang.Object<DT>implements com.jme.util.export.Savable</DL>
 </PRE>
 
 <P>
@@ -118,6 +121,12 @@ java.lang.Object
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#PhysicsJoint()">PhysicsJoint</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#PhysicsJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f)">PhysicsJoint</A></B>(<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>&nbsp;nodeA,
@@ -142,6 +151,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#destroy()">destroy</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>abstract &nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#getClassTag()">getClassTag</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -181,11 +198,27 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;im)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#setCollisionBetweenLinkedBodys(boolean)">setCollisionBetweenLinkedBodys</A></B>(boolean&nbsp;collisionBetweenLinkedBodys)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toggles collisions between linked bodys<br>
  joint has to be removed from and added to PhyiscsSpace to apply this.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;ex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -209,6 +242,14 @@ java.lang.Object
 <B>Constructor Detail</B></FONT></TH>
 </TR>
 </TABLE>
+
+<A NAME="PhysicsJoint()"><!-- --></A><H3>
+PhysicsJoint</H3>
+<PRE>
+public <B>PhysicsJoint</B>()</PRE>
+<DL>
+</DL>
+<HR>
 
 <A NAME="PhysicsJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
 PhysicsJoint</H3>
@@ -238,6 +279,9 @@ getConstraint</H3>
 public com.bulletphysics.dynamics.constraintsolver.TypedConstraint <B>getConstraint</B>()</PRE>
 <DL>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the constraint</DL>
 </DD>
@@ -250,8 +294,42 @@ isCollisionBetweenLinkedBodys</H3>
 public boolean <B>isCollisionBetweenLinkedBodys</B>()</PRE>
 <DL>
 <DD><DL>
+</DL>
+</DD>
+<DD><DL>
 
 <DT><B>Returns:</B><DD>the collisionBetweenLinkedBodys</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setCollisionBetweenLinkedBodys(boolean)"><!-- --></A><H3>
+setCollisionBetweenLinkedBodys</H3>
+<PRE>
+public void <B>setCollisionBetweenLinkedBodys</B>(boolean&nbsp;collisionBetweenLinkedBodys)</PRE>
+<DL>
+<DD>toggles collisions between linked bodys<br>
+ joint has to be removed from and added to PhyiscsSpace to apply this.
+<P>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>collisionBetweenLinkedBodys</CODE> - set to false to have no collisions between linked bodys</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="destroy()"><!-- --></A><H3>
+destroy</H3>
+<PRE>
+public void <B>destroy</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>
@@ -261,6 +339,9 @@ getNodeA</H3>
 <PRE>
 public <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A> <B>getNodeA</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -275,30 +356,56 @@ public <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="clas
 <DD><DL>
 </DL>
 </DD>
-</DL>
-<HR>
-
-<A NAME="setCollisionBetweenLinkedBodys(boolean)"><!-- --></A><H3>
-setCollisionBetweenLinkedBodys</H3>
-<PRE>
-public void <B>setCollisionBetweenLinkedBodys</B>(boolean&nbsp;collisionBetweenLinkedBodys)</PRE>
-<DL>
-<DD>toggles collisions between linked bodys<br>
- joint has to be removed from and added to PhyiscsSpace to apply this.
-<P>
 <DD><DL>
-<DT><B>Parameters:</B><DD><CODE>collisionBetweenLinkedBodys</CODE> - set to false to have no collisions between linked bodys</DL>
+</DL>
 </DD>
 </DL>
 <HR>
 
-<A NAME="destroy()"><!-- --></A><H3>
-destroy</H3>
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
 <PRE>
-public void <B>destroy</B>()</PRE>
+public abstract java.lang.Class <B>getClassTag</B>()</PRE>
 <DL>
 <DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
 </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;im)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;ex)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

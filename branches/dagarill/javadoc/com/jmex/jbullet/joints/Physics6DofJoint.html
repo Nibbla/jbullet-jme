@@ -95,6 +95,9 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">com.jmex.jbullet.joints.PhysicsJoint</A>
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.Physics6DofJoint</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
 <HR>
 <DL>
 <DT><PRE>public class <B>Physics6DofJoint</B><DT>extends <A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></DL>
@@ -123,6 +126,12 @@ java.lang.Object
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#Physics6DofJoint()">Physics6DofJoint</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#Physics6DofJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f, boolean)">Physics6DofJoint</A></B>(<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>&nbsp;nodeA,
@@ -158,6 +167,14 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#getClassTag()">getClassTag</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;<A HREF="../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html" title="class in com.jmex.jbullet.joints.motors">RotationalLimitMotor</A></CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#getRotationalLimitMotor(int)">getRotationalLimitMotor</A></B>(int&nbsp;index)</CODE>
 
@@ -173,6 +190,14 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returns the TranslationalLimitMotor of this 6DofJoint which allows
  manipulating the translational axis</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;im)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -202,6 +227,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#setLinearUpperLimit(com.jme.math.Vector3f)">setLinearUpperLimit</A></B>(com.jme.math.Vector3f&nbsp;vector)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/Physics6DofJoint.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;ex)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -237,6 +270,14 @@ java.lang.Object
 <B>Constructor Detail</B></FONT></TH>
 </TR>
 </TABLE>
+
+<A NAME="Physics6DofJoint()"><!-- --></A><H3>
+Physics6DofJoint</H3>
+<PRE>
+public <B>Physics6DofJoint</B>()</PRE>
+<DL>
+</DL>
+<HR>
 
 <A NAME="Physics6DofJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Matrix3f, com.jme.math.Matrix3f, boolean)"><!-- --></A><H3>
 Physics6DofJoint</H3>
@@ -343,6 +384,54 @@ public void <B>setAngularLowerLimit</B>(com.jme.math.Vector3f&nbsp;vector)</PRE>
 <DL>
 <DD><DL>
 </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#getClassTag()">getClassTag</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;im)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#read(com.jme.util.export.JMEImporter)">read</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;ex)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#write(com.jme.util.export.JMEExporter)">write</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

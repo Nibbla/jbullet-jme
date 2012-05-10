@@ -31,6 +31,9 @@
  */
 package com.jmex.jbullet.nodes;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.bulletphysics.collision.dispatch.CollisionObject;
 import com.bulletphysics.dynamics.vehicle.DefaultVehicleRaycaster;
 import com.bulletphysics.dynamics.vehicle.RaycastVehicle;
@@ -41,12 +44,11 @@ import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
 import com.jmex.jbullet.nodes.infos.WheelInfo;
 import com.jmex.jbullet.util.Converter;
-import java.util.LinkedList;
-import java.util.List;
+import com.jmex.jbullet.util.PhysicsUtil;
 
 
 /**
@@ -72,17 +74,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
     private List<WheelInfo> wheels=new LinkedList<WheelInfo>();
 
     public PhysicsVehicleNode(Spatial child){
-        super(child, ShapeTypes.BOX);
-    }
-
-    @Deprecated
-    public PhysicsVehicleNode(Spatial child, int collisionShapeType){
-        super(child, collisionShapeType);
-    }
-
-    @Deprecated
-    public PhysicsVehicleNode(Spatial child, int collisionShapeType, float mass){
-        super(child, collisionShapeType, mass);
+        super(child, PhysicsUtil.generateCollisionShape(child, BoxCollisionShape.class));
     }
 
     public PhysicsVehicleNode(Spatial child, CollisionShape shape){
@@ -94,7 +86,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
     }
 
     @Override
-    protected void createMotionState(){
+    protected MotionState createMotionState(){
         motionState = new MotionState(){
 
             public Transform getWorldTransform(Transform out) {
@@ -115,6 +107,7 @@ public class PhysicsVehicleNode extends PhysicsNode{
             }
 
         };
+        return motionState;
     }
 
     private void applyMotionState() {

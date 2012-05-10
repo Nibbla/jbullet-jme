@@ -1,6 +1,8 @@
 com.jmex.jbullet
+com.jmex.jbullet.binarymodules
 com.jmex.jbullet.collision
 com.jmex.jbullet.collision.shapes
+com.jmex.jbullet.collision.shapes.infos
 com.jmex.jbullet.debug
 com.jmex.jbullet.joints
 com.jmex.jbullet.joints.motors

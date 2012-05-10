@@ -31,51 +31,47 @@
  */
 package com.jmex.jbullet.nodes;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+
 import com.bulletphysics.collision.dispatch.CollisionFlags;
 import com.bulletphysics.dynamics.RigidBody;
 import com.bulletphysics.dynamics.RigidBodyConstructionInfo;
 import com.bulletphysics.linearmath.MotionState;
 import com.bulletphysics.linearmath.Transform;
-import com.jme.bounding.BoundingBox;
-import com.jme.bounding.BoundingCapsule;
-import com.jme.bounding.BoundingSphere;
-import com.jme.bounding.BoundingVolume;
 import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
 import com.jme.util.GameTaskQueue;
 import com.jme.util.GameTaskQueueManager;
+import com.jme.util.export.InputCapsule;
 import com.jme.util.export.JMEExporter;
 import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
-import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
-import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
-import com.jmex.jbullet.collision.shapes.GImpactCollisionShape;
-import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
-import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
+import com.jmex.jbullet.joints.PhysicsJoint;
 import com.jmex.jbullet.util.Converter;
-import java.io.IOException;
-import java.util.concurrent.Callable;
 
 /**
  * <p>PhysicsNode - Basic jbullet-jme physics object</p>
  * @see com.jmex.jbullet.PhysicsSpace
- * @author normenhansen
+ * @author normenhansen paugonzalez
+ * 
  */
 public class PhysicsNode extends CollisionObject{
     protected RigidBody rBody;
     private RigidBodyConstructionInfo constructionInfo;
-    protected MotionState motionState;
-    protected CollisionShape collisionShape;
-    protected float mass=1f;
-    private boolean kinematic=false;
+    protected MotionState motionState;//=new DefaultMotionState();
+    private CollisionShape collisionShape;
+    private float mass=1f;
 
     private boolean physicsEnabled=true;
+    private boolean kinematic=false;
 
     //TEMP VARIABLES
     private final Quaternion tmp_inverseWorldRotation = new Quaternion();
@@ -99,43 +95,14 @@ public class PhysicsNode extends CollisionObject{
     private boolean applyForce=false;
     private boolean applyTorque=false;
 
+    /**
+     * Internal use only. Use others constructors
+     * @param space
+     */
+   
+    
     public PhysicsNode(){
-    }
-
-    /**
-     * creates a new PhysicsNode with the supplied child node or geometry and
-     * creates the standard sphere collision shape for that PhysicsNode<br>
-     * @param child
-     */
-    public PhysicsNode(Spatial child){
-        this(child,ShapeTypes.SPHERE);
-    }
-
-    /**
-     * creates a new PhysicsNode with the supplied child node or geometry and
-     * also creates a collision shape of the given type for that PhysicsNode
-     * @param child
-     * @param collisionShapeType
-     */
-    @Deprecated
-    public PhysicsNode(Spatial child, int collisionShapeType){
-        this(child,collisionShapeType,1.0f);
-    }
-
-    /**
-     * creates a new PhysicsNode with the supplied child node or geometry and
-     * also creates a collision shape of the given type for that PhysicsNode and
-     * assigns the given mass.
-     * @param child
-     * @param collisionShapeType
-     * @param mass
-     */
-    @Deprecated
-    public PhysicsNode(Spatial child, int collisionShapeType, float mass){
-        this.attachChild(child);
-        this.mass=mass;
-        createMotionState();
-        createCollisionShape(collisionShapeType);
+        motionState=createMotionState();
     }
 
     /**
@@ -158,12 +125,12 @@ public class PhysicsNode extends CollisionObject{
         this.attachChild(child);
         this.mass=mass;
         this.collisionShape=shape;
-        createMotionState();
+        motionState=createMotionState();
         rebuildRigidBody();
     }
 
-    protected void createMotionState(){
-        motionState = new MotionState(){
+    protected MotionState createMotionState(){
+        return new MotionState(){
 
             public Transform getWorldTransform(Transform out) {
                 if(out==null)
@@ -226,6 +193,8 @@ public class PhysicsNode extends CollisionObject{
             PhysicsSpace.getPhysicsSpace().add(this);
         }
     }
+    
+    
 
     protected void preRebuild(){
         collisionShape.calculateLocalInertia(mass, localInertia);
@@ -243,40 +212,6 @@ public class PhysicsNode extends CollisionObject{
         else{
             rBody.setCollisionFlags( rBody.getCollisionFlags() & ~CollisionFlags.STATIC_OBJECT );
         }
-    }
-
-    public void setCcdSweptSphereRadius(float radius){
-        rBody.setCcdSweptSphereRadius(radius);
-    }
-
-    public void setCcdMotionThreshold(float threshold){
-        rBody.setCcdMotionThreshold(threshold);
-    }
-
-    public float getCcdSweptSphereRadius(){
-        return rBody.getCcdSweptSphereRadius();
-    }
-
-    public float getCcdMotionThreshold(){
-        return rBody.getCcdMotionThreshold();
-    }
-
-    public float getCcdSquareMotionThreshold(){
-        return rBody.getCcdSquareMotionThreshold();
-    }
-
-    @Override
-    public int attachChild(Spatial child) {
-        if(child instanceof PhysicsNode)
-            throw(new IllegalArgumentException("PhysicsNodes cannot have other PhysicsNodes as children!"));
-        return super.attachChild(child);
-    }
-
-    @Override
-    public int attachChildAt(Spatial child, int index) {
-        if(child instanceof PhysicsNode)
-            throw(new IllegalArgumentException("PhysicsNodes cannot have other PhysicsNodes as children!"));
-        return super.attachChildAt(child, index);
     }
 
     /**
@@ -429,7 +364,7 @@ public class PhysicsNode extends CollisionObject{
         collisionShape.setScale(getWorldScale());
     }
 
-    public void setKinematic(boolean kinematic){
+     public void setKinematic(boolean kinematic){
         this.kinematic=kinematic;
         if(kinematic){
             rBody.setCollisionFlags(rBody.getCollisionFlags() | CollisionFlags.KINEMATIC_OBJECT);
@@ -441,9 +376,11 @@ public class PhysicsNode extends CollisionObject{
         }
     }
 
+
     public boolean isKinematic(){
         return kinematic;
     }
+
 
     public float getMass() {
         return mass;
@@ -766,59 +703,6 @@ public class PhysicsNode extends CollisionObject{
     }
 
     /**
-     * creates a collisionShape from the BoundingVolume of this node,
-     * if no BoundingVolume of the give type exists yet, it will be created.
-     * Otherwise the current BoundingVolume will be used.
-     * @param type
-     */
-    public void createCollisionShape(int type){
-        switch(type){
-            case CollisionShape.ShapeTypes.BOX:
-                collisionShape=new BoxCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.SPHERE:
-                collisionShape=new SphereCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.CAPSULE:
-                collisionShape=new CapsuleCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.CYLINDER:
-                collisionShape=new CylinderCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.MESH:
-                collisionShape=new MeshCollisionShape(this);
-            break;
-            case CollisionShape.ShapeTypes.GIMPACT:
-                collisionShape=new GImpactCollisionShape(this);
-            break;
-        }
-        rebuildRigidBody();
-    }
-  
-    /**
-     * creates a collisionShape from the current BoundingVolume of this node.
-     * If no BoundingVolume of a proper type (box, sphere, cyliner, capsule) exists,
-     * a sphere will be created.
-     */
-    public void createCollisionShape(){
-        BoundingVolume bounds=getWorldBound();
-        if(bounds instanceof BoundingBox){
-            collisionShape=new BoxCollisionShape(this);
-        }
-        else if(bounds instanceof BoundingSphere){
-            collisionShape=new SphereCollisionShape(this);
-        }
-        else if(bounds instanceof BoundingCapsule){
-            collisionShape=new CapsuleCollisionShape(this);
-        }
-        else{
-            createCollisionShape(CollisionShape.ShapeTypes.SPHERE);
-        }
-        constructionInfo.collisionShape=collisionShape.getCShape();
-        rebuildRigidBody();
-    }
-
-    /**
      * @return the CollisionShape of this PhysicsNode, to be able to reuse it with
      * other physics nodes (increases performance)
      */
@@ -843,10 +727,6 @@ public class PhysicsNode extends CollisionObject{
         rBody.activate();
     }
 
-    public boolean isActive(){
-        return rBody.isActive();
-    }
-    
     /**
      * sets the sleeping thresholds, these define when the object gets deactivated
      * to save ressources. Low values keep the object active when it barely moves
@@ -871,14 +751,89 @@ public class PhysicsNode extends CollisionObject{
         rBody.destroy();
     }
 
+
+
     @Override
     public void write(JMEExporter e) throws IOException {
-        throw (new UnsupportedOperationException("Not implemented yet."));
+    	super.write(e);
+        OutputCapsule capsule = e.getCapsule( this );
+        capsule.write( getMass(), "mass", 1.0f );
+        Vector3f store = new Vector3f();
+        getGravity(store);
+        capsule.write(store, "gravity", Vector3f.ZERO);
+        capsule.write(getFriction(), "friction", 0);
+        capsule.write(getRestitution(), "restitution", 0);
+        capsule.write( constructionInfo.linearDamping, "linearDamping", 0);
+        capsule.write( constructionInfo.angularDamping, "angularDamping", 0);
+        
+        capsule.write(physicsEnabled, "enabled", false);
+         capsule.write(kinematic, "kinematic", false);
+        capsule.write(continuousForce, "continuousForce", Vector3f.ZERO);
+        capsule.write(continuousForceLocation, "continuousForceLocation", Vector3f.ZERO);
+        capsule.write(continuousTorque, "continuousTorque", Vector3f.ZERO);
+        capsule.write(applyForce, "applyForce", false);
+        capsule.write(applyTorque, "applyTorque", false); 
+        
+        capsule.write(collisionShape, "collisionShape", null);
+        
+        ArrayList<PhysicsJoint> connectedJoints = new ArrayList<PhysicsJoint>();
+        for (PhysicsJoint joint : PhysicsSpace.getPhysicsSpace().getPhysicsJoints()) {
+			if(joint.getNodeA().equals(this)){
+				connectedJoints.add(joint);
+			}
+			if(joint.getNodeA().equals(this)){
+				connectedJoints.add(joint);
+			}
+		}
+        capsule.writeSavableArrayList(connectedJoints, "joints", null);
+        
     }
 
     @Override
-    public void read(JMEImporter e) throws IOException {
-        throw (new UnsupportedOperationException("Not implemented yet."));
-    }
+	public Class getClassTag() {
+
+		return PhysicsNode.class;
+	}
+
+	@Override
+	public void read(JMEImporter e) throws IOException {
+		super.read(e);
+
+		InputCapsule capsule = e.getCapsule(this);
+		float mass = capsule.readFloat("mass", 1.0f);
+		this.mass=mass;
+
+		CollisionShape shape = (CollisionShape) capsule.readSavable("collisionShape", new BoxCollisionShape());
+		collisionShape = shape;
+		rebuildRigidBody();
+		setGravity((Vector3f) capsule.readSavable("gravity", Vector3f.ZERO));
+		setFriction(capsule.readFloat("friction", 0));
+		float linearDamping = capsule.readFloat("linearDamping", 0);
+		float angularDamping = capsule.readFloat("angularDamping", 0);
+		setDamping(linearDamping, angularDamping);
+		float restitution = capsule.readFloat("restitution", 0);
+		setRestitution(restitution);
+		
+		physicsEnabled = capsule.readBoolean("enabled", true);
+                kinematic = capsule.readBoolean("kinematic", false);
+                setKinematic(kinematic);
+		Vector3f continuousForce = (Vector3f) capsule.readSavable("continuousForce", Vector3f.ZERO);
+		Vector3f continuousForceLocation = (Vector3f) capsule.readSavable("continuousForceLocation", Vector3f.ZERO);
+		boolean applyForce = capsule.readBoolean("applyForce", false);
+		applyContinuousForce(applyForce, continuousForce,continuousForceLocation);
+		
+		Vector3f continuousTorque = (Vector3f) capsule.readSavable("continuousTorque", Vector3f.ZERO);
+		boolean applyTorque = capsule.readBoolean("applyTorque", false);
+		applyContinuousTorque(applyTorque, continuousTorque);
+
+
+		PhysicsSpace.getPhysicsSpace().add(this);
+	
+		ArrayList<PhysicsJoint> joints =capsule.readSavableArrayList("joints", null);
+		for (PhysicsJoint physicsJoint : joints) {
+			PhysicsSpace.getPhysicsSpace().add(physicsJoint);
+		}
+		
+	}
 
 }

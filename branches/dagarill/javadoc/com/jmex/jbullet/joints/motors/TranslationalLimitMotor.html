@@ -94,9 +94,12 @@ Class TranslationalLimitMotor</H2>
 java.lang.Object
   <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.motors.TranslationalLimitMotor</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>TranslationalLimitMotor</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>TranslationalLimitMotor</B><DT>extends java.lang.Object<DT>implements com.jme.util.export.Savable</DL>
 </PRE>
 
 <P>
@@ -132,6 +135,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;com.jme.math.Vector3f</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html#getAccumulatedImpulse()">getAccumulatedImpulse</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html#getClassTag()">getClassTag</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -187,6 +198,14 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;i)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html#setAccumulatedImpulse(com.jme.math.Vector3f)">setAccumulatedImpulse</A></B>(com.jme.math.Vector3f&nbsp;accumulatedImpulse)</CODE>
 
 <BR>
@@ -228,6 +247,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html#setUpperLimit(com.jme.math.Vector3f)">setUpperLimit</A></B>(com.jme.math.Vector3f&nbsp;upperLimit)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/TranslationalLimitMotor.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;e)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -280,6 +307,9 @@ public com.bulletphysics.dynamics.constraintsolver.TranslationalLimitMotor <B>ge
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -288,6 +318,9 @@ getLowerLimit</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getLowerLimit</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -302,6 +335,9 @@ public void <B>setLowerLimit</B>(com.jme.math.Vector3f&nbsp;lowerLimit)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -310,6 +346,9 @@ getUpperLimit</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getUpperLimit</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -324,6 +363,9 @@ public void <B>setUpperLimit</B>(com.jme.math.Vector3f&nbsp;upperLimit)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -332,6 +374,9 @@ getAccumulatedImpulse</H3>
 <PRE>
 public com.jme.math.Vector3f <B>getAccumulatedImpulse</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -346,6 +391,9 @@ public void <B>setAccumulatedImpulse</B>(com.jme.math.Vector3f&nbsp;accumulatedI
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -354,6 +402,9 @@ getLimitSoftness</H3>
 <PRE>
 public float <B>getLimitSoftness</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -368,6 +419,9 @@ public void <B>setLimitSoftness</B>(float&nbsp;limitSoftness)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -376,6 +430,9 @@ getDamping</H3>
 <PRE>
 public float <B>getDamping</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -390,6 +447,9 @@ public void <B>setDamping</B>(float&nbsp;damping)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -398,6 +458,9 @@ getRestitution</H3>
 <PRE>
 public float <B>getRestitution</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -411,6 +474,57 @@ public void <B>setRestitution</B>(float&nbsp;restitution)</PRE>
 <DL>
 <DD><DL>
 </DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;i)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;e)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

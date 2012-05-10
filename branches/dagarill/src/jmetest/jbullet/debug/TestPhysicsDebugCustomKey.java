@@ -31,8 +31,11 @@
  */
 package jmetest.jbullet.debug;
 
+import java.util.concurrent.Callable;
+
 import com.jme.input.KeyInput;
 import com.jme.math.Vector3f;
+import com.jme.scene.Spatial;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Sphere;
 import com.jme.util.GameTaskQueueManager;
@@ -40,10 +43,12 @@ import com.jmex.editors.swing.settings.GameSettingsPanel;
 import com.jmex.game.StandardGame;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
+import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.debug.PhysicsDebugGameState;
 import com.jmex.jbullet.nodes.PhysicsNode;
-import java.util.concurrent.Callable;
+import com.jmex.jbullet.util.PhysicsUtil;
 
 /**
  *  Test the overriding of the default key binding for switching between states in
@@ -79,14 +84,15 @@ public class TestPhysicsDebugCustomKey
 
         // Shape to look at
         Sphere highPoly = new Sphere( "SphereShape", Vector3f.ZERO, 32, 32, 4f );
-        PhysicsNode highPolyNode = new PhysicsNode( highPoly, CollisionShape.ShapeTypes.MESH );
+        PhysicsNode highPolyNode = new PhysicsNode( highPoly, PhysicsUtil.generateCollisionShape(highPoly, MeshCollisionShape.class) );
         highPolyNode.setLocalTranslation( 0, -1, 0 );
         state.getRootNode().attachChild( highPolyNode );
         highPolyNode.updateRenderState();
         pSpace.add( highPolyNode );
 
         // The floor, which does not move (mass=0)
-        PhysicsNode floor = new PhysicsNode( new Box( "physicsfloor", Vector3f.ZERO, 20f, 0.2f, 20f ), CollisionShape.ShapeTypes.BOX, 0 );
+        Spatial box =  new Box( "physicsfloor", Vector3f.ZERO, 20f, 0.2f, 20f );
+        PhysicsNode floor = new PhysicsNode(box, PhysicsUtil.generateCollisionShape(box, BoxCollisionShape.class), 0 );
         floor.setLocalTranslation( new Vector3f( 0f, -6, 0f ) );
         state.getRootNode().attachChild( floor );
         floor.updateRenderState();

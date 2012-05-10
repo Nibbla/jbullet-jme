@@ -54,7 +54,7 @@ function windowTitle()
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.ShapeTypes.html" title="interface in com.jmex.jbullet.collision.shapes"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../../index.html?com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -75,7 +75,7 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jmex.jbullet.collision.shapes.CollisionShape">NESTED</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
@@ -95,6 +95,9 @@ java.lang.Object
   <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">com.jmex.jbullet.collision.shapes.CollisionShape</A>
       <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.collision.shapes.CompoundCollisionShape</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
 <HR>
 <DL>
 <DT><PRE>public class <B>CompoundCollisionShape</B><DT>extends <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></DL>
@@ -109,25 +112,6 @@ A CompoundCollisionShape allows combining multiple base shapes
 <HR>
 
 <P>
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-
-<A NAME="nested_class_summary"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
-<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
-<B>Nested Class Summary</B></FONT></TH>
-</TR>
-</TABLE>
-&nbsp;<A NAME="nested_classes_inherited_from_class_com.jmex.jbullet.collision.shapes.CollisionShape"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Nested classes/interfaces inherited from class com.jmex.jbullet.collision.shapes.<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.ShapeTypes.html" title="interface in com.jmex.jbullet.collision.shapes">CollisionShape.ShapeTypes</A></CODE></TD>
-</TR>
-</TABLE>
-&nbsp;
 
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 
@@ -174,11 +158,51 @@ A CompoundCollisionShape allows combining multiple base shapes
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.util.List&lt;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/infos/ChildCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes.infos">ChildCollisionShape</A>&gt;</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#getChildren()">getChildren</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#getClassTag()">getClassTag</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;im)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#removeChildShape(com.jmex.jbullet.collision.shapes.CollisionShape)">removeChildShape</A></B>(<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;removes a child shape</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#setScale(com.jme.math.Vector3f)">setScale</A></B>(com.jme.math.Vector3f&nbsp;scale)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WARNING - CompoundCollisionShape scaling has no effect.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;ex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.collision.shapes.CollisionShape"><!-- --></A>
@@ -187,7 +211,7 @@ A CompoundCollisionShape allows combining multiple base shapes
 <TH ALIGN="left"><B>Methods inherited from class com.jmex.jbullet.collision.shapes.<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#calculateLocalInertia(float, javax.vecmath.Vector3f)">calculateLocalInertia</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#getCShape()">getCShape</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#getType()">getType</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#setCShape(com.bulletphysics.collision.shapes.CollisionShape)">setCShape</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#setScale(com.jme.math.Vector3f)">setScale</A></CODE></TD>
+<TD><CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#calculateLocalInertia(float, javax.vecmath.Vector3f)">calculateLocalInertia</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#getCShape()">getCShape</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#getMargin()">getMargin</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#getScale()">getScale</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#setCShape(com.bulletphysics.collision.shapes.CollisionShape)">setCShape</A>, <A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#setMargin(float)">setMargin</A></CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -269,6 +293,78 @@ public void <B>removeChildShape</B>(<A HREF="../../../../../com/jmex/jbullet/col
 <DT><B>Parameters:</B><DD><CODE>shape</CODE> - the child shape to remove</DL>
 </DD>
 </DL>
+<HR>
+
+<A NAME="getChildren()"><!-- --></A><H3>
+getChildren</H3>
+<PRE>
+public java.util.List&lt;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/infos/ChildCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes.infos">ChildCollisionShape</A>&gt; <B>getChildren</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="setScale(com.jme.math.Vector3f)"><!-- --></A><H3>
+setScale</H3>
+<PRE>
+public void <B>setScale</B>(com.jme.math.Vector3f&nbsp;scale)</PRE>
+<DL>
+<DD>WARNING - CompoundCollisionShape scaling has no effect.
+<P>
+<DD><DL>
+<DT><B>Overrides:</B><DD><CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#setScale(com.jme.math.Vector3f)">setScale</A></CODE> in class <CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;ex)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#write(com.jme.util.export.JMEExporter)">write</A></CODE> in class <CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;im)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html#read(com.jme.util.export.JMEImporter)">read</A></CODE> in class <CODE><A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -300,7 +396,7 @@ public void <B>removeChildShape</B>(<A HREF="../../../../../com/jmex/jbullet/col
 
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-&nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.ShapeTypes.html" title="interface in com.jmex.jbullet.collision.shapes"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>PREV CLASS</B></A>&nbsp;
 &nbsp;<A HREF="../../../../../com/jmex/jbullet/collision/shapes/CylinderCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../../index.html?com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" target="_top"><B>FRAMES</B></A>  &nbsp;
@@ -321,7 +417,7 @@ public void <B>removeChildShape</B>(<A HREF="../../../../../com/jmex/jbullet/col
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_com.jmex.jbullet.collision.shapes.CollisionShape">NESTED</A>&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
 DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>

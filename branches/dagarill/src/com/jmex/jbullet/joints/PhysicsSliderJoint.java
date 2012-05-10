@@ -31,10 +31,17 @@
  */
 package com.jmex.jbullet.joints;
 
+import java.io.IOException;
+
+import com.bulletphysics.dynamics.constraintsolver.Generic6DofConstraint;
 import com.bulletphysics.dynamics.constraintsolver.SliderConstraint;
 import com.bulletphysics.linearmath.Transform;
 import com.jme.math.Matrix3f;
 import com.jme.math.Vector3f;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.nodes.PhysicsNode;
 import com.jmex.jbullet.util.Converter;
 
@@ -44,10 +51,16 @@ import com.jmex.jbullet.util.Converter;
  * @author normenhansen
  */
 public class PhysicsSliderJoint extends PhysicsJoint{
+	
+	private boolean useLinearReferenceFrameA;
+	
+	public PhysicsSliderJoint(){
+		
+	}
     
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, Matrix3f rotA, Matrix3f rotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         Transform transA=new Transform(Converter.convert(rotA));
         Converter.convert(pivotA,transA.origin);
         Converter.convert(rotA,transA.basis);
@@ -61,7 +74,7 @@ public class PhysicsSliderJoint extends PhysicsJoint{
 
     public PhysicsSliderJoint(PhysicsNode nodeA, PhysicsNode nodeB, Vector3f pivotA, Vector3f pivotB, boolean useLinearReferenceFrameA) {
         super(nodeA, nodeB, pivotA, pivotB);
-
+        this.useLinearReferenceFrameA=useLinearReferenceFrameA;
         Transform transA=new Transform(Converter.convert(new Matrix3f()));
         Converter.convert(pivotA,transA.origin);
 
@@ -294,5 +307,80 @@ public class PhysicsSliderJoint extends PhysicsJoint{
     public void setMaxAngMotorForce(float maxAngMotorForce) {
         ((SliderConstraint)constraint).setMaxAngMotorForce(maxAngMotorForce);
     }
+    
+    @Override
+	public Class getClassTag() {
+		return this.getClass();
+	}
+
+	@Override
+	public void read(JMEImporter im) throws IOException {
+		super.read(im);
+		InputCapsule capsule = im.getCapsule(this);
+		
+		Matrix3f rotA = (Matrix3f) capsule.readSavable("rotA", new Matrix3f());
+		Matrix3f rotB = (Matrix3f) capsule.readSavable("rotB", new Matrix3f());
+		
+		Transform transA=new Transform(Converter.convert(rotA));
+        Converter.convert(pivotA,transA.origin);
+        Converter.convert(rotA,transA.basis);
+     
+
+        Transform transB=new Transform(Converter.convert(rotB));
+        Converter.convert(pivotB,transB.origin);
+        Converter.convert(rotB,transB.basis);
+       
+        useLinearReferenceFrameA= capsule.readBoolean("useLinearReferenceFrameA", false);
+        
+        constraint=new SliderConstraint(nodeA.getRigidBody(), nodeB.getRigidBody(), transA, transB, useLinearReferenceFrameA);
+        
+        //TODO setOptions
+        setLowerLinLimit(capsule.readFloat("LowerLinLimit", 0));
+        //...
+	}
+
+	@Override
+	public void write(JMEExporter ex) throws IOException {
+		super.write(ex);
+		OutputCapsule capsule = ex.getCapsule(this);
+		capsule.write(getLowerLinLimit(), "LowerLinLimit", 0);
+		capsule.write(getUpperLinLimit(), "UpperLinLimit", 0);
+		capsule.write(getLowerAngLimit(), "LowerAngLimit", 0);
+		capsule.write(getUpperAngLimit(), "UpperAngLimit", 0);
+		capsule.write(getSoftnessDirAng(), "SoftnessDirAng", 0);
+		capsule.write(getSoftnessDirLin(), "SoftnessDirLin", 0);
+		capsule.write(getRestitutionDirLin(), "RestitutionDirLin", 0);
+		capsule.write(getDampingDirLin(), "DampingDirLin", 0);
+		capsule.write(getRestitutionDirAng(), "RestitutionDirAng", 0);
+		capsule.write(getDampingDirAng(), "DampingDirAng", 0);
+		capsule.write(getSoftnessLimLin(), "SoftnessLimLin", 0);
+		capsule.write(getRestitutionLimLin(), "RestitutionLimLin", 0);
+		capsule.write(getDampingLimLin(), "DampingLimLin", 0);
+		capsule.write(getSoftnessLimAng(), "SoftnessLimAng", 0);
+		capsule.write(getRestitutionLimAng(), "RestitutionLimAng", 0);
+		capsule.write(getDampingLimAng(), "DampingLimAng", 0);
+		capsule.write(getSoftnessOrthoLin(), "SoftnessOrthoLin", 0);
+		capsule.write(getRestitutionOrthoLin(), "RestitutionOrthoLin", 0);
+		capsule.write(getDampingOrthoLin(), "DampingOrthoLin", 0);
+		capsule.write(getSoftnessOrthoAng(), "SoftnessOrthoAng", 0);
+		capsule.write(getRestitutionOrthoAng(), "RestitutionOrthoAng", 0);
+		capsule.write(getDampingOrthoAng(), "DampingOrthoAng", 0);
+		capsule.write(isPoweredLinMotor(), "PoweredLinMotor", false);
+		capsule.write(isPoweredAngMotor(), "PoweredAngMotor", false);
+		capsule.write(getTargetAngMotorVelocity(), "TargetAngMotorVelocity", 0);
+		capsule.write(getTargetLinMotorVelocity(), "TargetLinMotorVelocity", 0);
+		capsule.write(getMaxAngMotorForce(), "MaxAngMotorForce", 0);
+		capsule.write(getMaxLinMotorForce(), "MaxLinMotorForce", 0);
+		
+		Transform trans = new Transform();
+		
+		((SliderConstraint)constraint).getFrameOffsetA(trans);
+		capsule.write(Converter.convert(trans.basis), "rotA", null);
+		((SliderConstraint)constraint).getFrameOffsetB(trans);
+		capsule.write(Converter.convert(trans.basis), "rotB", null);
+		
+		capsule.write(useLinearReferenceFrameA, "useLinearReferenceFrameA", false);
+		
+	}
 
 }

@@ -32,16 +32,15 @@
 package jmetest.jbullet;
 
 
+import java.util.concurrent.Callable;
+
 import com.jme.input.InputHandler;
 import com.jme.input.KeyInput;
 import com.jme.input.action.InputAction;
 import com.jme.input.action.InputActionEvent;
-import com.jme.input.keyboard.KeyboardInputHandlerDevice;
-import com.jmex.jbullet.collision.CollisionEvent;
-import java.util.concurrent.Callable;
-
 import com.jme.math.Vector3f;
 import com.jme.renderer.Camera;
+import com.jme.scene.Spatial;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Sphere;
 import com.jme.system.DisplaySystem;
@@ -51,10 +50,14 @@ import com.jmex.game.StandardGame;
 import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
+import com.jmex.jbullet.collision.CollisionEvent;
 import com.jmex.jbullet.collision.CollisionListener;
+import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
-import com.jmex.jbullet.nodes.PhysicsVehicleNode;
+import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.nodes.PhysicsNode;
+import com.jmex.jbullet.nodes.PhysicsVehicleNode;
+import com.jmex.jbullet.util.PhysicsUtil;
 
 /**
  * This is a basic Test of jbullet-jme vehicles
@@ -123,7 +126,7 @@ public class TestSimplePhysicsCar{
 
         // Add a physics vehicle to the world
         Box box1=new Box("physicscar",Vector3f.ZERO,0.5f,0.5f,2f);
-        physicsCar=new PhysicsVehicleNode(box1,CollisionShape.ShapeTypes.BOX);
+        physicsCar=new PhysicsVehicleNode(box1, PhysicsUtil.generateCollisionShape(box1, BoxCollisionShape.class));
         physicsCar.setMaxSuspensionTravelCm(500);
         physicsCar.setSuspensionCompression(4.4f);
         physicsCar.setSuspensionDamping(2.3f);
@@ -154,14 +157,16 @@ public class TestSimplePhysicsCar{
 //        physicsCar.setMass(100);
 
         // an obstacle mesh, does not move (mass=0)
-        node2=new PhysicsNode(new Sphere("physicsobstaclemesh",16,16,1.2f),CollisionShape.ShapeTypes.MESH,0);
+        Spatial sphere = new Sphere("physicsobstaclemesh",16,16,1.2f);
+        node2=new PhysicsNode(sphere, PhysicsUtil.generateCollisionShape(sphere, MeshCollisionShape.class),0);
         node2.setLocalTranslation(new Vector3f(2.5f,-4,0f));
         state.getRootNode().attachChild(node2);
         node2.updateRenderState();
         pSpace.add(node2);
 
         // the floor, does not move (mass=0)
-        PhysicsNode node3=new PhysicsNode(new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f),CollisionShape.ShapeTypes.MESH,0);
+        Spatial box = new Box("physicsfloor",Vector3f.ZERO,100f,0.2f,100f);
+        PhysicsNode node3=new PhysicsNode(box,PhysicsUtil.generateCollisionShape(box, MeshCollisionShape.class),0);
         node3.setLocalTranslation(new Vector3f(0f,-6,0f));
         state.getRootNode().attachChild(node3);
         node3.updateRenderState();
