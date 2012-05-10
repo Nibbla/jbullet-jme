@@ -35,6 +35,12 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import com.bulletphysics.collision.shapes.IndexedMesh;
+import com.bulletphysics.extras.gimpact.GImpactMeshShapePart;
+import com.jme.bounding.BoundingVolume.Type;
+import com.jme.scene.TriMesh;
+import com.jme.util.geom.BufferUtils;
+
 /**
  * Nice convenience methods for conversion between javax.vecmath and com.jme.math
  * Objects, also some jme to jbullet mesh conversion. Mostly taken from the
@@ -132,10 +138,7 @@ public class Converter {
         newMatrix.m22 = oldMatrix.m22;
     }
 
-    public static com.bulletphysics.collision.shapes.TriangleIndexVertexArray convert( com.jme.scene.TriMesh mesh ) {
-        com.bulletphysics.collision.shapes.TriangleIndexVertexArray jBulletMeshData
-                = new com.bulletphysics.collision.shapes.TriangleIndexVertexArray();
-
+    public static IndexedMesh convert( com.jme.scene.TriMesh mesh ) {        
         com.bulletphysics.collision.shapes.IndexedMesh jBulletIndexedMesh
                 = new com.bulletphysics.collision.shapes.IndexedMesh();
         jBulletIndexedMesh.triangleIndexBase = ByteBuffer.allocate( mesh.getTriangleCount() * 3 * 4 );
@@ -160,10 +163,32 @@ public class Converter {
         jBulletIndexedMesh.triangleIndexStride = 12; //3 index entries * 4 bytes each.
         for ( int i = 0; i < indicesLength; i++ ) {
             jBulletIndexedMesh.triangleIndexBase.putInt( indices.get() );
+        }       
+
+        return jBulletIndexedMesh;
+    }
+    
+    public static TriMesh convert(IndexedMesh mesh) {
+        TriMesh jmeMesh = new TriMesh();
+
+        jmeMesh.setIndexBuffer(BufferUtils.createIntBuffer(mesh.numTriangles * 3));
+        jmeMesh.setVertexBuffer(BufferUtils.createFloatBuffer(mesh.numVertices * 3));
+
+        IntBuffer indicess = jmeMesh.getIndexBuffer();
+        FloatBuffer vertices = jmeMesh.getVertexBuffer();
+
+        for (int i = 0; i < mesh.numTriangles * 3; i++) {
+            indicess.put(i, mesh.triangleIndexBase.getInt(i*4));
         }
 
-        jBulletMeshData.addIndexedMesh( jBulletIndexedMesh );
+        for (int i = 0; i < mesh.numVertices * 3; i++) {
+            vertices.put(i, mesh.vertexBase.getFloat(i*4));
+        }
+        
+        jmeMesh.reconstruct(vertices, null, null, null, indicess);
 
-        return jBulletMeshData;
+        jmeMesh.updateModelBound();
+
+        return jmeMesh;
     }
 }

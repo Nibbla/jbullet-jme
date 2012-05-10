@@ -94,9 +94,12 @@ Class RotationalLimitMotor</H2>
 java.lang.Object
   <IMG SRC="../../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.motors.RotationalLimitMotor</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
 <HR>
 <DL>
-<DT><PRE>public class <B>RotationalLimitMotor</B><DT>extends java.lang.Object</DL>
+<DT><PRE>public class <B>RotationalLimitMotor</B><DT>extends java.lang.Object<DT>implements com.jme.util.export.Savable</DL>
 </PRE>
 
 <P>
@@ -132,6 +135,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;float</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html#getBounce()">getBounce</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html#getClassTag()">getClassTag</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -219,6 +230,14 @@ java.lang.Object
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;arg0)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html#setBounce(float)">setBounce</A></B>(float&nbsp;bounce)</CODE>
 
 <BR>
@@ -296,6 +315,14 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../../com/jmex/jbullet/joints/motors/RotationalLimitMotor.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;e)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -344,6 +371,9 @@ public com.bulletphysics.dynamics.constraintsolver.RotationalLimitMotor <B>getMo
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -352,6 +382,9 @@ getLoLimit</H3>
 <PRE>
 public float <B>getLoLimit</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -366,6 +399,9 @@ public void <B>setLoLimit</B>(float&nbsp;loLimit)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -374,6 +410,9 @@ getHiLimit</H3>
 <PRE>
 public float <B>getHiLimit</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -388,6 +427,9 @@ public void <B>setHiLimit</B>(float&nbsp;hiLimit)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -396,6 +438,9 @@ getTargetVelocity</H3>
 <PRE>
 public float <B>getTargetVelocity</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -410,6 +455,9 @@ public void <B>setTargetVelocity</B>(float&nbsp;targetVelocity)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -418,6 +466,9 @@ getMaxMotorForce</H3>
 <PRE>
 public float <B>getMaxMotorForce</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -432,6 +483,9 @@ public void <B>setMaxMotorForce</B>(float&nbsp;maxMotorForce)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -440,6 +494,9 @@ getMaxLimitForce</H3>
 <PRE>
 public float <B>getMaxLimitForce</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -454,6 +511,9 @@ public void <B>setMaxLimitForce</B>(float&nbsp;maxLimitForce)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -462,6 +522,9 @@ getDamping</H3>
 <PRE>
 public float <B>getDamping</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -476,6 +539,9 @@ public void <B>setDamping</B>(float&nbsp;damping)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -484,6 +550,9 @@ getLimitSoftness</H3>
 <PRE>
 public float <B>getLimitSoftness</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -498,6 +567,9 @@ public void <B>setLimitSoftness</B>(float&nbsp;limitSoftness)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -506,6 +578,9 @@ getERP</H3>
 <PRE>
 public float <B>getERP</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -520,6 +595,9 @@ public void <B>setERP</B>(float&nbsp;ERP)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -528,6 +606,9 @@ getBounce</H3>
 <PRE>
 public float <B>getBounce</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -542,6 +623,9 @@ public void <B>setBounce</B>(float&nbsp;bounce)</PRE>
 <DD><DL>
 </DL>
 </DD>
+<DD><DL>
+</DL>
+</DD>
 </DL>
 <HR>
 
@@ -550,6 +634,9 @@ isEnableMotor</H3>
 <PRE>
 public boolean <B>isEnableMotor</B>()</PRE>
 <DL>
+<DD><DL>
+</DL>
+</DD>
 <DD><DL>
 </DL>
 </DD>
@@ -563,6 +650,57 @@ public void <B>setEnableMotor</B>(boolean&nbsp;enableMotor)</PRE>
 <DL>
 <DD><DL>
 </DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;arg0)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;e)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

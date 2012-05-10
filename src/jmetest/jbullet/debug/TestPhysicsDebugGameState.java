@@ -31,6 +31,8 @@
  */
 package jmetest.jbullet.debug;
 
+import java.util.concurrent.Callable;
+
 import com.jme.input.InputHandler;
 import com.jme.input.KeyInput;
 import com.jme.input.MouseInput;
@@ -38,9 +40,8 @@ import com.jme.input.action.InputAction;
 import com.jme.input.action.InputActionEvent;
 import com.jme.math.FastMath;
 import com.jme.math.Quaternion;
-import java.util.concurrent.Callable;
-
 import com.jme.math.Vector3f;
+import com.jme.scene.Spatial;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Sphere;
 import com.jme.util.GameTaskQueueManager;
@@ -50,11 +51,15 @@ import com.jmex.game.state.DebugGameState;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
+import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.collision.shapes.CompoundCollisionShape;
+import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
+import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.debug.PhysicsDebugGameState;
 import com.jmex.jbullet.nodes.PhysicsCharacterNode;
 import com.jmex.jbullet.nodes.PhysicsNode;
+import com.jmex.jbullet.util.PhysicsUtil;
 
 /**
  *  Test for the PhysicsDebugGameState, creates various objects so they can have their physics bounds rendered.
@@ -107,28 +112,30 @@ public class TestPhysicsDebugGameState
         state.setText( "Press 'F5' to see the phyiscs bounds" );
 
         Sphere caps = new Sphere( "character", 8, 8, 2f );
-        character = new PhysicsCharacterNode( caps, CollisionShape.ShapeTypes.SPHERE, .1f );
+        character = new PhysicsCharacterNode( caps, PhysicsUtil.generateCollisionShape(caps, SphereCollisionShape.class), .1f );
         character.setLocalTranslation( 0, 3, 0 );
         state.getRootNode().attachChild( character );
         character.updateRenderState();
         pSpace.add( character );
 
         Box box = new Box( "physicsobstaclemesh", Vector3f.ZERO, .5f, .5f, .5f );
-        PhysicsNode boxNode = new PhysicsNode( box, CollisionShape.ShapeTypes.BOX );
+        PhysicsNode boxNode = new PhysicsNode( box, PhysicsUtil.generateCollisionShape(box, BoxCollisionShape.class));
         boxNode.setLocalTranslation( 6, -1, 0 );
         state.getRootNode().attachChild( boxNode );
         boxNode.updateRenderState();
         pSpace.add( boxNode );
 
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node3 = new PhysicsNode( new Sphere( "physicsobstaclemesh", Vector3f.ZERO, 32, 32, 1 ), CollisionShape.ShapeTypes.CAPSULE, 0 );
+        Spatial sphere = new Sphere( "physicsobstaclemesh", Vector3f.ZERO, 32, 32, 1 );
+        PhysicsNode node3 = new PhysicsNode(sphere, PhysicsUtil.generateCollisionShape(sphere, CapsuleCollisionShape.class), 0 );
         node3.setLocalTranslation( new Vector3f( 4f, -4f, 0f ) );
         state.getRootNode().attachChild( node3 );
         node3.updateRenderState();
         pSpace.add( node3 );
 
         // an obstacle mesh, does not move (mass=0)
-        PhysicsNode node2 = new PhysicsNode( new Box( "physicsobstaclemesh", Vector3f.ZERO, 2, 2, 2 ), CollisionShape.ShapeTypes.BOX, 0 );
+        box = new Box( "physicsobstaclemesh", Vector3f.ZERO, 2, 2, 2 );
+        PhysicsNode node2 = new PhysicsNode(box, PhysicsUtil.generateCollisionShape(box, BoxCollisionShape.class), 0 );
         node2.setKinematic( true ); // No practical purpose other then to render a kinematic object
         node2.setLocalTranslation( new Vector3f( 0f, -4, 0f ) );
         state.getRootNode().attachChild( node2 );
@@ -136,7 +143,8 @@ public class TestPhysicsDebugGameState
         pSpace.add( node2 );
 
         // the floor, does not move (mass=0)
-        PhysicsNode node4 = new PhysicsNode( new Box( "physicsfloor", Vector3f.ZERO, 20f, 0.2f, 20f ), CollisionShape.ShapeTypes.MESH, 0 );
+        box =  new Box( "physicsfloor", Vector3f.ZERO, 20f, 0.2f, 20f );
+        PhysicsNode node4 = new PhysicsNode(box, PhysicsUtil.generateCollisionShape(box, MeshCollisionShape.class), 0 );
         node4.setLocalTranslation( new Vector3f( 0f, -6, 0f ) );
         state.getRootNode().attachChild( node4 );
         node4.updateRenderState();
@@ -155,7 +163,8 @@ public class TestPhysicsDebugGameState
         // Add a Rotated Box - static
 
 
-        PhysicsNode node6 = new PhysicsNode( new Box( "physicsobstaclemesh", Vector3f.ZERO, 5f, 10f, 1f ), CollisionShape.ShapeTypes.BOX, 0f );
+        box = new Box( "physicsobstaclemesh", Vector3f.ZERO, 5f, 10f, 1f );
+        PhysicsNode node6 = new PhysicsNode( box, PhysicsUtil.generateCollisionShape(box, BoxCollisionShape.class), 0f );
         node6.setLocalTranslation( new Vector3f( -10f, 4f, -6f ) );
         Quaternion rotation = new Quaternion();
         rotation.fromAngleNormalAxis( FastMath.DEG_TO_RAD * 34f, Vector3f.UNIT_Y );

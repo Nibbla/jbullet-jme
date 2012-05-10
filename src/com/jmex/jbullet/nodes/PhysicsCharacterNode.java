@@ -37,9 +37,14 @@ import com.bulletphysics.dynamics.character.KinematicCharacterController;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
+import java.io.IOException;
 
 /**
  *
@@ -50,16 +55,6 @@ public class PhysicsCharacterNode extends PhysicsGhostNode {
     protected KinematicCharacterController character;
     protected float stepHeight;
     protected Vector3f walkDirection = new Vector3f();
-
-    @Deprecated
-    public PhysicsCharacterNode(Spatial spat, int shapeType, float stepHeight) {
-        super(spat, shapeType);
-        this.stepHeight = stepHeight;
-        if (shapeType != CollisionShape.ShapeTypes.SPHERE) {
-            throw (new UnsupportedOperationException("Kinematic character nodes can only have sphere collision shapes"));
-        }
-        character = new KinematicCharacterController(gObject, (ConvexShape) cShape.getCShape(), stepHeight);
-    }
 
     public PhysicsCharacterNode(Spatial spat, CollisionShape shape, float stepHeight) {
         super(spat, shape);
@@ -145,4 +140,28 @@ public class PhysicsCharacterNode extends PhysicsGhostNode {
     public void destroy() {
         super.destroy();
     }
+      @Override
+    public void write(JMEExporter e) throws IOException {
+    	super.write(e);
+        OutputCapsule capsule = e.getCapsule( this );
+        capsule.write(stepHeight, "stepHeight", 0);
+        capsule.write(walkDirection, "walkDirection", Vector3f.ZERO);
+      }
+
+      @Override
+	public void read(JMEImporter e) throws IOException {
+            super.read(e);
+            gObject.setCollisionFlags(CollisionFlags.CHARACTER_OBJECT);
+            InputCapsule capsule = e.getCapsule(this);
+            stepHeight= capsule.readFloat("stepHeight", 0);
+            walkDirection = (Vector3f) capsule.readSavable("walkDirection", Vector3f.ZERO);
+            character=new KinematicCharacterController(gObject, (ConvexShape)cShape.getCShape(), stepHeight);
+      }
+
+       @Override
+	public Class getClassTag() {
+
+		return PhysicsGhostNode.class;
+	}
+
 }

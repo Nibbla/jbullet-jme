@@ -57,7 +57,7 @@ function windowTitle()
 &nbsp;PREV&nbsp;
 &nbsp;NEXT</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../../../index.html?com/jmex/jbullet/collision/shapes//class-useCompoundCollisionShape.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../../../index.html?com/jmex/jbullet/collision/shapes/\class-useCompoundCollisionShape.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="CompoundCollisionShape.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--
@@ -82,7 +82,100 @@ function windowTitle()
 <H2>
 <B>Uses of Class<br>com.jmex.jbullet.collision.shapes.CompoundCollisionShape</B></H2>
 </CENTER>
-No usage of com.jmex.jbullet.collision.shapes.CompoundCollisionShape
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+Packages that use <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><A HREF="#com.jmex.jbullet.util"><B>com.jmex.jbullet.util</B></A></TD>
+<TD>&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+<A NAME="com.jmex.jbullet.util"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+Uses of <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A> in <A HREF="../../../../../../com/jmex/jbullet/util/package-summary.html">com.jmex.jbullet.util</A></FONT></TH>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../../../com/jmex/jbullet/util/package-summary.html">com.jmex.jbullet.util</A> that return <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B>CollisionShapeFactory.</B><B><A HREF="../../../../../../com/jmex/jbullet/util/CollisionShapeFactory.html#createBoxCompoundShape(com.jme.scene.Node)">createBoxCompoundShape</A></B>(com.jme.scene.Node&nbsp;rootNode)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This type of collision shape creates a CompoundShape made out of boxes that
+ are based on the bounds of the Geometries  in the tree.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B>PhysicsUtil.</B><B><A HREF="../../../../../../com/jmex/jbullet/util/PhysicsUtil.html#createCompoundCollisionShape(com.jme.scene.Spatial, java.lang.Class)">createCompoundCollisionShape</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                             java.lang.Class&lt;? extends <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crea una collisionShape compuesta por tantas <code>CollisionShape</code>
+ como submayas (TriMesh) tenga el modelo indicado.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B>CollisionShapeFactory.</B><B><A HREF="../../../../../../com/jmex/jbullet/util/CollisionShapeFactory.html#createMeshCompoundShape(com.jme.scene.Node)">createMeshCompoundShape</A></B>(com.jme.scene.Node&nbsp;rootNode)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This type of collision shape is mesh-accurate and meant for immovable "world objects".</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B>PhysicsUtil.</B><B><A HREF="../../../../../../com/jmex/jbullet/util/PhysicsUtil.html#shiftCenterOfMass(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape, com.jme.math.Vector3f)">shiftCenterOfMass</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                  <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+                  com.jme.math.Vector3f&nbsp;translation)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left" COLSPAN="2">Methods in <A HREF="../../../../../../com/jmex/jbullet/util/package-summary.html">com.jmex.jbullet.util</A> with parameters of type <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B>PhysicsUtil.</B><B><A HREF="../../../../../../com/jmex/jbullet/util/PhysicsUtil.html#addCollisionShape(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CompoundCollisionShape, java.lang.Class)">addCollisionShape</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                  <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A>&nbsp;shape,
+                  java.lang.Class&lt;? extends <A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Añade a la collisionShape tantas <code>CollisionShape</code> como
+ submayas (TriMesh) tenga el modelo indicado.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B>CollisionShapeFactory.</B><B><A HREF="../../../../../../com/jmex/jbullet/util/CollisionShapeFactory.html#shiftCompoundShapeContents(com.jmex.jbullet.collision.shapes.CompoundCollisionShape, com.jme.math.Vector3f)">shiftCompoundShapeContents</A></B>(<A HREF="../../../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A>&nbsp;compoundShape,
+                           com.jme.math.Vector3f&nbsp;vector)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This method moves each child shape of a compound shape by the given vector</TD>
+</TR>
+</TABLE>
+&nbsp;
 <P>
 <HR>
 
@@ -117,7 +210,7 @@ No usage of com.jmex.jbullet.collision.shapes.CompoundCollisionShape
 &nbsp;PREV&nbsp;
 &nbsp;NEXT</FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
-  <A HREF="../../../../../../index.html?com/jmex/jbullet/collision/shapes//class-useCompoundCollisionShape.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+  <A HREF="../../../../../../index.html?com/jmex/jbullet/collision/shapes/\class-useCompoundCollisionShape.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="CompoundCollisionShape.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
 &nbsp;<SCRIPT type="text/javascript">
   <!--

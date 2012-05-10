@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 Normen Hansen
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -13,7 +13,7 @@
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
  *
- * * Neither the name of 'Normen Hansen' nor the names of its contributors
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
  *   may be used to endorse or promote products derived from this software
  *   without specific prior written permission.
  *
@@ -31,34 +31,25 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import java.io.IOException;
+
 import com.bulletphysics.collision.shapes.BoxShape;
-import com.jme.bounding.BoundingBox;
 import com.jme.math.Vector3f;
-import com.jme.scene.Node;
-import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.util.Converter;
-import java.util.List;
 
 /**
  * Basic box collision shape
  * @author normenhansen
  */
-public class BoxCollisionShape extends CollisionShape{
+public class BoxCollisionShape extends CollisionShape {
 
-    /**
-     * creates a collision shape from the bounding volume of the given node
-     * @param node the node to get the BoundingVolume from
-     */
-    public BoxCollisionShape(Node node) {
-        createCollisionBox(node);
-    }
+    private Vector3f halfExtents;
 
-    /**
-     * creates a collision shape from the given bounding volume
-     * @param volume the BoundingVolume to use
-     */
-    public BoxCollisionShape(BoundingBox volume) {
-        createCollisionBox(volume);
+    public BoxCollisionShape() {
     }
 
     /**
@@ -66,37 +57,37 @@ public class BoxCollisionShape extends CollisionShape{
      * @param halfExtents the halfExtents of the CollisionBox
      */
     public BoxCollisionShape(Vector3f halfExtents) {
-        BoxShape sphere=new BoxShape(Converter.convert(halfExtents));
-        cShape=sphere;
-        type=ShapeTypes.BOX;
+        this.halfExtents = halfExtents;
+        createShape();
     }
 
-    /**
-     * creates a box in the physics space that represents this Node and all
-     * children. The extents are computed from the world bound of this Node.
-     */
-    private void createCollisionBox(Node node) {
-        List<Spatial> children=node.getChildren();
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision box"));
-        }
-        if(!(node.getWorldBound() instanceof BoundingBox)){
-            node.setModelBound(new BoundingBox());
-        }
-        node.updateModelBound();
-        node.updateGeometricState(0,true);
-        node.updateWorldBound();
-        BoundingBox volume=(BoundingBox)node.getWorldBound();
-        createCollisionBox(volume);
+    public final Vector3f getHalfExtents() {
+        return halfExtents;
+    }
+    
+    public void write(JMEExporter ex) throws IOException {
+        super.write(ex);
+        OutputCapsule capsule = ex.getCapsule(this);
+        capsule.write(halfExtents, "halfExtents", new Vector3f(1, 1, 1));
     }
 
-    private void createCollisionBox(BoundingBox volume) {
-        javax.vecmath.Vector3f halfExtents=new javax.vecmath.Vector3f(volume.xExtent - volume.getCenter().x,
-                volume.yExtent - volume.getCenter().y,
-                volume.zExtent - volume.getCenter().z);
-        BoxShape sphere=new BoxShape(halfExtents);
-        cShape=sphere;
-        type=ShapeTypes.BOX;
+    public void read(JMEImporter im) throws IOException {
+        super.read(im);
+        InputCapsule capsule = im.getCapsule(this);
+        Vector3f halfExtents = (Vector3f) capsule.readSavable("halfExtents", new Vector3f(1, 1, 1));
+        this.halfExtents = halfExtents;
+        createShape();
+    }
+
+    protected void createShape() {
+        cShape = new BoxShape(Converter.convert(halfExtents));
+        cShape.setLocalScaling(Converter.convert(getScale()));
+        cShape.setMargin(margin);
+    }
+    
+    @Override
+    public Class getClassTag() {
+    	return getClass();
     }
 
 }

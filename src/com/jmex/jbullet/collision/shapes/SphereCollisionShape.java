@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 Normen Hansen
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -13,7 +13,7 @@
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
  *
- * * Neither the name of 'Normen Hansen' nor the names of its contributors
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
  *   may be used to endorse or promote products derived from this software
  *   without specific prior written permission.
  *
@@ -31,33 +31,24 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import java.io.IOException;
+
 import com.bulletphysics.collision.shapes.SphereShape;
-import com.jme.bounding.BoundingSphere;
-import com.jme.scene.Node;
-import com.jme.scene.Spatial;
-import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
-import java.util.List;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jmex.jbullet.util.Converter;
 
 /**
  * Basic sphere collision shape
  * @author normenhansen
  */
-public class SphereCollisionShape extends CollisionShape{
+public class SphereCollisionShape extends CollisionShape {
 
-    /**
-     * creates a collision shape from the bounding volume of the given node
-     * @param node the node to get the BoundingVolume from
-     */
-    public SphereCollisionShape(Node node) {
-        createCollisionSphere(node);
-    }
+    protected float radius;
 
-    /**
-     * creates a collision shape from the given bounding volume
-     * @param volume the BoundingVolume to use
-     */
-    public SphereCollisionShape(BoundingSphere volume) {
-        createCollisionSphere(volume);
+    public SphereCollisionShape() {
     }
 
     /**
@@ -65,34 +56,36 @@ public class SphereCollisionShape extends CollisionShape{
      * @param radius
      */
     public SphereCollisionShape(float radius) {
-        SphereShape sphere=new SphereShape(radius);
-        cShape=sphere;
-        type=ShapeTypes.SPHERE;
+        this.radius = radius;
+        createShape();
     }
 
-    /**
-     * creates a sphere in the physics space that represents this Node and all
-     * children. The radius is computed from the world bound of this Node.
-     */
-    private void createCollisionSphere(Node node) {
-        List<Spatial> children=node.getChildren();
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision sphere"));
-        }
-        if(!(node.getWorldBound() instanceof BoundingSphere)){
-            node.setModelBound(new BoundingSphere());
-            node.updateModelBound();
-            node.updateGeometricState(0,true);
-            node.updateWorldBound();
-        }
-        BoundingSphere volume=(BoundingSphere)node.getWorldBound();
-        createCollisionSphere(volume);
+    public float getRadius() {
+        return radius;
     }
 
-    private void createCollisionSphere(BoundingSphere volume) {
-        SphereShape sphere=new SphereShape(volume.getRadius());
-        cShape=sphere;
-        type=ShapeTypes.SPHERE;
+    public void write(JMEExporter ex) throws IOException {
+        super.write(ex);
+        OutputCapsule capsule = ex.getCapsule(this);
+        capsule.write(radius, "radius", 0.5f);
+    }
+
+    public void read(JMEImporter im) throws IOException {
+        super.read(im);
+        InputCapsule capsule = im.getCapsule(this);
+        radius = capsule.readFloat("radius", 0.5f);
+        createShape();
+    }
+
+    protected void createShape() {
+        cShape = new SphereShape(radius);
+        cShape.setLocalScaling(Converter.convert(getScale()));
+        cShape.setMargin(margin);
+    }
+    
+    @Override
+    public Class getClassTag() {
+    	return getClass();
     }
 
 }

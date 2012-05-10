@@ -1,0 +1,406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>
+PhysicsUtil
+</TITLE>
+
+
+<LINK REL ="stylesheet" TYPE="text/css" HREF="../../../../stylesheet.css" TITLE="Style">
+
+<SCRIPT type="text/javascript">
+function windowTitle()
+{
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PhysicsUtil";
+    }
+}
+</SCRIPT>
+<NOSCRIPT>
+</NOSCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="white" onload="windowTitle();">
+<HR>
+
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<A NAME="navbar_top"><!-- --></A>
+<A HREF="#skip-navbar_top" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_top_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsUtil.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../com/jmex/jbullet/util/Converter.html" title="class in com.jmex.jbullet.util"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/util/TempVars.html" title="class in com.jmex.jbullet.util"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?com/jmex/jbullet/util/PhysicsUtil.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PhysicsUtil.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_top"></A>
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<HR>
+<!-- ======== START OF CLASS DATA ======== -->
+<H2>
+<FONT SIZE="-1">
+com.jmex.jbullet.util</FONT>
+<BR>
+Class PhysicsUtil</H2>
+<PRE>
+java.lang.Object
+  <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.util.PhysicsUtil</B>
+</PRE>
+<HR>
+<DL>
+<DT><PRE>public final class <B>PhysicsUtil</B><DT>extends java.lang.Object</DL>
+</PRE>
+
+<P>
+Clase de utilidad para facilitar el trabajo con las físicas de JBullet.
+<P>
+
+<P>
+<HR>
+
+<P>
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<A NAME="method_summary"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
+<B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/util/PhysicsUtil.html#addCollisionShape(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CompoundCollisionShape, java.lang.Class)">addCollisionShape</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                  <A HREF="../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A>&nbsp;shape,
+                  java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Añade a la collisionShape tantas <code>CollisionShape</code> como
+ submayas (TriMesh) tenga el modelo indicado.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;com.jme.scene.Node</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/util/PhysicsUtil.html#crearNodoFisicas(com.jme.scene.Spatial, java.lang.Class, java.lang.Class, com.jme.math.Quaternion)">crearNodoFisicas</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                 java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;collisionClass,
+                 java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;compoundChildShapeClass,
+                 com.jme.math.Quaternion&nbsp;rotacion)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contruye un <code>PhysicsNode</code> con el modelo indicado, usando el
+ tipo de geometría de colisión especificado.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;com.jme.scene.Node</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/util/PhysicsUtil.html#crearNodoFisicas(com.jme.scene.Spatial, java.lang.Class, com.jme.math.Quaternion)">crearNodoFisicas</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                 java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;collisionClass,
+                 com.jme.math.Quaternion&nbsp;rotacion)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contruye un <code>PhysicsNode</code> con el modelo indicado, usando el
+ tipo de geometría de colisión especificado.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/util/PhysicsUtil.html#createCompoundCollisionShape(com.jme.scene.Spatial, java.lang.Class)">createCompoundCollisionShape</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                             java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crea una collisionShape compuesta por tantas <code>CollisionShape</code>
+ como submayas (TriMesh) tenga el modelo indicado.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/util/PhysicsUtil.html#generateCollisionShape(com.jme.scene.Spatial, java.lang.Class)">generateCollisionShape</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                       java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>static&nbsp;<A HREF="../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A></CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/util/PhysicsUtil.html#shiftCenterOfMass(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape, com.jme.math.Vector3f)">shiftCenterOfMass</A></B>(com.jme.scene.Spatial&nbsp;modelo,
+                  <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+                  com.jme.math.Vector3f&nbsp;translation)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+</TABLE>
+&nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TH ALIGN="left"><B>Methods inherited from class java.lang.Object</B></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE>equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</CODE></TD>
+</TR>
+</TABLE>
+&nbsp;
+<P>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="crearNodoFisicas(com.jme.scene.Spatial, java.lang.Class, com.jme.math.Quaternion)"><!-- --></A><H3>
+crearNodoFisicas</H3>
+<PRE>
+public static com.jme.scene.Node <B>crearNodoFisicas</B>(com.jme.scene.Spatial&nbsp;modelo,
+                                                  java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;collisionClass,
+                                                  com.jme.math.Quaternion&nbsp;rotacion)</PRE>
+<DL>
+<DD>Contruye un <code>PhysicsNode</code> con el modelo indicado, usando el
+ tipo de geometría de colisión especificado.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>modelo</CODE> - el modelo que se usará para representar el nodo de físicas<DD><CODE>collisionClass</CODE> - el tipo de geometría de colisión que se usará para calcular
+            las colisiones del modelo
+<DT><B>Returns:</B><DD>dependiendo de la clase de colisión indicada, se deolverán los
+         siguientes tipos de objetos:
+         <ul>
+         <li><code>GImpactCollisionShape</code>,
+         <code>MeshCollisionShape</code>: Se devuelve un objeto de tipo
+         <code>Node</code> que contiene tantos objetos de tipo
+         <code>PhysicsNode</code> como submayas (TriMesh) que contenga el
+         modelo indicado. Es decir, se crea u n nodo físico por cada
+         submaya.</li>
+         <li><code>CompoundCollisionShape</code>: No permitido en este
+         método. Usar el método que admite 3 parámetros para configurar el
+         tipo de forma que compondrán la maya resultante.
+         <li>Resto de tipos de colisión: Retorna un objeto de tipo
+         <code>PhysicsNode</code>
+         </ul>
+         una instancia de <code>PhysicsNode</code> con el modelo asociado.<DT><B>See Also:</B><DD><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes"><CODE>PhysicsNode</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="crearNodoFisicas(com.jme.scene.Spatial, java.lang.Class, java.lang.Class, com.jme.math.Quaternion)"><!-- --></A><H3>
+crearNodoFisicas</H3>
+<PRE>
+public static com.jme.scene.Node <B>crearNodoFisicas</B>(com.jme.scene.Spatial&nbsp;modelo,
+                                                  java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;collisionClass,
+                                                  java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;compoundChildShapeClass,
+                                                  com.jme.math.Quaternion&nbsp;rotacion)</PRE>
+<DL>
+<DD>Contruye un <code>PhysicsNode</code> con el modelo indicado, usando el
+ tipo de geometría de colisión especificado.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>modelo</CODE> - el modelo que se usará para representar el nodo de físicas<DD><CODE>collisionClass</CODE> - el tipo de geometría de colisión que se usará para calcular
+            las colisiones del modelo<DD><CODE>compoundChildShapeClass</CODE> - el tipo de <code>CollisionShape</code> que se utilizará para
+            cada una se las submayas cuando se quiere crear un nodo con
+            una <code>CompoundCollisionShape</code>. Es obligatorio cuando
+            se indica como <code>collisionClass</code> una clase del tipo
+            <code>CompoundCollisionShape</code>. Para el resto de tipos de
+            formas de colisión, este parámetro se ignora.
+<DT><B>Returns:</B><DD>dependiendo de la clase de colisión indicada, se deolverán los
+         siguientes tipos de objetos:
+         <ul>
+         <li><code>GImpactCollisionShape</code>,
+         <code>MeshCollisionShape</code>: Se devuelve un objeto de tipo
+         <code>Node</code> que contiene tantos objetos de tipo
+         <code>PhysicsNode</code> como submayas (TriMesh) que contenga el
+         modelo indicado. Es decir, se crea u n nodo físico por cada
+         submaya.</li>
+         <li><code>CompoundCollisionShape</code>: Se devuelve un objeto de
+         tipo <code>PhysicsNode</code> que contiene una geometría de
+         colisión compuesta por las geometrías del modelo indicado. La
+         <code>CompoundCollisionShape</code> estará formadas por
+         geometrias de colisión del tipo especificado por el parámetro
+         <code>compoundChildShapeClass</code></li>.
+         <li>Resto de tipos de colisión: Retorna un objeto de tipo
+         <code>PhysicsNode</code>
+         </ul>
+         una instancia de <code>PhysicsNode</code> con el modelo asociado.<DT><B>See Also:</B><DD><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes"><CODE>PhysicsNode</CODE></A></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="createCompoundCollisionShape(com.jme.scene.Spatial, java.lang.Class)"><!-- --></A><H3>
+createCompoundCollisionShape</H3>
+<PRE>
+public static <A HREF="../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A> <B>createCompoundCollisionShape</B>(com.jme.scene.Spatial&nbsp;modelo,
+                                                                  java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</PRE>
+<DL>
+<DD>Crea una collisionShape compuesta por tantas <code>CollisionShape</code>
+ como submayas (TriMesh) tenga el modelo indicado. El método busca de
+ forma recuriva todas las mayas.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>modelo</CODE> - el modelo para el que se quiere crear la
+            <code>CompoundCollisionShape</code><DD><CODE>shapeClass</CODE> - el tipo de <code>CollisionShape</code> que se utilizará para
+            cada una se las submayas
+<DT><B>Returns:</B><DD>la geometia compuesta de colisión para el modelo especificado por
+         parámetro</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="shiftCenterOfMass(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape, com.jme.math.Vector3f)"><!-- --></A><H3>
+shiftCenterOfMass</H3>
+<PRE>
+public static <A HREF="../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A> <B>shiftCenterOfMass</B>(com.jme.scene.Spatial&nbsp;modelo,
+                                                       <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&nbsp;shape,
+                                                       com.jme.math.Vector3f&nbsp;translation)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="addCollisionShape(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CompoundCollisionShape, java.lang.Class)"><!-- --></A><H3>
+addCollisionShape</H3>
+<PRE>
+public static void <B>addCollisionShape</B>(com.jme.scene.Spatial&nbsp;modelo,
+                                     <A HREF="../../../../com/jmex/jbullet/collision/shapes/CompoundCollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CompoundCollisionShape</A>&nbsp;shape,
+                                     java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</PRE>
+<DL>
+<DD>Añade a la collisionShape tantas <code>CollisionShape</code> como
+ submayas (TriMesh) tenga el modelo indicado. El método busca de forma
+ recuriva todas las mayas.
+<P>
+<DD><DL>
+<DT><B>Parameters:</B><DD><CODE>modelo</CODE> - el modelo del que se crearán nuevas geometrías de colisión y
+            se añadirán a la <code>CompoundCollisionShape</code><DD><CODE>shape</CODE> - la geometia compuesta de colisión a la que se añadirán las
+            geometrías de colisión creadas<DD><CODE>shapeClass</CODE> - el tipo de <code>CollisionShape</code> que se utilizará para
+            cada una se las submayas</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="generateCollisionShape(com.jme.scene.Spatial, java.lang.Class)"><!-- --></A><H3>
+generateCollisionShape</H3>
+<PRE>
+public static <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A> <B>generateCollisionShape</B>(com.jme.scene.Spatial&nbsp;modelo,
+                                                    java.lang.Class&lt;? extends <A HREF="../../../../com/jmex/jbullet/collision/shapes/CollisionShape.html" title="class in com.jmex.jbullet.collision.shapes">CollisionShape</A>&gt;&nbsp;shapeClass)</PRE>
+<DL>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<!-- ========= END OF CLASS DATA ========= -->
+<HR>
+
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<A NAME="navbar_bottom"><!-- --></A>
+<A HREF="#skip-navbar_bottom" title="Skip navigation links"></A>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD COLSPAN=2 BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<A NAME="navbar_bottom_firstrow"><!-- --></A>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+  <TR ALIGN="center" VALIGN="top">
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<FONT CLASS="NavBarFont1Rev"><B>Class</B></FONT>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="class-use/PhysicsUtil.html"><FONT CLASS="NavBarFont1"><B>Use</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="package-tree.html"><FONT CLASS="NavBarFont1"><B>Tree</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../index-files/index-1.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A>&nbsp;</TD>
+  <TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    <A HREF="../../../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT></A>&nbsp;</TD>
+  </TR>
+</TABLE>
+</TD>
+<TD ALIGN="right" VALIGN="top" ROWSPAN=3><EM>
+</EM>
+</TD>
+</TR>
+
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+&nbsp;<A HREF="../../../../com/jmex/jbullet/util/Converter.html" title="class in com.jmex.jbullet.util"><B>PREV CLASS</B></A>&nbsp;
+&nbsp;<A HREF="../../../../com/jmex/jbullet/util/TempVars.html" title="class in com.jmex.jbullet.util"><B>NEXT CLASS</B></A></FONT></TD>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+  <A HREF="../../../../index.html?com/jmex/jbullet/util/PhysicsUtil.html" target="_top"><B>FRAMES</B></A>  &nbsp;
+&nbsp;<A HREF="PhysicsUtil.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
+&nbsp;<SCRIPT type="text/javascript">
+  <!--
+  if(window==top) {
+    document.writeln('<A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>');
+  }
+  //-->
+</SCRIPT>
+<NOSCRIPT>
+  <A HREF="../../../../allclasses-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+
+
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;CONSTR&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="skip-navbar_bottom"></A>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+<HR>
+
+</BODY>
+</HTML>

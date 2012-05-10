@@ -55,7 +55,7 @@ function windowTitle()
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;PREV CLASS&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterRotationNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsCharacterNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="PhysicsCharacterNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;
@@ -100,6 +100,9 @@ java.lang.Object
 </PRE>
 <DL>
 <DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable, java.io.Serializable</DD>
+</DL>
+<DL>
+<DT><B>Direct Known Subclasses:</B> <DD><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterRotationNode.html" title="class in com.jmex.jbullet.nodes">PhysicsCharacterRotationNode</A></DD>
 </DL>
 <HR>
 <DL>
@@ -166,14 +169,6 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#PhysicsCharacterNode(com.jme.scene.Spatial, int, float)">PhysicsCharacterNode</A></B>(com.jme.scene.Spatial&nbsp;spat,
-                     int&nbsp;shapeType,
-                     float&nbsp;stepHeight)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
-</TR>
 </TABLE>
 &nbsp;
 <!-- ========== METHOD SUMMARY =========== -->
@@ -199,6 +194,14 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used internally</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#getClassTag()">getClassTag</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -228,6 +231,14 @@ java.lang.Object
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;boolean</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#onGround()">onGround</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;e)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -296,6 +307,14 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterNode.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;e)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.nodes.PhysicsGhostNode"><!-- --></A>
 <TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
@@ -312,7 +331,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Node</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>attachChild, attachChildAt, childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, read, setCollisionMask, setCollisionMask, setModelBound, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors, write</CODE></TD>
+<TD><CODE>attachChild, attachChildAt, childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, setCollisionMask, setCollisionMask, setModelBound, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
@@ -321,7 +340,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -331,15 +350,6 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE>equals, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_com.jme.util.export.Savable"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from interface com.jme.util.export.Savable</B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>getClassTag</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -354,19 +364,6 @@ java.lang.Object
 <B>Constructor Detail</B></FONT></TH>
 </TR>
 </TABLE>
-
-<A NAME="PhysicsCharacterNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
-PhysicsCharacterNode</H3>
-<PRE>
-<FONT SIZE="-1">@Deprecated
-</FONT>public <B>PhysicsCharacterNode</B>(com.jme.scene.Spatial&nbsp;spat,
-                                       int&nbsp;shapeType,
-                                       float&nbsp;stepHeight)</PRE>
-<DL>
-<DD><B>Deprecated.</B>&nbsp;
-<P>
-</DL>
-<HR>
 
 <A NAME="PhysicsCharacterNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape, float)"><!-- --></A><H3>
 PhysicsCharacterNode</H3>
@@ -549,6 +546,54 @@ public void <B>destroy</B>()</PRE>
 </DL>
 </DD>
 </DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;e)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#write(com.jme.util.export.JMEExporter)">write</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;e)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#read(com.jme.util.export.JMEImporter)">read</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html#getClassTag()">getClassTag</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes">PhysicsGhostNode</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
 
@@ -581,7 +626,7 @@ public void <B>destroy</B>()</PRE>
 <TR>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
 &nbsp;PREV CLASS&nbsp;
-&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsGhostNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
+&nbsp;<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsCharacterRotationNode.html" title="class in com.jmex.jbullet.nodes"><B>NEXT CLASS</B></A></FONT></TD>
 <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
   <A HREF="../../../../index.html?com/jmex/jbullet/nodes/PhysicsCharacterNode.html" target="_top"><B>FRAMES</B></A>  &nbsp;
 &nbsp;<A HREF="PhysicsCharacterNode.html" target="_top"><B>NO FRAMES</B></A>  &nbsp;

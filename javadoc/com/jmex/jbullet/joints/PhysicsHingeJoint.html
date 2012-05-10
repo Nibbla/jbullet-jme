@@ -95,6 +95,9 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">com.jmex.jbullet.joints.PhysicsJoint</A>
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.PhysicsHingeJoint</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
 <HR>
 <DL>
 <DT><PRE>public class <B>PhysicsHingeJoint</B><DT>extends <A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></DL>
@@ -120,6 +123,12 @@ java.lang.Object
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Constructor Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html#PhysicsHingeJoint()">PhysicsHingeJoint</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html#PhysicsHingeJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Vector3f)">PhysicsHingeJoint</A></B>(<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>&nbsp;nodeA,
@@ -154,8 +163,16 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;float</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html#getHingeAngle()">getHingeAngle</A></B>()</CODE>
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html#getClassTag()">getClassTag</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;im)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -177,6 +194,14 @@ java.lang.Object
          float&nbsp;_softness,
          float&nbsp;_biasFactor,
          float&nbsp;_relaxationFactor)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsHingeJoint.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;ex)</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
@@ -212,6 +237,14 @@ java.lang.Object
 <B>Constructor Detail</B></FONT></TH>
 </TR>
 </TABLE>
+
+<A NAME="PhysicsHingeJoint()"><!-- --></A><H3>
+PhysicsHingeJoint</H3>
+<PRE>
+public <B>PhysicsHingeJoint</B>()</PRE>
+<DL>
+</DL>
+<HR>
 
 <A NAME="PhysicsHingeJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
 PhysicsHingeJoint</H3>
@@ -279,13 +312,50 @@ public void <B>setLimit</B>(float&nbsp;low,
 </DL>
 <HR>
 
-<A NAME="getHingeAngle()"><!-- --></A><H3>
-getHingeAngle</H3>
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
 <PRE>
-public float <B>getHingeAngle</B>()</PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
 <DL>
 <DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#getClassTag()">getClassTag</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
 </DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;im)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#read(com.jme.util.export.JMEImporter)">read</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;ex)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#write(com.jme.util.export.JMEExporter)">write</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
 </DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->

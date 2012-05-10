@@ -31,20 +31,22 @@
  */
 package jmetest.jbullet.debug;
 
+import java.util.concurrent.Callable;
+
 import com.jme.bounding.BoundingBox;
-import com.jme.bounding.BoundingCapsule;
 import com.jme.math.FastMath;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Node;
+import com.jme.scene.Spatial;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Cylinder;
 import com.jme.scene.shape.Sphere;
 import com.jme.util.GameTaskQueueManager;
+import com.jmex.editors.swing.settings.GameSettingsPanel;
 import com.jmex.game.StandardGame;
 import com.jmex.game.state.GameStateManager;
 import com.jmex.jbullet.PhysicsSpace;
-import com.jmex.editors.swing.settings.GameSettingsPanel;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
 import com.jmex.jbullet.collision.shapes.CollisionShape;
@@ -53,7 +55,7 @@ import com.jmex.jbullet.collision.shapes.CylinderCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.debug.PhysicsDebugGameState;
 import com.jmex.jbullet.nodes.PhysicsNode;
-import java.util.concurrent.Callable;
+import com.jmex.jbullet.util.PhysicsUtil;
 
 /**
  * Testing out whether the PhysicsDebug view can correctly render CompoundCollisionShapes.
@@ -91,7 +93,8 @@ public class TestDebuggerCoumpoundShape
         pSpace.add( compound );
 
         // The floor, which does not move (mass=0)
-        PhysicsNode floor = new PhysicsNode( new Box( "physicsfloor", Vector3f.ZERO, 20f, 0.2f, 20f ), CollisionShape.ShapeTypes.BOX, 0 );
+        Spatial box = new Box( "physicsfloor", Vector3f.ZERO, 20f, 0.2f, 20f );
+        PhysicsNode floor = new PhysicsNode(box, PhysicsUtil.generateCollisionShape(box, BoxCollisionShape.class), 0 );
         floor.setLocalTranslation( new Vector3f( 0f, -6, 0f ) );
         state.getRootNode().attachChild( floor );
         floor.updateRenderState();

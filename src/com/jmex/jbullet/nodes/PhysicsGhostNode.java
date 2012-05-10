@@ -39,6 +39,10 @@ import com.jme.math.Matrix3f;
 import com.jme.math.Quaternion;
 import com.jme.math.Vector3f;
 import com.jme.scene.Spatial;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.collision.CollisionObject;
 import com.jmex.jbullet.collision.shapes.BoxCollisionShape;
 import com.jmex.jbullet.collision.shapes.CapsuleCollisionShape;
@@ -48,6 +52,7 @@ import com.jmex.jbullet.collision.shapes.GImpactCollisionShape;
 import com.jmex.jbullet.collision.shapes.MeshCollisionShape;
 import com.jmex.jbullet.collision.shapes.SphereCollisionShape;
 import com.jmex.jbullet.util.Converter;
+import java.io.IOException;
 
 /**
  * <i>From Bullet manual:</i><br>
@@ -76,13 +81,6 @@ public class PhysicsGhostNode extends CollisionObject {
         buildObject();
     }
 
-    @Deprecated
-    public PhysicsGhostNode(Spatial child, int shapeType) {
-        this.attachChild(child);
-        buildCollisionShape(shapeType);
-        buildObject();
-    }
-
     public PhysicsGhostNode(Spatial child, CollisionShape shape) {
         this.attachChild(child);
         cShape = shape;
@@ -95,35 +93,6 @@ public class PhysicsGhostNode extends CollisionObject {
             gObject.setCollisionFlags(gObject.getCollisionFlags() | CollisionFlags.NO_CONTACT_RESPONSE);
         }
         gObject.setCollisionShape(cShape.getCShape());
-    }
-
-    /**
-     * creates a collisionShape from the BoundingVolume of this node.
-     * If no BoundingVolume of the give type exists yet, it will be created.
-     * Otherwise a new BoundingVolume will be created.
-     * @param type
-     */
-    private void buildCollisionShape(int type) {
-        switch (type) {
-            case CollisionShape.ShapeTypes.BOX:
-                cShape = new BoxCollisionShape(this);
-                break;
-            case CollisionShape.ShapeTypes.SPHERE:
-                cShape = new SphereCollisionShape(this);
-                break;
-            case CollisionShape.ShapeTypes.CAPSULE:
-                cShape = new CapsuleCollisionShape(this);
-                break;
-            case CollisionShape.ShapeTypes.CYLINDER:
-                cShape = new CylinderCollisionShape(this);
-                break;
-            case CollisionShape.ShapeTypes.MESH:
-                cShape = new MeshCollisionShape(this);
-                break;
-            case CollisionShape.ShapeTypes.GIMPACT:
-                cShape = new GImpactCollisionShape(this);
-                break;
-        }
     }
 
     /**
@@ -309,4 +278,28 @@ public class PhysicsGhostNode extends CollisionObject {
         tempRotation.fromRotationMatrix(tempMatrix);
         setWorldRotation(tempRotation);
     }
+      @Override
+    public void write(JMEExporter e) throws IOException {
+    	super.write(e);
+        OutputCapsule capsule = e.getCapsule( this );
+        capsule.write(cShape, "shape", null);
+
+      }
+
+      @Override
+	public void read(JMEImporter e) throws IOException {
+            super.read(e);
+            InputCapsule capsule = e.getCapsule(this);
+            cShape= (CollisionShape) capsule.readSavable("shape", null);
+            buildObject();
+            applyTranslation();
+            applyRotation();
+      }
+
+       @Override
+	public Class getClassTag() {
+
+		return PhysicsGhostNode.class;
+	}
+
 }

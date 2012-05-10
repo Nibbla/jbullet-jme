@@ -75,9 +75,9 @@ function windowTitle()
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.jmex.jbullet.joints.PhysicsJoint">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_top"></A>
@@ -95,6 +95,9 @@ java.lang.Object
   <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">com.jmex.jbullet.joints.PhysicsJoint</A>
       <IMG SRC="../../../../resources/inherit.gif" ALT="extended by "><B>com.jmex.jbullet.joints.PhysicsPoint2PointJoint</B>
 </PRE>
+<DL>
+<DT><B>All Implemented Interfaces:</B> <DD>com.jme.util.export.Savable</DD>
+</DL>
 <HR>
 <DL>
 <DT><PRE>public class <B>PhysicsPoint2PointJoint</B><DT>extends <A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></DL>
@@ -121,6 +124,12 @@ java.lang.Object
 <B>Constructor Summary</B></FONT></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsPoint2PointJoint.html#PhysicsPoint2PointJoint()">PhysicsPoint2PointJoint</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsPoint2PointJoint.html#PhysicsPoint2PointJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f)">PhysicsPoint2PointJoint</A></B>(<A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>&nbsp;nodeA,
                         <A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html" title="class in com.jmex.jbullet.nodes">PhysicsNode</A>&nbsp;nodeB,
                         com.jme.math.Vector3f&nbsp;pivotA,
@@ -138,6 +147,30 @@ java.lang.Object
 <TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
 <TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2">
 <B>Method Summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsPoint2PointJoint.html#getClassTag()">getClassTag</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsPoint2PointJoint.html#read(com.jme.util.export.JMEImporter)">read</A></B>(com.jme.util.export.JMEImporter&nbsp;im)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;void</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/joints/PhysicsPoint2PointJoint.html#write(com.jme.util.export.JMEExporter)">write</A></B>(com.jme.util.export.JMEExporter&nbsp;ex)</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jmex.jbullet.joints.PhysicsJoint"><!-- --></A>
@@ -171,6 +204,14 @@ java.lang.Object
 </TR>
 </TABLE>
 
+<A NAME="PhysicsPoint2PointJoint()"><!-- --></A><H3>
+PhysicsPoint2PointJoint</H3>
+<PRE>
+public <B>PhysicsPoint2PointJoint</B>()</PRE>
+<DL>
+</DL>
+<HR>
+
 <A NAME="PhysicsPoint2PointJoint(com.jmex.jbullet.nodes.PhysicsNode, com.jmex.jbullet.nodes.PhysicsNode, com.jme.math.Vector3f, com.jme.math.Vector3f)"><!-- --></A><H3>
 PhysicsPoint2PointJoint</H3>
 <PRE>
@@ -179,6 +220,63 @@ public <B>PhysicsPoint2PointJoint</B>(<A HREF="../../../../com/jmex/jbullet/node
                                com.jme.math.Vector3f&nbsp;pivotA,
                                com.jme.math.Vector3f&nbsp;pivotB)</PRE>
 <DL>
+</DL>
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<A NAME="method_detail"><!-- --></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2">
+<B>Method Detail</B></FONT></TH>
+</TR>
+</TABLE>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Specified by:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#getClassTag()">getClassTag</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+</DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="read(com.jme.util.export.JMEImporter)"><!-- --></A><H3>
+read</H3>
+<PRE>
+public void <B>read</B>(com.jme.util.export.JMEImporter&nbsp;im)
+          throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>read</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#read(com.jme.util.export.JMEImporter)">read</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="write(com.jme.util.export.JMEExporter)"><!-- --></A><H3>
+write</H3>
+<PRE>
+public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;ex)
+           throws java.io.IOException</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>write</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html#write(com.jme.util.export.JMEExporter)">write</A></CODE> in class <CODE><A HREF="../../../../com/jmex/jbullet/joints/PhysicsJoint.html" title="class in com.jmex.jbullet.joints">PhysicsJoint</A></CODE></DL>
+</DD>
+<DD><DL>
+
+<DT><B>Throws:</B>
+<DD><CODE>java.io.IOException</CODE></DL>
+</DD>
 </DL>
 <!-- ========= END OF CLASS DATA ========= -->
 <HR>
@@ -232,9 +330,9 @@ public <B>PhysicsPoint2PointJoint</B>(<A HREF="../../../../com/jmex/jbullet/node
 </TR>
 <TR>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#methods_inherited_from_class_com.jmex.jbullet.joints.PhysicsJoint">METHOD</A></FONT></TD>
+  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
 <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
-DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;METHOD</FONT></TD>
+DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
 </TR>
 </TABLE>
 <A NAME="skip-navbar_bottom"></A>

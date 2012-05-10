@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 Normen Hansen
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -13,7 +13,7 @@
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
  *
- * * Neither the name of 'Normen Hansen' nor the names of its contributors
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
  *   may be used to endorse or promote products derived from this software
  *   without specific prior written permission.
  *
@@ -31,13 +31,19 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
+import com.bulletphysics.collision.shapes.IndexedMesh;
+import com.bulletphysics.collision.shapes.TriangleIndexVertexArray;
 import com.bulletphysics.extras.gimpact.GImpactMeshShape;
-import com.jme.scene.Node;
-import com.jme.scene.Spatial;
+import com.jme.math.Vector3f;
 import com.jme.scene.TriMesh;
-import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
 import com.jmex.jbullet.util.Converter;
-import java.util.List;
 
 /**
  * Basic mesh collision shape
@@ -45,50 +51,89 @@ import java.util.List;
  */
 public class GImpactCollisionShape extends CollisionShape{
 
-    /**
-     * creates a collision shape from the TriMesh leaf in the given node
-     * @param node the node to get the TriMesh from
-     */
-    public GImpactCollisionShape(Node node) {
-        createCollisionMesh(node);
+    protected Vector3f worldScale;
+    protected int numVertices, numTriangles, vertexStride, triangleIndexStride;
+    protected ByteBuffer triangleIndexBase, vertexBase;
+    protected IndexedMesh bulletMesh;
+
+    public GImpactCollisionShape() {
     }
 
     /**
-     * creates a collision shape from the given TriMesh
-     * @param mesh the TriMesh to use
+     * creates a collision shape from the given Mesh
+     * @param mesh the Mesh to use
      */
     public GImpactCollisionShape(TriMesh mesh) {
-        createCollisionMesh(mesh);
+        createCollisionMesh(mesh, new Vector3f(1,1,1));
     }
 
+
+    private void createCollisionMesh(TriMesh mesh, Vector3f worldScale) {
+        this.worldScale = worldScale;
+        bulletMesh = Converter.convert(mesh);
+        this.numVertices = bulletMesh.numVertices;
+        this.numTriangles = bulletMesh.numTriangles;
+        this.vertexStride = bulletMesh.vertexStride;
+        this.triangleIndexStride = bulletMesh.triangleIndexStride;
+        this.triangleIndexBase = bulletMesh.triangleIndexBase;
+        this.vertexBase = bulletMesh.vertexBase;
+        createShape();
+    }
 
     /**
-     * creates a mesh that represents this node in the physics space. Can only be
-     * used if this Node has one (and only one) TriMesh as a child.<br>
+     * creates a jme mesh from the collision shape, only needed for debugging
      */
-    private void createCollisionMesh(Node node){
-        List<Spatial> children=node.getChildren();
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision mesh"));
-        }
-        else if(children.size()>1){
-            throw (new UnsupportedOperationException("Can only create mesh from one single trimesh as leaf in this node."));
-        }
-        if(node.getChild(0) instanceof TriMesh){
-            TriMesh mesh=(TriMesh)node.getChild(0);
-            createCollisionMesh(mesh);
-        }
-        else{
-            throw (new UnsupportedOperationException("No usable trimesh attached to this node!"));
-        }
+    public TriMesh createJmeMesh(){
+        return Converter.convert(bulletMesh);
     }
 
-    private void createCollisionMesh(TriMesh mesh){
-        cShape=new GImpactMeshShape(Converter.convert(mesh));
-        cShape.setLocalScaling(Converter.convert(mesh.getWorldScale()));
+    public void write(JMEExporter ex) throws IOException {
+        super.write(ex);
+        OutputCapsule capsule = ex.getCapsule(this);
+        capsule.write(worldScale, "worldScale", new Vector3f(1, 1, 1));
+        capsule.write(numVertices, "numVertices", 0);
+        capsule.write(numTriangles, "numTriangles", 0);
+        capsule.write(vertexStride, "vertexStride", 0);
+        capsule.write(triangleIndexStride, "triangleIndexStride", 0);
+
+        capsule.write(triangleIndexBase.array(), "triangleIndexBase", new byte[0]);
+        capsule.write(vertexBase.array(), "vertexBase", new byte[0]);
+    }
+
+    public void read(JMEImporter im) throws IOException {
+        super.read(im);
+        InputCapsule capsule = im.getCapsule(this);
+        worldScale = (Vector3f) capsule.readSavable("worldScale", new Vector3f(1, 1, 1));
+        numVertices = capsule.readInt("numVertices", 0);
+        numTriangles = capsule.readInt("numTriangles", 0);
+        vertexStride = capsule.readInt("vertexStride", 0);
+        triangleIndexStride = capsule.readInt("triangleIndexStride", 0);
+
+        triangleIndexBase = ByteBuffer.wrap(capsule.readByteArray("triangleIndexBase", new byte[0]));
+        vertexBase = ByteBuffer.wrap(capsule.readByteArray("vertexBase", new byte[0]));
+        createShape();
+    }
+
+    protected void createShape() {
+        bulletMesh = new IndexedMesh();
+        bulletMesh.numVertices = numVertices;
+        bulletMesh.numTriangles = numTriangles;
+        bulletMesh.vertexStride = vertexStride;
+        bulletMesh.triangleIndexStride = triangleIndexStride;
+        bulletMesh.triangleIndexBase = triangleIndexBase;
+        bulletMesh.vertexBase = vertexBase;
+        bulletMesh.triangleIndexBase = triangleIndexBase;
+        TriangleIndexVertexArray tiv = new TriangleIndexVertexArray(numTriangles, triangleIndexBase, triangleIndexStride, numVertices, vertexBase, vertexStride);
+        cShape = new GImpactMeshShape(tiv);
+        cShape.setLocalScaling(Converter.convert(worldScale));
         ((GImpactMeshShape)cShape).updateBound();
-        ((GImpactMeshShape)cShape).lockChildShapes();
-        type=ShapeTypes.GIMPACT;
+        cShape.setLocalScaling(Converter.convert(getScale()));
+        cShape.setMargin(margin);
+    }
+    
+    @Override
+    public Class getClassTag() {
+    	return getClass();
     }
 
 }

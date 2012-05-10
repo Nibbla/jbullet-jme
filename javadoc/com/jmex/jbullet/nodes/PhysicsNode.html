@@ -169,14 +169,7 @@ java.lang.Object
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode()">PhysicsNode</A></B>()</CODE>
 
 <BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
- creates the standard sphere collision shape for that PhysicsNode<br></TD>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Internal use only.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, com.jmex.jbullet.collision.shapes.CollisionShape)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
@@ -194,21 +187,6 @@ java.lang.Object
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a new PhysicsNode with the supplied child node or geometry and
  uses the supplied collision shape for that PhysicsNode<br></TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
-            int&nbsp;collisionShapeType)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#PhysicsNode(com.jme.scene.Spatial, int, float)">PhysicsNode</A></B>(com.jme.scene.Spatial&nbsp;child,
-            int&nbsp;collisionShapeType,
-            float&nbsp;mass)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B>Deprecated.</B>&nbsp;</TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -323,45 +301,11 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#attachChild(com.jme.scene.Spatial)">attachChild</A></B>(com.jme.scene.Spatial&nbsp;child)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;int</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#attachChildAt(com.jme.scene.Spatial, int)">attachChildAt</A></B>(com.jme.scene.Spatial&nbsp;child,
-              int&nbsp;index)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
 <CODE>&nbsp;void</CODE></FONT></TD>
 <TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#clearForces()">clearForces</A></B>()</CODE>
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape()">createCollisionShape</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the current BoundingVolume of this node.</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;void</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#createCollisionShape(int)">createCollisionShape</A></B>(int&nbsp;type)</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creates a collisionShape from the BoundingVolume of this node,
- if no BoundingVolume of the give type exists yet, it will be created.</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -386,6 +330,14 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get the current angular velocity of this PhysicsNode</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+<CODE>&nbsp;java.lang.Class</CODE></FONT></TD>
+<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#getClassTag()">getClassTag</A></B>()</CODE>
+
+<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -508,14 +460,6 @@ java.lang.Object
 
 <BR>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used internally</TD>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
-<CODE>&nbsp;boolean</CODE></FONT></TD>
-<TD><CODE><B><A HREF="../../../../com/jmex/jbullet/nodes/PhysicsNode.html#isActive()">isActive</A></B>()</CODE>
-
-<BR>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
@@ -711,7 +655,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Node</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, setCollisionMask, setCollisionMask, setModelBound, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors</CODE></TD>
+<TD><CODE>attachChild, attachChildAt, childChange, descendantMatches, descendantMatches, descendantMatches, detachAllChildren, detachChild, detachChildAt, detachChildNamed, draw, findCollisions, findPick, getChild, getChild, getChildIndex, getChildren, getQuantity, getTriangleCount, getVertexCount, hasChild, hasCollision, lockBounds, lockMeshes, lockShadows, lockTransforms, setCollisionMask, setCollisionMask, setModelBound, sortLights, swapChildren, unlockBounds, unlockMeshes, unlockShadows, unlockTransforms, updateModelBound, updateWorldBound, updateWorldData, updateWorldVectors</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_com.jme.scene.Spatial"><!-- --></A>
@@ -720,7 +664,7 @@ java.lang.Object
 <TH ALIGN="left"><B>Methods inherited from class com.jme.scene.Spatial</B></TH>
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getClassTag, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
+<TD><CODE>addController, calculateCollisions, calculateCollisions, calculatePick, calculatePick, clearControllers, clearRenderState, clearRenderState, findCollisions, findPick, getCollisionMask, getController, getControllerCount, getControllers, getCullHint, getLastFrustumIntersection, getLightCombineMode, getLocalCullHint, getLocalLightCombineMode, getLocalNormalsMode, getLocalRenderQueueMode, getLocalScale, getLocalTextureCombineMode, getLocalToWorldMatrix, getLocks, getName, getNormalsMode, getParent, getRenderQueueMode, getRenderState, getRenderState, getTextureCombineMode, getUserData, getWorldBound, getWorldRotation, getWorldScale, getWorldTranslation, getZOrder, hasAncestor, hasCollision, isCollidable, isCollidable, localToWorld, lock, lock, lockBranch, lockMeshes, matches, matches, onDraw, propagateBoundToRoot, propagateStatesFromRoot, removeController, removeController, removeFromParent, removeUserData, setCullHint, setIsCollidable, setLastFrustumIntersection, setLightCombineMode, setLocks, setLocks, setName, setNormalsMode, setRenderQueueMode, setRenderState, setTextureCombineMode, setUserData, setZOrder, setZOrder, toString, unlock, unlock, unlockBranch, unlockMeshes, updateGeometricState, updateRenderState, updateWorldVectors, worldToLocal</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;<A NAME="methods_inherited_from_class_java.lang.Object"><!-- --></A>
@@ -730,15 +674,6 @@ java.lang.Object
 </TR>
 <TR BGCOLOR="white" CLASS="TableRowColor">
 <TD><CODE>equals, getClass, hashCode, notify, notifyAll, wait, wait, wait</CODE></TD>
-</TR>
-</TABLE>
-&nbsp;<A NAME="methods_inherited_from_class_com.jme.util.export.Savable"><!-- --></A>
-<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TH ALIGN="left"><B>Methods inherited from interface com.jme.util.export.Savable</B></TH>
-</TR>
-<TR BGCOLOR="white" CLASS="TableRowColor">
-<TD><CODE>getClassTag</CODE></TD>
 </TR>
 </TABLE>
 &nbsp;
@@ -759,55 +694,10 @@ PhysicsNode</H3>
 <PRE>
 public <B>PhysicsNode</B>()</PRE>
 <DL>
-</DL>
-<HR>
-
-<A NAME="PhysicsNode(com.jme.scene.Spatial)"><!-- --></A><H3>
-PhysicsNode</H3>
-<PRE>
-public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
-<DL>
-<DD>creates a new PhysicsNode with the supplied child node or geometry and
- creates the standard sphere collision shape for that PhysicsNode<br>
+<DD>Internal use only. Use others constructors
 <P>
 <DL>
-<DT><B>Parameters:</B><DD><CODE>child</CODE> - </DL>
-</DL>
-<HR>
-
-<A NAME="PhysicsNode(com.jme.scene.Spatial, int)"><!-- --></A><H3>
-PhysicsNode</H3>
-<PRE>
-<FONT SIZE="-1">@Deprecated
-</FONT>public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
-                              int&nbsp;collisionShapeType)</PRE>
-<DL>
-<DD><B>Deprecated.</B>&nbsp;
-<P>
-<DD>creates a new PhysicsNode with the supplied child node or geometry and
- also creates a collision shape of the given type for that PhysicsNode
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - </DL>
-</DL>
-<HR>
-
-<A NAME="PhysicsNode(com.jme.scene.Spatial, int, float)"><!-- --></A><H3>
-PhysicsNode</H3>
-<PRE>
-<FONT SIZE="-1">@Deprecated
-</FONT>public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
-                              int&nbsp;collisionShapeType,
-                              float&nbsp;mass)</PRE>
-<DL>
-<DD><B>Deprecated.</B>&nbsp;
-<P>
-<DD>creates a new PhysicsNode with the supplied child node or geometry and
- also creates a collision shape of the given type for that PhysicsNode and
- assigns the given mass.
-<P>
-<DL>
-<DT><B>Parameters:</B><DD><CODE>child</CODE> - <DD><CODE>collisionShapeType</CODE> - <DD><CODE>mass</CODE> - </DL>
+<DT><B>Parameters:</B><DD><CODE>space</CODE> - </DL>
 </DL>
 <HR>
 
@@ -848,35 +738,6 @@ public <B>PhysicsNode</B>(com.jme.scene.Spatial&nbsp;child,
 <B>Method Detail</B></FONT></TH>
 </TR>
 </TABLE>
-
-<A NAME="attachChild(com.jme.scene.Spatial)"><!-- --></A><H3>
-attachChild</H3>
-<PRE>
-public int <B>attachChild</B>(com.jme.scene.Spatial&nbsp;child)</PRE>
-<DL>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>attachChild</CODE> in class <CODE>com.jme.scene.Node</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="attachChildAt(com.jme.scene.Spatial, int)"><!-- --></A><H3>
-attachChildAt</H3>
-<PRE>
-public int <B>attachChildAt</B>(com.jme.scene.Spatial&nbsp;child,
-                         int&nbsp;index)</PRE>
-<DL>
-<DD><DL>
-<DT><B>Overrides:</B><DD><CODE>attachChildAt</CODE> in class <CODE>com.jme.scene.Node</CODE></DL>
-</DD>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
 
 <A NAME="getLocalTranslation()"><!-- --></A><H3>
 getLocalTranslation</H3>
@@ -1490,36 +1351,6 @@ public void <B>clearForces</B>()</PRE>
 </DL>
 <HR>
 
-<A NAME="createCollisionShape(int)"><!-- --></A><H3>
-createCollisionShape</H3>
-<PRE>
-public void <B>createCollisionShape</B>(int&nbsp;type)</PRE>
-<DL>
-<DD>creates a collisionShape from the BoundingVolume of this node,
- if no BoundingVolume of the give type exists yet, it will be created.
- Otherwise the current BoundingVolume will be used.
-<P>
-<DD><DL>
-<DT><B>Parameters:</B><DD><CODE>type</CODE> - </DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="createCollisionShape()"><!-- --></A><H3>
-createCollisionShape</H3>
-<PRE>
-public void <B>createCollisionShape</B>()</PRE>
-<DL>
-<DD>creates a collisionShape from the current BoundingVolume of this node.
- If no BoundingVolume of a proper type (box, sphere, cyliner, capsule) exists,
- a sphere will be created.
-<P>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
 <A NAME="getCollisionShape()"><!-- --></A><H3>
 getCollisionShape</H3>
 <PRE>
@@ -1553,17 +1384,6 @@ public void <B>activate</B>()</PRE>
 <DL>
 <DD>reactivates this PhysicsNode when it has been deactivated because it was not moving
 <P>
-<DD><DL>
-</DL>
-</DD>
-</DL>
-<HR>
-
-<A NAME="isActive()"><!-- --></A><H3>
-isActive</H3>
-<PRE>
-public boolean <B>isActive</B>()</PRE>
-<DL>
 <DD><DL>
 </DL>
 </DD>
@@ -1624,6 +1444,20 @@ public void <B>write</B>(com.jme.util.export.JMEExporter&nbsp;e)
 
 <DT><B>Throws:</B>
 <DD><CODE>java.io.IOException</CODE></DL>
+</DD>
+</DL>
+<HR>
+
+<A NAME="getClassTag()"><!-- --></A><H3>
+getClassTag</H3>
+<PRE>
+public java.lang.Class <B>getClassTag</B>()</PRE>
+<DL>
+<DD><DL>
+<DT><B>Specified by:</B><DD><CODE>getClassTag</CODE> in interface <CODE>com.jme.util.export.Savable</CODE><DT><B>Overrides:</B><DD><CODE>getClassTag</CODE> in class <CODE>com.jme.scene.Spatial</CODE></DL>
+</DD>
+<DD><DL>
+</DL>
 </DD>
 </DL>
 <HR>

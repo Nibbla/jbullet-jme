@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009 Normen Hansen
+ * Copyright (c) 2009-2010 jMonkeyEngine
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -13,7 +13,7 @@
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
  *
- * * Neither the name of 'Normen Hansen' nor the names of its contributors
+ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
  *   may be used to endorse or promote products derived from this software
  *   without specific prior written permission.
  *
@@ -31,36 +31,28 @@
  */
 package com.jmex.jbullet.collision.shapes;
 
+import java.io.IOException;
+
 import com.bulletphysics.collision.shapes.CapsuleShape;
 import com.bulletphysics.collision.shapes.CapsuleShapeX;
 import com.bulletphysics.collision.shapes.CapsuleShapeZ;
 import com.jme.bounding.BoundingCapsule;
 import com.jme.math.FastMath;
-import com.jme.scene.Node;
-import com.jme.scene.Spatial;
-import com.jmex.jbullet.collision.shapes.CollisionShape.ShapeTypes;
-import java.util.List;
+import com.jme.util.export.InputCapsule;
+import com.jme.util.export.JMEExporter;
+import com.jme.util.export.JMEImporter;
+import com.jme.util.export.OutputCapsule;
+import com.jmex.jbullet.util.Converter;
 
 /**
  * Basic capsule collision shape
  * @author normenhansen
  */
 public class CapsuleCollisionShape extends CollisionShape{
+    protected float radius,height;
+    protected int axis;
 
-    /**
-     * creates a collision shape from the bounding volume of the given node
-     * @param node the node to get the BoundingVolume from
-     */
-    public CapsuleCollisionShape(Node node) {
-        createCollisionCapsule(node);
-    }
-
-    /**
-     * creates a collision shape from the given bounding volume
-     * @param volume the BoundingVolume to use
-     */
-    public CapsuleCollisionShape(BoundingCapsule volume) {
-        createCollisionCapsule(volume);
+    public CapsuleCollisionShape() {
     }
 
     /**
@@ -69,9 +61,11 @@ public class CapsuleCollisionShape extends CollisionShape{
      * @param height the height of the capsule
      */
     public CapsuleCollisionShape(float radius, float height) {
+        this.radius=radius;
+        this.height=height;
+        this.axis=1;
         CapsuleShape capShape=new CapsuleShape(radius,height);
         cShape=capShape;
-        type=ShapeTypes.CAPSULE;
     }
 
     /**
@@ -81,6 +75,52 @@ public class CapsuleCollisionShape extends CollisionShape{
      * @param axis
      */
     public CapsuleCollisionShape(float radius, float height, int axis) {
+        this.radius=radius;
+        this.height=height;
+        this.axis=axis;
+        createShape();
+    }
+    
+    public CapsuleCollisionShape(BoundingCapsule capsule) {
+    	this.axis = 1;
+        this.radius=capsule.getRadius();
+        float volume=capsule.getVolume();
+        volume-= ( ((4.0f/3.0f) * FastMath.PI ) * FastMath.pow(radius,3) );
+        this.height=(volume/(FastMath.PI*FastMath.pow(radius,2)));
+        height+=(radius*2);
+        createShape();
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public int getAxis() {
+        return axis;
+    }
+
+    public void write(JMEExporter ex) throws IOException {
+        super.write(ex);
+        OutputCapsule capsule = ex.getCapsule(this);
+        capsule.write(radius, "radius", 0.5f);
+        capsule.write(height, "height", 1);
+        capsule.write(axis, "axis", 1);
+    }
+
+    public void read(JMEImporter im) throws IOException {
+        super.read(im);
+        InputCapsule capsule = im.getCapsule(this);
+        radius = capsule.readFloat("radius", 0.5f);
+        height = capsule.readFloat("height", 0.5f);
+        axis = capsule.readInt("axis", 1);
+        createShape();
+    }
+
+    protected void createShape(){
         switch(axis){
             case 0:
                 cShape=new CapsuleShapeX(radius,height);
@@ -92,33 +132,12 @@ public class CapsuleCollisionShape extends CollisionShape{
                 cShape=new CapsuleShapeZ(radius,height);
             break;
         }
-        type=ShapeTypes.CAPSULE;
+        cShape.setLocalScaling(Converter.convert(getScale()));
+        cShape.setMargin(margin);
     }
 
-    private void createCollisionCapsule(Node node) {
-        List<Spatial> children=node.getChildren();
-        if(children.size()==0){
-            throw (new UnsupportedOperationException("PhysicsNode has no children, cannot compute collision capsule"));
-        }
-        if(!(node.getWorldBound() instanceof BoundingCapsule)){
-            node.setModelBound(new BoundingCapsule());
-            node.updateModelBound();
-            node.updateGeometricState(0,true);
-            node.updateWorldBound();
-        }
-        BoundingCapsule capsule=(BoundingCapsule)node.getWorldBound();
-        createCollisionCapsule(capsule);
+    @Override
+    public Class getClassTag() {
+    	return getClass();
     }
-
-    private void createCollisionCapsule(BoundingCapsule capsule) {
-        float radius=capsule.getRadius();
-        float volume=capsule.getVolume();
-        volume-= ( ((4.0f/3.0f) * FastMath.PI ) * FastMath.pow(radius,3) );
-        float height=(volume/(FastMath.PI*FastMath.pow(radius,2)));
-        height+=(radius*2);
-        CapsuleShape capShape=new CapsuleShape(capsule.getRadius(),height);
-        cShape=capShape;
-        type=ShapeTypes.CAPSULE;
-    }
-
 }
